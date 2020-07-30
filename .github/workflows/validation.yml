@@ -1,0 +1,38 @@
+# Runs process_dataset.py on all files in the database.
+
+name: Validation
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    # Runs every eight hours.
+    - cron: '0 */8 * * *'
+
+jobs:
+  validate_database:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout ord-data
+      uses: actions/checkout@v2
+    - name: Checkout ord-schema
+      uses: actions/checkout@v2
+      with:
+        repository: Open-Reaction-Database/ord-schema
+        path: ord-schema
+    - name: Install miniconda
+      uses: s-weigand/setup-conda@v1
+      with:
+        update-conda: true
+    - name: Install dependencies
+      run: |
+        cd "${GITHUB_WORKSPACE}/ord-schema"
+        pip install -r requirements.txt
+        conda install -c rdkit rdkit
+        python setup.py install
+    - name: Validate
+      run: |
+        cd "${GITHUB_WORKSPACE}"
+        python ./ord-schema/ord_schema/process_dataset.py \
+          --input_pattern="data/*/*.pbtxt"
