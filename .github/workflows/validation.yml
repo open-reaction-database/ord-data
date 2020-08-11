@@ -24,7 +24,7 @@ jobs:
     - name: Install miniconda
       uses: s-weigand/setup-conda@v1
       with:
-        update-conda: true
+        python-version: 3.7
     - name: Install dependencies
       run: |
         cd "${GITHUB_WORKSPACE}/ord-schema"
