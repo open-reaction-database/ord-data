@@ -34,7 +34,7 @@ jobs:
     - name: Install miniconda
       uses: s-weigand/setup-conda@v1
       with:
-        update-conda: true
+        python-version: 3.7
       if: env.NUM_CHANGED_FILES != '0'
     - name: Install dependencies
       run: |
