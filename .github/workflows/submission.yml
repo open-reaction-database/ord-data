@@ -1,15 +1,9 @@
 # Runs process_dataset.py on all new and changed files.
 #
-# If this workflow is triggered by a `pull_request` event (usually on the
-# master branch of the upstream repo), process_datasets.py only performs
-# validation. This provides status updates for submission PRs at the base repo
-# level.
-#
-# If this workflow is triggered by a `push` event (usually in a forked repo),
-# process_datasets.py is run with --update and --clean, which writes updated
-# submission protos and replaces the original submission files in git. Based on
-# research by kearnes@, there is no way to commit to a forked repo in an action
-# triggered by a `pull_request` event in the upstream repo.
+# Submissions from forks only trigger the "validation" step to validate the new
+# data. After merging into a new branch in the parent repo, the workflow will
+# run again and trigger the "update" step to add reaction IDs, etc. in
+# preparation for merging into the "main" branch.
 
 name: Submission
 
@@ -21,13 +15,20 @@ jobs:
     steps:
     - name: Checkout ord-data
       uses: actions/checkout@v2
+      if: github.event_name == 'push'
+    - name: Checkout ord-data
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+      if: github.event_name == 'pull_request'
     - name: Add upstream for comparisons to HEAD
       run: |
         cd "${GITHUB_WORKSPACE}"
-        UPSTREAM="https://github.com/Open-Reaction-Database/${GITHUB_REPOSITORY##*/}.git"
-        git remote add upstream "${UPSTREAM}"
+        git remote add upstream \
+          "https://github.com/Open-Reaction-Database/${GITHUB_REPOSITORY##*/}.git"
         echo "Current branch: $(git rev-parse --abbrev-ref HEAD)"
-        git fetch --no-tags --prune --depth=1 upstream +refs/heads/*:refs/remotes/upstream/*
+        git fetch --no-tags --prune --depth=1 upstream \
+          +refs/heads/*:refs/remotes/upstream/*
     - name: Checkout ord-schema
       uses: actions/checkout@v2
       with:
@@ -65,7 +66,7 @@ jobs:
         python ./ord-schema/ord_schema/process_dataset.py \
           --input_file=changed_pbtxt_files.txt \
           --base=upstream/main
-      if: github.event_name == 'pull_request' && env.NUM_CHANGED_FILES != '0'
+      if: env.NUM_CHANGED_FILES != '0'
     - name: Update submission
       run: |
         cd "${GITHUB_WORKSPACE}"
@@ -73,10 +74,15 @@ jobs:
           --input_file=changed_pbtxt_files.txt \
           --update \
           --cleanup \
-          --base=upstream/main
+          --base=upstream/main \
+          --issue=${{ github.event.number }} \
+          --token=${{ secrets.GITHUB_TOKEN }}
         git config user.name github-actions
         git config user.email github-actions@github.com
         # Fail gracefully if there is nothing to commit.
         git commit -a -m "Update submission" || (( $? == 1 ))
-        git push
-      if: github.event_name == 'push' && env.NUM_CHANGED_FILES != '0'
+        git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_HEAD_REF}"
+      if: >-
+        env.NUM_CHANGED_FILES != '0' &&
+        github.event_name == 'pull_request' &&
+        ! github.event.pull_request.head.repo.fork
