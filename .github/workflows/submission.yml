@@ -21,6 +21,13 @@ jobs:
     steps:
     - name: Checkout ord-data
       uses: actions/checkout@v2
+    - name: Add upstream for comparisons to HEAD
+      run: |
+        cd "${GITHUB_WORKSPACE}"
+        UPSTREAM="https://github.com/Open-Reaction-Database/${GITHUB_REPOSITORY##*/}.git"
+        git remote add upstream "${UPSTREAM}"
+        echo "Current branch: $(git rev-parse --abbrev-ref HEAD)"
+        git fetch --no-tags --prune --depth=1 upstream +refs/heads/*:refs/remotes/upstream/*
     - name: Checkout ord-schema
       uses: actions/checkout@v2
       with:
@@ -30,7 +37,16 @@ jobs:
       # NOTE(kearnes): This sets the NUM_CHANGED_FILES variable.
       run: |
         cd "${GITHUB_WORKSPACE}"
-        ./ord-schema/actions/changed_files.sh
+        git diff --name-status upstream/main > changed_files.txt
+        echo "Found $(wc -l < changed_files.txt | tr -d ' ') changed files"
+        cat changed_files.txt
+        # Use `|| (( $? == 1 ))` in case no lines match (exit code is nonzero).
+        grep -e "\.pbtxt$" changed_files.txt > changed_pbtxt_files.txt || (( $? == 1 ))
+        # Use LOCAL_NUM_CHANGED since ::set-env values are not available immediately.
+        LOCAL_NUM_CHANGED="$(wc -l < changed_pbtxt_files.txt | tr -d ' ')"
+        echo "::set-env name=NUM_CHANGED_FILES::${LOCAL_NUM_CHANGED}"
+        echo "Found ${LOCAL_NUM_CHANGED} changed pbtxt files"
+        cat changed_pbtxt_files.txt
     - name: Install miniconda
       uses: s-weigand/setup-conda@v1
       with:
@@ -47,14 +63,20 @@ jobs:
       run: |
         cd "${GITHUB_WORKSPACE}"
         python ./ord-schema/ord_schema/process_dataset.py \
-          --input_file=changed_pbtxt_files.txt
-      if: github.event_name == 'pull_request' && env.NUM_CHANGED_FILES != '0'
+          --input_file=changed_pbtxt_files.txt \
+          --base=upstream/main
+      if: github.event_name == 'pull' && env.NUM_CHANGED_FILES != '0'
     - name: Update submission
       run: |
         cd "${GITHUB_WORKSPACE}"
         python ./ord-schema/ord_schema/process_dataset.py \
           --input_file=changed_pbtxt_files.txt \
           --update \
-          --cleanup
-        ./ord-schema/actions/commit_changes.sh "Validate/update submission"
+          --cleanup \
+          --base=upstream/main
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        # Fail gracefully if there is nothing to commit.
+        git commit -a -m "Update submission" || (( $? == 1 ))
+        git push
       if: github.event_name == 'push' && env.NUM_CHANGED_FILES != '0'
