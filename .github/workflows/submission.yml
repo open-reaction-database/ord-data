@@ -10,6 +10,26 @@ name: Submission
 on: [pull_request, push]
 
 jobs:
+  check_file_types:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Add upstream for comparisons to HEAD
+      run: |
+        cd "${GITHUB_WORKSPACE}"
+        git remote add upstream \
+          "https://github.com/Open-Reaction-Database/${GITHUB_REPOSITORY##*/}.git"
+        echo "Current branch: $(git rev-parse --abbrev-ref HEAD)"
+        git fetch --no-tags --prune --depth=1 upstream \
+          +refs/heads/*:refs/remotes/upstream/*
+    - name: Check changed files
+      run: |
+        cd "${GITHUB_WORKSPACE}"
+        git diff --name-only upstream/main > changed_files.txt
+        grep -vE '\.pbtxt$' changed_files.txt && \
+          echo "submission must only contain *.pbtxt files" && \
+          exit 1 || true
+
   process_submission:
     runs-on: ubuntu-latest
     steps:
