@@ -35,8 +35,8 @@ jobs:
     steps:
     - name: Check target branch
       run: |
-        echo "Target branch: ${GITHUB_HEAD_REF}"
-        test "${GITHUB_HEAD_REF}" != "main"
+        echo "Target branch: ${GITHUB_BASE_REF}"
+        test "${GITHUB_BASE_REF}" != "main"
       if: >-
         github.event_name == 'pull_request' &&
         github.event.pull_request.head.repo.fork
