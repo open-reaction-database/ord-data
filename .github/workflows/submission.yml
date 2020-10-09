@@ -30,6 +30,17 @@ jobs:
           echo "Error: submissions must only contain *.pbtxt files" && \
           exit 1 || true
 
+  check_target_branch:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check target branch
+      run: |
+        echo "Target branch: ${GITHUB_HEAD_REF}"
+        test "${GITHUB_HEAD_REF}" != "main"
+      if: >-
+        github.event_name == 'pull_request' &&
+        github.event.pull_request.head.repo.fork
+
   process_submission:
     runs-on: ubuntu-latest
     steps:
