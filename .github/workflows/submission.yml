@@ -33,15 +33,15 @@ jobs:
         github.event_name == 'pull_request' &&
         github.event.pull_request.head.repo.fork
     - name: Check changed files (PR from branch)
-        run: |
-          cd "${GITHUB_WORKSPACE}"
-          git diff --name-only upstream/main > changed_files.txt
-          grep -vE '\.pbtxt|\.pb$' changed_files.txt && \
-            echo "Error: submissions must only contain *.pbtxt files" && \
-            exit 1 || true
-        if: >-
-          github.event_name == 'pull_request' &&
-          ! github.event.pull_request.head.repo.fork
+      run: |
+        cd "${GITHUB_WORKSPACE}"
+        git diff --name-only upstream/main > changed_files.txt
+        grep -vE '\.pbtxt|\.pb$' changed_files.txt && \
+          echo "Error: submissions must only contain *.pbtxt files" && \
+          exit 1 || true
+      if: >-
+        github.event_name == 'pull_request' &&
+        ! github.event.pull_request.head.repo.fork
 
 
   check_target_branch:
