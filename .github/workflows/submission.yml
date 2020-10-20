@@ -22,10 +22,15 @@ jobs:
       with:
         repository: Open-Reaction-Database/ord-schema
         path: ord-schema
-    - name: Install ord-schema (without conda)
+    - name: Install miniconda
+      uses: s-weigand/setup-conda@v1
+      with:
+        python-version: 3.7
+    - name: Install ord-schema
       run: |
         cd "${GITHUB_WORKSPACE}/ord-schema"
         pip install -r requirements.txt
+        conda install -c rdkit rdkit
         python setup.py install
     - name: Update reactions badge
       run: |
