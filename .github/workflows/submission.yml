@@ -16,7 +16,11 @@ jobs:
       ! github.event.pull_request.head.repo.fork
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout ord-data
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+      if: github.event_name == 'pull_request'
     - name: Checkout ord-schema
       uses: actions/checkout@v2
       with:
