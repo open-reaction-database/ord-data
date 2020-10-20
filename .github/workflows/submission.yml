@@ -44,7 +44,7 @@ jobs:
         git config user.name github-actions
         git config user.email github-actions@github.com
         # Fail gracefully if there is nothing to commit.
-        git commit -a -m "Update submission" || (( $? == 1 ))
+        git commit -a -m "Update badges" || (( $? == 1 ))
         git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_HEAD_REF}"
 
   check_file_types:
