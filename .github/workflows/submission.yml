@@ -10,6 +10,34 @@ name: Submission
 on: [pull_request, push]
 
 jobs:
+  count_reactions:
+    if: >-
+      github.event_name == 'pull_request' &&
+      ! github.event.pull_request.head.repo.fork
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Checkout ord-schema
+      uses: actions/checkout@v2
+      with:
+        repository: Open-Reaction-Database/ord-schema
+        path: ord-schema
+    - name: Install ord-schema (without conda)
+      run: |
+        cd "${GITHUB_WORKSPACE}/ord-schema"
+        pip install -r requirements.txt
+        python setup.py install
+    - name: Update reactions badge
+      run: |
+        cd "${GITHUB_WORKSPACE}"
+        python badges/reactions.py --root=data --output=badges/reactions.svg
+        git add badges/reactions.svg
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        # Fail gracefully if there is nothing to commit.
+        git commit -a -m "Update submission" || (( $? == 1 ))
+        git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_HEAD_REF}"
+
   check_file_types:
     runs-on: ubuntu-latest
     steps:
