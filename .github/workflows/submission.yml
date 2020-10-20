@@ -39,7 +39,7 @@ jobs:
     - name: Update reactions badge
       run: |
         cd "${GITHUB_WORKSPACE}"
-        python badges/reactions.py --root=data --output=badges/reactions.svg
+        python ord-schema/badges/reactions.py --root=data --output=badges/reactions.svg
         git add badges/reactions.svg
         git config user.name github-actions
         git config user.email github-actions@github.com
