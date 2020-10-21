@@ -10,6 +10,88 @@ name: Submission
 on: [pull_request, push]
 
 jobs:
+  count_reactions:
+    if: >-
+      github.event_name == 'pull_request' &&
+      ! github.event.pull_request.head.repo.fork
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout ord-data
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+      if: github.event_name == 'pull_request'
+    - name: Checkout ord-schema
+      uses: actions/checkout@v2
+      with:
+        repository: Open-Reaction-Database/ord-schema
+        path: ord-schema
+    - name: Install miniconda
+      uses: s-weigand/setup-conda@v1
+      with:
+        python-version: 3.7
+    - name: Install ord-schema
+      run: |
+        cd "${GITHUB_WORKSPACE}/ord-schema"
+        pip install -r requirements.txt
+        conda install -c rdkit rdkit
+        python setup.py install
+    - name: Update reactions badge
+      run: |
+        cd "${GITHUB_WORKSPACE}"
+        python ord-schema/badges/reactions.py --root=data --output=badges/reactions.svg
+        git add badges/reactions.svg
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        # Fail gracefully if there is nothing to commit.
+        git commit -a -m "Update badges" || (( $? == 1 ))
+        git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_HEAD_REF}"
+
+  check_file_types:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Add upstream for comparisons to HEAD
+      run: |
+        cd "${GITHUB_WORKSPACE}"
+        git remote add upstream \
+          "https://github.com/Open-Reaction-Database/${GITHUB_REPOSITORY##*/}.git"
+        echo "Current branch: $(git rev-parse --abbrev-ref HEAD)"
+        git fetch --no-tags --prune --depth=1 upstream \
+          +refs/heads/*:refs/remotes/upstream/*
+    - name: Check changed files (PR from fork)
+      run: |
+        cd "${GITHUB_WORKSPACE}"
+        git diff --name-only upstream/main > changed_files.txt
+        grep -vE '\.pbtxt$' changed_files.txt && \
+          echo "Error: submissions must only contain *.pbtxt files" && \
+          exit 1 || true
+      if: >-
+        github.event_name == 'pull_request' &&
+        github.event.pull_request.head.repo.fork
+    - name: Check changed files (PR from branch)
+      run: |
+        cd "${GITHUB_WORKSPACE}"
+        git diff --name-only upstream/main > changed_files.txt
+        grep -vE '\.pbtxt|\.pb$|\.svg$' changed_files.txt && \
+          echo "Error: submission contains unusual file types" && \
+          exit 1 || true
+      if: >-
+        github.event_name == 'pull_request' &&
+        ! github.event.pull_request.head.repo.fork
+
+
+  check_target_branch:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check target branch
+      run: |
+        echo "Target branch: ${GITHUB_BASE_REF}"
+        test "${GITHUB_BASE_REF}" != "main"
+      if: >-
+        github.event_name == 'pull_request' &&
+        github.event.pull_request.head.repo.fork
+
   process_submission:
     runs-on: ubuntu-latest
     steps:
