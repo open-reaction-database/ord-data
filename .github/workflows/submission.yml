@@ -128,7 +128,7 @@ jobs:
         grep -E "\.pb$" changed_files.txt > changed_pb_files.txt || (( $? == 1 ))
         # Use LOCAL_NUM_CHANGED since ::set-env values are not available immediately.
         LOCAL_NUM_CHANGED="$(wc -l < changed_pbtxt_files.txt | tr -d ' ')"
-        echo "::set-env name=NUM_CHANGED_FILES::${LOCAL_NUM_CHANGED}"
+        echo "NUM_CHANGED_FILES=${LOCAL_NUM_CHANGED}" >> $GITHUB_ENV
         echo "Found ${LOCAL_NUM_CHANGED} changed pbtxt files"
         cat changed_pbtxt_files.txt
     - name: Install miniconda
