@@ -48,7 +48,7 @@ jobs:
     - name: Check pbtxt <-> pb encoding
       run: |
         cd "${GITHUB_WORKSPACE}"
-        for filename in "data/*/*.pb"; do
+        for filename in data/*/*.pb; do
           echo "${filename}"
           python ./ord-schema/ord_schema/scripts/check_pb.py \
             --pb="${filename}" \
