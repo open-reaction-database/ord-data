@@ -149,14 +149,16 @@ jobs:
         python ./ord-schema/ord_schema/process_dataset.py \
           --input_file=changed_pbtxt_files.txt \
           --base=upstream/main
-        python ./ord-schema/ord_schema/process_dataset.py \
-          --input_file=changed_pb_files.txt
-        for filename in "$(cat changed_pb_files.txt)"; do
-          echo "${filename}"
-          python ./ord-schema/ord_schema/scripts/check_pb.py \
-            --pb="${filename}" \
-            --pbtxt="${filename}txt"
-        done
+        if test "$( wc -l < changed_pb_files.txt )" -gt 0; then
+          python ./ord-schema/ord_schema/process_dataset.py \
+            --input_file=changed_pb_files.txt
+          for filename in "$(cat changed_pb_files.txt)"; do
+            echo "${filename}"
+            python ./ord-schema/ord_schema/scripts/check_pb.py \
+              --pb="${filename}" \
+              --pbtxt="${filename}txt"
+          done
+        fi
       if: env.NUM_CHANGED_FILES != '0'
     - name: Update submission
       run: |
