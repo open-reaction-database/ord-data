@@ -152,7 +152,7 @@ jobs:
         if test "$( wc -l < changed_pb_files.txt )" -gt 0; then
           python ./ord-schema/ord_schema/process_dataset.py \
             --input_file=changed_pb_files.txt
-          for filename in "$(cat changed_pb_files.txt)"; do
+          for filename in "$(cat changed_pb_files.txt | awk '{print $2}')"; do
             echo "${filename}"
             python ./ord-schema/ord_schema/scripts/check_pb.py \
               --pb="${filename}" \
