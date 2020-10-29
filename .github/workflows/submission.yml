@@ -125,7 +125,7 @@ jobs:
         cat changed_files.txt
         # Use `|| (( $? == 1 ))` in case no lines match (exit code is nonzero).
         grep -E "\.pbtxt$" changed_files.txt > changed_pbtxt_files.txt || (( $? == 1 ))
-        git diff --name-only upstream/main | grep -E "\.pb$" > changed_pb_files.txt || (( $? == 1 ))
+        grep -E "\.pb$" changed_files.txt > changed_pb_files.txt || (( $? == 1 ))
         # Use LOCAL_NUM_CHANGED since ::set-env values are not available immediately.
         LOCAL_NUM_CHANGED="$(wc -l < changed_pbtxt_files.txt | tr -d ' ')"
         echo "NUM_CHANGED_FILES=${LOCAL_NUM_CHANGED}" >> $GITHUB_ENV
@@ -152,7 +152,7 @@ jobs:
         if test "$( wc -l < changed_pb_files.txt )" -gt 0; then
           python ./ord-schema/ord_schema/process_dataset.py \
             --input_file=changed_pb_files.txt
-          for filename in "$(cat changed_pb_files.txt)"; do
+          for filename in "$(cat changed_pb_files.txt | awk '{print $2}')"; do
             echo "${filename}"
             python ./ord-schema/ord_schema/scripts/check_pb.py \
               --pb="${filename}" \
