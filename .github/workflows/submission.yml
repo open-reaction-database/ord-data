@@ -125,7 +125,7 @@ jobs:
         cat changed_files.txt
         # Use `|| (( $? == 1 ))` in case no lines match (exit code is nonzero).
         grep -E "\.pbtxt$" changed_files.txt > changed_pbtxt_files.txt || (( $? == 1 ))
-        grep -E "\.pb$" changed_files.txt > changed_pb_files.txt || (( $? == 1 ))
+        git diff --name-only upstream/main | grep -E "\.pb$" > changed_pb_files.txt || (( $? == 1 ))
         # Use LOCAL_NUM_CHANGED since ::set-env values are not available immediately.
         LOCAL_NUM_CHANGED="$(wc -l < changed_pbtxt_files.txt | tr -d ' ')"
         echo "NUM_CHANGED_FILES=${LOCAL_NUM_CHANGED}" >> $GITHUB_ENV
