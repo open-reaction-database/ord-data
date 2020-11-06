@@ -27,7 +27,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: Open-Reaction-Database/ord-schema
-        ref: env.ORD_SCHEMA_TAG
+        ref: ${{ env.ORD_SCHEMA_TAG }}
         path: ord-schema
     - name: Install miniconda
       uses: s-weigand/setup-conda@v1
