@@ -9,6 +9,9 @@ name: Submission
 
 on: [pull_request, push]
 
+env:
+  ORD_SCHEMA_TAG: v0.1.1
+
 jobs:
   count_reactions:
     if: >-
@@ -25,6 +28,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: Open-Reaction-Database/ord-schema
+        ref: ${{ env.ORD_SCHEMA_TAG }}
         path: ord-schema
     - name: Install miniconda
       uses: s-weigand/setup-conda@v1
@@ -115,6 +119,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: Open-Reaction-Database/ord-schema
+        ref: ${{ env.ORD_SCHEMA_TAG }}
         path: ord-schema
     - name: Identify changed files
       # NOTE(kearnes): This sets the NUM_CHANGED_FILES variable.
