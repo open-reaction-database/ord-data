@@ -1,0 +1,323 @@
+identifiers {
+  type: NAME
+  value: "C-N cross coupling"
+}
+inputs {
+  key: "3-Bromopyridine (stock solution in DMSO)"
+  value {
+    components {
+      identifiers {
+        type: NAME
+        value: "3-bromopyridine"
+      }
+      identifiers {
+        type: SMILES
+        value: "C1=CC(=CN=C1)Br"
+      }
+      moles {
+        value: 100.0
+        units: NANOMOLE
+      }
+      reaction_role: REACTANT
+      is_limiting: true
+    }
+    components {
+      identifiers {
+        type: NAME
+        value: "DMSO"
+      }
+      identifiers {
+        type: SMILES
+        value: "CS(=O)C"
+      }
+      volume {
+        value: 0.25
+        units: MICROLITER
+      }
+      reaction_role: SOLVENT
+      volume_includes_solutes: true
+    }
+  }
+}
+inputs {
+  key: "4-Phenylpiperidine (stock solution in DMSO)"
+  value {
+    components {
+      identifiers {
+        type: NAME
+        value: "4-phenylpiperidine"
+      }
+      identifiers {
+        type: SMILES
+        value: "C1CNCCC1C2=CC=CC=C2"
+      }
+      moles {
+        value: 150.0
+        precision: 0.0
+        units: NANOMOLE
+      }
+      reaction_role: REACTANT
+      is_limiting: false
+    }
+    components {
+      identifiers {
+        type: NAME
+        value: "DMSO"
+      }
+      identifiers {
+        type: SMILES
+        value: "CS(=O)C"
+      }
+      volume {
+        value: 0.25
+        units: MICROLITER
+      }
+      reaction_role: SOLVENT
+      volume_includes_solutes: true
+    }
+  }
+}
+inputs {
+  key: "Base (stock solution in DMSO)"
+  value {
+    components {
+      identifiers {
+        type: SMILES
+        value: "$base_smiles$"
+      }
+      moles {
+        value: 200.0
+        units: NANOMOLE
+      }
+      reaction_role: REAGENT
+    }
+    components {
+      identifiers {
+        type: NAME
+        value: "DMSO"
+      }
+      identifiers {
+        type: SMILES
+        value: "CS(=O)C"
+      }
+      volume {
+        value: 0.25
+        units: MICROLITER
+      }
+      reaction_role: SOLVENT
+      volume_includes_solutes: true
+    }
+  }
+}
+inputs {
+  key: "Pd precatalyst (stock solution in DMSO)"
+  value {
+    components {
+      identifiers {
+        type: SMILES
+        value: "$catalyst_smiles$"
+      }
+      moles {
+        value: 10.0
+        units: NANOMOLE
+      }
+      reaction_role: CATALYST
+    }
+    components {
+      identifiers {
+        type: NAME
+        value: "DMSO"
+      }
+      identifiers {
+        type: SMILES
+        value: "CS(=O)C"
+      }
+      volume {
+        value: 0.25
+        units: MICROLITER
+      }
+      reaction_role: SOLVENT
+      volume_includes_solutes: true
+    }
+  }
+}
+setup {
+  vessel {
+    type {
+      type: WELL_PLATE
+    }
+    material {
+      type: CUSTOM
+      details: "Cyclic Olefin-Copolymer (COC)"
+    }
+    volume {
+      value: 12.5
+      units: MICROLITER
+    }
+  }
+  is_automated: true
+  environment {
+    type: GLOVE_BOX
+  }
+}
+conditions {
+  temperature {
+    control {
+      type: AMBIENT
+    }
+  }
+  pressure {
+    control {
+      type: SEALED
+      details: "sealed with PFA film"
+    }
+    atmosphere {
+      type: NITROGEN
+    }
+  }
+  stirring {
+    method {
+      type: NONE
+      details: "nanomole scale HTE, homogenous solution, no stirring"
+    }
+  }
+  reflux: false
+  conditions_are_dynamic: false
+}
+notes {
+  is_heterogeneous: false
+  forms_precipitate: false
+  offgasses: false
+  is_sensitive_to_moisture: true
+  is_sensitive_to_oxygen: true
+}
+workup {
+  type: ADDITION
+  details: "solution of bipheny (3%) and acetic acid to quench reaction. Acetic acid amount not specified."
+  input {
+    components {
+      identifiers {
+        type: NAME
+        value: "acetic acid"
+      }
+      identifiers {
+        type: SMILES
+        value: "CC(=O)O"
+      }
+      volume {
+        value: 1.0
+        units: MICROLITER
+      }
+      reaction_role: WORKUP
+      volume_includes_solutes: true
+    }
+    components {
+      identifiers {
+        type: NAME
+        value: "biphenyl"
+      }
+      identifiers {
+        type: SMILES
+        value: "C1=CC=C(C=C1)C2=CC=CC=C2"
+      }
+      moles {
+        value: 3.0
+        units: NANOMOLE
+      }
+      reaction_role: INTERNAL_STANDARD
+    }
+    components {
+      identifiers {
+        type: NAME
+        value: "DMSO"
+      }
+      identifiers {
+        type: SMILES
+        value: "CS(=O)C"
+      }
+      volume {
+        value: 3.0
+        units: MICROLITER
+      }
+      reaction_role: SOLVENT
+      volume_includes_solutes: true
+    }
+  }
+  volume {
+    units: MICROLITER
+  }
+}
+workup {
+  type: ALIQUOT
+  volume {
+    value: 1.0
+    units: MICROLITER
+  }
+}
+workup {
+  type: ADDITION
+  input {
+    components {
+      identifiers {
+        type: NAME
+        value: "DMSO"
+      }
+      identifiers {
+        type: SMILES
+        value: "CS(C)=O"
+      }
+      volume {
+        value: 75.0
+        units: MICROLITER
+      }
+      reaction_role: SOLVENT
+      volume_includes_solutes: true
+    }
+  }
+}
+outcomes {
+  reaction_time {
+    value: 22.0
+    units: HOUR
+  }
+  products {
+    compound {
+      identifiers {
+        type: SMILES
+        value: "C1=CC=NC=C1N1CCC(C2=CC=CC=C2)CC1"
+      }
+    }
+    is_desired_product: true
+    compound_yield {
+      value: $yield$
+    }
+    analysis_identity: "UPLC analysis of mixture"
+    analysis_yield: "UPLC analysis of mixture"
+  }
+  analyses {
+    key: "UPLC analysis of mixture"
+    value {
+      type: LC
+      details: "UPLC with internal standard. Yield was relative in the paper (LC ratio without response factor correction). Yield established here was back-calculated from the scaled-up reaction. Scaled up reactions have isolated yield, which was used to back-calculate the yield for all screening reactions."
+      instrument_manufacturer: "Waters"
+      uses_authentic_standard: false
+    }
+  }
+}
+provenance {
+  experimenter {
+    organization: "Merck Research Laboratories"
+  }
+  publication_url: "https://science.sciencemag.org/content/347/6217/49/tab-pdf"
+  record_created {
+    time {
+      value: "9/3/2020, 5:11:39 PM"
+    }
+    person {
+      name: "Jason Wang"
+      orcid: "0000-0001-5826-2554"
+      organization: "Princeton U"
+      email: "wang10@princeton.edu"
+    }
+  }
+}
