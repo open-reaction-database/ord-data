@@ -67,8 +67,8 @@ jobs:
       run: |
         cd "${GITHUB_WORKSPACE}"
         git diff --name-only upstream/main > changed_files.txt
-        grep -vE '\.pbtxt$' changed_files.txt && \
-          echo "Error: submissions must only contain *.pbtxt files" && \
+        grep -vE '\.pb(txt)?$' changed_files.txt && \
+          echo "Error: submissions must only contain *.pbtxt or *.pb files" && \
           exit 1 || true
       if: >-
         github.event_name == 'pull_request' &&
@@ -157,7 +157,7 @@ jobs:
         if test "$( wc -l < changed_pb_files.txt )" -gt 0; then
           python ./ord-schema/ord_schema/process_dataset.py \
             --input_file=changed_pb_files.txt
-          for filename in "$(cat changed_pb_files.txt | awk '{print $2}')"; do
+          for filename in $(cat changed_pb_files.txt | awk '{print $2}'); do
             echo "${filename}"
             python ./ord-schema/ord_schema/scripts/check_pb.py \
               --pb="${filename}" \
