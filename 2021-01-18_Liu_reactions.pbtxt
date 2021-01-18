@@ -1,0 +1,1480 @@
+name: "Copper-Catalyzed Enantioselective Hydroamination of Alkenes"
+description: "Three reactions from: 10.15227/orgsyn.095.0080"
+reactions {
+  inputs {
+    key: "4-dimethyl-aminopyridine"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "n1ccc(N(C)C)cc1"
+        }
+        identifiers {
+          type: NAME
+          value: "4-dimethyl-aminopyridine"
+        }
+        amount {
+          mass {
+            value: 12.8
+            units: GRAM
+          }
+        }
+        reaction_role: REACTANT
+        preparations {
+          type: NONE
+          details: "used as received"
+        }
+        source {
+          vendor: "Sigma Aldrich"
+        }
+      }
+      addition_order: 2
+    }
+  }
+  inputs {
+    key: "N,N-dibenzylhydroxylamine"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "C1=CC=C(C=C1)CN(CC2=CC=CC=C2)O"
+        }
+        identifiers {
+          type: NAME
+          value: "N,N-dibenzylhydroxylamine"
+        }
+        amount {
+          mass {
+            value: 21.3
+            units: GRAM
+          }
+        }
+        reaction_role: REACTANT
+        is_limiting: true
+        preparations {
+          type: CUSTOM
+          details: "a few colored or darker crystals, which were present in trace amounts, were discarded using standard tweezers"
+        }
+        source {
+          vendor: "TCI America"
+        }
+      }
+      addition_order: 1
+    }
+  }
+  inputs {
+    key: "dichloromethane"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "C(Cl)Cl"
+        }
+        identifiers {
+          type: NAME
+          value: "dichloromethane"
+        }
+        amount {
+          volume {
+            value: 250.0
+            units: MILLILITER
+          }
+        }
+        reaction_role: SOLVENT
+        preparations {
+          type: DRIED
+          details: "purified by passage under argon pressure through two packed columns of neutral alumina and copper(II) oxide"
+        }
+        source {
+          vendor: "J. T. Baker"
+        }
+      }
+      addition_order: 3
+    }
+  }
+  inputs {
+    key: "pivaloyl chloride"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "CC(C)(C)C(=O)Cl"
+        }
+        identifiers {
+          type: NAME
+          value: "pivaloyl chloride"
+        }
+        amount {
+          volume {
+            value: 12.9
+            units: MILLILITER
+          }
+        }
+        reaction_role: REACTANT
+        preparations {
+          type: NONE
+          details: "used as received"
+        }
+        source {
+          vendor: "Alfa Aesar"
+        }
+      }
+      addition_order: 4
+      addition_speed {
+        type: DROPWISE
+      }
+      addition_duration {
+        value: 5.0
+        units: MINUTE
+      }
+      addition_device {
+        type: SYRINGE
+        details: "plastic 30-mL syringe"
+      }
+    }
+  }
+  setup {
+    vessel {
+      type {
+        type: ROUND_BOTTOM_FLASK
+        details: "single-necked"
+      }
+      material {
+        type: GLASS
+      }
+      preparations {
+        type: OVEN_DRIED
+      }
+      preparations {
+        type: PURGED
+        details: "with nitrogen"
+      }
+      attachments {
+        type: SEPTUM
+        details: "rubber"
+      }
+      volume {
+        value: 500.0
+        units: MILLILITER
+      }
+    }
+    is_automated: false
+    environment {
+      type: FUME_HOOD
+    }
+  }
+  conditions {
+    temperature {
+      control {
+        type: ICE_BATH
+        details: "reaction started in ice bath before addition of pivaloyl \nchloride, then allowed to warm to 23 C, then stirred for additional 6 hours at \nRT (23 degC)"
+      }
+      setpoint {
+        value: 0.0
+        units: CELSIUS
+      }
+    }
+    pressure {
+      control {
+        type: SLIGHT_POSITIVE
+        details: "sealed with rubber septum, pierced with needle connected to manifold"
+      }
+      atmosphere {
+        type: NITROGEN
+        details: "dry nitrogen"
+      }
+    }
+    stirring {
+      method {
+        type: STIR_BAR
+      }
+    }
+    conditions_are_dynamic: true
+    details: "reaction started in ice bath before addition of\npivaloyl chloride, then allowed to warm to 23 C, then stirred for \'\nan additional 6 hours at RT (23 degC)"
+  }
+  notes {
+    is_heterogeneous: true
+  }
+  workups {
+    type: ADDITION
+    input {
+      components {
+        identifiers {
+          type: SMILES
+          value: "O"
+        }
+        identifiers {
+          type: NAME
+          value: "water"
+        }
+        amount {
+          volume {
+            value: 50.0
+            units: MILLILITER
+          }
+        }
+      }
+      components {
+        identifiers {
+          type: SMILES
+          value: "[NH4+].[Cl-]"
+        }
+        identifiers {
+          type: NAME
+          value: "ammonium chloride"
+        }
+        amount {
+          mass {
+            value: 19.15
+            units: GRAM
+          }
+        }
+      }
+    }
+  }
+  workups {
+    type: ADDITION
+    input {
+      components {
+        identifiers {
+          type: SMILES
+          value: "C(Cl)Cl"
+        }
+        identifiers {
+          type: NAME
+          value: "DCM"
+        }
+        amount {
+          volume {
+            value: 50.0
+            units: MILLILITER
+          }
+        }
+      }
+    }
+  }
+  workups {
+    type: ADDITION
+    input {
+      components {
+        identifiers {
+          type: SMILES
+          value: "C(Cl)Cl"
+        }
+        identifiers {
+          type: NAME
+          value: "DCM"
+        }
+        amount {
+          volume {
+            value: 50.0
+            units: MILLILITER
+          }
+        }
+      }
+    }
+  }
+  workups {
+    type: ADDITION
+    input {
+      components {
+        identifiers {
+          type: SMILES
+          value: "C(Cl)Cl"
+        }
+        identifiers {
+          type: NAME
+          value: "DCM"
+        }
+        amount {
+          volume {
+            value: 50.0
+            units: MILLILITER
+          }
+        }
+      }
+    }
+  }
+  workups {
+    type: EXTRACTION
+    details: "3 x 50 mL DCM extraction in 1 L separatory funnel"
+    keep_phase: "organic"
+  }
+  workups {
+    type: WASH
+    input {
+      components {
+        identifiers {
+          type: SMILES
+          value: "O"
+        }
+        identifiers {
+          type: NAME
+          value: "water"
+        }
+        amount {
+          volume {
+            value: 200.0
+            units: MILLILITER
+          }
+        }
+      }
+    }
+  }
+  workups {
+    type: CONCENTRATION
+    details: "rotary evaporator (30 degC, 80 mmHg)"
+  }
+  workups {
+    type: ADDITION
+    input {
+      components {
+        identifiers {
+          type: SMILES
+          value: "C(Cl)Cl"
+        }
+        identifiers {
+          type: NAME
+          value: "DCM"
+        }
+        amount {
+          volume {
+            value: 50.0
+            units: MILLILITER
+          }
+        }
+      }
+    }
+  }
+  workups {
+    type: OTHER_CHROMATOGRAPHY
+    details: "Aluminum oxide (neutral, powder, reagent-grade) was \npurchased from J.T. Baker. The crude reaction mixture is suspended in \ndichloromethane (50 mL) and is loaded onto a column, with interior diameter of \nroughly 2 inches, packed with alumina (100 g) and wetted with hexanes. \ndichloromethane is used as the eluent, and fractions are collected in Erlenmeyer\n flasks (50 mL each). The desired product typically elutes in fractions 2 \n through 25. The fractions that contain the desired product are combined"
+  }
+  workups {
+    type: CONCENTRATION
+    details: "rotary evaporator (30 degC, 80 mmHg)"
+  }
+  workups {
+    type: DRY_IN_VACUUM
+  }
+  outcomes {
+    reaction_time {
+      value: 6.0
+      units: HOUR
+    }
+    products {
+      identifiers {
+        type: SMILES
+        value: "O=C(C(C)(C)C)ON(CC1=CC=CC=C1)CC2=CC=CC=C2"
+      }
+      identifiers {
+        type: NAME
+        value: "N,N-Dibenzyl-O-pivaloylhydroxylamine"
+      }
+      is_desired_product: true
+      measurements {
+        analysis_key: "1H NMR"
+        type: IDENTITY
+      }
+      measurements {
+        analysis_key: "13C NMR"
+        type: IDENTITY
+      }
+      measurements {
+        analysis_key: "HRMS"
+        type: IDENTITY
+      }
+      measurements {
+        analysis_key: "thin film IR"
+        type: IDENTITY
+      }
+      measurements {
+        analysis_key: "isolated_weight"
+        type: YIELD
+        percentage {
+          value: 93.5
+          precision: 0.5
+        }
+      }
+      measurements {
+        analysis_key: "quantitative NMR"
+        type: PURITY
+        percentage {
+          value: 99.0
+        }
+      }
+      measurements {
+        analysis_key: "isolated_weight"
+        type: AMOUNT
+        amount {
+          mass {
+            value: 27.75
+            units: GRAM
+          }
+        }
+      }
+      isolated_color: "white"
+      texture {
+        type: POWDER
+      }
+      reaction_role: PRODUCT
+    }
+    analyses {
+      key: "13C NMR"
+      value {
+        type: NMR_13C
+        details: "101 MHz, CDCl3"
+        is_of_isolated_species: true
+        data {
+          key: "peaks"
+          value {
+            string_value: "27.1, 38.4, 62.4, 127.7, 128.3, 129.6, 136.2, 176.3"
+            description: "List of peaks"
+          }
+        }
+      }
+    }
+    analyses {
+      key: "1H NMR"
+      value {
+        type: NMR_1H
+        details: "400 MHz, CDCl3"
+        is_of_isolated_species: true
+        data {
+          key: "peaks"
+          value {
+            string_value: "0.92 (s, 9H), 4.06 (s, 4H), 7.23 - 7.34 (m, 6H), 7.40 (d, J = 7.1 Hz, 4H)"
+            description: "List of peaks"
+          }
+        }
+      }
+    }
+    analyses {
+      key: "HRMS"
+      value {
+        type: HRMS
+        details: "ESI-TOF"
+        is_of_isolated_species: true
+        data {
+          key: "expected"
+          value {
+            float_value: 298.1802
+            description: "Expected m/z"
+          }
+        }
+        data {
+          key: "found"
+          value {
+            float_value: 298.1794
+            description: "Observed m/z"
+          }
+        }
+      }
+    }
+    analyses {
+      key: "isolated_weight"
+      value {
+        type: WEIGHT
+        details: "27.5-28.0 g recovered after workup"
+        is_of_isolated_species: true
+      }
+    }
+    analyses {
+      key: "quantitative NMR"
+      value {
+        type: NMR_1H
+        details: "Quantitative NMR using 1,1,2,2-tetrachloroethane (>98%, purchased from Alfa Aesar) in CDCl3"
+        is_of_isolated_species: true
+      }
+    }
+    analyses {
+      key: "thin film IR"
+      value {
+        type: IR
+        details: "neat film, NaCl"
+        is_of_isolated_species: true
+        data {
+          key: "peaks"
+          value {
+            string_value: "3064, 3031, 2973, 2932, 2906, 2872, 1751, 1496, 1479, 1456, 1273, 1116, 1029, 738, 698"
+            description: "List of peaks [cm-1]"
+          }
+        }
+      }
+    }
+  }
+  provenance {
+    city: "Cambridge, MA"
+    doi: "10.15227/orgsyn.095.0080"
+    publication_url: "http://www.orgsyn.org/demo.aspx?prep=v95p0080"
+    record_created {
+      time {
+        value: "01/18/2021, 10:02:57"
+      }
+      person {
+        name: "Connor W. Coley"
+        orcid: "0000-0002-8271-8723"
+        organization: "MIT"
+        email: "ccoley@mit.edu"
+      }
+    }
+  }
+}
+reactions {
+  inputs {
+    key: "(S)-DTBM-SEGPHOS"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "CC(C)(C)C1=CC(=CC(=C1OC)C(C)(C)C)P(C2=C(C3=C(C=C2)OCO3)C4=C(C=CC5=C4OCO5)P(C6=CC(=C(C(=C6)C(C)(C)C)OC)C(C)(C)C)C7=CC(=C(C(=C7)C(C)(C)C)OC)C(C)(C)C)C8=CC(=C(C(=C8)C(C)(C)C)OC)C(C)(C)C"
+        }
+        identifiers {
+          type: NAME
+          value: "(S)-DTBM-SEGPHOS"
+        }
+        amount {
+          mass {
+            value: 274.0
+            units: MILLIGRAM
+          }
+        }
+        reaction_role: REAGENT
+        preparations {
+          type: NONE
+          details: "used as received (>94% purity)"
+        }
+        source {
+          vendor: "Takasago"
+        }
+      }
+      addition_order: 3
+    }
+  }
+  inputs {
+    key: "N,N-Dibenzyl-O-pivaloylhydroxylamine"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "O=C(C(C)(C)C)ON(CC1=CC=CC=C1)CC2=CC=CC=C2"
+        }
+        identifiers {
+          type: NAME
+          value: "N,N-Dibenzyl-O-pivaloylhydroxylamine"
+        }
+        amount {
+          mass {
+            value: 7.55
+            units: GRAM
+          }
+        }
+        reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
+      }
+      addition_order: 1
+    }
+  }
+  inputs {
+    key: "THF"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "C1CCOC1"
+        }
+        identifiers {
+          type: NAME
+          value: "THF"
+        }
+        amount {
+          volume {
+            value: 21.0
+            units: MILLILITER
+          }
+        }
+        reaction_role: SOLVENT
+        preparations {
+          type: DRIED
+          details: "purified by passage under argon pressure through two packed columns of neutral alumina and copper(II) oxide"
+        }
+        source {
+          vendor: "J. T. Baker"
+        }
+      }
+      addition_order: 6
+      addition_device {
+        type: SYRINGE
+      }
+    }
+  }
+  inputs {
+    key: "copper(II) acetate"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "CC(=O)[O-].CC(=O)[O-].[Cu+2]"
+        }
+        identifiers {
+          type: NAME
+          value: "copper(II) acetate"
+        }
+        amount {
+          mass {
+            value: 38.0
+            units: MILLIGRAM
+          }
+        }
+        reaction_role: REAGENT
+        preparations {
+          type: NONE
+          details: "used as received (97% purity)"
+        }
+        source {
+          vendor: "Strem"
+        }
+      }
+      addition_order: 2
+    }
+  }
+  inputs {
+    key: "dimethoxy(methyl)silane"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "CO[Si](C)OC"
+        }
+        identifiers {
+          type: NAME
+          value: "dimethoxy(methyl)silane"
+        }
+        amount {
+          mass {
+            value: 4.49
+            units: GRAM
+          }
+        }
+        reaction_role: REAGENT
+        preparations {
+          type: NONE
+          details: "used as received (>97% purity, stored at -20 C)"
+        }
+        source {
+          vendor: "TCI America"
+        }
+      }
+      addition_order: 5
+      addition_speed {
+        type: DROPWISE
+      }
+      addition_duration {
+        value: 10.0
+        units: MINUTE
+      }
+    }
+  }
+  inputs {
+    key: "trans-\316\262-methylstyrene"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "C/C=C/C1=CC=CC=C1"
+        }
+        identifiers {
+          type: NAME
+          value: "trans-\316\262-methylstyrene"
+        }
+        amount {
+          mass {
+            value: 2.5
+            units: GRAM
+          }
+        }
+        reaction_role: REACTANT
+        is_limiting: true
+        preparations {
+          type: NONE
+          details: "used as received (97% purity, stabilized)"
+        }
+        source {
+          vendor: "Combi-Blocks or Acros"
+        }
+      }
+      addition_order: 5
+    }
+  }
+  inputs {
+    key: "triphenylphosphine"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "c3c(P(c1ccccc1)c2ccccc2)cccc3"
+        }
+        identifiers {
+          type: NAME
+          value: "triphenylphosphine"
+        }
+        amount {
+          mass {
+            value: 61.0
+            units: MILLIGRAM
+          }
+        }
+        reaction_role: REAGENT
+        preparations {
+          type: NONE
+          details: "used as received (99% purity)"
+        }
+        source {
+          vendor: "Sigma-Aldrich"
+        }
+      }
+      addition_order: 4
+    }
+  }
+  setup {
+    vessel {
+      type {
+        type: ROUND_BOTTOM_FLASK
+        details: "two-necked"
+      }
+      material {
+        type: GLASS
+      }
+      preparations {
+        type: OVEN_DRIED
+      }
+      preparations {
+        type: PURGED
+        details: "with nitrogen"
+      }
+      attachments {
+        type: SEPTUM
+        details: "rubber"
+      }
+      attachments {
+        type: SEPTUM
+        details: "rubber"
+      }
+      volume {
+        value: 250.0
+        units: MILLILITER
+      }
+    }
+    is_automated: false
+    environment {
+      type: FUME_HOOD
+    }
+  }
+  conditions {
+    temperature {
+      control {
+        type: WATER_BATH
+        details: "removed from water bath after 10 min for 12 hour duration"
+      }
+      setpoint {
+        value: 23.0
+        units: CELSIUS
+      }
+    }
+    pressure {
+      control {
+        type: SLIGHT_POSITIVE
+        details: "sealed with rubber septum, pierced with needle connected to manifold"
+      }
+      atmosphere {
+        type: NITROGEN
+        details: "dry nitrogen"
+      }
+    }
+    stirring {
+      method {
+        type: STIR_BAR
+      }
+    }
+    conditions_are_dynamic: true
+    details: "After dropwise addition of dimethoxy(methyl)-\nsilane into reaction mixture in water bath, the vessel was removed and allowed\nto stir for an additional 12 hours"
+  }
+  observations {
+    time {
+      value: 0.0
+      units: MINUTE
+    }
+    comment: "blue"
+  }
+  observations {
+    time {
+      value: 10.0
+      units: MINUTE
+    }
+    comment: "orange"
+  }
+  outcomes {
+    reaction_time {
+      value: 12.0
+      units: HOUR
+    }
+    products {
+      identifiers {
+        type: SMILES
+        value: "CC[C@@H](N(CC1=CC=CC=C1)CC2=CC=CC=C2)C3=CC=CC=C3"
+      }
+      identifiers {
+        type: NAME
+        value: "(R)-N,N-Dibenzyl-1-phenylpropan-1-amine"
+      }
+      is_desired_product: true
+      measurements {
+        analysis_key: "1H NMR"
+        type: IDENTITY
+      }
+      measurements {
+        analysis_key: "13C NMR"
+        type: IDENTITY
+      }
+      measurements {
+        analysis_key: "HRMS"
+        type: IDENTITY
+      }
+      measurements {
+        analysis_key: "thin film IR"
+        type: IDENTITY
+      }
+      measurements {
+        analysis_key: "isolated_weight"
+        type: YIELD
+        percentage {
+          value: 86.0
+        }
+      }
+      measurements {
+        analysis_key: "quantitative NMR"
+        type: PURITY
+        percentage {
+          value: 99.0
+        }
+      }
+      measurements {
+        analysis_key: "chiral HPLC"
+        type: SELECTIVITY
+        percentage {
+          value: 99.0
+        }
+        selectivity {
+          type: EE
+        }
+      }
+      measurements {
+        analysis_key: "isolated_weight"
+        type: AMOUNT
+        amount {
+          mass {
+            value: 5.72
+            units: GRAM
+          }
+        }
+      }
+      isolated_color: "colorless"
+      texture {
+        type: OIL
+      }
+      reaction_role: PRODUCT
+    }
+    analyses {
+      key: "13C NMR"
+      value {
+        type: NMR_13C
+        details: "101 MHz, CDCl3"
+        is_of_isolated_species: true
+        data {
+          key: "peaks"
+          value {
+            string_value: "11.9, 24.4, 53.8, 63.8, 126.8, 127.0, 128.0, 128.3, 128.9, 129.1, 139.1, 140.6"
+          }
+        }
+      }
+    }
+    analyses {
+      key: "1H NMR"
+      value {
+        type: NMR_1H
+        details: "400 MHz, CDCl3"
+        is_of_isolated_species: true
+        data {
+          key: "peaks"
+          value {
+            string_value: "1.01 (t, J = 7.3 Hz, 3H), 1.89 (ddq, J = 14.2, 7.2, 7.1 Hz, 1H), 2.17 (ddq, J = 14.1, 7.2, 7.1 Hz, 1H), 3.24 (d, J = 13.9 Hz, 2H), 3.68 (t, J = 7.5 Hz, 1H), 3.91 (d, J = 13.8 Hz, 2H), 7.50-7.28 (m, 15H)"
+          }
+        }
+      }
+    }
+    analyses {
+      key: "HRMS"
+      value {
+        type: HRMS
+        details: "ESI-TOF"
+        is_of_isolated_species: true
+        data {
+          key: "expected"
+          value {
+            float_value: 316.206
+          }
+        }
+        data {
+          key: "found"
+          value {
+            float_value: 316.2049
+          }
+        }
+      }
+    }
+    analyses {
+      key: "chiral HPLC"
+      value {
+        type: LC
+        details: "HPLC (Daicel Chiralpak OD-H column), eluting with 4% isopropanol in hexanes at 0.6 mL/min: 10.9 min (minor), 13.4 min (major), 98% ee for the first run and 99% ee for the second run"
+        is_of_isolated_species: true
+      }
+    }
+    analyses {
+      key: "isolated_weight"
+      value {
+        type: WEIGHT
+        details: "5.72 g recovered after workup"
+        is_of_isolated_species: true
+      }
+    }
+    analyses {
+      key: "quantitative NMR"
+      value {
+        type: NMR_1H
+        details: "Quantitative NMR using ferrocene (98%, purchased from Sigma-Aldrich, recrystallized from pentane) in CDCl3"
+        is_of_isolated_species: true
+      }
+    }
+    analyses {
+      key: "specific rotation"
+      value {
+        type: CD
+        details: "Specific rotation: [\316\261]D = +108 (c = 1.0, chloroform)"
+        is_of_isolated_species: true
+      }
+    }
+    analyses {
+      key: "thin film IR"
+      value {
+        type: IR
+        details: "neat film, NaCl"
+        is_of_isolated_species: true
+        data {
+          key: "peaks"
+          value {
+            string_value: "3083, 3061, 3027, 2962, 2932, 2873, 2802, 1948, 1872, 1809, 1602, 1493, 1453, 761, 742 cm-1"
+          }
+        }
+      }
+    }
+  }
+  provenance {
+    city: "Cambridge, MA"
+    doi: "10.15227/orgsyn.095.0080"
+    publication_url: "http://www.orgsyn.org/demo.aspx?prep=v95p0080"
+    record_created {
+      time {
+        value: "01/18/2021, 10:02:57"
+      }
+      person {
+        name: "Connor W. Coley"
+        orcid: "0000-0002-8271-8723"
+        organization: "MIT"
+        email: "ccoley@mit.edu"
+      }
+    }
+  }
+}
+reactions {
+  inputs {
+    key: "(S)-DTBM-SEGPHOS"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "CC(C)(C)C1=CC(=CC(=C1OC)C(C)(C)C)P(C2=C(C3=C(C=C2)OCO3)C4=C(C=CC5=C4OCO5)P(C6=CC(=C(C(=C6)C(C)(C)C)OC)C(C)(C)C)C7=CC(=C(C(=C7)C(C)(C)C)OC)C(C)(C)C)C8=CC(=C(C(=C8)C(C)(C)C)OC)C(C)(C)C"
+        }
+        identifiers {
+          type: NAME
+          value: "(S)-DTBM-SEGPHOS"
+        }
+        amount {
+          mass {
+            value: 330.0
+            units: MILLIGRAM
+          }
+        }
+        reaction_role: REAGENT
+        preparations {
+          type: NONE
+          details: "used as received (>94% purity)"
+        }
+        source {
+          vendor: "Takasago"
+        }
+      }
+      addition_order: 3
+    }
+  }
+  inputs {
+    key: "2,3,3-trimethyl-1-butene"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "CC(=C)C(C)(C)C"
+        }
+        identifiers {
+          type: NAME
+          value: "2,3,3-trimethyl-1-butene"
+        }
+        amount {
+          mass {
+            value: 2.5
+            units: GRAM
+          }
+        }
+        reaction_role: REACTANT
+        is_limiting: true
+        preparations {
+          type: NONE
+          details: "used as received (98% purity)"
+        }
+        source {
+          vendor: "Sigma-Aldrich"
+        }
+      }
+      addition_order: 5
+    }
+  }
+  inputs {
+    key: "N,N-Dibenzyl-O-pivaloylhydroxylamine"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "O=C(C(C)(C)C)ON(CC1=CC=CC=C1)CC2=CC=CC=C2"
+        }
+        identifiers {
+          type: NAME
+          value: "N,N-Dibenzyl-O-pivaloylhydroxylamine"
+        }
+        amount {
+          mass {
+            value: 9.09
+            units: GRAM
+          }
+        }
+        reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
+      }
+      addition_order: 1
+    }
+  }
+  inputs {
+    key: "THF"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "C1CCOC1"
+        }
+        identifiers {
+          type: NAME
+          value: "THF"
+        }
+        amount {
+          volume {
+            value: 25.0
+            units: MILLILITER
+          }
+        }
+        reaction_role: SOLVENT
+        preparations {
+          type: DRIED
+          details: "purified by passage under argon pressure through two packed columns of neutral alumina and copper(II) oxide"
+        }
+        source {
+          vendor: "J. T. Baker"
+        }
+      }
+      addition_order: 6
+      addition_device {
+        type: SYRINGE
+      }
+    }
+  }
+  inputs {
+    key: "copper(II) acetate"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "CC(=O)[O-].CC(=O)[O-].[Cu+2]"
+        }
+        identifiers {
+          type: NAME
+          value: "copper(II) acetate"
+        }
+        amount {
+          mass {
+            value: 46.0
+            units: MILLIGRAM
+          }
+        }
+        reaction_role: REAGENT
+        preparations {
+          type: NONE
+          details: "used as received (97% purity)"
+        }
+        source {
+          vendor: "Strem"
+        }
+      }
+      addition_order: 2
+    }
+  }
+  inputs {
+    key: "dimethoxy(methyl)silane"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "CO[Si](C)OC"
+        }
+        identifiers {
+          type: NAME
+          value: "dimethoxy(methyl)silane"
+        }
+        amount {
+          mass {
+            value: 5.41
+            units: GRAM
+          }
+        }
+        reaction_role: REAGENT
+        preparations {
+          type: NONE
+          details: "used as received (>97% purity, stored at -20 C)"
+        }
+        source {
+          vendor: "TCI America"
+        }
+      }
+      addition_order: 5
+      addition_speed {
+        type: DROPWISE
+      }
+      addition_duration {
+        value: 10.0
+        units: MINUTE
+      }
+      addition_device {
+        type: SYRINGE
+      }
+    }
+  }
+  inputs {
+    key: "triphenylphosphine"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "c3c(P(c1ccccc1)c2ccccc2)cccc3"
+        }
+        identifiers {
+          type: NAME
+          value: "triphenylphosphine"
+        }
+        amount {
+          mass {
+            value: 74.0
+            units: MILLIGRAM
+          }
+        }
+        reaction_role: REAGENT
+        preparations {
+          type: NONE
+          details: "used as received (99% purity)"
+        }
+        source {
+          vendor: "Sigma-Aldrich"
+        }
+      }
+      addition_order: 4
+    }
+  }
+  setup {
+    vessel {
+      type {
+        type: ROUND_BOTTOM_FLASK
+        details: "two-necked"
+      }
+      material {
+        type: GLASS
+      }
+      preparations {
+        type: OVEN_DRIED
+      }
+      preparations {
+        type: PURGED
+        details: "with nitrogen"
+      }
+      attachments {
+        type: SEPTUM
+        details: "rubber"
+      }
+      attachments {
+        type: SEPTUM
+        details: "rubber"
+      }
+      volume {
+        value: 250.0
+        units: MILLILITER
+      }
+    }
+    is_automated: false
+    environment {
+      type: FUME_HOOD
+    }
+  }
+  conditions {
+    temperature {
+      control {
+        type: OIL_BATH
+      }
+      setpoint {
+        value: 40.0
+        units: CELSIUS
+      }
+    }
+    pressure {
+      control {
+        type: SLIGHT_POSITIVE
+        details: "sealed with rubber septum, pierced with needle connected to manifold"
+      }
+      atmosphere {
+        type: NITROGEN
+        details: "dry nitrogen"
+      }
+    }
+    stirring {
+      method {
+        type: STIR_BAR
+      }
+    }
+    conditions_are_dynamic: true
+    details: "After dropwise addition of dimethoxy(methyl)-\nsilane into reaction mixture in water bath, the vessel was removed and allowed\nto stir for an additional 12 hours"
+  }
+  observations {
+    time {
+      value: 0.0
+      units: MINUTE
+    }
+    comment: "blue"
+  }
+  observations {
+    time {
+      value: 10.0
+      units: MINUTE
+    }
+    comment: "orange"
+  }
+  outcomes {
+    reaction_time {
+      value: 12.0
+      units: HOUR
+    }
+    products {
+      identifiers {
+        type: SMILES
+        value: "C[C@@H](CN(CC1=CC=CC=C1)CC2=CC=CC=C2)C(C)(C)C"
+      }
+      identifiers {
+        type: NAME
+        value: "(R)-N,N-Dibenzyl-2,3,3-trimethylbutan-1-amine"
+      }
+      is_desired_product: true
+      measurements {
+        analysis_key: "1H NMR"
+        type: IDENTITY
+      }
+      measurements {
+        analysis_key: "13C NMR"
+        type: IDENTITY
+      }
+      measurements {
+        analysis_key: "HRMS"
+        type: IDENTITY
+      }
+      measurements {
+        analysis_key: "thin film IR"
+        type: IDENTITY
+      }
+      measurements {
+        analysis_key: "isolated_weight"
+        type: YIELD
+        percentage {
+          value: 86.0
+        }
+      }
+      measurements {
+        analysis_key: "quantitative NMR"
+        type: PURITY
+        percentage {
+          value: 97.0
+        }
+      }
+      measurements {
+        analysis_key: "chiral SFC"
+        type: SELECTIVITY
+        percentage {
+          value: 90.0
+        }
+        selectivity {
+          type: EE
+        }
+      }
+      measurements {
+        analysis_key: "isolated_weight"
+        type: AMOUNT
+        amount {
+          mass {
+            value: 6.54
+            units: GRAM
+          }
+        }
+      }
+      isolated_color: "colorless"
+      texture {
+        type: OIL
+      }
+      reaction_role: PRODUCT
+    }
+    analyses {
+      key: "13C NMR"
+      value {
+        type: NMR_13C
+        details: "101 MHz, CDCl3"
+        is_of_isolated_species: true
+        data {
+          key: "peaks"
+          value {
+            string_value: "13.9, 27.6, 32.4, 41.0, 56.6, 59.1, 126.8, 128.2, 129.0, 140.2"
+          }
+        }
+      }
+    }
+    analyses {
+      key: "1H NMR"
+      value {
+        type: NMR_1H
+        details: "400 MHz, CDCl3"
+        is_of_isolated_species: true
+        data {
+          key: "peaks"
+          value {
+            string_value: "0.81 (s, 9H), 0.90 (d, J = 6.7 Hz, 3H), 1.49 (dq, J = 7.1, 3.4 Hz, 1H), 2.13 (dd, J = 12.3, 10.5 Hz, 1H), 2.39 (dd, J = 12.2, 2.8 Hz, 1H), 3.21 (d, J = 13.7 Hz, 2H), 3.83 (d, J = 13.7 Hz, 2H), 7.23 (t, J = 7.3 Hz, 2H), 7.31 (t, J = 7.4 Hz, 4H), 7.37 (d, J = 7.5 Hz, 4H)"
+          }
+        }
+      }
+    }
+    analyses {
+      key: "HRMS"
+      value {
+        type: HRMS
+        details: "ESI-TOF"
+        is_of_isolated_species: true
+        data {
+          key: "expected"
+          value {
+            float_value: 296.2373
+          }
+        }
+        data {
+          key: "found"
+          value {
+            float_value: 296.2375
+          }
+        }
+      }
+    }
+    analyses {
+      key: "chiral SFC"
+      value {
+        type: SFC
+        details: "FC (Daicel Chiralpak AD-H column, heated to 40 \302\260C), eluting with a linear gradient over 6 min from 5% to 10% isopropanol in supercritical CO2 at 2.5 mL/min.: 2.57 min (major), 2.98 min (minor), 90% ee for both runs"
+        is_of_isolated_species: true
+      }
+    }
+    analyses {
+      key: "isolated_weight"
+      value {
+        type: WEIGHT
+        details: "6.54 g recovered after workup"
+        is_of_isolated_species: true
+      }
+    }
+    analyses {
+      key: "quantitative NMR"
+      value {
+        type: NMR_1H
+        details: "Quantitative NMR using ferrocene (98%, purchased from Sigma-Aldrich, recrystallized from pentane) in CDCl3"
+        is_of_isolated_species: true
+      }
+    }
+    analyses {
+      key: "specific rotation"
+      value {
+        type: CD
+        details: "Specific rotation: [\316\261]D = -114 (c = 1.0, chloroform)."
+        is_of_isolated_species: true
+      }
+    }
+    analyses {
+      key: "thin film IR"
+      value {
+        type: IR
+        details: "neat film, NaCl"
+        is_of_isolated_species: true
+        data {
+          key: "peaks"
+          value {
+            string_value: "3063, 3027, 2964, 2870, 2791, 1602, 1494, 1453, 1365, 1244, 1121, 1069, 1028, 974, 745, 698 cm-1"
+          }
+        }
+      }
+    }
+  }
+  provenance {
+    city: "Cambridge, MA"
+    doi: "10.15227/orgsyn.095.0080"
+    publication_url: "http://www.orgsyn.org/demo.aspx?prep=v95p0080"
+    record_created {
+      time {
+        value: "01/18/2021, 10:02:57"
+      }
+      person {
+        name: "Connor W. Coley"
+        orcid: "0000-0002-8271-8723"
+        organization: "MIT"
+        email: "ccoley@mit.edu"
+      }
+    }
+  }
+}
