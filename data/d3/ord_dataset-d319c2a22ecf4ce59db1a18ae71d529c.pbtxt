@@ -215,7 +215,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -247,6 +247,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-c9ca2d5c00a34fd6a548b1f9ccceb233"
@@ -466,7 +477,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -498,6 +509,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-f0621fa47ac74fd59f9da027f6d13fc4"
@@ -717,7 +739,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -749,6 +771,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-e49ed67da61e4cddabd3c84a72fed227"
@@ -968,7 +1001,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -1000,6 +1033,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-1e6e36cc771646b787dec4ae5d79ba9a"
@@ -1219,7 +1263,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -1251,6 +1295,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-6657a8e258874f5084b70ebb4e0904d7"
@@ -1470,7 +1525,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -1502,6 +1557,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-a8d67585f94b455187bab5b5faebc1d5"
@@ -1721,7 +1787,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -1753,6 +1819,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-4908f938daac4350bc10d23b2f47f491"
@@ -1972,7 +2049,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -2004,6 +2081,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-dfc1a03f819747588f955c550bda6195"
@@ -2223,7 +2311,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -2255,6 +2343,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-a42cb76b5cc5416db855c8418931c695"
@@ -2474,7 +2573,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -2506,6 +2605,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-0a4f9a8ce9e24c8eaf5d3e9577c55edd"
@@ -2725,7 +2835,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -2757,6 +2867,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-359676b73fc74fb38c725a1cfd490224"
@@ -2976,7 +3097,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -3008,6 +3129,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-cec984eb3c364f3ea6aa04a9719cdf56"
@@ -3227,7 +3359,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -3259,6 +3391,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-2927ba8dc7d64793a8a3ce6f0105c0a0"
@@ -3478,7 +3621,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -3510,6 +3653,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-e5edac6494d545e587fe8a82e2f089d4"
@@ -3729,7 +3883,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -3761,6 +3915,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-bb3d788c9dfb407a879f6ccb1563bcb2"
@@ -3980,7 +4145,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -4012,6 +4177,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-56dad50b319e4a319f496ca8e06eb6ee"
@@ -4231,7 +4407,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -4263,6 +4439,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-ceeefe06ac384aca83521f3ca3bd2ce5"
@@ -4482,7 +4669,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -4514,6 +4701,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-7094bf32ff954a028c7ad366577c9307"
@@ -4737,7 +4935,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -4769,6 +4967,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-2534bfaa06ba4ba888f315f38e7b76df"
@@ -4992,7 +5201,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -5024,6 +5233,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-b985d047a21b4c9a8f3743dd7a0e2edb"
@@ -5247,7 +5467,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -5279,6 +5499,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-c2ea062ec1a041f48b516e3ba5ee3937"
@@ -5502,7 +5733,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -5534,6 +5765,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-2d24c512d1e3400dbf3a1d7f4d6f3c98"
@@ -5757,7 +5999,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -5789,6 +6031,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-6faf242952394924af60191965cee5b8"
@@ -6012,7 +6265,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -6044,6 +6297,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-b948009657e148bea2cb6a6bd362db16"
@@ -6267,7 +6531,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -6299,6 +6563,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-4d3309117b4b47c8a2fe1b196669c3e9"
@@ -6522,7 +6797,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -6554,6 +6829,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-26564b858c24449a98967498964ab647"
@@ -6777,7 +7063,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -6809,6 +7095,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-b473a4fb16854366afb55c18d599bfdc"
@@ -7032,7 +7329,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -7064,6 +7361,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-87bad93e5a3d4a7a82f0dd231ffffe13"
@@ -7287,7 +7595,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -7319,6 +7627,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-dcda05ed332242b89669efc2d4f221a4"
@@ -7542,7 +7861,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -7574,6 +7893,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-b70b122fe27d4f0da62544dcad31c377"
@@ -7797,7 +8127,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -7829,6 +8159,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-8f9a897395d348acb711c5c1a1335256"
@@ -8052,7 +8393,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -8084,6 +8425,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-31ab1d746df14914bd4641840447cd80"
@@ -8307,7 +8659,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -8339,6 +8691,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-d3701ba305c14bc2a2dd6d69b3ba67ba"
@@ -8562,7 +8925,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -8594,6 +8957,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-a1f856b8caff48d8993fa0e3a97e9c75"
@@ -8817,7 +9191,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -8849,6 +9223,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-0d9b7c7bb75b4ec1832558eca4544b82"
@@ -9072,7 +9457,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -9104,6 +9489,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-ca5b2e42f0504d3b8e1fd33ceb5b28c7"
@@ -9323,7 +9719,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -9355,6 +9751,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-ff9db274ba52473caa83c819d18a6498"
@@ -9574,7 +9981,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -9606,6 +10013,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-bc17663fcf7b4ddabf2de2a791be184e"
@@ -9825,7 +10243,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -9857,6 +10275,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-c7b54c802624418294b4f179e8563b45"
@@ -10076,7 +10505,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -10108,6 +10537,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-e1c742cab7ac4f31abd81a88c7bcb362"
@@ -10327,7 +10767,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -10359,6 +10799,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-7672785be55d4cd0b7fa9211871598b7"
@@ -10578,7 +11029,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -10610,6 +11061,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-28eaa713d9154cbaab6e99d02a09f376"
@@ -10829,7 +11291,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -10861,6 +11323,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-23c70c0209044edba66b05f2576b18c6"
@@ -11080,7 +11553,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -11112,6 +11585,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-d625825ea5cd421c89ed2f6ed792537f"
@@ -11331,7 +11815,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -11363,6 +11847,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-8b89f03bb50f4bce8211baa891685d56"
@@ -11582,7 +12077,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -11614,6 +12109,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-b662e17cdb1644bf8139f006b93a7938"
@@ -11833,7 +12339,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -11865,6 +12371,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-fd0d709ecabc4d6db9eff93bd5c06dab"
@@ -12084,7 +12601,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -12116,6 +12633,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-92b8d0a2aa3d48ee88bcbc00ff712aab"
@@ -12335,7 +12863,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -12367,6 +12895,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-acb292d58ce948888a336ff560d76bff"
@@ -12586,7 +13125,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -12618,6 +13157,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-0e2c5c1512bd497b836dfa8f0c45ab00"
@@ -12837,7 +13387,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -12869,6 +13419,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-7da26bc96b384e1ba6efbd4127df845d"
@@ -13088,7 +13649,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -13120,6 +13681,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-a6015d7de1c94f5cb39a0422218b42ef"
@@ -13339,7 +13911,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -13371,6 +13943,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-8eec25cd28f3430eadba2483d406db23"
@@ -13590,7 +14173,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -13622,6 +14205,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-14a0b29ffff5402ca626c8e9abaae090"
@@ -13841,7 +14435,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -13873,6 +14467,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-5c13859fd8e1473185d26d3543338a6d"
@@ -14092,7 +14697,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -14124,6 +14729,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-ed7c4f14fe0741bf881f35743d2a089c"
@@ -14343,7 +14959,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -14375,6 +14991,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-849e255008b840f7a2fb7bea4c9a00aa"
@@ -14594,7 +15221,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -14626,6 +15253,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-ff5567fa58024fba9d35db776253d52e"
@@ -14845,7 +15483,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -14877,6 +15515,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-389b82a48ed64fca91661d74a462aa15"
@@ -15096,7 +15745,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -15128,6 +15777,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-743bb5f459d640fa9b9682c955989275"
@@ -15347,7 +16007,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -15379,6 +16039,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-88a735e5af2745379be03451d94accfa"
@@ -15598,7 +16269,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -15630,6 +16301,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-6f69a39450e840d4b43f49e39277235e"
@@ -15849,7 +16531,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -15881,6 +16563,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-287412091e814f83a7c2768e3968f1bd"
@@ -16100,7 +16793,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -16132,6 +16825,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-101e2aa085864ecd85a571cfe9fc6415"
@@ -16351,7 +17055,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -16383,6 +17087,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-b685e329cf85468c95961286cdca2a45"
@@ -16602,7 +17317,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -16634,6 +17349,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-ea2c12982dfb4388b50140a811a7e7ef"
@@ -16853,7 +17579,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -16885,6 +17611,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-ee4101d9f9ad4b5193883943516f21d4"
@@ -17104,7 +17841,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -17136,6 +17873,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-5d25db7bdc7a48f2b79539b7454c917e"
@@ -17355,7 +18103,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -17387,6 +18135,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-d2ac0353a3a54805a2040995757d1d3d"
@@ -17606,7 +18365,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -17638,6 +18397,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-aa7885da86a44124a8dc7e2c7ebd4d8a"
@@ -17857,7 +18627,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -17889,6 +18659,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-ca6ab69b98fd493aa4fafa803e3526b2"
@@ -18108,7 +18889,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -18140,6 +18921,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-457bfed607664206b6c6ed542064dbf2"
@@ -18359,7 +19151,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -18391,6 +19183,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-ee39450cf9ea4ca1b074735bbb93c621"
@@ -18610,7 +19413,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -18642,6 +19445,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-1885436f52474e6386be0256489c125d"
@@ -18861,7 +19675,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -18893,6 +19707,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-0343276000af4f0299e5e0f3bf7bdf06"
@@ -19112,7 +19937,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -19144,6 +19969,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-3f279bc4724b4a2bbb6075bf2d2dc038"
@@ -19363,7 +20199,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -19395,6 +20231,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-47bbb02650664d11b80a3bc568b35557"
@@ -19614,7 +20461,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -19646,6 +20493,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-30d1c9a1f152483596b1701e230ece29"
@@ -19865,7 +20723,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -19897,6 +20755,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-5e2ba4ee7886465894f13e755bc47829"
@@ -20116,7 +20985,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -20148,6 +21017,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-860c481f61e34acebd358967377af557"
@@ -20367,7 +21247,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -20399,6 +21279,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-00f4e5f7305c4bc48c3fcfb16130a0c6"
@@ -20618,7 +21509,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -20650,6 +21541,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-6eb1798526d548b1bdd02dc0ec853bfb"
@@ -20869,7 +21771,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -20901,6 +21803,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-5cfa4c88d90748379b2f6be7000d39f7"
@@ -21120,7 +22033,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -21152,6 +22065,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-585b2c8d1ea649a3a6fdfba926e17d7a"
@@ -21371,7 +22295,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -21403,6 +22327,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-477ed1282623493f9dc1268b6de06f80"
@@ -21622,7 +22557,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -21654,6 +22589,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-4a1c50ad28fc471db9f823a30fcae6ab"
@@ -21873,7 +22819,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -21905,6 +22851,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-b276bf03f6cd42fa9af73e0ac5cf8ac6"
@@ -22124,7 +23081,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -22156,6 +23113,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-46628d1e7c3f43f3a6122403e19c3654"
@@ -22375,7 +23343,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -22407,6 +23375,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-64bfce3df7954532bfd74d1ec9e8d779"
@@ -22626,7 +23605,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -22658,6 +23637,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-a8c639719500447c946b100a91861956"
@@ -22877,7 +23867,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -22909,6 +23899,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-28b8ad158b1640958181e82424cf3ad5"
@@ -23128,7 +24129,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -23160,6 +24161,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-3d9b12dd9f834d06b7e08d968c0dd4ae"
@@ -23379,7 +24391,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -23411,6 +24423,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-be657fa07add40539a8c00f32e5c7516"
@@ -23630,7 +24653,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -23662,6 +24685,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-17096ce359cc4d15a8e7574a52ea3227"
@@ -23881,7 +24915,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -23913,6 +24947,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-f017e638f94d49ac8c5877f44aa71eed"
@@ -24132,7 +25177,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -24164,6 +25209,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-fc884344bc68444ab3e7d4efaeadf319"
@@ -24383,7 +25439,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -24415,6 +25471,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-d5087a027589417785eb3356c3ab8849"
@@ -24634,7 +25701,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -24666,6 +25733,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-1a2723c2a6904b678cc5553e78fc433b"
@@ -24885,7 +25963,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -24917,6 +25995,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-facbacb41fb84f29b3cd20363f62af91"
@@ -25136,7 +26225,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -25168,6 +26257,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-cb27d095259746f8b705db63e4b5dc63"
@@ -25387,7 +26487,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -25419,6 +26519,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-e071a143b29c4879b97bb7cb6d6d1239"
@@ -25638,7 +26749,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -25670,6 +26781,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-fbc7734449a742288e188f7f620e2e51"
@@ -25889,7 +27011,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -25921,6 +27043,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-f1d8653e6e824c17bf7346180d11aab7"
@@ -26140,7 +27273,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -26172,6 +27305,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-ebd14a56dfdb4e218e7e96a2730befdf"
@@ -26391,7 +27535,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -26423,6 +27567,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-21be1526c5e14c33ad753e63027be48d"
@@ -26642,7 +27797,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -26674,6 +27829,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-b4df33fc3946414198307a8b8e01145a"
@@ -26893,7 +28059,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -26925,6 +28091,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-ca0fe0d67b8b4360829bff140753e596"
@@ -27144,7 +28321,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -27176,6 +28353,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-a2079de2c9354815a758669d77e25c0f"
@@ -27395,7 +28583,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -27427,6 +28615,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-9d33ef6cc51c4f828831d2e61a318436"
@@ -27646,7 +28845,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -27678,6 +28877,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-afbc8f44181143ea9368bf1fea2d1cca"
@@ -27897,7 +29107,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -27929,6 +29139,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-974b72a1867b47888d2466ab626a25e4"
@@ -28148,7 +29369,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -28180,6 +29401,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-51b3122515764a6983f1862b246b469f"
@@ -28399,7 +29631,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -28431,6 +29663,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-36c5198c7e214027b9ecae9ecff00836"
@@ -28650,7 +29893,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -28682,6 +29925,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-a88fcdf42b664d5282f271ba61d7e916"
@@ -28901,7 +30155,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -28933,6 +30187,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-3297a667fc334d4382f8d80876d72e7f"
@@ -29152,7 +30417,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -29184,6 +30449,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-adf8292271924c63871046faaf8113ab"
@@ -29403,7 +30679,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -29435,6 +30711,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-ed7c09e9f62c48ba88fb8e470f5fcc81"
@@ -29654,7 +30941,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -29686,6 +30973,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-6b00eaa84c624f41acda5632e3ee2ff2"
@@ -29905,7 +31203,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -29937,6 +31235,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-4397d2b8f2a5471ab29e1250615ac1eb"
@@ -30156,7 +31465,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -30188,6 +31497,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-510c9a57974d42a797930ea421727c0d"
@@ -30407,7 +31727,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -30439,6 +31759,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-98278c73ac2f4d3db9c1266340c4e6f4"
@@ -30658,7 +31989,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -30690,6 +32021,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-f32dc194061d4e528de09394bff9efd7"
@@ -30909,7 +32251,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -30941,6 +32283,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-612dc28f27dc4f2e9d34ab75013d2748"
@@ -31160,7 +32513,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -31192,6 +32545,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-d29e4d4bdff7412a9c73b1d75c423ce4"
@@ -31411,7 +32775,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -31443,6 +32807,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-b55960a7831a47a088d50c2dad5c4f3c"
@@ -31662,7 +33037,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -31694,6 +33069,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-4a61fd02d622455cacc4507e8d8c22b0"
@@ -31913,7 +33299,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -31945,6 +33331,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-4b1d38030c6349eab72c0b04567666f5"
@@ -32164,7 +33561,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -32196,6 +33593,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-c3c9d3d92fa143a0a725b4ec5f19158e"
@@ -32415,7 +33823,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -32447,6 +33855,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-ee5579967cd5442ab73f02ce2a4cd24b"
@@ -32666,7 +34085,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -32698,6 +34117,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-f8df29065254488cbb4e6457973639ff"
@@ -32917,7 +34347,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -32949,6 +34379,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-4c54e88675cf451b8b281607f62deafc"
@@ -33168,7 +34609,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -33200,6 +34641,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-3c5e27eed9f94965b08241c9fc8960b1"
@@ -33419,7 +34871,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -33451,6 +34903,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-7703926f0e22413187daddb5157491c1"
@@ -33670,7 +35133,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -33702,6 +35165,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-b4cda3a6f2c648c685ffbf1a04a16ad3"
@@ -33921,7 +35395,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -33953,6 +35427,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-bfa298720a65463f85e156277f502c13"
@@ -34172,7 +35657,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -34204,6 +35689,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-bac45e6dc7cf4d34b375e1b7715bc8a1"
@@ -34423,7 +35919,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -34455,6 +35951,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-5624dafc023a452ea22aa084e4a89c8d"
@@ -34674,7 +36181,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -34706,6 +36213,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-216186e4f1ff4494afc6443e7dc7d5ef"
@@ -34925,7 +36443,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -34957,6 +36475,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-6cf76951531e4d4f8b9474b167a00277"
@@ -35176,7 +36705,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -35208,6 +36737,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-931567f8b3ff497b8617bdc033fd0c11"
@@ -35427,7 +36967,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -35459,6 +36999,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-b549feaa13534a938da792a7940978c6"
@@ -35678,7 +37229,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -35710,6 +37261,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-535057ce5ef84b72adc58d87f7d350a3"
@@ -35929,7 +37491,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -35961,6 +37523,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-243b195f4fa64ba8847a61e7c275c827"
@@ -36180,7 +37753,7 @@ reactions {
       organization: "Merck"
     }
     city: "Rahway"
-    doi: "doi: 10.1039/c5sc04751j"
+    doi: "10.1039/c5sc04751j"
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2016/sc/c5sc04751j"
     record_created {
       time {
@@ -36212,6 +37785,17 @@ reactions {
         email: "mmaser@caltech.edu"
       }
       details: "Automatic migration from schema v0.1.1 to v0.2.3"
+    }
+    record_modified {
+      time {
+        value: "01/16/2021, 17:42:35"
+      }
+      person {
+        username: "skearnes"
+        name: "Steven Kearnes"
+        email: "kearnes@google.com"
+      }
+      details: "Clean up DOIs."
     }
   }
   reaction_id: "ord-c0b80f5685f340d4ac283d00947d0980"
