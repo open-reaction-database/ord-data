@@ -129,13 +129,12 @@ jobs:
         echo "Found $(wc -l < changed_files.txt | tr -d ' ') changed files"
         cat changed_files.txt
         # Use `|| (( $? == 1 ))` in case no lines match (exit code is nonzero).
-        grep -E "\.pbtxt$" changed_files.txt > changed_pbtxt_files.txt || (( $? == 1 ))
         grep -E "\.pb$" changed_files.txt > changed_pb_files.txt || (( $? == 1 ))
         # Use LOCAL_NUM_CHANGED since ::set-env values are not available immediately.
-        LOCAL_NUM_CHANGED="$(wc -l < changed_pbtxt_files.txt | tr -d ' ')"
+        LOCAL_NUM_CHANGED="$(wc -l < changed_pb_files.txt | tr -d ' ')"
         echo "NUM_CHANGED_FILES=${LOCAL_NUM_CHANGED}" >> $GITHUB_ENV
-        echo "Found ${LOCAL_NUM_CHANGED} changed pbtxt files"
-        cat changed_pbtxt_files.txt
+        echo "Found ${LOCAL_NUM_CHANGED} changed pb files"
+        cat changed_pb_files.txt
     - name: Install miniconda
       uses: s-weigand/setup-conda@v1
       with:
@@ -152,24 +151,14 @@ jobs:
       run: |
         cd "${GITHUB_WORKSPACE}"
         python ./ord-schema/ord_schema/process_dataset.py \
-          --input_file=changed_pbtxt_files.txt \
+          --input_file=changed_pb_files.txt \
           --base=upstream/main
-        if test "$( wc -l < changed_pb_files.txt )" -gt 0; then
-          python ./ord-schema/ord_schema/process_dataset.py \
-            --input_file=changed_pb_files.txt
-          for filename in $(cat changed_pb_files.txt | awk '{print $2}'); do
-            echo "${filename}"
-            python ./ord-schema/ord_schema/scripts/check_pb.py \
-              --pb="${filename}" \
-              --pbtxt="${filename}txt"
-          done
-        fi
       if: env.NUM_CHANGED_FILES != '0'
     - name: Update submission
       run: |
         cd "${GITHUB_WORKSPACE}"
         python ./ord-schema/ord_schema/process_dataset.py \
-          --input_file=changed_pbtxt_files.txt \
+          --input_file=changed_pb_files.txt \
           --update \
           --cleanup \
           --base=upstream/main \
