@@ -15,7 +15,7 @@ on:
       - '.github/workflows/validation.yml'
 
 env:
-  ORD_SCHEMA_TAG: v0.2.4
+  ORD_SCHEMA_TAG: v0.2.7
 
 jobs:
   validate_database:
@@ -39,22 +39,8 @@ jobs:
         pip install -r requirements.txt
         conda install -c rdkit rdkit
         python setup.py install
-    - name: Validate *.pbtxt datasets
-      run: |
-        cd "${GITHUB_WORKSPACE}"
-        python ./ord-schema/ord_schema/process_dataset.py \
-          --input_pattern="data/*/*.pbtxt"
-    - name: Validate *.pb datasets
+    - name: Validate datasets
       run: |
         cd "${GITHUB_WORKSPACE}"
         python ./ord-schema/ord_schema/process_dataset.py \
           --input_pattern="data/*/*.pb"
-    - name: Check pbtxt <-> pb encoding
-      run: |
-        cd "${GITHUB_WORKSPACE}"
-        for filename in data/*/*.pb; do
-          echo "${filename}"
-          python ./ord-schema/ord_schema/scripts/check_pb.py \
-            --pb="${filename}" \
-            --pbtxt="${filename}txt"
-        done
