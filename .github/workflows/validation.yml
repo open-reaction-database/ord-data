@@ -42,5 +42,5 @@ jobs:
     - name: Validate datasets
       run: |
         cd "${GITHUB_WORKSPACE}"
-        python ./ord-schema/ord_schema/process_dataset.py \
+        python ./ord-schema/ord_schema/scripts/process_dataset.py \
           --input_pattern="data/*/*.pb"
