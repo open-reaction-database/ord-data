@@ -150,14 +150,14 @@ jobs:
     - name: Validate submission
       run: |
         cd "${GITHUB_WORKSPACE}"
-        python ./ord-schema/ord_schema/process_dataset.py \
+        python ./ord-schema/ord_schema/scripts/process_dataset.py \
           --input_file=changed_pb_files.txt \
           --base=upstream/main
       if: env.NUM_CHANGED_FILES != '0'
     - name: Update submission
       run: |
         cd "${GITHUB_WORKSPACE}"
-        python ./ord-schema/ord_schema/process_dataset.py \
+        python ./ord-schema/ord_schema/scripts/process_dataset.py \
           --input_file=changed_pb_files.txt \
           --update \
           --cleanup \
