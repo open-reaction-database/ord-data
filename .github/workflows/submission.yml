@@ -23,6 +23,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         ref: ${{ github.event.pull_request.head.sha }}
+        lfs: true
       if: github.event_name == 'pull_request'
     - name: Checkout ord-schema
       uses: actions/checkout@v2
@@ -101,11 +102,14 @@ jobs:
     steps:
     - name: Checkout ord-data
       uses: actions/checkout@v2
+      with:
+        lfs: true
       if: github.event_name == 'push'
     - name: Checkout ord-data
       uses: actions/checkout@v2
       with:
         ref: ${{ github.event.pull_request.head.sha }}
+        lfs: true
       if: github.event_name == 'pull_request'
     - name: Add upstream for comparisons to HEAD
       run: |
