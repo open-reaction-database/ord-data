@@ -23,6 +23,8 @@ jobs:
     steps:
     - name: Checkout ord-data
       uses: actions/checkout@v2
+      with:
+        lfs: true
     - name: Checkout ord-schema
       uses: actions/checkout@v2
       with:
