@@ -6,16 +6,13 @@ on:
   push:
     branches:
       - main
-  schedule:
-    # Runs every night at midnight.
-    - cron: '0 0 * * *'
   pull_request:
     paths:
       # Runs when this file is modified in a PR.
       - '.github/workflows/validation.yml'
 
 env:
-  ORD_SCHEMA_TAG: v0.2.7
+  ORD_SCHEMA_TAG: v0.2.11
 
 jobs:
   validate_database:
