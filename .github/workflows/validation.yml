@@ -42,4 +42,4 @@ jobs:
       run: |
         cd "${GITHUB_WORKSPACE}"
         python ./ord-schema/ord_schema/scripts/process_dataset.py \
-          --input_pattern="data/*/*.pb"
+          --input_pattern="data/*/*.pb*"
