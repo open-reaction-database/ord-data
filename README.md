@@ -4,6 +4,12 @@
 ![](https://raw.githubusercontent.com/Open-Reaction-Database/ord-data/main/badges/reactions.svg)
 [![DOI](https://zenodo.org/badge/283813042.svg)](https://zenodo.org/badge/latestdoi/283813042)
 
+## Cloning with Git LFS
+
+We use [Git LFS](https://git-lfs.github.com) to efficiently store
+the Dataset records that make up the ORD. To view these files locally, you'll
+need to install Git LFS before cloning the repository.
+
 ## DOIs covered by ORD
 
 * Mdluli, V. et al. High-throughput Synthesis and Screening of Iridium(III) Photocatalysts for the Fast and Chemoselective Dehalogenation of Aryl Bromides. ACS Catalysis 10, 6977–6987 (2020). [doi: 10.1021/acscatal.0c02247](https://doi.org/10.1021/acscatal.0c02247)
