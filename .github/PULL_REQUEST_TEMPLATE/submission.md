@@ -1,6 +1,6 @@
 ---
 name: Submission
-about: Submit a change to the database
+about: Submit data to the Open Reaction Database
 title: ''
 labels: ''
 assignees: ''
