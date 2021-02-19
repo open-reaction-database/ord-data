@@ -14,6 +14,8 @@ assignees: ''
 * Details about any issues encoding the data (e.g. missing schema fields, ambiguous data, etc.)
 
 **Attach any supporting files**
+
+(Note: they may need to be attached as one or more .zip files)
 * Reaction template and CSV/Excel for enumerated datasets
 * Jupyter notebooks for programmatically defined datasets
 
