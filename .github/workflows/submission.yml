@@ -10,7 +10,7 @@ name: Submission
 on: [pull_request, push]
 
 env:
-  ORD_SCHEMA_TAG: v0.2.12
+  ORD_SCHEMA_TAG: v0.2.15
 
 jobs:
   count_reactions:
@@ -157,7 +157,10 @@ jobs:
         python ./ord-schema/ord_schema/scripts/process_dataset.py \
           --input_file=changed_pb_files.txt \
           --base=upstream/main
-      if: env.NUM_CHANGED_FILES != '0'
+      if: >-
+        env.NUM_CHANGED_FILES != '0' &&
+        ! (github.event_name == 'pull_request' &&
+           ! github.event.pull_request.head.repo.fork)
     - name: Update submission
       run: |
         cd "${GITHUB_WORKSPACE}"
