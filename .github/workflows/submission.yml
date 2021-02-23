@@ -69,22 +69,11 @@ jobs:
         cd "${GITHUB_WORKSPACE}"
         git diff --name-only upstream/main > changed_files.txt
         grep -vE '\.pb(txt)?(.gz)?$' changed_files.txt && \
-          echo "Error: submissions must only contain *.pbtxt or *.pb files" && \
+          echo "Error: submissions should only contain (gzipped) *.pbtxt or *.pb files" && \
           exit 1 || true
       if: >-
         github.event_name == 'pull_request' &&
         github.event.pull_request.head.repo.fork
-    - name: Check changed files (PR from branch)
-      run: |
-        cd "${GITHUB_WORKSPACE}"
-        git diff --name-only upstream/main > changed_files.txt
-        grep -vE '\.pbtxt(.gz)?$|\.pb(.gz)?$' changed_files.txt && \
-          echo "Error: submission contains unusual file types" && \
-          exit 1 || true
-      if: >-
-        github.event_name == 'pull_request' &&
-        ! github.event.pull_request.head.repo.fork
-
 
   check_target_branch:
     runs-on: ubuntu-latest
