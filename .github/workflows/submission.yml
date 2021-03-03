@@ -10,7 +10,7 @@ name: Submission
 on: [pull_request, push]
 
 env:
-  ORD_SCHEMA_TAG: v0.2.7
+  ORD_SCHEMA_TAG: v0.2.15
 
 jobs:
   count_reactions:
@@ -23,6 +23,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         ref: ${{ github.event.pull_request.head.sha }}
+        lfs: true
       if: github.event_name == 'pull_request'
     - name: Checkout ord-schema
       uses: actions/checkout@v2
@@ -67,23 +68,12 @@ jobs:
       run: |
         cd "${GITHUB_WORKSPACE}"
         git diff --name-only upstream/main > changed_files.txt
-        grep -vE '\.pb(txt)?$' changed_files.txt && \
-          echo "Error: submissions must only contain *.pbtxt or *.pb files" && \
+        grep -vE '\.pb(txt)?(.gz)?$' changed_files.txt && \
+          echo "Error: submissions should only contain (gzipped) *.pbtxt or *.pb files" && \
           exit 1 || true
       if: >-
         github.event_name == 'pull_request' &&
         github.event.pull_request.head.repo.fork
-    - name: Check changed files (PR from branch)
-      run: |
-        cd "${GITHUB_WORKSPACE}"
-        git diff --name-only upstream/main > changed_files.txt
-        grep -vE '\.pbtxt$|\.pb$|\.svg$' changed_files.txt && \
-          echo "Error: submission contains unusual file types" && \
-          exit 1 || true
-      if: >-
-        github.event_name == 'pull_request' &&
-        ! github.event.pull_request.head.repo.fork
-
 
   check_target_branch:
     runs-on: ubuntu-latest
@@ -101,11 +91,14 @@ jobs:
     steps:
     - name: Checkout ord-data
       uses: actions/checkout@v2
+      with:
+        lfs: true
       if: github.event_name == 'push'
     - name: Checkout ord-data
       uses: actions/checkout@v2
       with:
         ref: ${{ github.event.pull_request.head.sha }}
+        lfs: true
       if: github.event_name == 'pull_request'
     - name: Add upstream for comparisons to HEAD
       run: |
@@ -129,12 +122,12 @@ jobs:
         echo "Found $(wc -l < changed_files.txt | tr -d ' ') changed files"
         cat changed_files.txt
         # Use `|| (( $? == 1 ))` in case no lines match (exit code is nonzero).
-        grep -E "\.pb$" changed_files.txt > changed_pb_files.txt || (( $? == 1 ))
+        grep -E "\.pb(txt)?(.gz)?$" changed_files.txt > changed_data_files.txt || (( $? == 1 ))
         # Use LOCAL_NUM_CHANGED since ::set-env values are not available immediately.
-        LOCAL_NUM_CHANGED="$(wc -l < changed_pb_files.txt | tr -d ' ')"
+        LOCAL_NUM_CHANGED="$(wc -l < changed_data_files.txt | tr -d ' ')"
         echo "NUM_CHANGED_FILES=${LOCAL_NUM_CHANGED}" >> $GITHUB_ENV
-        echo "Found ${LOCAL_NUM_CHANGED} changed pb files"
-        cat changed_pb_files.txt
+        echo "Found ${LOCAL_NUM_CHANGED} changed dataset files"
+        cat changed_data_files.txt
     - name: Install miniconda
       uses: s-weigand/setup-conda@v1
       with:
@@ -151,14 +144,17 @@ jobs:
       run: |
         cd "${GITHUB_WORKSPACE}"
         python ./ord-schema/ord_schema/scripts/process_dataset.py \
-          --input_file=changed_pb_files.txt \
+          --input_file=changed_data_files.txt \
           --base=upstream/main
-      if: env.NUM_CHANGED_FILES != '0'
+      if: >-
+        env.NUM_CHANGED_FILES != '0' &&
+        ! (github.event_name == 'pull_request' &&
+           ! github.event.pull_request.head.repo.fork)
     - name: Update submission
       run: |
         cd "${GITHUB_WORKSPACE}"
         python ./ord-schema/ord_schema/scripts/process_dataset.py \
-          --input_file=changed_pb_files.txt \
+          --input_file=changed_data_files.txt \
           --update \
           --cleanup \
           --base=upstream/main \

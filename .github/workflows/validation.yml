@@ -6,16 +6,13 @@ on:
   push:
     branches:
       - main
-  schedule:
-    # Runs every night at midnight.
-    - cron: '0 0 * * *'
   pull_request:
     paths:
       # Runs when this file is modified in a PR.
       - '.github/workflows/validation.yml'
 
 env:
-  ORD_SCHEMA_TAG: v0.2.7
+  ORD_SCHEMA_TAG: v0.2.15
 
 jobs:
   validate_database:
@@ -23,6 +20,8 @@ jobs:
     steps:
     - name: Checkout ord-data
       uses: actions/checkout@v2
+      with:
+        lfs: true
     - name: Checkout ord-schema
       uses: actions/checkout@v2
       with:
@@ -43,4 +42,4 @@ jobs:
       run: |
         cd "${GITHUB_WORKSPACE}"
         python ./ord-schema/ord_schema/scripts/process_dataset.py \
-          --input_pattern="data/*/*.pb"
+          --input_pattern="data/*/*.pb*"
