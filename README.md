@@ -30,7 +30,7 @@ Please see the [Submission Workflow](https://docs.open-reaction-database.org/en/
   * [ord_dataset-68cb8b4b2b384e3d85b5b1efae58b203](https://github.com/Open-Reaction-Database/ord-data/blob/main/data/68/ord_dataset-68cb8b4b2b384e3d85b5b1efae58b203.pb.gz)
 * Ahneman, D. T., Estrada, J. G., Lin, S., Dreher, S. D. & Doyle, A. G. Predicting reaction performance in C–N cross-coupling using machine learning. Science 360, 186–190 (2018). [doi: 10.1126/science.aar5169](https://doi.org/10.1126/science.aar5169)
   * [ord_dataset-46ff9a32d9e04016b9380b1b1ef949c3](https://github.com/Open-Reaction-Database/ord-data/blob/main/data/46/ord_dataset-46ff9a32d9e04016b9380b1b1ef949c3.pb)
-* Lowe, D. Chemical reactions from US patents (1976-Sep2016). (2017) doi:10.6084/M9.FIGSHARE.5104873.V1. [doi: 10.6084/m9.figshare.5104873.v1](https://doi.org/10.6084/m9.figshare.5104873.v1)
+* Lowe, D. Chemical reactions from US patents (1976-Sep2016). (2017). [doi: 10.6084/m9.figshare.5104873.v1](https://doi.org/10.6084/m9.figshare.5104873.v1)
   * [ord_dataset-026684a62f91469db49c7767d16c39fb](https://github.com/Open-Reaction-Database/ord-data/blob/main/data/02/ord_dataset-026684a62f91469db49c7767d16c39fb.pb.gz)
   * [ord_dataset-02a54e4276634c4bb041190cd571231e](https://github.com/Open-Reaction-Database/ord-data/blob/main/data/02/ord_dataset-02a54e4276634c4bb041190cd571231e.pb.gz)
   * [ord_dataset-037d306d1fab4baeb9d6cd2bc74036fe](https://github.com/Open-Reaction-Database/ord-data/blob/main/data/03/ord_dataset-037d306d1fab4baeb9d6cd2bc74036fe.pb.gz)
