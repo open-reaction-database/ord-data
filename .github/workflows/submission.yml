@@ -108,7 +108,7 @@ jobs:
         echo "Current branch: $(git rev-parse --abbrev-ref HEAD)"
         git fetch --no-tags --prune --depth=1 upstream \
           +refs/heads/*:refs/remotes/upstream/*
-        git lfs fetch upstream
+        git lfs fetch upstream main
     - name: Checkout ord-schema
       uses: actions/checkout@v2
       with:
