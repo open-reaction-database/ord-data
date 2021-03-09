@@ -103,6 +103,7 @@ jobs:
     - name: Add upstream for comparisons to HEAD
       run: |
         cd "${GITHUB_WORKSPACE}"
+        sudo apt update && sudo apt install git-lfs --yes
         git remote add upstream \
           "https://github.com/Open-Reaction-Database/${GITHUB_REPOSITORY##*/}.git"
         echo "Current branch: $(git rev-parse --abbrev-ref HEAD)"
