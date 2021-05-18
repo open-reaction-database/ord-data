@@ -11,5 +11,5 @@ Without your contributions, the Open Reaction Database could not exist!
 | Fabio Lima | [@limafabio2](https://github.com/limafabio2) | Novartis |
 | Jesus Martinez Alvarado | [@Jesus00-1](https://github.com/Jesus00-1) | Princeton |
 | Michael Maser | [@michaelmaser](https://github.com/michaelmaser) | Caltech |
-| Jason Wang | [@beef-broccoli](https://github.com/beef-broccoli) | Priceton |
+| Jason Wang | [@beef-broccoli](https://github.com/beef-broccoli) | Princeton |
 | Michael Wleklinski | [@mwleklin](https://github.com/mwleklin) | Merck |
