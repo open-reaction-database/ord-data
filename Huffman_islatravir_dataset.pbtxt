@@ -1,0 +1,1383 @@
+name: "synthesis of islatravir by biocatalytic cascade"
+reactions {
+  identifiers {
+    type: NAME
+    value: "Synthesis of (R)-2-ethynylglyceraldehyde (7) using immobilized galactose oxidase"
+  }
+  inputs {
+    key: "2-ethynylglycerol"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "C#CC(O)(CO)CO"
+        }
+        identifiers {
+          type: NAME
+          value: "2-ethynylglycerol"
+        }
+        amount {
+          moles {
+            value: 29.4
+            units: MILLIMOLE
+          }
+        }
+        reaction_role: REACTANT
+        is_limiting: true
+      }
+      components {
+        identifiers {
+          type: SMILES
+          value: "O"
+        }
+        identifiers {
+          type: NAME
+          value: "water"
+        }
+        amount {
+          volume {
+            value: 13.0
+            units: MILLILITER
+          }
+          volume_includes_solutes: true
+        }
+        reaction_role: SOLVENT
+        is_limiting: false
+      }
+      addition_order: 9
+    }
+  }
+  inputs {
+    key: "antifoam"
+    value {
+      components {
+        identifiers {
+          type: NAME
+          value: "Antifoam 204"
+        }
+        amount {
+          volume {
+            value: 200.0
+            units: MICROLITER
+          }
+        }
+        reaction_role: REAGENT
+        is_limiting: false
+      }
+      addition_order: 3
+    }
+  }
+  inputs {
+    key: "biocatalyst"
+    value {
+      components {
+        identifiers {
+          type: NAME
+          value: "evolved galactose oxidase GOase-Rd13BB"
+        }
+        identifiers {
+          type: AMINO_ACID_SEQUENCE
+          value: "MASAPIGVAIPRNNWAVTCDSAQSGNECIKAIDGNKDTFWHTQYGVNGDPKPPHTITIDMKTVQNVNGLSVLPRQDGNQNGWIGRHEVYLSSDGVNWGSPVASGSWFADSTTKYSNFETRPARYVRLVAITEANGQPWTSIAEINVFQASSYTAPQPGLGRWGPTIDLPIVPSAAAIEPTSGRVLMWSSYRQDAFEDSPGGITLTSSWDPSTGIVSDRTSTVTGHDMFCPGISMDGNGQIVVSGGNDAKKTSLYDSSSDSWIPGPDMQVARGYNSSATMSDGRVFTIGGSYSGGQVEKNGEVYSPSSKTWTSLPNAKVNPMLTADKQGLYRSDNHAWLFGWKKGSVFQAGPSTAMNWYYTSGSGDVKSAGKRQSDRGVAPDAMCGNAVMYDAVKGKILTFGGSPDYQDSDATTNAHIITLGEPGTSPNTVFASNGLLFARTFHTSVVLPDGSVFITGGQQRGVPLEDSTPVFTPEIYVPEQDTFYKQNPNSIVRAYHSISLLLPDGRVFNGGGGLCGDCETNHFDAQIFTPNYLYDSNGNLATRPKITRTSTQSVVVGGWITIWTDMSISAASLIRYGTATHTVNTDQRRIGLTLTNNGGNSYSFQVPSDSGVALPGYWMLFVMNSAGVPSVASTINVTQGQTGHHHHHH*"
+        }
+        amount {
+          mass {
+            value: 2.0
+            units: GRAM
+          }
+        }
+        reaction_role: CATALYST
+        is_limiting: false
+        preparations {
+          type: CUSTOM
+          details: "Nuvia IMAC Ni-charged resin (16 mL based on settled volume) was added to a filter funnel and washed with binding buffer (10 bed volumes, 160 mL; 15 mM imidazole, 500 mM sodium chloride, 50 mM sodium phosphate, pH 8.0) to remove the resin storage solution. Evolved galactose oxidase (GOase-Rd13BB, 2.00 g) lyophilized powder was resuspended in copper(II) sulfate solution (100 \316\274M; 5.00 mL), followed by addition of binding buffer (50 mL) and the washed resin. The solution was mixed using a rotating mixer at 20 oC for 5 h. The resin was filtered and washed with binding buffer (10 bed volumes, 160 mL) and potassium PIPES buffer (10 bed volumes, 160 mL; 50 mM, pH 7.5) and was used directly in the reaction."
+        }
+      }
+      addition_order: 4
+    }
+  }
+  inputs {
+    key: "buffer"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "O=S(=O)([O-])CCN1CCN(CCS(=O)(=O)[O-])CC1.[K+].[K+]"
+        }
+        identifiers {
+          type: NAME
+          value: "potassium PIPES"
+        }
+        amount {
+          moles {
+            value: 5.0
+            units: MILLIMOLE
+          }
+        }
+        reaction_role: REAGENT
+        is_limiting: false
+      }
+      components {
+        identifiers {
+          type: SMILES
+          value: "O"
+        }
+        identifiers {
+          type: NAME
+          value: "water"
+        }
+        amount {
+          volume {
+            value: 5.0
+            units: MILLILITER
+          }
+          volume_includes_solutes: true
+        }
+        reaction_role: SOLVENT
+        is_limiting: false
+      }
+      addition_order: 2
+    }
+  }
+  inputs {
+    key: "catalase"
+    value {
+      components {
+        identifiers {
+          type: NAME
+          value: "bovine catalase"
+        }
+        amount {
+          mass {
+            value: 210.0
+            units: MILLIGRAM
+          }
+        }
+        reaction_role: CATALYST
+        is_limiting: false
+      }
+      addition_order: 7
+    }
+  }
+  inputs {
+    key: "copper_sulfate"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "O.O.O.O.O.O=S(=O)([O-])[O-].[Cu+2]"
+        }
+        identifiers {
+          type: NAME
+          value: "copper(II) sulfate pentahydrate"
+        }
+        amount {
+          moles {
+            value: 10.0
+            units: MICROMOLE
+          }
+        }
+        reaction_role: REAGENT
+        is_limiting: false
+      }
+      components {
+        identifiers {
+          type: SMILES
+          value: "O"
+        }
+        identifiers {
+          type: NAME
+          value: "water"
+        }
+        amount {
+          volume {
+            value: 100.0
+            units: MICROLITER
+          }
+          volume_includes_solutes: true
+        }
+        reaction_role: SOLVENT
+        is_limiting: false
+      }
+      addition_order: 5
+    }
+  }
+  inputs {
+    key: "peroxidase"
+    value {
+      components {
+        identifiers {
+          type: NAME
+          value: "horseradish peroxidase"
+        }
+        amount {
+          mass {
+            value: 100.0
+            units: MILLIGRAM
+          }
+        }
+        reaction_role: CATALYST
+        is_limiting: false
+      }
+      addition_order: 8
+    }
+  }
+  inputs {
+    key: "solvent"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "O"
+        }
+        identifiers {
+          type: NAME
+          value: "water"
+        }
+        amount {
+          volume {
+            value: 82.0
+            units: MILLILITER
+          }
+        }
+        reaction_role: SOLVENT
+        is_limiting: false
+      }
+      addition_order: 1
+    }
+  }
+  setup {
+    vessel {
+      type: CONTINUOUS_STIRRED_TANK_REACTOR
+      details: "EasyMax 402 (Mettler-Toledo AG, AutoChem, Switzerland)"
+      material {
+        type: METAL
+        details: "Powder-coated stainless steel"
+      }
+      attachments {
+        type: THERMOCOUPLE
+        details: "Mettler-Toledo AG, AutoChem, Switzerland"
+      }
+      attachments {
+        type: CUSTOM
+        details: "pH measurement probe"
+      }
+      attachments {
+        type: CUSTOM
+        details: "EasySampler 1210 automated sampling system (Mettler-Toledo AG, AutoChem, Switzerland)"
+      }
+      attachments {
+        type: GAS_ADAPTER
+        details: "thermal gas flow controller (Aalborg, USA) and an open-ended 1/8\342\200\235 stainless steel tube sparger for air delivery into the liquid"
+      }
+      attachments {
+        type: CUSTOM
+        details: "FireStingO2 dissolved oxygen sensors (Pyro-Science GmbH, Germany)"
+      }
+      volume {
+        value: 100.0
+        units: MILLILITER
+      }
+    }
+    is_automated: false
+    environment {
+      type: BENCH_TOP
+    }
+  }
+  conditions {
+    temperature {
+      control {
+        type: CUSTOM
+        details: "temperature probe monitoring and control"
+      }
+      setpoint {
+        value: 25.0
+        units: CELSIUS
+      }
+    }
+    pressure {
+      control {
+        type: SLIGHT_POSITIVE
+        details: "aeration at 50 sccm"
+      }
+      atmosphere {
+        type: AIR
+      }
+    }
+    stirring {
+      type: CUSTOM
+      details: "stirring is used, but mechanism unspecified"
+    }
+    ph: 7.5
+    details: "aeration began after addition of copper_sulfate"
+  }
+  outcomes {
+    reaction_time {
+      value: 22.0
+      units: HOUR
+    }
+    products {
+      identifiers {
+        type: SMILES
+        value: "OC[C@@](C#C)(O)C=O"
+      }
+      is_desired_product: true
+      measurements {
+        analysis_key: "NMR_1H"
+        type: IDENTITY
+        uses_authentic_standard: true
+      }
+      measurements {
+        analysis_key: "NMR_1H"
+        type: YIELD
+        percentage {
+          value: 68.0
+        }
+      }
+      measurements {
+        analysis_key: "SFC"
+        type: SELECTIVITY
+        percentage {
+          value: 97.0
+        }
+        selectivity {
+          type: EE
+        }
+        wavelength {
+          value: 245.0
+          units: NANOMETER
+        }
+      }
+      reaction_role: PRODUCT
+    }
+    analyses {
+      key: "HRMS"
+      value {
+        type: HRMS
+        is_of_isolated_species: false
+        data {
+          key: "calculated for C5H8NaO4+ [M + Na]+"
+          value {
+            float_value: 155.032
+          }
+        }
+        data {
+          key: "found for C5H8NaO4+ [M + Na]+"
+          value {
+            float_value: 155.0321
+          }
+        }
+      }
+    }
+    analyses {
+      key: "NMR_13C"
+      value {
+        type: NMR_13C
+        is_of_isolated_species: false
+        data {
+          key: "13C NMR peaks"
+          value {
+            string_value: "13C NMR (126 MHz, D2O) delta 90.3, 81.0, 76.0, 73.9, 65.3."
+          }
+        }
+      }
+    }
+    analyses {
+      key: "NMR_1H"
+      value {
+        type: NMR_1H
+        is_of_isolated_species: false
+        data {
+          key: "1H NMR peaks"
+          value {
+            string_value: "1H NMR (500 MHz, D2O) delta 5.01 (s, 1H), 3.77 (d, J = 11.7 Hz, 1H), 3.73 (d, J = 11.7 Hz, 1H), 2.92 (s, 1H)."
+          }
+        }
+      }
+    }
+    analyses {
+      key: "SFC"
+      value {
+        type: SFC
+        details: "To the solution of aldehyde 7 (10 umol) in water (40 uL), (R)-1-amino-2-(methoxymethyl)pyrrolidine (RAMP, 5 \316\274L, 40 umol) was added. The reaction was incubated for at 30 degrees C for 1 h. The reaction mixture was diluted with 215 uL acetonitrile, filtered and analyzed by SFC on a chiral stationary phase. Column: AS-3 (150 by 4.6 mm, 3 micron); Mobile phase A: CO2; Mobile phase B: Methanol/25mM isobutylamine; Gradient: 1-17% B (0-2 min); Post run: no post-time; Flow rate = 3 mL/min; Pressure = 2900 psi; UV recorded at 245 nm."
+        is_of_isolated_species: true
+      }
+    }
+  }
+  provenance {
+    city: "Rahway, NJ"
+    doi: "10.1126/science.aay8484"
+    publication_url: "https://science.sciencemag.org/content/366/6470/1255"
+    record_created {
+      time {
+        value: "05/27/2021, 09:19:59"
+      }
+      person {
+        name: "Michael R. Maser"
+        orcid: "0000-0001-7895-7804"
+        organization: "Caltech"
+        email: "mmaser@caltech.edu"
+      }
+    }
+  }
+  reaction_id: "placeholder1"
+}
+reactions {
+  identifiers {
+    type: NAME
+    value: "Synthesis of (R)-2-ethynylglyceraldehyde 3-phosphate (5) using co-immobilized PanK-Rd4BB and AcK kinases."
+  }
+  inputs {
+    key: "2-ethynylglyceraldehyde in water"
+    value {
+      crude_components {
+        reaction_id: "placeholder1"
+        amount {
+          mass {
+            value: 2.28
+            units: GRAM
+          }
+        }
+      }
+      crude_components {
+        reaction_id: "placeholder1"
+        amount {
+          mass {
+            value: 2.28
+            units: GRAM
+          }
+        }
+      }
+      addition_order: 1
+    }
+  }
+  inputs {
+    key: "ATP"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "Nc1ncnc2c1ncn2[C@@H]1O[C@H](COP(=O)(O)OP(=O)([O-])OP(=O)([O-])O)[C@@H](O)[C@H]1O.O.[Na+].[Na+]"
+        }
+        identifiers {
+          type: NAME
+          value: "adenosine triphosphate disodium sald hydrate"
+        }
+        amount {
+          moles {
+            value: 0.29
+            units: MILLIMOLE
+          }
+        }
+        reaction_role: REAGENT
+        is_limiting: false
+      }
+      addition_order: 4
+    }
+  }
+  inputs {
+    key: "acetyl phosphate diammonium salt - portion 1"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "CC(=O)OP(=O)([O-])[O-].[NH4+].[NH4+]"
+        }
+        identifiers {
+          type: NAME
+          value: "acetyl phosphate diammonium salt"
+        }
+        amount {
+          moles {
+            value: 29.4
+            units: MILLIMOLE
+          }
+        }
+        reaction_role: REAGENT
+        is_limiting: true
+      }
+      addition_order: 3
+    }
+  }
+  inputs {
+    key: "acetyl phosphate diammonium salt - portion 2"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "CC(=O)OP(=O)([O-])[O-].[NH4+].[NH4+]"
+        }
+        identifiers {
+          type: NAME
+          value: "acetyl phosphate diammonium salt"
+        }
+        amount {
+          moles {
+            value: 2.0
+            units: MILLIMOLE
+          }
+        }
+        reaction_role: REAGENT
+        is_limiting: false
+      }
+      addition_order: 6
+      addition_time {
+        value: 18.0
+        units: HOUR
+      }
+    }
+  }
+  inputs {
+    key: "dual biocatalyst"
+    value {
+      components {
+        identifiers {
+          type: NAME
+          value: "evolved pantothenate kinase PanK-Rd4BB"
+        }
+        identifiers {
+          type: AMINO_ACID_SEQUENCE
+          value: "MHHHHHHGGMSIKEQTLMTPYLQLDRNQWAALRDSNPMTLSEDEIARLKGINEDLSLEEVAEVYLPLSRLLNFYISSNLRRQAVLEQFLGTNGQRIPYIISIAGSVAVGKSTTARVLQALLSRWPEHRRVELITTDGFLHPNQVLKERGLMKKKGFPESYDMHRLMKFVKDLKSGVPNVTAPVYSHLIYDVIPDGDKTVVQPDILILEGLNVLQSGMDYPHDPHHVFVSDFVDFSIYVDAPEDLLQTWYINRFLKFREGAFTDPDSYFHGYAKLTKEEAIKTAMTIWKEMNHLNLKQNILPTRERASLILTKSANHIVEEVRLRK*"
+        }
+        amount {
+          mass {
+            value: 2.1
+            units: GRAM
+          }
+        }
+        reaction_role: CATALYST
+        is_limiting: false
+        preparations {
+          type: CUSTOM
+          details: "Nuvia IMAC Ni-charged resin (21 mL based on settled volume) was added to a filter funnel and washed three times with water (3 by 2.5 bed volumes, 50 mL) holding for ten minutes at each wash. The resin was washed one time with binding buffer (1 by 2.5 bed volumes, 50 mL; 500 mM sodium chloride, 50 mM sodium phosphate, pH 8.0). In a 200 mL vessel evolved pantothenate kinase (PanK-Rd4BB, 2.1 g) and acetate kinase (AcK, 0.7 g) lyophilized powders were dissolved in binding buffer (70 mL). The washed resin was charged to the vessel and the solution was stirred for 18 h at 20 degrees C. The resin was filtered and washed two times with binding buffer (2 by 2.5 bed volumes, 50 mL) and three times with potassium PIPES buffer (3 by 2.5 bed volumes, 50 mL, 50 mM, pH 6.5) and used directly in the reaction."
+        }
+      }
+      components {
+        identifiers {
+          type: NAME
+          value: "acetate kinase AcK"
+        }
+        identifiers {
+          type: AMINO_ACID_SEQUENCE
+          value: "MGSHHHHHHGSRVLVINSGSSSIKYQLIEMEGEKVLCKGIAERIGIEGSRLVHRVGDEKHVIERELPDHEEALKLILNTLVDEKLGVIKDLKEIDAVGHRVVHGGERFKESVLVDEEVLKAIEEVSPLAPLHNPANLMGIKAAMKLLPGVPNVAVFDTAFHQTIPQKAYLYAIPYEYYEKYKIRRYGFHGTSHRYVSKRAAEILGKKLEELKIITCHIGNGASVAAVKYGKCVDTSMGFTPLEGLVMGTRSGDLDPAIPFFIMEKEGISPQEMYDILNKKSGVYGLSKGFSSDMRDIEEAALKGDEWCKLVLEIYDYRIAKYIGAYAAAMNGVDAIVFTAGVGENSPITREDVCSYLEFLGVKLDKQKNEETIRGKEGIISTPDSRVKVLVVPTNEELMIARDTKEIVEKIGR*"
+        }
+        amount {
+          mass {
+            value: 0.7
+            units: GRAM
+          }
+        }
+        reaction_role: CATALYST
+        is_limiting: false
+        preparations {
+          type: CUSTOM
+          details: "Nuvia IMAC Ni-charged resin (21 mL based on settled volume) was added to a filter funnel and washed three times with water (3 by 2.5 bed volumes, 50 mL) holding for ten minutes at each wash. The resin was washed one time with binding buffer (1 by 2.5 bed volumes, 50 mL; 500 mM sodium chloride, 50 mM sodium phosphate, pH 8.0). In a 200 mL vessel evolved pantothenate kinase (PanK-Rd4BB, 2.1 g) and acetate kinase (AcK, 0.7 g) lyophilized powders were dissolved in binding buffer (70 mL). The washed resin was charged to the vessel and the solution was stirred for 18 h at 20 degrees C. The resin was filtered and washed two times with binding buffer (2 by 2.5 bed volumes, 50 mL) and three times with potassium PIPES buffer (3 by 2.5 bed volumes, 50 mL, 50 mM, pH 6.5) and used directly in the reaction."
+        }
+      }
+      addition_order: 5
+    }
+  }
+  inputs {
+    key: "magnesium_chloride"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "[Mg+2].[Cl-].[Cl-]"
+        }
+        identifiers {
+          type: NAME
+          value: "magnesium (II) chloride"
+        }
+        amount {
+          moles {
+            value: 1.0
+            units: MILLIMOLE
+          }
+        }
+        reaction_role: REAGENT
+        is_limiting: false
+      }
+      components {
+        identifiers {
+          type: SMILES
+          value: "O"
+        }
+        identifiers {
+          type: NAME
+          value: "water"
+        }
+        amount {
+          volume {
+            value: 1.0
+            units: MILLILITER
+          }
+          volume_includes_solutes: true
+        }
+        reaction_role: SOLVENT
+        is_limiting: false
+      }
+      addition_order: 2
+    }
+  }
+  inputs {
+    key: "water"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "O"
+        }
+        identifiers {
+          type: NAME
+          value: "water"
+        }
+        amount {
+          volume {
+            value: 100.0
+            units: MILLILITER
+          }
+          volume_includes_solutes: true
+        }
+        reaction_role: SOLVENT
+        is_limiting: false
+      }
+      components {
+        identifiers {
+          type: SMILES
+          value: "O"
+        }
+        identifiers {
+          type: NAME
+          value: "water"
+        }
+        amount {
+          volume {
+            value: 100.0
+            units: MILLILITER
+          }
+          volume_includes_solutes: true
+        }
+        reaction_role: SOLVENT
+        is_limiting: false
+      }
+      addition_order: 1
+    }
+  }
+  setup {
+    vessel {
+      type: CONTINUOUS_STIRRED_TANK_REACTOR
+      details: "EasyMax 402 (Mettler-Toledo AG, AutoChem, Switzerland)"
+      material {
+        type: METAL
+        details: "Powder-coated stainless steel"
+      }
+      attachments {
+        type: THERMOCOUPLE
+        details: "Mettler-Toledo AG, AutoChem, Switzerland"
+      }
+      attachments {
+        type: CUSTOM
+        details: "pH measurement probe"
+      }
+      attachments {
+        type: CUSTOM
+        details: "EasySampler 1210 automated sampling system (Mettler-Toledo AG, AutoChem, Switzerland)"
+      }
+      volume {
+        value: 100.0
+        units: MILLILITER
+      }
+    }
+    is_automated: false
+    environment {
+      type: BENCH_TOP
+    }
+  }
+  conditions {
+    temperature {
+      control {
+      }
+    }
+    stirring {
+      type: CUSTOM
+      details: "stirring is used, but mechanism unspecified"
+    }
+    ph: 6.4
+  }
+  workups {
+    type: FILTRATION
+    details: "The filtrate contains the product and is kept. The solid residue is kept for washing."
+    keep_phase: "both"
+  }
+  workups {
+    type: STIRRING
+    details: "The solid residue from the previous workup step was stirred in water for 20 minutes"
+    input {
+      components {
+        identifiers {
+          type: SMILES
+          value: "O"
+        }
+        identifiers {
+          type: NAME
+          value: "water"
+        }
+        amount {
+          volume {
+            value: 10.0
+            units: MILLILITER
+          }
+        }
+        reaction_role: WORKUP
+      }
+    }
+    stirring {
+      type: CUSTOM
+      details: "stirring is used, but mechanism unspecified"
+    }
+  }
+  workups {
+    type: FILTRATION
+    details: "Vacuum filtration. The filtrate contains the product and is kept and combined with that from workup step 1."
+    keep_phase: "filtrate"
+  }
+  workups {
+    type: STIRRING
+    details: "The solid residue from the previous workup step was stirred in water for 20 minutes"
+    input {
+      components {
+        identifiers {
+          type: SMILES
+          value: "O"
+        }
+        identifiers {
+          type: NAME
+          value: "water"
+        }
+        amount {
+          volume {
+            value: 10.0
+            units: MILLILITER
+          }
+        }
+        reaction_role: WORKUP
+      }
+    }
+    stirring {
+      type: CUSTOM
+      details: "stirring is used, but mechanism unspecified"
+    }
+  }
+  workups {
+    type: FILTRATION
+    details: "Vacuum filtration. The filtrate contains the product and is kept and combined with that from workup step 1."
+    keep_phase: "filtrate"
+  }
+  outcomes {
+    reaction_time {
+      value: 18.0
+      units: HOUR
+    }
+    conversion {
+      value: 93.0
+    }
+    products {
+      identifiers {
+        type: SMILES
+        value: "O=C[C@](C#C)(O)COP([O-])(=O)=O.[H][N+]([H])([H])[H]"
+      }
+      is_desired_product: true
+      reaction_role: PRODUCT
+    }
+  }
+  outcomes {
+    reaction_time {
+      value: 42.0
+      units: HOUR
+    }
+    conversion {
+      value: 97.0
+    }
+    products {
+      identifiers {
+        type: SMILES
+        value: "O=C[C@](C#C)(O)COP([O-])(=O)=O.[H][N+]([H])([H])[H]"
+      }
+      is_desired_product: true
+      measurements {
+        analysis_key: "NMR_1H"
+        type: IDENTITY
+      }
+      measurements {
+        analysis_key: "NMR_31P"
+        type: IDENTITY
+      }
+      measurements {
+        analysis_key: "NMR_1H"
+        type: YIELD
+        percentage {
+          value: 66.0
+        }
+      }
+      reaction_role: PRODUCT
+    }
+    analyses {
+      key: "HRMS"
+      value {
+        type: HRMS
+        is_of_isolated_species: false
+        data {
+          key: "calculated for C5H6O6P [M-H]-"
+          value {
+            float_value: 192.9902
+          }
+        }
+        data {
+          key: "found for C5H6O6P [M-H]-"
+          value {
+            float_value: 192.9909
+          }
+        }
+      }
+    }
+    analyses {
+      key: "NMR_13C"
+      value {
+        type: NMR_13C
+        is_of_isolated_species: false
+        data {
+          key: "13C NMR peaks"
+          value {
+            string_value: "13C NMR (D2O, 126 MHz) delta 89.9 (s), 80.7 (s), 75.9 (s), 73.6 (d, JC-P = 7.0 Hz), 67.8 (d, JC-P = 4.8 Hz )."
+          }
+        }
+      }
+    }
+    analyses {
+      key: "NMR_1H"
+      value {
+        type: NMR_1H
+        is_of_isolated_species: false
+        data {
+          key: "1H NMR peaks"
+          value {
+            string_value: "1H NMR (D2O, 400 MHz): delta 5.01 (s, 1H), 3.94 (dd, J = 11.1, 7.2 Hz, 1H), 3.86 (dd, J = 11.2, 6.4 Hz, 1H), 2.82 (s, 1H)."
+          }
+        }
+      }
+    }
+    analyses {
+      key: "NMR_31P"
+      value {
+        type: NMR_OTHER
+        details: "31P"
+        is_of_isolated_species: false
+        data {
+          key: "31P NMR peaks"
+          value {
+            string_value: "31P NMR (D2O, 202 MHz) delta 3.01."
+          }
+        }
+      }
+    }
+  }
+  provenance {
+    city: "Rahway, NJ"
+    doi: "10.1126/science.aay8484"
+    publication_url: "https://science.sciencemag.org/content/366/6470/1255"
+    record_created {
+      time {
+        value: "05/27/2021, 09:19:59"
+      }
+      person {
+        name: "Michael R. Maser"
+        orcid: "0000-0001-7895-7804"
+        organization: "Caltech"
+        email: "mmaser@caltech.edu"
+      }
+    }
+  }
+  reaction_id: "placeholder2"
+}
+reactions {
+  identifiers {
+    type: NAME
+    value: "4-Enzyme cascade from (R)-2-ethynylglyceraldehyde 3-phosphate to islatravir (1)."
+  }
+  inputs {
+    key: "(R)-2-ethynylglyceraldehyde 3-phosphate in water"
+    value {
+      crude_components {
+        reaction_id: "placeholder2"
+        amount {
+          mass {
+            value: 1.84
+            units: GRAM
+          }
+        }
+      }
+      addition_order: 1
+    }
+  }
+  inputs {
+    key: "2-fluoroadenine"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "Nc1[nH]c(F)nc2ncnc12"
+        }
+        identifiers {
+          type: NAME
+          value: "2-fluoroadenine"
+        }
+        amount {
+          moles {
+            value: 7.44
+            units: MILLIMOLE
+          }
+        }
+        reaction_role: REAGENT
+        is_limiting: true
+      }
+      addition_order: 11
+    }
+  }
+  inputs {
+    key: "Deoxyribose 5-phosphate aldolase"
+    value {
+      components {
+        identifiers {
+          type: NAME
+          value: "Evolved DERA-Rd3BB"
+        }
+        identifiers {
+          type: AMINO_ACID_SEQUENCE
+          value: "MHHHHHHCDLKKAAQRAISLMDLTTLNDDDTDQKVIELCHKAKTPAGDTAAIVIYPRFIPIARKTLNEIGGLDIKIVTVTNFPHGNDDIAIAVLETRAAVAYGADEVDVVFPYRALMEGNETVGFELVKACKEACGEDTILKVIIESGVLKDPALIRKASEISIDAGADFIKTSTGKVAVNATLEAAEIIMTVISEKNPKVGFKPAGGIKDAAAAAEFLGVAARLLGDDWATPATFRFGATDLLTNLLHTLELADAPQGAQGY*"
+        }
+        amount {
+          mass {
+            value: 18.0
+            units: MILLIGRAM
+          }
+        }
+        reaction_role: CATALYST
+        is_limiting: false
+      }
+      addition_order: 7
+    }
+  }
+  inputs {
+    key: "KOH"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "[OH-].[K+]"
+        }
+        identifiers {
+          type: NAME
+          value: "potassium hydroxide"
+        }
+        amount {
+          moles {
+            value: 2.8
+            units: MILLIMOLE
+          }
+        }
+        reaction_role: REAGENT
+        is_limiting: false
+      }
+      components {
+        identifiers {
+          type: SMILES
+          value: "O"
+        }
+        identifiers {
+          type: NAME
+          value: "water"
+        }
+        amount {
+          volume {
+            value: 0.35
+            units: MILLILITER
+          }
+          volume_includes_solutes: true
+        }
+        reaction_role: SOLVENT
+        is_limiting: false
+      }
+      addition_order: 4
+    }
+  }
+  inputs {
+    key: "Phosphopentomutase from E. coli"
+    value {
+      components {
+        identifiers {
+          type: NAME
+          value: "Evolved PPM-Rd3BB"
+        }
+        identifiers {
+          type: AMINO_ACID_SEQUENCE
+          value: "MKRAFIMVLDSFGIGATEDAERFGDVGADTLGHIAEACAKGEADNGRKGPLNLPNLTRLGLAKAHEGSTGFIPAGMDGNAEVIGAYAWAHEMSSGKDSVSGHWEIAGVPVLFEWGYFSDHENSFPQELLDKLVERANLPGYLGNCRSSGTVILDQLGEEHMKTGKPIFYTSAASVFQIACHEETFGLDKLYELCEIAREELTNGGYNIGRVIARPFIGDKAGNFQRTGNRRDLAVEPPAPTVLQKLVDEKHGQVVSVGKIADIYANCGITKKVKATGLDALFDATIKEMKEAGDNTIVFTNFVDFDSSWGHRRDVAGYAAGLELFDRRLPELMSLLRDDDILILTADHGCDPTWTGTDHTREHIPVLVYGPKVKPGSLGHRETFADIGQTLAKYFGTSDMEYGKAMF*"
+        }
+        amount {
+          mass {
+            value: 331.0
+            units: MILLIGRAM
+          }
+        }
+        reaction_role: CATALYST
+        is_limiting: false
+      }
+      addition_order: 8
+    }
+  }
+  inputs {
+    key: "Purine Nucleotide Phosphorylase from E. coli"
+    value {
+      components {
+        identifiers {
+          type: NAME
+          value: "Evolved PNP-Rd5BB"
+        }
+        identifiers {
+          type: AMINO_ACID_SEQUENCE
+          value: "MTTPHINAEMGDFADVVLMPGDPLRAKYIAETFLEDAREVNNVRGMLGFTGTYKGRKISVMGHGAGIPSCSIYTKELITDFGVKKIIRVGTCGAVLPHVKLRDVVIGMGACTDSKVNRIRFKDHDFAAIADFDMVRNAVDAAKALGIDPRVGNLHSADLFYSPDGEMFDVMEKYGIVGVEMEAAGIYGVAAEFGAKALTICTVSDHIRTHEATTAAERQTTFNDMIKIALESVLLGDKE*"
+        }
+        amount {
+          mass {
+            value: 74.0
+            units: MILLIGRAM
+          }
+        }
+        reaction_role: CATALYST
+        is_limiting: false
+      }
+      addition_order: 9
+    }
+  }
+  inputs {
+    key: "Sucrose phosphorylase (SP) from Alloscardovia omnicolens"
+    value {
+      components {
+        identifiers {
+          type: NAME
+          value: "wild type sucrose phosphorylase"
+        }
+        identifiers {
+          type: AMINO_ACID_SEQUENCE
+          value: "MKNKVQLITYADRLGDGTLKSMTETLRKHFEGVYEGVHILPFFTPFDGADAGFDPVDHTKVDPRLGSWDDVAELSTTHDIMVDTIVNHMSWESEQFQDVMAKGEDSEYYPMFLTMSSIFPDGVTEEDLTAIYRPRPGLPFTHYNWGGKTRLVWTTFTPQQVDIDTDSEMGWNYLLSILDQLSQSHVSQIRLDAVGYGAKEKNSSCFMTPKTFKLIERIKAEGEKRGLETLIEVHSYYKKQVEIASKVDRVYDFAIPGLLLHALEFGKTDALAQWIDVRPNNAVNVLDTHDGIGVIDIGSDQMDRSLAGLVPDEEVDALVESIHRNSKGESQEATGAAASNLDLYQVNCTYYAALGSDDQKYIAARAVQFFMPGVPQVYYVGALAGSNDMDLLKRTNVGRDINRHYYSAAEVASEVERPVVQALNALGRFRNTLSAFDGEFSYSNADGVLTMTWADDATRATLTFAPKANSNGASVARLEWTDAAGEHATDDLIANPPVVA*"
+        }
+        amount {
+          mass {
+            value: 37.0
+            units: MILLIGRAM
+          }
+        }
+        reaction_role: CATALYST
+        is_limiting: false
+      }
+      addition_order: 10
+    }
+  }
+  inputs {
+    key: "acetaldehyde"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "CC=O"
+        }
+        identifiers {
+          type: NAME
+          value: "acetaldehyde"
+        }
+        amount {
+          moles {
+            value: 13.3
+            units: MILLIMOLE
+          }
+        }
+        reaction_role: REAGENT
+        is_limiting: false
+      }
+      components {
+        identifiers {
+          type: SMILES
+          value: "CC(C)O"
+        }
+        identifiers {
+          type: NAME
+          value: "isopropyl alcohol"
+        }
+        amount {
+          volume {
+            value: 1.8
+            units: MILLILITER
+          }
+          volume_includes_solutes: true
+        }
+        reaction_role: SOLVENT
+        is_limiting: false
+      }
+      addition_order: 12
+    }
+  }
+  inputs {
+    key: "manganese dichloride tetrahydrate"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "Cl[Mn]Cl.O.O.O.O"
+        }
+        identifiers {
+          type: NAME
+          value: "manganese dichloride tetrahydrate"
+        }
+        amount {
+          moles {
+            value: 0.316
+            units: MILLIMOLE
+          }
+        }
+        reaction_role: REAGENT
+        is_limiting: false
+      }
+      addition_order: 5
+    }
+  }
+  inputs {
+    key: "sucrose"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "OC[C@H]1O[C@H](O[C@]2(CO)O[C@H](CO)[C@@H](O)[C@@H]2O)[C@H](O)[C@@H](O)[C@@H]1O"
+        }
+        identifiers {
+          type: NAME
+          value: "sucrose"
+        }
+        amount {
+          moles {
+            value: 30.7
+            units: MILLIMOLE
+          }
+        }
+        reaction_role: REAGENT
+        is_limiting: false
+      }
+      addition_order: 6
+    }
+  }
+  inputs {
+    key: "triethanolamine"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "OCCN(CCO)CCO"
+        }
+        identifiers {
+          type: NAME
+          value: "triethanolamine"
+        }
+        amount {
+          moles {
+            value: 3.47
+            units: MILLIMOLE
+          }
+        }
+        reaction_role: REAGENT
+        is_limiting: false
+      }
+      addition_order: 2
+    }
+  }
+  inputs {
+    key: "water"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "O"
+        }
+        identifiers {
+          type: NAME
+          value: "water"
+        }
+        amount {
+          volume {
+            value: 62.5
+            units: MILLILITER
+          }
+          volume_includes_solutes: true
+        }
+        reaction_role: SOLVENT
+        is_limiting: false
+      }
+      components {
+        identifiers {
+          type: SMILES
+          value: "O"
+        }
+        identifiers {
+          type: NAME
+          value: "water"
+        }
+        amount {
+          volume {
+            value: 62.5
+            units: MILLILITER
+          }
+        }
+        reaction_role: SOLVENT
+        is_limiting: false
+      }
+      addition_order: 3
+    }
+  }
+  setup {
+    vessel {
+      type: CONTINUOUS_STIRRED_TANK_REACTOR
+      details: "EasyMax 402 (Mettler-Toledo AG, AutoChem, Switzerland)"
+      material {
+        type: METAL
+        details: "Powder-coated stainless steel"
+      }
+      attachments {
+        type: THERMOCOUPLE
+        details: "Mettler-Toledo AG, AutoChem, Switzerland"
+      }
+      attachments {
+        type: CUSTOM
+        details: "pH measurement probe"
+      }
+      attachments {
+        type: CUSTOM
+        details: "EasySampler 1210 automated sampling system (Mettler-Toledo AG, AutoChem, Switzerland)"
+      }
+      volume {
+        value: 150.0
+        units: MILLILITER
+      }
+    }
+    is_automated: false
+    environment {
+      type: BENCH_TOP
+    }
+  }
+  conditions {
+    temperature {
+      control {
+        type: CUSTOM
+        details: "temperature probe monitoring and control"
+      }
+      setpoint {
+        value: 35.0
+        units: CELSIUS
+      }
+    }
+    pressure {
+      control {
+        type: SEALED
+      }
+      atmosphere {
+        type: AIR
+      }
+    }
+    stirring {
+      type: CUSTOM
+      details: "stirring is used, but mechanism unspecified"
+    }
+    ph: 7.5
+  }
+  workups {
+    type: FILTRATION
+    details: "The filtrate contains the product and is kept. The solid residue is kept for washing."
+    temperature {
+      setpoint {
+        value: 5.0
+        units: CELSIUS
+      }
+    }
+    keep_phase: "solid"
+  }
+  workups {
+    type: WASH
+    input {
+      components {
+        identifiers {
+          type: SMILES
+          value: "O"
+        }
+        identifiers {
+          type: NAME
+          value: "water"
+        }
+        amount {
+          volume {
+            value: 30.0
+            units: MILLILITER
+          }
+        }
+        reaction_role: WORKUP
+      }
+    }
+  }
+  workups {
+    type: DRY_IN_VACUUM
+  }
+  outcomes {
+    reaction_time {
+      value: 26.0
+      units: HOUR
+    }
+    products {
+      identifiers {
+        type: SMILES
+        value: "C#C[C@]1([C@H](C[C@@H](O1)n2cnc3c2nc(nc3N)F)O)CO"
+      }
+      identifiers {
+        type: NAME
+        value: "islatravir"
+      }
+      is_desired_product: true
+      measurements {
+        analysis_key: "WEIGHT"
+        type: YIELD
+        uses_authentic_standard: true
+        percentage {
+          value: 76.0
+        }
+      }
+      reaction_role: PRODUCT
+    }
+    analyses {
+      key: "WEIGHT"
+      value {
+        type: WEIGHT
+      }
+    }
+  }
+  provenance {
+    city: "Rahway, NJ"
+    doi: "10.1126/science.aay8484"
+    publication_url: "https://science.sciencemag.org/content/366/6470/1255"
+    record_created {
+      time {
+        value: "05/27/2021, 09:19:59"
+      }
+      person {
+        name: "Michael R. Maser"
+        orcid: "0000-0001-7895-7804"
+        organization: "Caltech"
+        email: "mmaser@caltech.edu"
+      }
+    }
+  }
+  reaction_id: "placeholder3"
+}
