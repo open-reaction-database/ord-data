@@ -1,4 +1,3 @@
-description: "Partial Information from figure 4 of paper.\302\240"
 reactions {
   inputs {
     key: "Amine"
@@ -280,7 +279,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -563,7 +561,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -846,7 +843,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -1129,7 +1125,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -1412,7 +1407,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -1695,7 +1689,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -1978,7 +1971,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -2261,7 +2253,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -2544,7 +2535,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -2827,7 +2817,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -3110,7 +3099,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -3393,7 +3381,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -3676,7 +3663,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -3959,7 +3945,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -4242,7 +4227,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -4525,7 +4509,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -4808,7 +4791,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -5091,7 +5073,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -5374,7 +5355,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -5657,7 +5637,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -5940,7 +5919,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -6223,7 +6201,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -6506,7 +6483,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -6789,7 +6765,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -7072,7 +7047,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -7355,7 +7329,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -7638,7 +7611,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -7921,7 +7893,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -8204,7 +8175,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -8487,7 +8457,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -8770,7 +8739,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -9053,7 +9021,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -9336,7 +9303,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -9619,7 +9585,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -9902,7 +9867,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -10185,7 +10149,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -10468,7 +10431,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -10751,7 +10713,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -11034,7 +10995,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -11317,7 +11277,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -11600,7 +11559,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -11883,7 +11841,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -12166,7 +12123,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -12449,7 +12405,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -12732,7 +12687,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -13015,7 +12969,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -13298,7 +13251,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -13581,7 +13533,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -13864,7 +13815,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -14147,7 +14097,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -14430,7 +14379,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -14713,7 +14661,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -14996,7 +14943,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -15279,7 +15225,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -15562,7 +15507,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -15845,7 +15789,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -16128,7 +16071,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -16411,7 +16353,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -16694,7 +16635,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -16977,7 +16917,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -17260,7 +17199,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -17543,7 +17481,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -17826,7 +17763,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -18109,7 +18045,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -18392,7 +18327,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -18675,7 +18609,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -18958,7 +18891,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -19241,7 +19173,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -19524,7 +19455,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -19807,7 +19737,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -20090,7 +20019,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -20373,7 +20301,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -20656,7 +20583,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -20939,7 +20865,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -21222,7 +21147,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -21505,7 +21429,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -21788,7 +21711,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -22071,7 +21993,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -22354,7 +22275,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -22637,7 +22557,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -22920,7 +22839,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -23203,7 +23121,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -23486,7 +23403,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -23769,7 +23685,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -24052,7 +23967,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -24335,7 +24249,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -24618,7 +24531,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -24901,7 +24813,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -25184,7 +25095,6 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
 reactions {
   inputs {
@@ -25467,5 +25377,4 @@ reactions {
       }
     }
   }
-  reaction_id: "ord-cea65357d8b94f30a162d3c6cc495457"
 }
