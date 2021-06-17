@@ -187,7 +187,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -469,7 +469,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -751,7 +751,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -1033,7 +1033,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -1315,7 +1315,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -1597,7 +1597,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -1879,7 +1879,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -2161,7 +2161,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -2443,7 +2443,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -2725,7 +2725,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -3007,7 +3007,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -3289,7 +3289,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -3571,7 +3571,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -3853,7 +3853,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -4135,7 +4135,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -4417,7 +4417,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -4699,7 +4699,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -4981,7 +4981,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -5263,7 +5263,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -5545,7 +5545,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -5827,7 +5827,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -6109,7 +6109,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -6391,7 +6391,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -6673,7 +6673,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -6955,7 +6955,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -7237,7 +7237,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -7519,7 +7519,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -7801,7 +7801,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -8083,7 +8083,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -8365,7 +8365,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -8647,7 +8647,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -8929,7 +8929,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -9211,7 +9211,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -9493,7 +9493,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -9775,7 +9775,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -10057,7 +10057,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -10339,7 +10339,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -10621,7 +10621,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -10903,7 +10903,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -11185,7 +11185,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -11467,7 +11467,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -11749,7 +11749,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -12031,7 +12031,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -12313,7 +12313,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -12595,7 +12595,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -12877,7 +12877,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -13159,7 +13159,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -13441,7 +13441,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -13723,7 +13723,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -14005,7 +14005,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -14287,7 +14287,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -14569,7 +14569,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -14851,7 +14851,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -15133,7 +15133,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -15415,7 +15415,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -15697,7 +15697,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -15979,7 +15979,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -16261,7 +16261,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -16543,7 +16543,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -16825,7 +16825,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -17107,7 +17107,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -17389,7 +17389,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -17671,7 +17671,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -17953,7 +17953,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -18235,7 +18235,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -18517,7 +18517,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -18799,7 +18799,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -19081,7 +19081,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -19363,7 +19363,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -19645,7 +19645,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -19927,7 +19927,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -20209,7 +20209,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -20491,7 +20491,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -20773,7 +20773,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -21055,7 +21055,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -21337,7 +21337,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -21619,7 +21619,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -21901,7 +21901,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -22183,7 +22183,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -22465,7 +22465,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -22747,7 +22747,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -23029,7 +23029,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -23311,7 +23311,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -23593,7 +23593,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -23875,7 +23875,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -24157,7 +24157,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -24439,7 +24439,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -24721,7 +24721,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -25003,7 +25003,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
@@ -25285,7 +25285,7 @@ reactions {
         }
         amount {
           moles {
-            value: 0.05
+            value: 0.5
             units: MICROMOLE
           }
         }
