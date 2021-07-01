@@ -160,7 +160,7 @@ reactions {
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2019/re/c9re00086k"
     record_created {
       time {
-        value: "05/26/2021, 15:23:46"
+        value: "07/01/2021, 14:56:43"
       }
       person {
         username: "skearnes"
@@ -339,17 +339,12 @@ reactions {
     stirring {
       type: STIR_BAR
     }
+    conditions_are_dynamic: true
   }
   notes {
+    forms_precipitate: true
+    is_exothermic: true
     procedure_details: "To an oven-dried 1000 ml round bottomed flask equipped with a magnetic stir bar under N2\natmosphere was added methyl 3-cyclopropyl-2-methyl-3-oxopropanoate 2 (10.0 g, 64.0 mmol)\nand THF (100 ml). The mixture was cooled to -78 \302\260C and 1M NaHMDS solution (96.0 ml, 96.0\nmmol) was added over 30 min, maintaining the internal temperature below -60 \302\260C, followed by\na THF rinse (50 ml). The mixture was aged for 1 h at -78 \302\260C and Ts2O (31.3 g, 96.0 mmol) in THF\n(200 ml) was added over 1 h, maintaining the internal temperature below -60 \302\260C. The mixture\nwas aged for 20 min at -78 \302\260C, then warmed to 25 \302\260C and aged for 2 h. A thick slurry formed. The\nreaction was quenched with 300 ml of 0.5M NaHCO3 solution and the phases were separated.\nThe aqueous layer was back-extracted twice with 100 ml of EtOAc. The organic layers were\ncombined and washed with 200 ml of saturated NaCl solution, dried over MgSO4 and filtered.\nUpon concentration to an oil, the crude product was purified by normal phase column\nchromatography to give (E)-methyl 3-cyclopropyl-2-methyl-3-(tosyloxy)acrylate 3-(E) in 30%\nyield and (Z)-methyl 3-cyclopropyl-2-methyl-3-(tosyloxy)acrylate 3-(Z) in 54% yield."
-  }
-  workups {
-    type: WAIT
-    details: "The mixture was aged for 20 min at -78 \302\260C."
-    duration {
-      value: 20.0
-      units: MINUTE
-    }
   }
   workups {
     type: TEMPERATURE
@@ -507,8 +502,8 @@ reactions {
   }
   outcomes {
     reaction_time {
-      value: 16.0
-      units: HOUR
+      value: 20.0
+      units: MINUTE
     }
     products {
       identifiers {
@@ -541,7 +536,7 @@ reactions {
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2019/re/c9re00086k"
     record_created {
       time {
-        value: "05/26/2021, 15:23:46"
+        value: "07/01/2021, 14:56:43"
       }
       person {
         username: "skearnes"
@@ -724,7 +719,7 @@ reactions {
       }
     }
     is_automated: true
-    automation_platform: "Automated reaction monitoring was carried out on a Chemspeed Swing liquid handling robot\nequipped with an adjustable-pitch four needle (0.8 mm ID) liquid dispense tool, a V&P Scientific\ntumble stirrer and a Huber Unistat 82T chiller. The robot was integrated with an Agilent 1100\nHPLC-UV system through installation of a two position, 6-port HPLC valve on the Chemspeed\nSwing deck and connection to the Agilent 1100 through 0.17 mm ID tubing. Bilateral\ncommunication was established between the Chemspeed Autosuite software and the HPLC\nvalve. Also, unilateral communication was established between the Chemspeed Autosuite\nsoftware and the Agilent 1100 HPLC-UV (Figure S1)."
+    automation_platform: "Automated reaction monitoring was carried out on a Chemspeed Swing liquid handling robot\nequipped with an adjustable-pitch four needle (0.8 mm ID) liquid dispense tool, a V&P Scientific\ntumble stirrer and a Huber Unistat 82T chiller. The robot was integrated with an Agilent 1100\nHPLC-UV system through installation of a two position, 6-port HPLC valve on the Chemspeed\nSwing deck and connection to the Agilent 1100 through 0.17 mm ID tubing. Bilateral\ncommunication was established between the Chemspeed Autosuite software and the HPLC\nvalve. Also, unilateral communication was established between the Chemspeed Autosuite\nsoftware and the Agilent 1100 HPLC-UV (Figure S1).\n\nReactions were carried out in sealed 4 ml borosilicate glass vials with red pressure relief caps (CG4912-01). Vigorous agitation was achieved with parylene-coated NdFeB magnetic tumble stir\ndiscs (VP 782N6). Reaction aliquots were sampled into 96-well dilution plates (Analytical Sales\n17P687) capped with pre-slit silicone/PTFE cap mats (Analytical Sales 965075).\n\nAutomated sampling procedure: The reaction vial, aqueous K3PO4 vial and dilution plate were\nsealed and placed on the Chemspeed Swing robot deck for automated initiation, sampling,\ndilution and HPLC injection (Figure S3). The robot deck was inerted under positive pressure N2\natmosphere, tumble stirring was initiated (300-500 rpm), and the reaction vial temperature set\nto 25 \302\260C. To the reaction vial was transferred 1M aqueous K3PO4 by needle. This was immediately\nfollowed by transfer of a 20 \302\265l aliquot from the reaction vial to the dilution plate by needle. Upon\ntransfer, a 200 \302\265l N2 cushion was drawn by the needle, followed by a 200 \302\265l aliquot from the\ndilution plate. The 200 ul aliquot and N2 cushion were then re-dispensed to the dilution plate at\n10 ml/min flow rate to effectively mix the sample. A 50 \302\265l aliquot was then transferred from the\ndilution plate to the injection port of the HPLC selection valve, over-filling the 20 \302\265l loop with\ndiluted sample. Once the loop was filled, the valve was switched and the HPLC run triggered,\nallowing the HPLC pump to push the mobile phase through the loop, moving the sample into the\nHPLC column. The valve was then rinsed with 1000 \302\265l of acetonitrile. This sampling, dilution and\ninjection procedure was repeated every 5-20 minutes until reaction completion.\n"
   }
   conditions {
     temperature {
@@ -20205,7 +20200,7 @@ reactions {
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2019/re/c9re00086k"
     record_created {
       time {
-        value: "05/26/2021, 15:23:46"
+        value: "07/01/2021, 14:56:43"
       }
       person {
         username: "skearnes"
@@ -20387,7 +20382,7 @@ reactions {
       }
     }
     is_automated: true
-    automation_platform: "Automated reaction monitoring was carried out on a Chemspeed Swing liquid handling robot\nequipped with an adjustable-pitch four needle (0.8 mm ID) liquid dispense tool, a V&P Scientific\ntumble stirrer and a Huber Unistat 82T chiller. The robot was integrated with an Agilent 1100\nHPLC-UV system through installation of a two position, 6-port HPLC valve on the Chemspeed\nSwing deck and connection to the Agilent 1100 through 0.17 mm ID tubing. Bilateral\ncommunication was established between the Chemspeed Autosuite software and the HPLC\nvalve. Also, unilateral communication was established between the Chemspeed Autosuite\nsoftware and the Agilent 1100 HPLC-UV (Figure S1)."
+    automation_platform: "Automated reaction monitoring was carried out on a Chemspeed Swing liquid handling robot\nequipped with an adjustable-pitch four needle (0.8 mm ID) liquid dispense tool, a V&P Scientific\ntumble stirrer and a Huber Unistat 82T chiller. The robot was integrated with an Agilent 1100\nHPLC-UV system through installation of a two position, 6-port HPLC valve on the Chemspeed\nSwing deck and connection to the Agilent 1100 through 0.17 mm ID tubing. Bilateral\ncommunication was established between the Chemspeed Autosuite software and the HPLC\nvalve. Also, unilateral communication was established between the Chemspeed Autosuite\nsoftware and the Agilent 1100 HPLC-UV (Figure S1).\n\nReactions were carried out in sealed 4 ml borosilicate glass vials with red pressure relief caps (CG4912-01). Vigorous agitation was achieved with parylene-coated NdFeB magnetic tumble stir\ndiscs (VP 782N6). Reaction aliquots were sampled into 96-well dilution plates (Analytical Sales\n17P687) capped with pre-slit silicone/PTFE cap mats (Analytical Sales 965075).\n\nAutomated sampling procedure: The reaction vial, aqueous K3PO4 vial and dilution plate were\nsealed and placed on the Chemspeed Swing robot deck for automated initiation, sampling,\ndilution and HPLC injection (Figure S3). The robot deck was inerted under positive pressure N2\natmosphere, tumble stirring was initiated (300-500 rpm), and the reaction vial temperature set\nto 25 \302\260C. To the reaction vial was transferred 1M aqueous K3PO4 by needle. This was immediately\nfollowed by transfer of a 20 \302\265l aliquot from the reaction vial to the dilution plate by needle. Upon\ntransfer, a 200 \302\265l N2 cushion was drawn by the needle, followed by a 200 \302\265l aliquot from the\ndilution plate. The 200 ul aliquot and N2 cushion were then re-dispensed to the dilution plate at\n10 ml/min flow rate to effectively mix the sample. A 50 \302\265l aliquot was then transferred from the\ndilution plate to the injection port of the HPLC selection valve, over-filling the 20 \302\265l loop with\ndiluted sample. Once the loop was filled, the valve was switched and the HPLC run triggered,\nallowing the HPLC pump to push the mobile phase through the loop, moving the sample into the\nHPLC column. The valve was then rinsed with 1000 \302\265l of acetonitrile. This sampling, dilution and\ninjection procedure was repeated every 5-20 minutes until reaction completion.\n"
   }
   conditions {
     temperature {
@@ -26427,7 +26422,7 @@ reactions {
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2019/re/c9re00086k"
     record_created {
       time {
-        value: "05/26/2021, 15:23:46"
+        value: "07/01/2021, 14:56:43"
       }
       person {
         username: "skearnes"
@@ -26609,7 +26604,7 @@ reactions {
       }
     }
     is_automated: true
-    automation_platform: "Automated reaction monitoring was carried out on a Chemspeed Swing liquid handling robot\nequipped with an adjustable-pitch four needle (0.8 mm ID) liquid dispense tool, a V&P Scientific\ntumble stirrer and a Huber Unistat 82T chiller. The robot was integrated with an Agilent 1100\nHPLC-UV system through installation of a two position, 6-port HPLC valve on the Chemspeed\nSwing deck and connection to the Agilent 1100 through 0.17 mm ID tubing. Bilateral\ncommunication was established between the Chemspeed Autosuite software and the HPLC\nvalve. Also, unilateral communication was established between the Chemspeed Autosuite\nsoftware and the Agilent 1100 HPLC-UV (Figure S1)."
+    automation_platform: "Automated reaction monitoring was carried out on a Chemspeed Swing liquid handling robot\nequipped with an adjustable-pitch four needle (0.8 mm ID) liquid dispense tool, a V&P Scientific\ntumble stirrer and a Huber Unistat 82T chiller. The robot was integrated with an Agilent 1100\nHPLC-UV system through installation of a two position, 6-port HPLC valve on the Chemspeed\nSwing deck and connection to the Agilent 1100 through 0.17 mm ID tubing. Bilateral\ncommunication was established between the Chemspeed Autosuite software and the HPLC\nvalve. Also, unilateral communication was established between the Chemspeed Autosuite\nsoftware and the Agilent 1100 HPLC-UV (Figure S1).\n\nReactions were carried out in sealed 4 ml borosilicate glass vials with red pressure relief caps (CG4912-01). Vigorous agitation was achieved with parylene-coated NdFeB magnetic tumble stir\ndiscs (VP 782N6). Reaction aliquots were sampled into 96-well dilution plates (Analytical Sales\n17P687) capped with pre-slit silicone/PTFE cap mats (Analytical Sales 965075).\n\nAutomated sampling procedure: The reaction vial, aqueous K3PO4 vial and dilution plate were\nsealed and placed on the Chemspeed Swing robot deck for automated initiation, sampling,\ndilution and HPLC injection (Figure S3). The robot deck was inerted under positive pressure N2\natmosphere, tumble stirring was initiated (300-500 rpm), and the reaction vial temperature set\nto 25 \302\260C. To the reaction vial was transferred 1M aqueous K3PO4 by needle. This was immediately\nfollowed by transfer of a 20 \302\265l aliquot from the reaction vial to the dilution plate by needle. Upon\ntransfer, a 200 \302\265l N2 cushion was drawn by the needle, followed by a 200 \302\265l aliquot from the\ndilution plate. The 200 ul aliquot and N2 cushion were then re-dispensed to the dilution plate at\n10 ml/min flow rate to effectively mix the sample. A 50 \302\265l aliquot was then transferred from the\ndilution plate to the injection port of the HPLC selection valve, over-filling the 20 \302\265l loop with\ndiluted sample. Once the loop was filled, the valve was switched and the HPLC run triggered,\nallowing the HPLC pump to push the mobile phase through the loop, moving the sample into the\nHPLC column. The valve was then rinsed with 1000 \302\265l of acetonitrile. This sampling, dilution and\ninjection procedure was repeated every 5-20 minutes until reaction completion.\n"
   }
   conditions {
     temperature {
@@ -32649,7 +32644,7 @@ reactions {
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2019/re/c9re00086k"
     record_created {
       time {
-        value: "05/26/2021, 15:23:46"
+        value: "07/01/2021, 14:56:43"
       }
       person {
         username: "skearnes"
@@ -32874,7 +32869,7 @@ reactions {
       }
     }
     is_automated: true
-    automation_platform: "Automated reaction monitoring was carried out on a Chemspeed Swing liquid handling robot\nequipped with an adjustable-pitch four needle (0.8 mm ID) liquid dispense tool, a V&P Scientific\ntumble stirrer and a Huber Unistat 82T chiller. The robot was integrated with an Agilent 1100\nHPLC-UV system through installation of a two position, 6-port HPLC valve on the Chemspeed\nSwing deck and connection to the Agilent 1100 through 0.17 mm ID tubing. Bilateral\ncommunication was established between the Chemspeed Autosuite software and the HPLC\nvalve. Also, unilateral communication was established between the Chemspeed Autosuite\nsoftware and the Agilent 1100 HPLC-UV (Figure S1)."
+    automation_platform: "Automated reaction monitoring was carried out on a Chemspeed Swing liquid handling robot\nequipped with an adjustable-pitch four needle (0.8 mm ID) liquid dispense tool, a V&P Scientific\ntumble stirrer and a Huber Unistat 82T chiller. The robot was integrated with an Agilent 1100\nHPLC-UV system through installation of a two position, 6-port HPLC valve on the Chemspeed\nSwing deck and connection to the Agilent 1100 through 0.17 mm ID tubing. Bilateral\ncommunication was established between the Chemspeed Autosuite software and the HPLC\nvalve. Also, unilateral communication was established between the Chemspeed Autosuite\nsoftware and the Agilent 1100 HPLC-UV (Figure S1).\n\nReactions were carried out in sealed 4 ml borosilicate glass vials with red pressure relief caps (CG4912-01). Vigorous agitation was achieved with parylene-coated NdFeB magnetic tumble stir\ndiscs (VP 782N6). Reaction aliquots were sampled into 96-well dilution plates (Analytical Sales\n17P687) capped with pre-slit silicone/PTFE cap mats (Analytical Sales 965075).\n\nAutomated sampling procedure: The reaction vial, aqueous K3PO4 vial and dilution plate were\nsealed and placed on the Chemspeed Swing robot deck for automated initiation, sampling,\ndilution and HPLC injection (Figure S3). The robot deck was inerted under positive pressure N2\natmosphere, tumble stirring was initiated (300-500 rpm), and the reaction vial temperature set\nto 25 \302\260C. To the reaction vial was transferred 1M aqueous K3PO4 by needle. This was immediately\nfollowed by transfer of a 20 \302\265l aliquot from the reaction vial to the dilution plate by needle. Upon\ntransfer, a 200 \302\265l N2 cushion was drawn by the needle, followed by a 200 \302\265l aliquot from the\ndilution plate. The 200 ul aliquot and N2 cushion were then re-dispensed to the dilution plate at\n10 ml/min flow rate to effectively mix the sample. A 50 \302\265l aliquot was then transferred from the\ndilution plate to the injection port of the HPLC selection valve, over-filling the 20 \302\265l loop with\ndiluted sample. Once the loop was filled, the valve was switched and the HPLC run triggered,\nallowing the HPLC pump to push the mobile phase through the loop, moving the sample into the\nHPLC column. The valve was then rinsed with 1000 \302\265l of acetonitrile. This sampling, dilution and\ninjection procedure was repeated every 5-20 minutes until reaction completion.\n"
   }
   conditions {
     temperature {
@@ -39172,7 +39167,7 @@ reactions {
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2019/re/c9re00086k"
     record_created {
       time {
-        value: "05/26/2021, 15:23:46"
+        value: "07/01/2021, 14:56:43"
       }
       person {
         username: "skearnes"
@@ -39397,7 +39392,7 @@ reactions {
       }
     }
     is_automated: true
-    automation_platform: "Automated reaction monitoring was carried out on a Chemspeed Swing liquid handling robot\nequipped with an adjustable-pitch four needle (0.8 mm ID) liquid dispense tool, a V&P Scientific\ntumble stirrer and a Huber Unistat 82T chiller. The robot was integrated with an Agilent 1100\nHPLC-UV system through installation of a two position, 6-port HPLC valve on the Chemspeed\nSwing deck and connection to the Agilent 1100 through 0.17 mm ID tubing. Bilateral\ncommunication was established between the Chemspeed Autosuite software and the HPLC\nvalve. Also, unilateral communication was established between the Chemspeed Autosuite\nsoftware and the Agilent 1100 HPLC-UV (Figure S1)."
+    automation_platform: "Automated reaction monitoring was carried out on a Chemspeed Swing liquid handling robot\nequipped with an adjustable-pitch four needle (0.8 mm ID) liquid dispense tool, a V&P Scientific\ntumble stirrer and a Huber Unistat 82T chiller. The robot was integrated with an Agilent 1100\nHPLC-UV system through installation of a two position, 6-port HPLC valve on the Chemspeed\nSwing deck and connection to the Agilent 1100 through 0.17 mm ID tubing. Bilateral\ncommunication was established between the Chemspeed Autosuite software and the HPLC\nvalve. Also, unilateral communication was established between the Chemspeed Autosuite\nsoftware and the Agilent 1100 HPLC-UV (Figure S1).\n\nReactions were carried out in sealed 4 ml borosilicate glass vials with red pressure relief caps (CG4912-01). Vigorous agitation was achieved with parylene-coated NdFeB magnetic tumble stir\ndiscs (VP 782N6). Reaction aliquots were sampled into 96-well dilution plates (Analytical Sales\n17P687) capped with pre-slit silicone/PTFE cap mats (Analytical Sales 965075).\n\nAutomated sampling procedure: The reaction vial, aqueous K3PO4 vial and dilution plate were\nsealed and placed on the Chemspeed Swing robot deck for automated initiation, sampling,\ndilution and HPLC injection (Figure S3). The robot deck was inerted under positive pressure N2\natmosphere, tumble stirring was initiated (300-500 rpm), and the reaction vial temperature set\nto 25 \302\260C. To the reaction vial was transferred 1M aqueous K3PO4 by needle. This was immediately\nfollowed by transfer of a 20 \302\265l aliquot from the reaction vial to the dilution plate by needle. Upon\ntransfer, a 200 \302\265l N2 cushion was drawn by the needle, followed by a 200 \302\265l aliquot from the\ndilution plate. The 200 ul aliquot and N2 cushion were then re-dispensed to the dilution plate at\n10 ml/min flow rate to effectively mix the sample. A 50 \302\265l aliquot was then transferred from the\ndilution plate to the injection port of the HPLC selection valve, over-filling the 20 \302\265l loop with\ndiluted sample. Once the loop was filled, the valve was switched and the HPLC run triggered,\nallowing the HPLC pump to push the mobile phase through the loop, moving the sample into the\nHPLC column. The valve was then rinsed with 1000 \302\265l of acetonitrile. This sampling, dilution and\ninjection procedure was repeated every 5-20 minutes until reaction completion.\n"
   }
   conditions {
     temperature {
@@ -45695,7 +45690,7 @@ reactions {
     publication_url: "https://pubs.rsc.org/en/content/articlelanding/2019/re/c9re00086k"
     record_created {
       time {
-        value: "05/26/2021, 15:23:46"
+        value: "07/01/2021, 14:56:43"
       }
       person {
         username: "skearnes"
