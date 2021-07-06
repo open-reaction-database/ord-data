@@ -38,8 +38,8 @@ jobs:
     - name: Install dependencies
       run: |
         cd "${GITHUB_WORKSPACE}/ord-schema"
+        conda install -c rdkit rdkit pip
         pip install -r requirements.txt
-        conda install -c rdkit rdkit
         python setup.py install
     - name: Validate datasets
       env:
