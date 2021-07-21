@@ -36,6 +36,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -79,6 +80,10 @@ reactions {
           type: SMILES
           value: "Clc1ccc(S(=O)(=O)F)cc1"
         }
+        identifiers {
+          type: NAME
+          value: "4-Chlorobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -86,6 +91,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -101,6 +109,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -113,6 +122,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -171,17 +181,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -217,7 +228,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -228,7 +239,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -275,6 +286,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -318,6 +330,10 @@ reactions {
           type: SMILES
           value: "Clc1ccc(S(=O)(=O)F)cc1"
         }
+        identifiers {
+          type: NAME
+          value: "4-Chlorobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -325,6 +341,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -340,6 +359,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -352,6 +372,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -410,17 +431,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -456,7 +478,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -467,7 +489,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -514,6 +536,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -557,6 +580,10 @@ reactions {
           type: SMILES
           value: "Clc1ccc(S(=O)(=O)F)cc1"
         }
+        identifiers {
+          type: NAME
+          value: "4-Chlorobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -564,6 +591,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -579,6 +609,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -591,6 +622,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -649,17 +681,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -695,7 +728,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -706,7 +739,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -753,6 +786,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -796,6 +830,10 @@ reactions {
           type: SMILES
           value: "Clc1ccc(S(=O)(=O)F)cc1"
         }
+        identifiers {
+          type: NAME
+          value: "4-Chlorobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -803,6 +841,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -818,6 +859,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -830,6 +872,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -888,17 +931,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -934,7 +978,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -945,7 +989,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -992,6 +1036,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -1037,7 +1082,7 @@ reactions {
         }
         identifiers {
           type: NAME
-          value: "PyFluor"
+          value: "2-pyridinesulfonyl fluoride"
         }
         amount {
           moles {
@@ -1046,6 +1091,12 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
+        source {
+          vendor: "Millipore-Sigma"
+        }
       }
       components {
         identifiers {
@@ -1061,6 +1112,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -1073,6 +1125,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -1131,17 +1184,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -1177,7 +1231,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -1188,7 +1242,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -1235,6 +1289,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -1280,7 +1335,7 @@ reactions {
         }
         identifiers {
           type: NAME
-          value: "PyFluor"
+          value: "2-pyridinesulfonyl fluoride"
         }
         amount {
           moles {
@@ -1289,6 +1344,12 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
+        source {
+          vendor: "Millipore-Sigma"
+        }
       }
       components {
         identifiers {
@@ -1304,6 +1365,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -1316,6 +1378,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -1374,17 +1437,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -1420,7 +1484,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -1431,7 +1495,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -1478,6 +1542,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -1523,7 +1588,7 @@ reactions {
         }
         identifiers {
           type: NAME
-          value: "PyFluor"
+          value: "2-pyridinesulfonyl fluoride"
         }
         amount {
           moles {
@@ -1532,6 +1597,12 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
+        source {
+          vendor: "Millipore-Sigma"
+        }
       }
       components {
         identifiers {
@@ -1547,6 +1618,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -1559,6 +1631,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -1617,17 +1690,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -1663,7 +1737,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -1674,7 +1748,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -1721,6 +1795,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -1766,7 +1841,7 @@ reactions {
         }
         identifiers {
           type: NAME
-          value: "PyFluor"
+          value: "2-pyridinesulfonyl fluoride"
         }
         amount {
           moles {
@@ -1775,6 +1850,12 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
+        source {
+          vendor: "Millipore-Sigma"
+        }
       }
       components {
         identifiers {
@@ -1790,6 +1871,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -1802,6 +1884,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -1860,17 +1943,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -1906,7 +1990,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -1917,7 +2001,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -1964,6 +2048,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -2007,6 +2092,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C(C(F)(F)F)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-(trifluoromethyl) benzene-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -2014,6 +2103,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -2029,6 +2121,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -2041,6 +2134,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -2099,17 +2193,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -2145,7 +2240,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -2156,7 +2251,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -2203,6 +2298,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -2246,6 +2342,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C(C(F)(F)F)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-(trifluoromethyl) benzene-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -2253,6 +2353,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -2268,6 +2371,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -2280,6 +2384,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -2338,17 +2443,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -2384,7 +2490,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -2395,7 +2501,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -2442,6 +2548,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -2485,6 +2592,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C(C(F)(F)F)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-(trifluoromethyl) benzene-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -2492,6 +2603,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -2507,6 +2621,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -2519,6 +2634,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -2577,17 +2693,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -2623,7 +2740,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -2634,7 +2751,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -2681,6 +2798,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -2724,6 +2842,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C(C(F)(F)F)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-(trifluoromethyl) benzene-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -2731,6 +2853,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -2746,6 +2871,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -2758,6 +2884,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -2816,17 +2943,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -2862,7 +2990,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -2873,7 +3001,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -2920,6 +3048,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -2963,6 +3092,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C([N+]([O-])=O)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-nitrobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -2970,6 +3103,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -2985,6 +3121,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -2997,6 +3134,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -3055,17 +3193,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -3101,7 +3240,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -3112,7 +3251,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -3159,6 +3298,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -3202,6 +3342,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C([N+]([O-])=O)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-nitrobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -3209,6 +3353,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -3224,6 +3371,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -3236,6 +3384,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -3294,17 +3443,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -3340,7 +3490,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -3351,7 +3501,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -3398,6 +3548,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -3441,6 +3592,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C([N+]([O-])=O)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-nitrobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -3448,6 +3603,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -3463,6 +3621,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -3475,6 +3634,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -3533,17 +3693,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -3579,7 +3740,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -3590,7 +3751,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -3637,6 +3798,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -3680,6 +3842,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C([N+]([O-])=O)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-nitrobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -3687,6 +3853,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -3702,6 +3871,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -3714,6 +3884,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -3772,17 +3943,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -3818,7 +3990,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -3829,7 +4001,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -3876,6 +4048,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -3919,6 +4092,10 @@ reactions {
           type: SMILES
           value: "C(C(C(F)(F)S(=O)(=O)F)(F)F)(C(F)(F)F)(F)F"
         }
+        identifiers {
+          type: NAME
+          value: "perfluorobutane-1-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -3926,6 +4103,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
         source {
           vendor: "Acros"
         }
@@ -3944,6 +4124,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -3956,6 +4137,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -4014,17 +4196,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -4060,7 +4243,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -4071,7 +4254,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -4118,6 +4301,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -4161,6 +4345,10 @@ reactions {
           type: SMILES
           value: "C(C(C(F)(F)S(=O)(=O)F)(F)F)(C(F)(F)F)(F)F"
         }
+        identifiers {
+          type: NAME
+          value: "perfluorobutane-1-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -4168,6 +4356,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
         source {
           vendor: "Acros"
         }
@@ -4186,6 +4377,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -4198,6 +4390,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -4256,17 +4449,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -4302,7 +4496,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -4313,7 +4507,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -4360,6 +4554,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -4403,6 +4598,10 @@ reactions {
           type: SMILES
           value: "C(C(C(F)(F)S(=O)(=O)F)(F)F)(C(F)(F)F)(F)F"
         }
+        identifiers {
+          type: NAME
+          value: "perfluorobutane-1-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -4410,6 +4609,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
         source {
           vendor: "Acros"
         }
@@ -4428,6 +4630,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -4440,6 +4643,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -4498,17 +4702,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -4544,7 +4749,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -4555,7 +4760,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -4602,6 +4807,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -4645,6 +4851,10 @@ reactions {
           type: SMILES
           value: "C(C(C(F)(F)S(=O)(=O)F)(F)F)(C(F)(F)F)(F)F"
         }
+        identifiers {
+          type: NAME
+          value: "perfluorobutane-1-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -4652,6 +4862,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
         source {
           vendor: "Acros"
         }
@@ -4670,6 +4883,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -4682,6 +4896,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -4740,17 +4955,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -4786,7 +5002,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -4797,7 +5013,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -4844,6 +5060,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -4887,6 +5104,10 @@ reactions {
           type: SMILES
           value: "Clc1ccc(S(=O)(=O)F)cc1"
         }
+        identifiers {
+          type: NAME
+          value: "4-Chlorobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -4894,6 +5115,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -4909,6 +5133,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -4921,6 +5146,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -4979,17 +5205,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -5025,7 +5252,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -5036,7 +5263,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -5083,6 +5310,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -5126,6 +5354,10 @@ reactions {
           type: SMILES
           value: "Clc1ccc(S(=O)(=O)F)cc1"
         }
+        identifiers {
+          type: NAME
+          value: "4-Chlorobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -5133,6 +5365,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -5148,6 +5383,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -5160,6 +5396,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -5218,17 +5455,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -5264,7 +5502,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -5275,7 +5513,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -5322,6 +5560,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -5365,6 +5604,10 @@ reactions {
           type: SMILES
           value: "Clc1ccc(S(=O)(=O)F)cc1"
         }
+        identifiers {
+          type: NAME
+          value: "4-Chlorobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -5372,6 +5615,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -5387,6 +5633,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -5399,6 +5646,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -5457,17 +5705,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -5503,7 +5752,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -5514,7 +5763,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -5561,6 +5810,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -5604,6 +5854,10 @@ reactions {
           type: SMILES
           value: "Clc1ccc(S(=O)(=O)F)cc1"
         }
+        identifiers {
+          type: NAME
+          value: "4-Chlorobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -5611,6 +5865,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -5626,6 +5883,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -5638,6 +5896,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -5696,17 +5955,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -5742,7 +6002,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -5753,7 +6013,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -5800,6 +6060,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -5845,7 +6106,7 @@ reactions {
         }
         identifiers {
           type: NAME
-          value: "PyFluor"
+          value: "2-pyridinesulfonyl fluoride"
         }
         amount {
           moles {
@@ -5854,6 +6115,12 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
+        source {
+          vendor: "Millipore-Sigma"
+        }
       }
       components {
         identifiers {
@@ -5869,6 +6136,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -5881,6 +6149,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -5939,17 +6208,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -5985,7 +6255,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -5996,7 +6266,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -6043,6 +6313,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -6088,7 +6359,7 @@ reactions {
         }
         identifiers {
           type: NAME
-          value: "PyFluor"
+          value: "2-pyridinesulfonyl fluoride"
         }
         amount {
           moles {
@@ -6097,6 +6368,12 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
+        source {
+          vendor: "Millipore-Sigma"
+        }
       }
       components {
         identifiers {
@@ -6112,6 +6389,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -6124,6 +6402,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -6182,17 +6461,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -6228,7 +6508,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -6239,7 +6519,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -6286,6 +6566,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -6331,7 +6612,7 @@ reactions {
         }
         identifiers {
           type: NAME
-          value: "PyFluor"
+          value: "2-pyridinesulfonyl fluoride"
         }
         amount {
           moles {
@@ -6340,6 +6621,12 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
+        source {
+          vendor: "Millipore-Sigma"
+        }
       }
       components {
         identifiers {
@@ -6355,6 +6642,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -6367,6 +6655,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -6425,17 +6714,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -6471,7 +6761,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -6482,7 +6772,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -6529,6 +6819,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -6574,7 +6865,7 @@ reactions {
         }
         identifiers {
           type: NAME
-          value: "PyFluor"
+          value: "2-pyridinesulfonyl fluoride"
         }
         amount {
           moles {
@@ -6583,6 +6874,12 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
+        source {
+          vendor: "Millipore-Sigma"
+        }
       }
       components {
         identifiers {
@@ -6598,6 +6895,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -6610,6 +6908,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -6668,17 +6967,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -6714,7 +7014,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -6725,7 +7025,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -6772,6 +7072,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -6815,6 +7116,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C(C(F)(F)F)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-(trifluoromethyl) benzene-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -6822,6 +7127,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -6837,6 +7145,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -6849,6 +7158,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -6907,17 +7217,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -6953,7 +7264,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -6964,7 +7275,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -7011,6 +7322,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -7054,6 +7366,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C(C(F)(F)F)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-(trifluoromethyl) benzene-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -7061,6 +7377,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -7076,6 +7395,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -7088,6 +7408,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -7146,17 +7467,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -7192,7 +7514,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -7203,7 +7525,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -7250,6 +7572,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -7293,6 +7616,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C(C(F)(F)F)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-(trifluoromethyl) benzene-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -7300,6 +7627,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -7315,6 +7645,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -7327,6 +7658,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -7385,17 +7717,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -7431,7 +7764,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -7442,7 +7775,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -7489,6 +7822,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -7532,6 +7866,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C(C(F)(F)F)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-(trifluoromethyl) benzene-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -7539,6 +7877,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -7554,6 +7895,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -7566,6 +7908,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -7624,17 +7967,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -7670,7 +8014,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -7681,7 +8025,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -7728,6 +8072,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -7771,6 +8116,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C([N+]([O-])=O)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-nitrobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -7778,6 +8127,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -7793,6 +8145,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -7805,6 +8158,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -7863,17 +8217,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -7909,7 +8264,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -7920,7 +8275,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -7967,6 +8322,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -8010,6 +8366,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C([N+]([O-])=O)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-nitrobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -8017,6 +8377,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -8032,6 +8395,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -8044,6 +8408,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -8102,17 +8467,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -8148,7 +8514,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -8159,7 +8525,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -8206,6 +8572,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -8249,6 +8616,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C([N+]([O-])=O)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-nitrobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -8256,6 +8627,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -8271,6 +8645,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -8283,6 +8658,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -8341,17 +8717,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -8387,7 +8764,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -8398,7 +8775,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -8445,6 +8822,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -8488,6 +8866,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C([N+]([O-])=O)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-nitrobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -8495,6 +8877,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -8510,6 +8895,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -8522,6 +8908,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -8580,17 +8967,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -8626,7 +9014,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -8637,7 +9025,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -8684,6 +9072,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -8727,6 +9116,10 @@ reactions {
           type: SMILES
           value: "C(C(C(F)(F)S(=O)(=O)F)(F)F)(C(F)(F)F)(F)F"
         }
+        identifiers {
+          type: NAME
+          value: "perfluorobutane-1-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -8734,6 +9127,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
         source {
           vendor: "Acros"
         }
@@ -8752,6 +9148,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -8764,6 +9161,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -8822,17 +9220,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -8868,7 +9267,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -8879,7 +9278,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -8926,6 +9325,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -8969,6 +9369,10 @@ reactions {
           type: SMILES
           value: "C(C(C(F)(F)S(=O)(=O)F)(F)F)(C(F)(F)F)(F)F"
         }
+        identifiers {
+          type: NAME
+          value: "perfluorobutane-1-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -8976,6 +9380,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
         source {
           vendor: "Acros"
         }
@@ -8994,6 +9401,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -9006,6 +9414,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -9064,17 +9473,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -9110,7 +9520,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -9121,7 +9531,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -9168,6 +9578,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -9211,6 +9622,10 @@ reactions {
           type: SMILES
           value: "C(C(C(F)(F)S(=O)(=O)F)(F)F)(C(F)(F)F)(F)F"
         }
+        identifiers {
+          type: NAME
+          value: "perfluorobutane-1-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -9218,6 +9633,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
         source {
           vendor: "Acros"
         }
@@ -9236,6 +9654,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -9248,6 +9667,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -9306,17 +9726,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -9352,7 +9773,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -9363,7 +9784,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -9410,6 +9831,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -9453,6 +9875,10 @@ reactions {
           type: SMILES
           value: "C(C(C(F)(F)S(=O)(=O)F)(F)F)(C(F)(F)F)(F)F"
         }
+        identifiers {
+          type: NAME
+          value: "perfluorobutane-1-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -9460,6 +9886,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
         source {
           vendor: "Acros"
         }
@@ -9478,6 +9907,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -9490,6 +9920,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -9548,17 +9979,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -9594,7 +10026,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -9605,7 +10037,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -9652,6 +10084,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -9695,6 +10128,10 @@ reactions {
           type: SMILES
           value: "Clc1ccc(S(=O)(=O)F)cc1"
         }
+        identifiers {
+          type: NAME
+          value: "4-Chlorobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -9702,6 +10139,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -9717,6 +10157,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -9729,6 +10170,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -9787,17 +10229,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -9833,7 +10276,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -9844,7 +10287,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -9891,6 +10334,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -9934,6 +10378,10 @@ reactions {
           type: SMILES
           value: "Clc1ccc(S(=O)(=O)F)cc1"
         }
+        identifiers {
+          type: NAME
+          value: "4-Chlorobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -9941,6 +10389,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -9956,6 +10407,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -9968,6 +10420,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -10026,17 +10479,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -10072,7 +10526,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -10083,7 +10537,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -10130,6 +10584,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -10173,6 +10628,10 @@ reactions {
           type: SMILES
           value: "Clc1ccc(S(=O)(=O)F)cc1"
         }
+        identifiers {
+          type: NAME
+          value: "4-Chlorobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -10180,6 +10639,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -10195,6 +10657,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -10207,6 +10670,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -10265,17 +10729,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -10311,7 +10776,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -10322,7 +10787,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -10369,6 +10834,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -10412,6 +10878,10 @@ reactions {
           type: SMILES
           value: "Clc1ccc(S(=O)(=O)F)cc1"
         }
+        identifiers {
+          type: NAME
+          value: "4-Chlorobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -10419,6 +10889,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -10434,6 +10907,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -10446,6 +10920,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -10504,17 +10979,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -10550,7 +11026,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -10561,7 +11037,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -10608,6 +11084,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -10653,7 +11130,7 @@ reactions {
         }
         identifiers {
           type: NAME
-          value: "PyFluor"
+          value: "2-pyridinesulfonyl fluoride"
         }
         amount {
           moles {
@@ -10662,6 +11139,12 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
+        source {
+          vendor: "Millipore-Sigma"
+        }
       }
       components {
         identifiers {
@@ -10677,6 +11160,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -10689,6 +11173,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -10747,17 +11232,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -10793,7 +11279,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -10804,7 +11290,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -10851,6 +11337,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -10896,7 +11383,7 @@ reactions {
         }
         identifiers {
           type: NAME
-          value: "PyFluor"
+          value: "2-pyridinesulfonyl fluoride"
         }
         amount {
           moles {
@@ -10905,6 +11392,12 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
+        source {
+          vendor: "Millipore-Sigma"
+        }
       }
       components {
         identifiers {
@@ -10920,6 +11413,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -10932,6 +11426,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -10990,17 +11485,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -11036,7 +11532,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -11047,7 +11543,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -11094,6 +11590,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -11139,7 +11636,7 @@ reactions {
         }
         identifiers {
           type: NAME
-          value: "PyFluor"
+          value: "2-pyridinesulfonyl fluoride"
         }
         amount {
           moles {
@@ -11148,6 +11645,12 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
+        source {
+          vendor: "Millipore-Sigma"
+        }
       }
       components {
         identifiers {
@@ -11163,6 +11666,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -11175,6 +11679,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -11233,17 +11738,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -11279,7 +11785,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -11290,7 +11796,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -11337,6 +11843,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -11382,7 +11889,7 @@ reactions {
         }
         identifiers {
           type: NAME
-          value: "PyFluor"
+          value: "2-pyridinesulfonyl fluoride"
         }
         amount {
           moles {
@@ -11391,6 +11898,12 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
+        source {
+          vendor: "Millipore-Sigma"
+        }
       }
       components {
         identifiers {
@@ -11406,6 +11919,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -11418,6 +11932,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -11476,17 +11991,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -11522,7 +12038,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -11533,7 +12049,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -11580,6 +12096,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -11623,6 +12140,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C(C(F)(F)F)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-(trifluoromethyl) benzene-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -11630,6 +12151,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -11645,6 +12169,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -11657,6 +12182,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -11715,17 +12241,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -11761,7 +12288,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -11772,7 +12299,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -11819,6 +12346,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -11862,6 +12390,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C(C(F)(F)F)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-(trifluoromethyl) benzene-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -11869,6 +12401,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -11884,6 +12419,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -11896,6 +12432,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -11954,17 +12491,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -12000,7 +12538,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -12011,7 +12549,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -12058,6 +12596,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -12101,6 +12640,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C(C(F)(F)F)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-(trifluoromethyl) benzene-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -12108,6 +12651,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -12123,6 +12669,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -12135,6 +12682,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -12193,17 +12741,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -12239,7 +12788,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -12250,7 +12799,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -12297,6 +12846,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -12340,6 +12890,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C(C(F)(F)F)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-(trifluoromethyl) benzene-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -12347,6 +12901,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -12362,6 +12919,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -12374,6 +12932,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -12432,17 +12991,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -12478,7 +13038,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -12489,7 +13049,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -12536,6 +13096,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -12579,6 +13140,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C([N+]([O-])=O)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-nitrobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -12586,6 +13151,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -12601,6 +13169,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -12613,6 +13182,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -12671,17 +13241,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -12717,7 +13288,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -12728,7 +13299,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -12775,6 +13346,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -12818,6 +13390,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C([N+]([O-])=O)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-nitrobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -12825,6 +13401,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -12840,6 +13419,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -12852,6 +13432,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -12910,17 +13491,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -12956,7 +13538,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -12967,7 +13549,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -13014,6 +13596,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -13057,6 +13640,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C([N+]([O-])=O)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-nitrobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -13064,6 +13651,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -13079,6 +13669,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -13091,6 +13682,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -13149,17 +13741,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -13195,7 +13788,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -13206,7 +13799,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -13253,6 +13846,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -13296,6 +13890,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C([N+]([O-])=O)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-nitrobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -13303,6 +13901,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -13318,6 +13919,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -13330,6 +13932,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -13388,17 +13991,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -13434,7 +14038,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -13445,7 +14049,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -13492,6 +14096,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -13535,6 +14140,10 @@ reactions {
           type: SMILES
           value: "C(C(C(F)(F)S(=O)(=O)F)(F)F)(C(F)(F)F)(F)F"
         }
+        identifiers {
+          type: NAME
+          value: "perfluorobutane-1-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -13542,6 +14151,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
         source {
           vendor: "Acros"
         }
@@ -13560,6 +14172,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -13572,6 +14185,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -13630,17 +14244,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -13676,7 +14291,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -13687,7 +14302,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -13734,6 +14349,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -13777,6 +14393,10 @@ reactions {
           type: SMILES
           value: "C(C(C(F)(F)S(=O)(=O)F)(F)F)(C(F)(F)F)(F)F"
         }
+        identifiers {
+          type: NAME
+          value: "perfluorobutane-1-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -13784,6 +14404,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
         source {
           vendor: "Acros"
         }
@@ -13802,6 +14425,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -13814,6 +14438,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -13872,17 +14497,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -13918,7 +14544,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -13929,7 +14555,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -13976,6 +14602,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -14019,6 +14646,10 @@ reactions {
           type: SMILES
           value: "C(C(C(F)(F)S(=O)(=O)F)(F)F)(C(F)(F)F)(F)F"
         }
+        identifiers {
+          type: NAME
+          value: "perfluorobutane-1-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -14026,6 +14657,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
         source {
           vendor: "Acros"
         }
@@ -14044,6 +14678,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -14056,6 +14691,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -14114,17 +14750,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -14160,7 +14797,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -14171,7 +14808,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -14218,6 +14855,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -14261,6 +14899,10 @@ reactions {
           type: SMILES
           value: "C(C(C(F)(F)S(=O)(=O)F)(F)F)(C(F)(F)F)(F)F"
         }
+        identifiers {
+          type: NAME
+          value: "perfluorobutane-1-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -14268,6 +14910,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
         source {
           vendor: "Acros"
         }
@@ -14286,6 +14931,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -14298,6 +14944,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -14356,17 +15003,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -14402,7 +15050,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -14413,7 +15061,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -14460,6 +15108,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -14503,6 +15152,10 @@ reactions {
           type: SMILES
           value: "Clc1ccc(S(=O)(=O)F)cc1"
         }
+        identifiers {
+          type: NAME
+          value: "4-Chlorobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -14510,6 +15163,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -14525,6 +15181,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -14537,6 +15194,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -14595,17 +15253,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -14641,7 +15300,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -14652,7 +15311,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -14699,6 +15358,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -14742,6 +15402,10 @@ reactions {
           type: SMILES
           value: "Clc1ccc(S(=O)(=O)F)cc1"
         }
+        identifiers {
+          type: NAME
+          value: "4-Chlorobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -14749,6 +15413,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -14764,6 +15431,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -14776,6 +15444,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -14834,17 +15503,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -14880,7 +15550,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -14891,7 +15561,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -14938,6 +15608,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -14981,6 +15652,10 @@ reactions {
           type: SMILES
           value: "Clc1ccc(S(=O)(=O)F)cc1"
         }
+        identifiers {
+          type: NAME
+          value: "4-Chlorobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -14988,6 +15663,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -15003,6 +15681,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -15015,6 +15694,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -15073,17 +15753,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -15119,7 +15800,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -15130,7 +15811,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -15177,6 +15858,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -15220,6 +15902,10 @@ reactions {
           type: SMILES
           value: "Clc1ccc(S(=O)(=O)F)cc1"
         }
+        identifiers {
+          type: NAME
+          value: "4-Chlorobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -15227,6 +15913,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -15242,6 +15931,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -15254,6 +15944,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -15312,17 +16003,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -15358,7 +16050,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -15369,7 +16061,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -15416,6 +16108,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -15461,7 +16154,7 @@ reactions {
         }
         identifiers {
           type: NAME
-          value: "PyFluor"
+          value: "2-pyridinesulfonyl fluoride"
         }
         amount {
           moles {
@@ -15470,6 +16163,12 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
+        source {
+          vendor: "Millipore-Sigma"
+        }
       }
       components {
         identifiers {
@@ -15485,6 +16184,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -15497,6 +16197,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -15555,17 +16256,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -15601,7 +16303,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -15612,7 +16314,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -15659,6 +16361,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -15704,7 +16407,7 @@ reactions {
         }
         identifiers {
           type: NAME
-          value: "PyFluor"
+          value: "2-pyridinesulfonyl fluoride"
         }
         amount {
           moles {
@@ -15713,6 +16416,12 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
+        source {
+          vendor: "Millipore-Sigma"
+        }
       }
       components {
         identifiers {
@@ -15728,6 +16437,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -15740,6 +16450,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -15798,17 +16509,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -15844,7 +16556,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -15855,7 +16567,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -15902,6 +16614,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -15947,7 +16660,7 @@ reactions {
         }
         identifiers {
           type: NAME
-          value: "PyFluor"
+          value: "2-pyridinesulfonyl fluoride"
         }
         amount {
           moles {
@@ -15956,6 +16669,12 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
+        source {
+          vendor: "Millipore-Sigma"
+        }
       }
       components {
         identifiers {
@@ -15971,6 +16690,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -15983,6 +16703,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -16041,17 +16762,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -16087,7 +16809,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -16098,7 +16820,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -16145,6 +16867,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -16190,7 +16913,7 @@ reactions {
         }
         identifiers {
           type: NAME
-          value: "PyFluor"
+          value: "2-pyridinesulfonyl fluoride"
         }
         amount {
           moles {
@@ -16199,6 +16922,12 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
+        source {
+          vendor: "Millipore-Sigma"
+        }
       }
       components {
         identifiers {
@@ -16214,6 +16943,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -16226,6 +16956,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -16284,17 +17015,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -16330,7 +17062,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -16341,7 +17073,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -16388,6 +17120,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -16431,6 +17164,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C(C(F)(F)F)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-(trifluoromethyl) benzene-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -16438,6 +17175,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -16453,6 +17193,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -16465,6 +17206,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -16523,17 +17265,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -16569,7 +17312,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -16580,7 +17323,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -16627,6 +17370,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -16670,6 +17414,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C(C(F)(F)F)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-(trifluoromethyl) benzene-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -16677,6 +17425,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -16692,6 +17443,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -16704,6 +17456,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -16762,17 +17515,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -16808,7 +17562,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -16819,7 +17573,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -16866,6 +17620,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -16909,6 +17664,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C(C(F)(F)F)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-(trifluoromethyl) benzene-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -16916,6 +17675,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -16931,6 +17693,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -16943,6 +17706,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -17001,17 +17765,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -17047,7 +17812,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -17058,7 +17823,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -17105,6 +17870,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -17148,6 +17914,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C(C(F)(F)F)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-(trifluoromethyl) benzene-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -17155,6 +17925,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -17170,6 +17943,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -17182,6 +17956,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -17240,17 +18015,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -17286,7 +18062,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -17297,7 +18073,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -17344,6 +18120,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -17387,6 +18164,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C([N+]([O-])=O)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-nitrobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -17394,6 +18175,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -17409,6 +18193,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -17421,6 +18206,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -17479,17 +18265,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -17525,7 +18312,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -17536,7 +18323,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -17583,6 +18370,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -17626,6 +18414,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C([N+]([O-])=O)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-nitrobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -17633,6 +18425,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -17648,6 +18443,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -17660,6 +18456,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -17718,17 +18515,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -17764,7 +18562,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -17775,7 +18573,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -17822,6 +18620,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -17865,6 +18664,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C([N+]([O-])=O)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-nitrobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -17872,6 +18675,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -17887,6 +18693,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -17899,6 +18706,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -17957,17 +18765,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -18003,7 +18812,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -18014,7 +18823,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -18061,6 +18870,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -18104,6 +18914,10 @@ reactions {
           type: SMILES
           value: "O=S(C1=CC=C([N+]([O-])=O)C=C1)(F)=O"
         }
+        identifiers {
+          type: NAME
+          value: "4-nitrobenzenesulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -18111,6 +18925,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: SYNTHESIZED
+        }
       }
       components {
         identifiers {
@@ -18126,6 +18943,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -18138,6 +18956,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -18196,17 +19015,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -18242,7 +19062,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -18253,7 +19073,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -18300,6 +19120,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -18343,6 +19164,10 @@ reactions {
           type: SMILES
           value: "C(C(C(F)(F)S(=O)(=O)F)(F)F)(C(F)(F)F)(F)F"
         }
+        identifiers {
+          type: NAME
+          value: "perfluorobutane-1-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -18350,6 +19175,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
         source {
           vendor: "Acros"
         }
@@ -18368,6 +19196,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -18380,6 +19209,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -18438,17 +19268,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -18484,7 +19315,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -18495,7 +19326,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -18542,6 +19373,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -18585,6 +19417,10 @@ reactions {
           type: SMILES
           value: "C(C(C(F)(F)S(=O)(=O)F)(F)F)(C(F)(F)F)(F)F"
         }
+        identifiers {
+          type: NAME
+          value: "perfluorobutane-1-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -18592,6 +19428,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
         source {
           vendor: "Acros"
         }
@@ -18610,6 +19449,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -18622,6 +19462,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -18680,17 +19521,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -18726,7 +19568,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -18737,7 +19579,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -18784,6 +19626,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -18827,6 +19670,10 @@ reactions {
           type: SMILES
           value: "C(C(C(F)(F)S(=O)(=O)F)(F)F)(C(F)(F)F)(F)F"
         }
+        identifiers {
+          type: NAME
+          value: "perfluorobutane-1-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -18834,6 +19681,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
         source {
           vendor: "Acros"
         }
@@ -18852,6 +19702,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -18864,6 +19715,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -18922,17 +19774,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -18968,7 +19821,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -18979,7 +19832,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
@@ -19026,6 +19879,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -19069,6 +19923,10 @@ reactions {
           type: SMILES
           value: "C(C(C(F)(F)S(=O)(=O)F)(F)F)(C(F)(F)F)(F)F"
         }
+        identifiers {
+          type: NAME
+          value: "perfluorobutane-1-sulfonyl fluoride"
+        }
         amount {
           moles {
             value: 0.11
@@ -19076,6 +19934,9 @@ reactions {
           }
         }
         reaction_role: REACTANT
+        preparations {
+          type: NONE
+        }
         source {
           vendor: "Acros"
         }
@@ -19094,6 +19955,7 @@ reactions {
             value: 125.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: SOLVENT
         preparations {
@@ -19106,6 +19968,7 @@ reactions {
   setup {
     vessel {
       type: VIAL
+      details: "8 x 40 mm"
       material {
         type: GLASS
       }
@@ -19164,17 +20027,18 @@ reactions {
       components {
         identifiers {
           type: NAME
-          value: "chloroform"
+          value: "deuterated chloroform"
         }
         identifiers {
           type: SMILES
-          value: "ClC(Cl)Cl"
+          value: "[2H]C(Cl)(Cl)Cl"
         }
         amount {
           volume {
             value: 250.0
             units: MICROLITER
           }
+          volume_includes_solutes: false
         }
         reaction_role: WORKUP
       }
@@ -19210,7 +20074,7 @@ reactions {
       key: "19f nmr of crude"
       value {
         type: NMR_OTHER
-        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL chloroform as internal standard"
+        details: "19F NMR using 1 equiv 1-fluoronaphthalene in 250 uL deuterated chloroform as internal standard"
         instrument_manufacturer: "Bruker"
       }
     }
@@ -19221,7 +20085,7 @@ reactions {
     publication_url: "https://pubs.acs.org/doi/10.1021/jacs.8b01523"
     record_created {
       time {
-        value: "07/07/2021, 14:36:07"
+        value: "07/21/2021, 15:00:38"
       }
       person {
         name: "Connor W. Coley"
