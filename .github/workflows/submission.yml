@@ -38,8 +38,8 @@ jobs:
     - name: Install ord-schema
       run: |
         cd "${GITHUB_WORKSPACE}/ord-schema"
+        conda install -c rdkit rdkit pip
         pip install -r requirements.txt
-        conda install -c rdkit rdkit
         python setup.py install
     - name: Update reactions badge
       run: |
@@ -136,8 +136,8 @@ jobs:
     - name: Install dependencies
       run: |
         cd "${GITHUB_WORKSPACE}/ord-schema"
+        conda install -c rdkit rdkit pip
         pip install -r requirements.txt
-        conda install -c rdkit rdkit
         python setup.py install
       if: env.NUM_CHANGED_FILES != '0'
     - name: Validate submission
