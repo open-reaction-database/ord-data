@@ -1,7 +1,7 @@
 identifiers {
   type: CUSTOM
   details:'reaction index'
-  value: 'index'
+  value: '$index$'
 }
 
 
