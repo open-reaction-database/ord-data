@@ -12,7 +12,7 @@ on:
       - '.github/workflows/validation.yml'
 
 env:
-  ORD_SCHEMA_TAG: v0.3.10
+  ORD_SCHEMA_TAG: v0.3.14
 
 jobs:
   validate_database:
