@@ -226,9 +226,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -469,9 +470,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -712,9 +714,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -955,9 +958,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -1198,9 +1202,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -1441,9 +1446,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -1684,9 +1690,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -1927,9 +1934,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -2170,9 +2178,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -2413,9 +2422,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -2656,9 +2666,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -2899,9 +2910,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -3142,9 +3154,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -3385,9 +3398,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -3628,9 +3642,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -3871,9 +3886,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -4114,9 +4130,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -4357,9 +4374,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -4600,9 +4618,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -4843,9 +4862,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -5086,9 +5106,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -5329,9 +5350,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -5572,9 +5594,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -5815,9 +5838,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -6058,9 +6082,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -6301,9 +6326,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -6544,9 +6570,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -6787,9 +6814,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -7030,9 +7058,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -7273,9 +7302,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -7516,9 +7546,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -7759,9 +7790,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -8002,9 +8034,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -8245,9 +8278,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -8488,9 +8522,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -8731,9 +8766,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -8974,9 +9010,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -9217,9 +9254,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -9460,9 +9498,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -9703,9 +9742,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -9946,9 +9986,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -10189,9 +10230,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -10432,9 +10474,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -10675,9 +10718,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -10918,9 +10962,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -11161,9 +11206,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -11404,9 +11450,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -11647,9 +11694,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -11890,9 +11938,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -12133,9 +12182,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -12376,9 +12426,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -12619,9 +12670,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -12862,9 +12914,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -13105,9 +13158,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -13348,9 +13402,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -13591,9 +13646,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -13816,9 +13872,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -14041,9 +14098,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -14266,9 +14324,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -14491,9 +14550,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -14716,9 +14776,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -14941,9 +15002,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -15166,9 +15228,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -15391,9 +15454,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -15634,9 +15698,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -15877,9 +15942,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -16120,9 +16186,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -16363,9 +16430,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -16606,9 +16674,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -16849,9 +16918,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -17092,9 +17162,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -17335,9 +17406,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -17578,9 +17650,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -17821,9 +17894,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -18064,9 +18138,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -18307,9 +18382,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -18550,9 +18626,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -18793,9 +18870,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -19036,9 +19114,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -19279,9 +19358,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -19522,9 +19602,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -19765,9 +19846,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -20008,9 +20090,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -20251,9 +20334,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -20494,9 +20578,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -20737,9 +20822,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -20980,9 +21066,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -21223,9 +21310,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -21448,9 +21536,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -21673,9 +21762,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -21898,9 +21988,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -22123,9 +22214,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -22348,9 +22440,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -22573,9 +22666,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -22798,9 +22892,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -23023,9 +23118,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -23266,9 +23362,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -23509,9 +23606,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -23752,9 +23850,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -23995,9 +24094,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -24238,9 +24338,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -24481,9 +24582,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -24724,9 +24826,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -24967,9 +25070,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -25210,9 +25314,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -25453,9 +25558,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -25696,9 +25802,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -25939,9 +26046,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -26182,9 +26290,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -26425,9 +26534,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -26668,9 +26778,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -26911,9 +27022,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -27154,9 +27266,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -27397,9 +27510,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -27640,9 +27754,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -27883,9 +27998,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -28126,9 +28242,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -28369,9 +28486,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -28612,9 +28730,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -28855,9 +28974,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -29098,9 +29218,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -29341,9 +29462,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -29584,9 +29706,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -29827,9 +29950,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -30070,9 +30194,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -30313,9 +30438,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -30556,9 +30682,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -30799,9 +30926,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -31042,9 +31170,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -31285,9 +31414,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -31528,9 +31658,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -31771,9 +31902,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -32014,9 +32146,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -32257,9 +32390,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -32500,9 +32634,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -32743,9 +32878,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -32986,9 +33122,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -33229,9 +33366,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -33472,9 +33610,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -33715,9 +33854,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -33958,9 +34098,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -34201,9 +34342,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -34444,9 +34586,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -34687,9 +34830,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -34930,9 +35074,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -35173,9 +35318,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -35416,9 +35562,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -35659,9 +35806,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -35902,9 +36050,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -36145,9 +36294,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -36388,9 +36538,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -36631,9 +36782,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -36856,9 +37008,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -37081,9 +37234,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -37306,9 +37460,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -37531,9 +37686,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -37756,9 +37912,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -37981,9 +38138,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -38206,9 +38364,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -38431,9 +38590,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -38674,9 +38834,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -38917,9 +39078,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -39160,9 +39322,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -39403,9 +39566,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -39646,9 +39810,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -39889,9 +40054,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -40132,9 +40298,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -40375,9 +40542,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -40618,9 +40786,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -40861,9 +41030,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -41104,9 +41274,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -41347,9 +41518,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -41590,9 +41762,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -41833,9 +42006,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -42076,9 +42250,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -42319,9 +42494,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -42562,9 +42738,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -42805,9 +42982,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -43048,9 +43226,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -43291,9 +43470,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -43534,9 +43714,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -43777,9 +43958,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -44020,9 +44202,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -44263,9 +44446,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -44488,9 +44672,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -44713,9 +44898,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -44938,9 +45124,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -45163,9 +45350,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -45388,9 +45576,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -45613,9 +45802,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -45838,9 +46028,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -46063,9 +46254,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -46306,9 +46498,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -46549,9 +46742,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -46792,9 +46986,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -47035,9 +47230,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -47278,9 +47474,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -47521,9 +47718,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -47764,9 +47962,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -48007,9 +48206,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -48250,9 +48450,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -48493,9 +48694,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -48736,9 +48938,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -48979,9 +49182,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -49222,9 +49426,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -49465,9 +49670,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -49708,9 +49914,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -49951,9 +50158,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -50194,9 +50402,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -50437,9 +50646,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -50680,9 +50890,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -50923,9 +51134,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -51166,9 +51378,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -51409,9 +51622,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -51652,9 +51866,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -51895,9 +52110,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -52138,9 +52354,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -52381,9 +52598,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -52624,9 +52842,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -52867,9 +53086,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -53110,9 +53330,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -53353,9 +53574,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -53596,9 +53818,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -53839,9 +54062,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -54082,9 +54306,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -54325,9 +54550,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -54568,9 +54794,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -54811,9 +55038,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -55054,9 +55282,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -55297,9 +55526,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -55540,9 +55770,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -55783,9 +56014,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -56026,9 +56258,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -56269,9 +56502,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -56512,9 +56746,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -56755,9 +56990,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -56998,9 +57234,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -57241,9 +57478,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -57484,9 +57722,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -57727,9 +57966,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -57970,9 +58210,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -58213,9 +58454,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -58456,9 +58698,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -58699,9 +58942,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -58942,9 +59186,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -59185,9 +59430,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -59428,9 +59674,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -59671,9 +59918,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -59896,9 +60144,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -60121,9 +60370,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -60346,9 +60596,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -60571,9 +60822,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -60796,9 +61048,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -61021,9 +61274,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -61246,9 +61500,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -61471,9 +61726,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -61714,9 +61970,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -61957,9 +62214,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -62200,9 +62458,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -62443,9 +62702,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -62686,9 +62946,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -62929,9 +63190,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -63172,9 +63434,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -63415,9 +63678,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -63658,9 +63922,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -63901,9 +64166,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -64144,9 +64410,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -64387,9 +64654,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -64630,9 +64898,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -64873,9 +65142,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -65116,9 +65386,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -65359,9 +65630,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -65602,9 +65874,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -65845,9 +66118,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -66088,9 +66362,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -66331,9 +66606,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -66574,9 +66850,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -66817,9 +67094,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -67060,9 +67338,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -67303,9 +67582,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -67528,9 +67808,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -67753,9 +68034,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -67978,9 +68260,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -68203,9 +68486,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -68428,9 +68712,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -68653,9 +68938,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -68878,9 +69164,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -69103,9 +69390,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -69346,9 +69634,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -69589,9 +69878,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -69832,9 +70122,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -70075,9 +70366,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -70318,9 +70610,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -70561,9 +70854,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -70804,9 +71098,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -71047,9 +71342,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -71290,9 +71586,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -71533,9 +71830,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -71776,9 +72074,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -72019,9 +72318,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -72262,9 +72562,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -72505,9 +72806,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -72748,9 +73050,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -72991,9 +73294,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -73234,9 +73538,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -73477,9 +73782,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -73720,9 +74026,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -73963,9 +74270,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -74206,9 +74514,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -74449,9 +74758,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -74692,9 +75002,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -74935,9 +75246,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -75178,9 +75490,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -75421,9 +75734,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -75664,9 +75978,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -75907,9 +76222,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -76150,9 +76466,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -76393,9 +76710,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -76636,9 +76954,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -76879,9 +77198,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -77122,9 +77442,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -77365,9 +77686,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -77608,9 +77930,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -77851,9 +78174,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -78094,9 +78418,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -78337,9 +78662,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -78580,9 +78906,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -78823,9 +79150,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -79066,9 +79394,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -79309,9 +79638,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -79552,9 +79882,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -79795,9 +80126,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -80038,9 +80370,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -80281,9 +80614,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -80524,9 +80858,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -80767,9 +81102,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -81010,9 +81346,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -81253,9 +81590,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -81496,9 +81834,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -81739,9 +82078,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -81982,9 +82322,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -82225,9 +82566,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -82468,9 +82810,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -82711,9 +83054,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -82936,9 +83280,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -83161,9 +83506,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -83386,9 +83732,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -83611,9 +83958,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -83836,9 +84184,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -84061,9 +84410,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -84286,9 +84636,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -84511,9 +84862,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -84754,9 +85106,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -84997,9 +85350,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -85240,9 +85594,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -85483,9 +85838,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -85726,9 +86082,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -85969,9 +86326,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -86212,9 +86570,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -86455,9 +86814,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -86698,9 +87058,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -86941,9 +87302,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -87184,9 +87546,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -87427,9 +87790,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -87670,9 +88034,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -87913,9 +88278,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -88156,9 +88522,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -88399,9 +88766,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -88642,9 +89010,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -88885,9 +89254,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -89128,9 +89498,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -89371,9 +89742,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -89614,9 +89986,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -89857,9 +90230,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -90100,9 +90474,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
@@ -90343,9 +90718,10 @@ reactions {
   }
   provenance {
     experimenter {
-      organization: "Pfizer"
+      organization: "Pfizer",
+      name: "Neal Sach and Paul Richardson"
     }
-    doi: "10.1126/science.aap9112"
+    doi: "10.1021/jacs.2c08592"
     record_created {
       time {
         value: "7/21/2022, 5:21:42 PM"
