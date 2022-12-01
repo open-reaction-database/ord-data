@@ -31,16 +31,14 @@ jobs:
         repository: Open-Reaction-Database/ord-schema
         ref: ${{ env.ORD_SCHEMA_TAG }}
         path: ord-schema
-    - name: Install miniconda
-      uses: s-weigand/setup-conda@v1
+    - uses: actions/setup-python@v4
       with:
         python-version: '3.10'
-    - name: Install dependencies
+    - name: Install ord_schema
       run: |
-        cd "${GITHUB_WORKSPACE}/ord-schema"
-        conda install -c rdkit rdkit pip
-        pip install -r requirements.txt
-        python setup.py install
+        python -m pip install --upgrade pip
+        python -m pip install wheel
+        python -m pip install .
     - name: Validate datasets
       env:
         FILTER: ${{ matrix.filter }}
