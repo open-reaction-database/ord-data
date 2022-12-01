@@ -10,7 +10,7 @@ name: Submission
 on: [pull_request, push]
 
 env:
-  ORD_SCHEMA_TAG: v0.3.10
+  ORD_SCHEMA_TAG: v0.3.33
 
 jobs:
   count_reactions:
@@ -34,7 +34,7 @@ jobs:
     - name: Install miniconda
       uses: s-weigand/setup-conda@v1
       with:
-        python-version: 3.7
+        python-version: '3.10'
     - name: Install ord-schema
       run: |
         cd "${GITHUB_WORKSPACE}/ord-schema"
@@ -131,7 +131,7 @@ jobs:
     - name: Install miniconda
       uses: s-weigand/setup-conda@v1
       with:
-        python-version: 3.7
+        python-version: '3.10'
       if: env.NUM_CHANGED_FILES != '0'
     - name: Install dependencies
       run: |
