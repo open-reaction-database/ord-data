@@ -19,7 +19,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        filter: ['data/\d{2}', 'data/\d[a-z]', 'data/[a-z]']
+        filter: ['data/\d\d',
+                 'data/\d[a-m]',
+                 'data/\d[n-z]',
+                 'data/[a-m]\d',
+                 'data/[n-z]\d',
+                 'data/[a-m][a-m]',
+                 'data/[a-m][n-z]',
+                 'data/[n-z][a-m]',
+                 'data/[n-z][n-z]']
     steps:
     - name: Checkout ord-data
       uses: actions/checkout@v2
@@ -45,6 +53,4 @@ jobs:
         FILTER: ${{ matrix.filter }}
       run: |
         cd "${GITHUB_WORKSPACE}"
-        python ./ord-schema/ord_schema/scripts/validate_dataset.py \
-          --input="data/*/*.pb*" \
-          --filter="${FILTER}"
+        python ./ord-schema/ord_schema/scripts/validate_dataset.py --input="data/*/*.pb*" --filter="${FILTER}"
