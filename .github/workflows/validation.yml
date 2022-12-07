@@ -12,22 +12,14 @@ on:
       - '.github/workflows/validation.yml'
 
 env:
-  ORD_SCHEMA_TAG: v0.3.36
+  ORD_SCHEMA_TAG: v0.3.38
 
 jobs:
   validate_database:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        filter: ['data/\d\d',
-                 'data/\d[a-m]',
-                 'data/\d[n-z]',
-                 'data/[a-m]\d',
-                 'data/[n-z]\d',
-                 'data/[a-m][a-m]',
-                 'data/[a-m][n-z]',
-                 'data/[n-z][a-m]',
-                 'data/[n-z][n-z]']
+        filter: ['data/\d\d', 'data/\d[a-f]', 'data/[a-f]\d', 'data/[a-f][a-f]']
     steps:
     - name: Checkout ord-data
       uses: actions/checkout@v2
