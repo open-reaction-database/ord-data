@@ -19,7 +19,17 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        filter: ['data/\d\d', 'data/\d[a-f]', 'data/[a-f]\d', 'data/[a-f][a-f]']
+        filter: [
+          'data/[0-4][0-4]',
+          'data/[0-4][5-9]',
+          'data/[0-4][a-f]',
+          'data/[5-9][0-4]',
+          'data/[5-9][5-9]',
+          'data/[5-9][a-f]',
+          'data/[a-f][0-4]',
+          'data/[a-f][5-9]',
+          'data/[a-f][a-f]',
+        ]
     steps:
     - name: Checkout ord-data
       uses: actions/checkout@v2
