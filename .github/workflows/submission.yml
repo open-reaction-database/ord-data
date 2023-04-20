@@ -10,7 +10,7 @@ name: Submission
 on: [pull_request, push]
 
 env:
-  ORD_SCHEMA_TAG: v0.3.40
+  ORD_SCHEMA_TAG: v0.3.48
 
 jobs:
   count_reactions:
