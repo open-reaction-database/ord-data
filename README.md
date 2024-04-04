@@ -4,6 +4,12 @@
 ![](https://raw.githubusercontent.com/Open-Reaction-Database/ord-data/main/badges/reactions.svg)
 [![DOI](https://zenodo.org/badge/283813042.svg)](https://zenodo.org/badge/latestdoi/283813042)
 
+## Cloning with Git LFS
+
+We use [Git LFS](https://git-lfs.github.com) to efficiently store
+the Dataset records that make up the ORD. To view these files locally, you'll
+need to install Git LFS before cloning the repository.
+
 ## Data Manipulation
 
 The `ord-data` repository contains the Open Reaction Database (ORD) in Google's Protobuf binary
@@ -56,12 +62,6 @@ rxn_json = json.loads(
 
 print(f"We have converted the {input_fname} to JSON format shown as below, \n{rxn_json}")
 ```
-
-## Cloning with Git LFS
-
-We use [Git LFS](https://git-lfs.github.com) to efficiently store
-the Dataset records that make up the ORD. To view these files locally, you'll
-need to install Git LFS before cloning the repository.
 
 ## Contributing
 
