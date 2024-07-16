@@ -12,7 +12,7 @@ on:
       - '.github/workflows/validation.yml'
 
 env:
-  ORD_SCHEMA_TAG: v0.3.81
+  ORD_SCHEMA_TAG: v0.3.87
 
 jobs:
   validate_database:
@@ -55,4 +55,7 @@ jobs:
         FILTER: ${{ matrix.filter }}
       run: |
         cd "${GITHUB_WORKSPACE}"
-        python ./ord-schema/ord_schema/scripts/validate_dataset.py --input="data/*/*.pb*" --filter="${FILTER}"
+        python ./ord-schema/ord_schema/scripts/validate_dataset.py \
+          --input="data/*/*.pb*" \
+          --filter="${FILTER}" \
+          --n_jobs=4
