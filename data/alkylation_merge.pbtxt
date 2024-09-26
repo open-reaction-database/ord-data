@@ -1,5 +1,5 @@
 name: "Cernak miniaturized N-alkylation with BOC deprotection"
-description: "Miniaturized N-alkylation and BOC deprotection. From Time Cernak and Merck publication 10.1038/s44160-023-00351-1. Contains 96 alkylations with in situ BOC deprotection, which are a full factorial combination of 2 secondary amine cores, 12 electrophiles, and 4 bases. A further 8 control reactions (REACTION_TYPE = "BOC deprotection") test the BOC deprotection of the two core reactants in the presence of the 4 bases without electrophiles."
+description: 'Miniaturized N-alkylation and BOC deprotection. From Time Cernak and Merck publication 10.1038/s44160-023-00351-1. Contains 96 alkylations with in situ BOC deprotection, which are a full factorial combination of 2 secondary amine cores, 12 electrophiles, and 4 bases. A further 8 control reactions (REACTION_TYPE = "BOC deprotection") test the BOC deprotection of the two core reactants in the presence of the 4 bases without electrophiles.'
 reactions {
   identifiers {
     type: CUSTOM
