@@ -10,7 +10,7 @@ name: Submission
 on: [pull_request, push]
 
 env:
-  ORD_SCHEMA_TAG: v0.3.87
+  ORD_SCHEMA_TAG: v0.3.93
 
 jobs:
   count_reactions:
@@ -33,7 +33,7 @@ jobs:
         path: ord-schema
     - uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.11'
     - name: Install ord_schema
       run: |
         cd "${GITHUB_WORKSPACE}/ord-schema"
@@ -129,7 +129,7 @@ jobs:
         cat changed_data_files.txt
     - uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.11'
       if: env.NUM_CHANGED_FILES != '0'
     - name: Install ord_schema
       run: |
