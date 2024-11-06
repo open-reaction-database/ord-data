@@ -1,5 +1,5 @@
-name: "qai-2_dataset"
-description: "Enumerated by the ORD web interface."
+name: "C-H activation of oxazoles from the second demo case in the PyParser paper"
+description: "C-H activation of oxazoles from the second demo case in the PyParser paper. It is also referred to as the \"reaction optimization\" campaign. Duplicate conditions are found in wells A2/A8, A3/A9, A5/A11 and A6/A12, then again in wells C2/C8, C3/C9, C5/C11 and C6/C12. This duplication was done to ensure reproducibility between the two 24-well metal heating blocks."
 reactions {
   identifiers {
     type: REACTION_SMILES
