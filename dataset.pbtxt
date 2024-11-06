@@ -1,5 +1,5 @@
-name: "C-H activation of oxazoles from the second demo case in the PyParser paper"
-description: "C-H activation of oxazoles from the second demo case in the PyParser paper. It is also referred to as the \"reaction optimization\" campaign. Duplicate conditions are found in wells A2/A8, A3/A9, A5/A11 and A6/A12, then again in wells C2/C8, C3/C9, C5/C11 and C6/C12. This duplication was done to ensure reproducibility between the two 24-well metal heating blocks."
+name: "qai-2_dataset"
+description: "Enumerated by the ORD web interface."
 reactions {
   identifiers {
     type: REACTION_SMILES
@@ -375,7 +375,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 0.0
         }
         retention_time {
           value: 0.73
@@ -413,7 +413,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -798,7 +798,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 0.0
         }
         retention_time {
           value: 0.73
@@ -836,7 +836,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -1221,7 +1221,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 4.0
         }
         retention_time {
           value: 0.73
@@ -1259,7 +1259,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -1644,7 +1644,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 1.0
         }
         retention_time {
           value: 0.73
@@ -1682,7 +1682,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -2067,7 +2067,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 5.0
         }
         retention_time {
           value: 0.73
@@ -2105,7 +2105,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -2490,7 +2490,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 4.0
         }
         retention_time {
           value: 0.73
@@ -2528,7 +2528,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -2913,7 +2913,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 2.0
         }
         retention_time {
           value: 0.73
@@ -2951,7 +2951,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -3336,7 +3336,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 0.0
         }
         retention_time {
           value: 0.73
@@ -3374,7 +3374,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -3759,7 +3759,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 0.0
         }
         retention_time {
           value: 0.73
@@ -3797,7 +3797,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -4182,7 +4182,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 6.0
         }
         retention_time {
           value: 0.73
@@ -4220,7 +4220,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -4605,7 +4605,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 9.0
         }
         retention_time {
           value: 0.73
@@ -4643,7 +4643,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -5028,7 +5028,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 1.0
         }
         retention_time {
           value: 0.73
@@ -5066,7 +5066,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -5451,7 +5451,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 1.0
         }
         retention_time {
           value: 0.73
@@ -5489,7 +5489,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -5874,7 +5874,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 11.0
         }
         retention_time {
           value: 0.73
@@ -5912,7 +5912,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -6297,7 +6297,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 11.0
         }
         retention_time {
           value: 0.73
@@ -6335,7 +6335,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -6720,7 +6720,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 32.0
         }
         retention_time {
           value: 0.73
@@ -6758,7 +6758,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -7143,7 +7143,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 4.0
         }
         retention_time {
           value: 0.73
@@ -7181,7 +7181,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -7566,7 +7566,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 7.0
         }
         retention_time {
           value: 0.73
@@ -7604,7 +7604,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -7989,7 +7989,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 0.0
         }
         retention_time {
           value: 0.73
@@ -8027,7 +8027,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -8412,7 +8412,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 0.0
         }
         retention_time {
           value: 0.73
@@ -8450,7 +8450,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -8835,7 +8835,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 1.0
         }
         retention_time {
           value: 0.73
@@ -8873,7 +8873,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -9258,7 +9258,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 20.0
         }
         retention_time {
           value: 0.73
@@ -9296,7 +9296,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -9681,7 +9681,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 5.0
         }
         retention_time {
           value: 0.73
@@ -9719,7 +9719,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -10104,7 +10104,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 7.0
         }
         retention_time {
           value: 0.73
@@ -10142,7 +10142,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -10527,7 +10527,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 6.0
         }
         retention_time {
           value: 0.73
@@ -10565,7 +10565,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -10950,7 +10950,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 0.0
         }
         retention_time {
           value: 0.73
@@ -10988,7 +10988,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -11373,7 +11373,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 46.0
         }
         retention_time {
           value: 0.73
@@ -11411,7 +11411,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -11796,7 +11796,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 8.0
         }
         retention_time {
           value: 0.73
@@ -11834,7 +11834,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -12219,7 +12219,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 7.0
         }
         retention_time {
           value: 0.73
@@ -12257,7 +12257,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -12642,7 +12642,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 74.0
         }
         retention_time {
           value: 0.73
@@ -12680,7 +12680,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -13065,7 +13065,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 21.0
         }
         retention_time {
           value: 0.73
@@ -13103,7 +13103,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -13488,7 +13488,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 6.0
         }
         retention_time {
           value: 0.73
@@ -13526,7 +13526,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -13911,7 +13911,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 21.0
         }
         retention_time {
           value: 0.73
@@ -13949,7 +13949,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -14334,7 +14334,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 17.0
         }
         retention_time {
           value: 0.73
@@ -14372,7 +14372,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -14757,7 +14757,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 11.0
         }
         retention_time {
           value: 0.73
@@ -14795,7 +14795,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -15180,7 +15180,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 100.0
         }
         retention_time {
           value: 0.73
@@ -15218,7 +15218,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -15603,7 +15603,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 33.0
         }
         retention_time {
           value: 0.73
@@ -15641,7 +15641,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -16026,7 +16026,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 2.0
         }
         retention_time {
           value: 0.73
@@ -16064,7 +16064,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -16449,7 +16449,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 0.0
         }
         retention_time {
           value: 0.73
@@ -16487,7 +16487,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -16872,7 +16872,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 79.0
         }
         retention_time {
           value: 0.73
@@ -16910,7 +16910,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -17295,7 +17295,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 3.0
         }
         retention_time {
           value: 0.73
@@ -17333,7 +17333,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -17718,7 +17718,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 0.0
         }
         retention_time {
           value: 0.73
@@ -17756,7 +17756,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -18141,7 +18141,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 2.0
         }
         retention_time {
           value: 0.73
@@ -18179,7 +18179,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -18564,7 +18564,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 0.0
         }
         retention_time {
           value: 0.73
@@ -18602,7 +18602,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -18987,7 +18987,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 11.0
         }
         retention_time {
           value: 0.73
@@ -19025,7 +19025,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -19410,7 +19410,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 6.0
         }
         retention_time {
           value: 0.73
@@ -19448,7 +19448,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -19833,7 +19833,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 20.0
         }
         retention_time {
           value: 0.73
@@ -19871,7 +19871,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
@@ -20256,7 +20256,7 @@ reactions {
         details: "The metric used for analysis was \"corrP/STD\"; this metric was selected as it shades each well in the heatmap visualisation according to the normalised ratio of product to internal standard."
         uses_internal_standard: true
         percentage {
-          value: nan
+          value: 0.0
         }
         retention_time {
           value: 0.73
@@ -20294,7 +20294,7 @@ reactions {
     doi: "10.1039/d3dd00167a"
     record_created {
       time {
-        value: "2024-10-11 14:38:22 UTC"
+        value: "11/10/2024, 14:38:22"
       }
       person {
         username: "qai"
