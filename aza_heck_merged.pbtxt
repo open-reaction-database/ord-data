@@ -1,5 +1,5 @@
 name: "High Throughput Experiment Details for an Aza-Heck cyclisation"
-description: "xxx"
+description: "High Throughput Experiment Details for the Synthesis of 5-6-dimethoxy-6-methylidene2,3,6,8-tetrahydro-2H-spiro[indeno[4,5-d][1,3]dioxole-7,1-isoindole]-3-one, as reported in 10.1021/acs.orglett.1c02767"
 reactions {
   identifiers {
     type: CUSTOM
