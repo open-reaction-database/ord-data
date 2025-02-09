@@ -1,2 +1,503 @@
 name: "A transient flow studfy of the flash thermal racemisation of an amine."
 description: "This is an empty dataset which is currently under construction for https://doi.org/10.1021/acs.oprd.4c00508."
+reactions {
+  identifiers {
+    type: REACTION_TYPE
+    value: "metal catalysed racemisation"
+  }
+  identifiers {
+    type: CUSTOM
+    details: "Table description: This reaction is part of a dataset made up of 2 tables."
+    value: "Split-plot I-optimal DOE study of the flash thermal racemisation of a chiral amine."
+  }
+  identifiers {
+    type: CUSTOM
+    details: "DOE Round: This reaction is part of a dataset made up of 3 successive rounds of Design of Experiments. This number indicates which round of DOE this reaction was in."
+    value: "1"
+  }
+  identifiers {
+    type: CUSTOM
+    details: "DOE Stage: This reaction is part of a dataset made up of 3 successive rounds of Design of Experiments. This value is a descripton of the round this reaction was in."
+    value: "I-Optimal split-plot initial design"
+  }
+  identifiers {
+    type: CUSTOM
+    details: "Whole Plot: This reaction is part of a dataset, which is a split-plot design where runs are batched into \'whole plots\' by the DOE algorithm. Within each whole plot the substrate concentration is kept constant."
+    value: "1"
+  }
+  identifiers {
+    type: CUSTOM
+    details: "Run Number: This reaction is part of a dataset made up of 28 runs. This run number indicates the order in which reactions were conducted."
+    value: "1"
+  }
+  inputs {
+    key: "amine solution"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "C[C@H](N)c1ccccc1"
+        }
+        identifiers {
+          type: NAME
+          value: "(S)-(-)-1-phenylethylamine"
+        }
+        amount {
+          moles {
+            value: 0.103
+            units: MILLIMOLE
+          }
+        }
+        reaction_role: REACTANT
+        is_limiting: true
+        preparations {
+          type: NONE
+          details: "used as received"
+        }
+      }
+      components {
+        identifiers {
+          type: NAME
+          value: "toluene"
+        }
+        identifiers {
+          type: SMILES
+          details: "NAME resolved by the PubChem API"
+          value: "Cc1ccccc1"
+        }
+        amount {
+          volume {
+            value: 5.0
+            units: MILLILITER
+          }
+          volume_includes_solutes: false
+        }
+        reaction_role: SOLVENT
+        preparations {
+          type: DRIED
+          details: "stored under dry nitrogen atmosphere and over molecular sieves"
+        }
+      }
+      addition_order: 1
+      addition_speed {
+        type: CONTINUOUS
+      }
+      addition_duration {
+        value: 5.0
+        units: MINUTE
+      }
+      flow_rate {
+        value: 1.0
+        precision: 0.05
+        units: MILLILITER_PER_MINUTE
+      }
+      addition_device {
+        type: PISTON_PUMP
+        details: "Gilson 307 HPLC pump"
+      }
+    }
+  }
+  inputs {
+    key: "packed bed reactor"
+    value {
+      components {
+        identifiers {
+          type: CUSTOM
+          details: "PubChem Substance ID"
+          value: "24852341"
+        }
+        identifiers {
+          type: NAME
+          value: "5 wt% Pd/Al2O3"
+        }
+        identifiers {
+          type: NAME
+          value: "palladium on alumina"
+        }
+        identifiers {
+          type: SMILES
+          details: "NAME resolved by the PubChem API"
+          value: "[Pd]"
+        }
+        amount {
+          mass {
+            value: 200.0
+            units: MILLIGRAM
+          }
+        }
+        reaction_role: CATALYST
+        preparations {
+          type: CUSTOM
+          details: "sieved to 60 - 108 micron particle size"
+        }
+        source {
+          vendor: "Sigma-Aldrich"
+          catalog_id: "205710"
+        }
+        features {
+          key: "max particle size"
+          value {
+            integer_value: 108
+            description: " max particle size (microns)"
+          }
+        }
+        features {
+          key: "min particle size"
+          value {
+            integer_value: 60
+            description: " min particle size (microns)"
+          }
+        }
+      }
+      components {
+        identifiers {
+          type: NAME
+          value: "silicon carbide"
+        }
+        identifiers {
+          type: SMILES
+          details: "NAME resolved by the PubChem API"
+          value: "[C-]#[Si+]"
+        }
+        identifiers {
+          type: CAS_NUMBER
+          value: "409-21-2"
+        }
+        amount {
+          mass {
+            value: 1.0
+            units: GRAM
+          }
+        }
+        reaction_role: SOLVENT
+        preparations {
+          type: CUSTOM
+          details: "sieved to 140 - 180 micron particle size"
+        }
+        source {
+          vendor: "Fisher Scientific"
+        }
+        features {
+          key: "max particle size"
+          value {
+            integer_value: 180
+            description: "max particle size (micron)"
+          }
+        }
+        features {
+          key: "min particle size"
+          value {
+            integer_value: 140
+            description: "min particle size (micron)"
+          }
+        }
+      }
+      components {
+        identifiers {
+          type: NAME
+          value: "sand"
+        }
+        identifiers {
+          type: SMILES
+          details: "NAME resolved by the PubChem API"
+          value: "O=[Si]=O"
+        }
+        amount {
+          mass {
+            value: 200.0
+            units: MILLIGRAM
+          }
+        }
+        reaction_role: SOLVENT
+        preparations {
+          type: CUSTOM
+          details: "acid washed"
+        }
+      }
+      addition_order: 2
+      addition_device {
+        type: CUSTOM
+        details: "5 wt% Pd/Al2O3 mixed with SiC and loaded into a 1.4 inch od x 10 cm length stainless steel packed bed reactor. The packed bed was topped with a layer of sand."
+      }
+    }
+  }
+  inputs {
+    key: "sand layer"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          value: "O=[Si]=O"
+        }
+        identifiers {
+          type: NAME
+          value: "sand"
+        }
+        amount {
+          mass {
+            value: 200.0
+            units: MILLIGRAM
+          }
+        }
+        reaction_role: SOLVENT
+        preparations {
+          type: CUSTOM
+          details: "acid washed"
+        }
+      }
+      addition_order: 3
+      addition_device {
+        type: CUSTOM
+        details: "The packed bed was topped with a layer of sand."
+      }
+    }
+  }
+  setup {
+    vessel {
+      type: PACKED_BED_REACTOR
+      details: "5 wt% Pd/Al2O3 mixed with SiC and loaded into a 1.4 inch od x 10 cm length stainless steel packed bed reactor. The packed bed was topped with a layer of sand."
+      material {
+        type: METAL
+        details: "stainless steel"
+      }
+      volume {
+        value: 1.05
+        units: MILLILITER
+      }
+    }
+    environment {
+      type: FUME_HOOD
+    }
+  }
+  conditions {
+    temperature {
+      control {
+        type: DRY_ALUMINUM_PLATE
+        details: "custom built aluminium heater block for 1/4 inch od x 10 cm packed bed reactors"
+      }
+      setpoint {
+        value: 100.0
+        units: CELSIUS
+      }
+    }
+    pressure {
+      control {
+        type: PRESSURIZED
+      }
+      setpoint {
+        value: 8.0
+        units: BAR
+      }
+      atmosphere {
+        type: CUSTOM
+        details: "pressurised by an 8 bar Upchurch style back pressure regulator"
+      }
+    }
+    stirring {
+      type: NONE
+    }
+    flow {
+      type: PACKED_BED_REACTOR
+      details: "custom made"
+      pump_type: "Gilson 307 HPLC"
+      tubing {
+        type: PFA
+        details: "3.18 mm od x 1.59 mm id"
+        diameter {
+          value: 1.59
+          units: MILLIMETER
+        }
+      }
+    }
+  }
+  notes {
+    is_heterogeneous: true
+    forms_precipitate: false
+    is_exothermic: false
+    offgasses: false
+    is_sensitive_to_moisture: true
+    is_sensitive_to_oxygen: false
+    is_sensitive_to_light: false
+    procedure_details: " The flow reaction system primed by anhydrous toluene at 1 mL min-1 for 10 minutes. The flow was then adjusted to 0.5 mL min-1 during heating. When the desired temperature was reached, the flow was then set to the desired rate (Table S1), until the in-line polarimeter showed a stable reading and set to zero. The inlet was then switched to the reagent line, containing (S)-1. The reaction was monitored by the polarimeter, which was used to established when steady state had been achieved (a stable reading). The flow of the reactant was maintained for a further 5 minutes at steady state, during which time 5 samples were collected (1 sample/min). The volume of sample collected will therefore depend on the flow rate i.e., 1/0.7/0.3 mL min-1 = 5 x 1/0.7/0.3 mL samples, respectively. The collected sample were diluted and subject to GC and (chiral) HPLC analysis to determine the product distribution. "
+  }
+  workups {
+    type: TEMPERATURE
+    temperature {
+      control {
+        type: CUSTOM
+        details: "3.18 mm od x 1.59 mm id x 10 cm length stainless steel tube inside an aluminium block cooled by a 60 W Peltier thermo-electric cooler."
+      }
+      setpoint {
+        value: 25.0
+        units: CELSIUS
+      }
+    }
+    stirring {
+      type: NONE
+    }
+    is_automated: true
+  }
+  workups {
+    type: ALIQUOT
+    details: "5 samples were collected (1 sample/min). The volume of sample collected depends on the flow rate i.e., 1/0.7/0.3 mL min-1 = 5 x 1/0.7/0.3 mL samples, respectively."
+    amount {
+      volume {
+        value: 1.0
+        precision: 0.2
+        units: MILLILITER
+      }
+    }
+  }
+  outcomes {
+    reaction_time {
+      value: 63.0
+      units: SECOND
+    }
+    products {
+      identifiers {
+        type: SMILES
+        value: "C[C@H](N)c1ccccc1"
+      }
+      is_desired_product: true
+      measurements {
+        analysis_key: "chiral HPLC"
+        type: AREA
+        details: "area of R enantiomer"
+        uses_internal_standard: false
+        is_normalized: false
+        uses_authentic_standard: true
+        authentic_standard {
+          identifiers {
+            type: SMILES
+            value: "C[C@H](N)c1ccccc1"
+          }
+          reaction_role: AUTHENTIC_STANDARD
+        }
+        float_value {
+          value: 0.0
+        }
+        retention_time {
+          value: 2.4
+          units: MINUTE
+        }
+        wavelength {
+          value: 254.0
+          units: NANOMETER
+        }
+      }
+      measurements {
+        analysis_key: "chiral HPLC"
+        type: SELECTIVITY
+        details: "enantioselectivity"
+        uses_internal_standard: false
+        is_normalized: false
+        uses_authentic_standard: false
+        percentage {
+          value: 100.0
+        }
+        selectivity {
+          type: EE
+          details: "(([S]-[R])/([S]+[R]))*100"
+        }
+      }
+      reaction_role: PRODUCT
+    }
+    products {
+      identifiers {
+        type: SMILES
+        value: "C[C@@H](N)c1ccccc1"
+      }
+      is_desired_product: true
+      measurements {
+        analysis_key: "chiral HPLC"
+        type: AREA
+        details: "area of S enantiomer"
+        uses_internal_standard: false
+        uses_authentic_standard: true
+        authentic_standard {
+          identifiers {
+            type: SMILES
+            value: "C[C@@H](N)c1ccccc1"
+          }
+          reaction_role: AUTHENTIC_STANDARD
+        }
+        float_value {
+          value: 0.09682
+        }
+        retention_time {
+          value: 2.22
+          units: MINUTE
+        }
+        wavelength {
+          value: 254.0
+          units: NANOMETER
+        }
+      }
+      reaction_role: PRODUCT
+    }
+    analyses {
+      key: "GC"
+      value {
+        type: GC
+        details: "GC-MS analysis was performed using a HP 6890 gas chromatograph equipped with a H2 flame ionisation detector and an HP5 (5% phenyl methyl siloxane) Agilent column (30 m x 0.32 mm x 0.25 um). The temperature ramp used was: 50 oC (hold 0.5 min), 50 - 150 oC (50 oC min-1), 150 - 300 oC (75 oC min-1), 300 oC (Hold 2 min)."
+        is_of_isolated_species: false
+        data {
+          key: "selectivity"
+          value {
+            float_value: 94.0
+            description: "((final [amine]) / (initial [amine])) * 100"
+          }
+        }
+        instrument_manufacturer: "Agilent"
+      }
+    }
+    analyses {
+      key: "chiral HPLC"
+      value {
+        type: LC
+        details: "Chiral LC analysis was performed using an Agilent 1290 Infinity II instrument, fitted with an InfinityLab Poroshell 120 Chiral CF column (100 mm x 2.1 mm x 2.7 um) using an isocratic solvent system of 80/20/0.3/0.2 MeCN/MeOH/acetic acid/triethylamine at 0.25 mL.min-1, or a OD-H Chiralpak column using an isocratic cyclohexane/IPA/Et2NH (95/5/0.1) solvent system at 0.8 mL.min-1. Chromatograms were recorded by a diode array UV-Vis detector, using 254 and 210 nm absorbances for quantification. "
+        is_of_isolated_species: false
+        data {
+          key: "ee"
+          value {
+            float_value: 100.0
+            description: "enantiomeric excess"
+          }
+        }
+        data {
+          key: "n_total"
+          value {
+            float_value: 0.09682
+            description: "Total peak area in LC of R and S product."
+          }
+        }
+        instrument_manufacturer: "Agilent"
+      }
+    }
+  }
+  provenance {
+    experimenter {
+      name: "Matthew J. Takle"
+      orcid: "0009-0000-7043-4179"
+      organization: "Imperial College London"
+    }
+    city: "London, United Kingdom"
+    experiment_start {
+      value: "2022"
+    }
+    doi: "10.1021/acs.oprd.4c00508"
+    publication_url: "https://doi.org/10.1021/acs.oprd.4c00508"
+    record_created {
+      time {
+        value: "02/05/2025"
+      }
+      person {
+        username: "bdeadman"
+        name: "Benjamin J Deadman"
+        orcid: "0000-0001-8463-8199"
+        organization: "Open Reaction Database"
+        email: "ben@open-reaction-database.org"
+      }
+    }
+  }
+}
