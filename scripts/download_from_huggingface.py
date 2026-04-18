@@ -6,7 +6,7 @@ directory from the Hugging Face dataset at
 https://huggingface.co/datasets/open-reaction-database/ord-data.
 
 Usage:
-    pip install huggingface_hub
+    pip install -r scripts/requirements.txt
     python scripts/download_from_huggingface.py
 
 Optional flags let you restrict the download to a subset of files or
@@ -19,6 +19,7 @@ from pathlib import Path
 from huggingface_hub import snapshot_download
 
 HF_REPO_ID = "open-reaction-database/ord-data"
+DEFAULT_ALLOW_PATTERNS = ["data/**"]
 
 
 def main() -> None:
@@ -40,18 +41,20 @@ def main() -> None:
         default=None,
         help=(
             "Glob pattern(s) of files to include (repeatable). "
+            f"Default: {DEFAULT_ALLOW_PATTERNS}. "
             "Example: --allow-pattern 'data/4d/*.pb.gz'"
         ),
     )
     args = parser.parse_args()
 
+    allow_patterns = args.allow_pattern or DEFAULT_ALLOW_PATTERNS
     args.output_dir.mkdir(parents=True, exist_ok=True)
     local_dir = snapshot_download(
         repo_id=HF_REPO_ID,
         repo_type="dataset",
         revision=args.revision,
         local_dir=str(args.output_dir),
-        allow_patterns=args.allow_pattern,
+        allow_patterns=allow_patterns,
     )
     print(f"Downloaded {HF_REPO_ID}@{args.revision} to {local_dir}")
 

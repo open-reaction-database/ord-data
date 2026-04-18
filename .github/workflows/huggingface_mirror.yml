@@ -1,8 +1,12 @@
-# Mirrors new/changed dataset files to the Hugging Face dataset
-# open-reaction-database/ord-data after each push to main.
+# Mirrors dataset changes to the Hugging Face dataset
+# open-reaction-database/ord-data.
+#
+# - Push to `main`: commits the changes to the mirror.
+# - Pull requests touching `data/**` or the mirror tooling: dry-run that
+#   posts the planned uploads/deletions to the job summary.
 #
 # Requires an `HF_TOKEN` repository secret with write access to the
-# Hugging Face dataset.
+# Hugging Face dataset (only used on the push-to-main path).
 
 name: Hugging Face Mirror
 
@@ -10,58 +14,60 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    paths:
+      - 'data/**'
+      - '.github/workflows/huggingface_mirror.yml'
+      - 'scripts/upload_to_huggingface.py'
+      - 'scripts/requirements.txt'
 
 jobs:
   mirror:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout ord-data (no LFS smudge)
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
       with:
-        fetch-depth: 2
+        fetch-depth: 0
         lfs: false
+        ref: ${{ github.event.pull_request.head.sha || github.sha }}
       env:
         GIT_LFS_SKIP_SMUDGE: 1
-    - name: Identify changed data files
-      id: changed
+
+    - id: range
+      env:
+        EVENT_NAME: ${{ github.event_name }}
+        PUSH_BEFORE: ${{ github.event.before }}
+        PUSH_AFTER: ${{ github.sha }}
+        PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
       run: |
-        cd "${GITHUB_WORKSPACE}"
-        # On the first push to a branch, HEAD^ may not exist; fall back to HEAD.
-        if git rev-parse HEAD^ >/dev/null 2>&1; then
-          BASE="HEAD^"
+        EMPTY_TREE="$(git hash-object -t tree /dev/null)"
+        if [[ "${EVENT_NAME}" == "pull_request" ]]; then
+          BASE="${PR_BASE_SHA}"; HEAD="${PR_HEAD_SHA}"
         else
-          BASE="HEAD"
+          BASE="${PUSH_BEFORE}"; HEAD="${PUSH_AFTER}"
+          if [[ -z "${BASE}" || "${BASE}" == "0000000000000000000000000000000000000000" ]]; then
+            BASE="${EMPTY_TREE}"
+          fi
         fi
-        git diff --name-only --diff-filter=ACMR "${BASE}" HEAD -- 'data/**' \
-          > changed_data_files.txt || true
-        NUM_CHANGED="$(wc -l < changed_data_files.txt | tr -d ' ')"
-        echo "num_changed=${NUM_CHANGED}" >> "${GITHUB_OUTPUT}"
-        echo "Found ${NUM_CHANGED} changed data files"
-        cat changed_data_files.txt
-    - name: Fetch LFS objects for changed files only
-      if: steps.changed.outputs.num_changed != '0'
-      run: |
-        cd "${GITHUB_WORKSPACE}"
-        # --include takes a comma-separated list of path patterns.
-        INCLUDE="$(paste -sd, changed_data_files.txt)"
-        git lfs pull --include="${INCLUDE}"
-    - name: Set up Python
-      if: steps.changed.outputs.num_changed != '0'
-      uses: actions/setup-python@v5
+        echo "base=${BASE}" >> "${GITHUB_OUTPUT}"
+        echo "head=${HEAD}" >> "${GITHUB_OUTPUT}"
+        echo "Diff range: ${BASE}..${HEAD}"
+
+    - uses: actions/setup-python@v5
       with:
         python-version: '3.11'
-    - name: Install huggingface_hub
-      if: steps.changed.outputs.num_changed != '0'
-      run: |
-        python -m pip install --upgrade pip
-        python -m pip install -r scripts/requirements.txt
-    - name: Upload changed files to Hugging Face
-      if: steps.changed.outputs.num_changed != '0'
+
+    - run: pip install -r scripts/requirements.txt
+
+    - name: Mirror to Hugging Face
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        GITHUB_SHA: ${{ github.sha }}
+        DRY_RUN_FLAG: ${{ github.event_name == 'pull_request' && '--dry-run' || '' }}
       run: |
-        cd "${GITHUB_WORKSPACE}"
         python scripts/upload_to_huggingface.py \
-          --files-from=changed_data_files.txt \
-          --commit-message="Mirror ${GITHUB_SHA::7} from github.com/${GITHUB_REPOSITORY}"
+          --base="${{ steps.range.outputs.base }}" \
+          --head="${{ steps.range.outputs.head }}" \
+          --commit-message="Mirror ${GITHUB_SHA::7} from github.com/${GITHUB_REPOSITORY}" \
+          --summary-file="${GITHUB_STEP_SUMMARY}" \
+          ${DRY_RUN_FLAG}
