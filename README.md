@@ -4,11 +4,40 @@
 ![](https://raw.githubusercontent.com/Open-Reaction-Database/ord-data/main/badges/reactions.svg)
 [![DOI](https://zenodo.org/badge/283813042.svg)](https://zenodo.org/badge/latestdoi/283813042)
 
-## Cloning with Git LFS
+## Getting the Data
 
-We use [Git LFS](https://git-lfs.github.com) to efficiently store
-the Dataset records that make up the ORD. To view these files locally, you'll
-need to install Git LFS before cloning the repository.
+**We recommend downloading the dataset from
+[Hugging Face](https://huggingface.co/datasets/open-reaction-database/ord-data)
+instead of cloning this repository with Git LFS.** GitHub LFS bandwidth is a
+shared, limited resource, and heavy cloning traffic can exhaust our monthly
+quota and block downloads for everyone. The Hugging Face mirror has no such
+limit.
+
+### Option 1 (recommended): Download from Hugging Face
+
+```bash
+pip install -r scripts/requirements.txt
+python scripts/download_from_huggingface.py
+```
+
+The script mirrors the `data/` directory from the Hugging Face dataset into
+your local checkout. Pass `--allow-pattern 'data/4d/*.pb.gz'` (repeatable) to
+download only a subset, or `--output-dir <path>` to write somewhere other
+than the repository root. If you don't need the Git history, you can also
+clone this repo *without* LFS objects and then run the script:
+
+```bash
+GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/open-reaction-database/ord-data.git
+cd ord-data
+python scripts/download_from_huggingface.py
+```
+
+### Option 2: Clone with Git LFS
+
+If you have access to Git LFS bandwidth and need the `.pb.gz` files in place
+as part of a normal clone, install [Git LFS](https://git-lfs.github.com)
+before cloning. Please prefer Option 1 when possible so we don't exhaust the
+shared LFS quota.
 
 ## Data Manipulation
 
