@@ -67,8 +67,8 @@ jobs:
       run: |
         cd "${GITHUB_WORKSPACE}"
         git diff --name-only upstream/main > changed_files.txt
-        grep -vE '\.pb(txt)?(.gz)?$' changed_files.txt && \
-          echo "Error: submissions should only contain (gzipped) *.pbtxt or *.pb files" && \
+        grep -vE '\.(pb(txt)?(.gz)?|parquet)$' changed_files.txt && \
+          echo "Error: submissions should only contain (gzipped) *.pbtxt, *.pb, or *.parquet files" && \
           exit 1 || true
       if: >-
         github.event_name == 'pull_request' &&
@@ -121,7 +121,7 @@ jobs:
         echo "Found $(wc -l < changed_files.txt | tr -d ' ') changed files"
         cat changed_files.txt
         # Use `|| (( $? == 1 ))` in case no lines match (exit code is nonzero).
-        grep -E "\.pb(txt)?(.gz)?$" changed_files.txt > changed_data_files.txt || (( $? == 1 ))
+        grep -E "\.(pb(txt)?(.gz)?|parquet)$" changed_files.txt > changed_data_files.txt || (( $? == 1 ))
         # Use LOCAL_NUM_CHANGED since ::set-env values are not available immediately.
         LOCAL_NUM_CHANGED="$(wc -l < changed_data_files.txt | tr -d ' ')"
         echo "NUM_CHANGED_FILES=${LOCAL_NUM_CHANGED}" >> $GITHUB_ENV

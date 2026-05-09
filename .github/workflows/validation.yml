@@ -59,3 +59,7 @@ jobs:
           --input="data/*/*.pb*" \
           --filter="${FILTER}" \
           --n_jobs=4
+        python ./ord-schema/ord_schema/scripts/validate_dataset.py \
+          --input="data/*/*.parquet" \
+          --filter="${FILTER}" \
+          --n_jobs=4
