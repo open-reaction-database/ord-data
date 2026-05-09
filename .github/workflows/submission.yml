@@ -7,16 +7,14 @@
 
 name: Submission
 
-on: [pull_request, push]
+on: [pull_request]
 
 env:
   ORD_SCHEMA_TAG: v0.6.1
 
 jobs:
   count_reactions:
-    if: >-
-      github.event_name == 'pull_request' &&
-      ! github.event.pull_request.head.repo.fork
+    if: ${{ ! github.event.pull_request.head.repo.fork }}
     runs-on: ubuntu-latest
     steps:
     - name: Checkout ord-data
@@ -24,7 +22,6 @@ jobs:
       with:
         ref: ${{ github.event.pull_request.head.sha }}
         lfs: true
-      if: github.event_name == 'pull_request'
     - name: Checkout ord-schema
       uses: actions/checkout@v2
       with:
@@ -70,20 +67,16 @@ jobs:
         grep -vE '\.(pb(txt)?(.gz)?|parquet)$' changed_files.txt && \
           echo "Error: submissions should only contain (gzipped) *.pbtxt, *.pb, or *.parquet files" && \
           exit 1 || true
-      if: >-
-        github.event_name == 'pull_request' &&
-        github.event.pull_request.head.repo.fork
+      if: github.event.pull_request.head.repo.fork
 
   check_target_branch:
+    if: github.event.pull_request.head.repo.fork
     runs-on: ubuntu-latest
     steps:
     - name: Check target branch
       run: |
         echo "Target branch: ${GITHUB_BASE_REF}"
         test "${GITHUB_BASE_REF}" != "main"
-      if: >-
-        github.event_name == 'pull_request' &&
-        github.event.pull_request.head.repo.fork
 
   process_submission:
     runs-on: ubuntu-latest
@@ -91,14 +84,8 @@ jobs:
     - name: Checkout ord-data
       uses: actions/checkout@v2
       with:
-        lfs: true
-      if: github.event_name == 'push'
-    - name: Checkout ord-data
-      uses: actions/checkout@v2
-      with:
         ref: ${{ github.event.pull_request.head.sha }}
         lfs: true
-      if: github.event_name == 'pull_request'
     - name: Add upstream for comparisons to HEAD
       run: |
         cd "${GITHUB_WORKSPACE}"
@@ -146,8 +133,7 @@ jobs:
           --base=upstream/main
       if: >-
         env.NUM_CHANGED_FILES != '0' &&
-        ! (github.event_name == 'pull_request' &&
-           ! github.event.pull_request.head.repo.fork)
+        github.event.pull_request.head.repo.fork
     - name: Update submission
       run: |
         cd "${GITHUB_WORKSPACE}"
@@ -165,5 +151,4 @@ jobs:
         git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_HEAD_REF}"
       if: >-
         env.NUM_CHANGED_FILES != '0' &&
-        github.event_name == 'pull_request' &&
         ! github.event.pull_request.head.repo.fork
