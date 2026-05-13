@@ -7,7 +7,12 @@
 
 name: Submission
 
-on: [pull_request]
+on:
+  pull_request:
+    # Default trigger types plus labeled/unlabeled so adding or removing the
+    # `skip-update-submission` label re-runs the workflow with the new
+    # gating on the "Update submission" step.
+    types: [opened, synchronize, reopened, labeled, unlabeled]
 
 env:
   ORD_SCHEMA_TAG: v0.6.3
@@ -149,6 +154,11 @@ jobs:
         # Fail gracefully if there is nothing to commit.
         git commit -a -m "Update submission" || (( $? == 1 ))
         git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_HEAD_REF}"
+      # Skipped when the PR carries the `skip-update-submission` label, so
+      # maintainer PRs that touch dataset files but do not need ID/timestamp
+      # assignment (e.g. format conversions) can land without process_dataset
+      # rewriting the inputs.
       if: >-
         env.NUM_CHANGED_FILES != '0' &&
-        ! github.event.pull_request.head.repo.fork
+        ! github.event.pull_request.head.repo.fork &&
+        ! contains(github.event.pull_request.labels.*.name, 'skip-update-submission')
