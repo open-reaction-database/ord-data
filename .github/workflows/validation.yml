@@ -11,6 +11,13 @@ on:
       # Runs when this file is modified in a PR.
       - '.github/workflows/validation.yml'
 
+# One in-flight matrix per PR (or per push to main). Subsequent events
+# cancel the prior run so we are not paying twice for the LFS-heavy
+# validate_pb / validate_parquet shards.
+concurrency:
+  group: validation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 env:
   ORD_SCHEMA_TAG: v0.6.3
 
