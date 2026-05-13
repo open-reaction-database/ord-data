@@ -1,0 +1,73 @@
+# Mirrors dataset changes to the Hugging Face dataset
+# open-reaction-database/ord-data.
+#
+# - Push to `main`: commits the changes to the mirror.
+# - Pull requests touching `data/**` or the mirror tooling: dry-run that
+#   posts the planned uploads/deletions to the job summary.
+#
+# Requires an `HF_TOKEN` repository secret with write access to the
+# Hugging Face dataset (only used on the push-to-main path).
+
+name: Hugging Face Mirror
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    paths:
+      - 'data/**'
+      - '.github/workflows/huggingface_mirror.yml'
+      - 'scripts/upload_to_huggingface.py'
+      - 'scripts/requirements.txt'
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        lfs: false
+        ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      env:
+        GIT_LFS_SKIP_SMUDGE: 1
+
+    - id: range
+      env:
+        EVENT_NAME: ${{ github.event_name }}
+        PUSH_BEFORE: ${{ github.event.before }}
+        PUSH_AFTER: ${{ github.sha }}
+        PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+      run: |
+        EMPTY_TREE="$(git hash-object -t tree /dev/null)"
+        if [[ "${EVENT_NAME}" == "pull_request" ]]; then
+          BASE="${PR_BASE_SHA}"; HEAD="${PR_HEAD_SHA}"
+        else
+          BASE="${PUSH_BEFORE}"; HEAD="${PUSH_AFTER}"
+          if [[ -z "${BASE}" || "${BASE}" == "0000000000000000000000000000000000000000" ]]; then
+            BASE="${EMPTY_TREE}"
+          fi
+        fi
+        echo "base=${BASE}" >> "${GITHUB_OUTPUT}"
+        echo "head=${HEAD}" >> "${GITHUB_OUTPUT}"
+        echo "Diff range: ${BASE}..${HEAD}"
+
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - run: pip install -r scripts/requirements.txt
+
+    - name: Mirror to Hugging Face
+      env:
+        HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        DRY_RUN_FLAG: ${{ github.event_name == 'pull_request' && '--dry-run' || '' }}
+      run: |
+        python scripts/upload_to_huggingface.py \
+          --base="${{ steps.range.outputs.base }}" \
+          --head="${{ steps.range.outputs.head }}" \
+          --commit-message="Mirror ${GITHUB_SHA::7} from github.com/${GITHUB_REPOSITORY}" \
+          --summary-file="${GITHUB_STEP_SUMMARY}" \
+          ${DRY_RUN_FLAG}
