@@ -14,6 +14,12 @@ on:
     # gating on the "Update submission" step.
     types: [opened, synchronize, reopened, labeled, unlabeled]
 
+# One in-flight run per PR. New events (pushes, label toggles) cancel
+# the prior run so we are not paying twice for things like LFS checkouts.
+concurrency:
+  group: submission-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 env:
   ORD_SCHEMA_TAG: v0.6.3
 
