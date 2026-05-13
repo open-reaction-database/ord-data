@@ -29,17 +29,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout ord-data
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         ref: ${{ github.event.pull_request.head.sha }}
         lfs: true
     - name: Checkout ord-schema
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         repository: Open-Reaction-Database/ord-schema
         ref: ${{ env.ORD_SCHEMA_TAG }}
         path: ord-schema
-    - uses: actions/setup-python@v4
+    - uses: actions/setup-python@v5
       with:
         python-version: '3.11'
     - name: Install ord_schema
@@ -62,7 +62,7 @@ jobs:
   check_file_types:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Add upstream for comparisons to HEAD
       run: |
         cd "${GITHUB_WORKSPACE}"
@@ -93,7 +93,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout ord-data
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         ref: ${{ github.event.pull_request.head.sha }}
         lfs: true
@@ -106,7 +106,7 @@ jobs:
         git fetch --no-tags --prune --depth=1 upstream \
           +refs/heads/*:refs/remotes/upstream/*
     - name: Checkout ord-schema
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         repository: Open-Reaction-Database/ord-schema
         ref: ${{ env.ORD_SCHEMA_TAG }}
@@ -125,7 +125,7 @@ jobs:
         echo "NUM_CHANGED_FILES=${LOCAL_NUM_CHANGED}" >> $GITHUB_ENV
         echo "Found ${LOCAL_NUM_CHANGED} changed dataset files"
         cat changed_data_files.txt
-    - uses: actions/setup-python@v4
+    - uses: actions/setup-python@v5
       with:
         python-version: '3.11'
       if: env.NUM_CHANGED_FILES != '0'
