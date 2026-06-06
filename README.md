@@ -6,25 +6,35 @@
 
 ## Getting the Data
 
-**We recommend downloading the dataset from
-[Hugging Face](https://huggingface.co/datasets/open-reaction-database/ord-data)
-instead of cloning this repository with Git LFS.** GitHub LFS bandwidth is a
-shared, limited resource, and heavy cloning traffic can exhaust our monthly
-quota and block downloads for everyone. The Hugging Face mirror has no such
-limit.
+The datasets live under [`data/`](data) and are stored with
+[Git LFS](https://git-lfs.com/). LFS reads are redirected to the
+[Hugging Face mirror](https://huggingface.co/datasets/open-reaction-database/ord-data)
+via [`.lfsconfig`](.lfsconfig), so dataset objects are fetched from Hugging
+Face's CDN rather than from GitHub's shared (and limited) LFS bandwidth. This is
+automatic — you do not need to configure anything.
 
-### Option 1 (recommended): Download from Hugging Face
+### Option 1: Clone the repository
+
+```bash
+git clone https://github.com/open-reaction-database/ord-data.git
+```
+
+With [Git LFS](https://git-lfs.com/) installed, this pulls every dataset object
+from the Hugging Face mirror and gives you the full Git history with the data in
+place.
+
+### Option 2: Download only the data (a subset, or without Git history)
 
 ```bash
 pip install -r scripts/requirements.txt
 python scripts/download_from_huggingface.py
 ```
 
-The script mirrors the `data/` directory from the Hugging Face dataset into
-your local checkout. Pass `--allow-pattern 'data/4d/*.pb.gz'` (repeatable) to
-download only a subset, or `--output-dir <path>` to write somewhere other
-than the repository root. If you don't need the Git history, you can also
-clone this repo *without* LFS objects and then run the script:
+The script mirrors the `data/` directory from the Hugging Face dataset into your
+local checkout. Pass `--allow-pattern 'data/4d/*.pb.gz'` (repeatable) to download
+only a subset, or `--output-dir <path>` to write somewhere other than the
+repository root. To skip LFS entirely during the clone and fetch the data
+afterward:
 
 ```bash
 GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/open-reaction-database/ord-data.git
@@ -32,12 +42,13 @@ cd ord-data
 python scripts/download_from_huggingface.py
 ```
 
-### Option 2: Clone with Git LFS
+You can also browse and download datasets directly from the
+[Hugging Face dataset page](https://huggingface.co/datasets/open-reaction-database/ord-data).
 
-If you have access to Git LFS bandwidth and need the `.pb.gz` files in place
-as part of a normal clone, install [Git LFS](https://git-lfs.github.com)
-before cloning. Please prefer Option 1 when possible so we don't exhaust the
-shared LFS quota.
+For how this LFS / Hugging Face mirror setup works (and what it means for
+contributors), see
+[Git LFS and the Hugging Face mirror](#git-lfs-and-the-hugging-face-mirror)
+below.
 
 ## Data Manipulation
 
@@ -91,6 +102,31 @@ rxn_json = json.loads(
 
 print(f"We have converted the {input_fname} to JSON format shown as below, \n{rxn_json}")
 ```
+
+## Git LFS and the Hugging Face mirror
+
+Dataset files under [`data/`](data) are stored with Git LFS. Clone and fork traffic was dominating GitHub's shared LFS bandwidth quota, so the repository is configured to keep that traffic off GitHub while leaving GitHub authoritative for the data:
+
+- **Reads come from Hugging Face.** [`.lfsconfig`](.lfsconfig) points `lfs.url` at the [Hugging Face mirror](https://huggingface.co/datasets/open-reaction-database/ord-data), so clones and forks fetch LFS objects from HF's CDN instead of GitHub.
+- **GitHub remains the source of truth.** LFS objects are always written to GitHub (storage there is fine; only download bandwidth was the problem), and the [mirror workflow](.github/workflows/huggingface_mirror.yml) copies them to Hugging Face after every merge to `main`. Hugging Face is purely a read replica — every object is always retrievable from GitHub.
+- **LFS is scoped to `data/`** (see [`.gitattributes`](.gitattributes)). A new dataset staged at the repository root is an ordinary Git file, so submissions can be pushed from a fork with no LFS configuration; the submission workflow turns the file into an LFS object when it moves it into `data/`.
+
+### For contributors
+
+- **Submitting a new dataset:** nothing special is required — stage your file at the repository root and open a PR (see [CONTRIBUTING.md](CONTRIBUTING.md) and the [Submission Workflow](https://docs.open-reaction-database.org/en/latest/submissions.html)).
+- **Editing a file that already lives under `data/` from a fork:** that file is an LFS object, so point LFS uploads at your own fork once before pushing (you cannot write to the canonical repository's LFS store):
+
+  ```bash
+  git config lfs.pushurl https://github.com/<your-username>/ord-data.git/info/lfs
+  ```
+
+### For maintainers (CI)
+
+Freshly pushed objects are not on the Hugging Face mirror until the post-merge mirror job runs, so CI and the mirror override the read endpoint back to GitHub at runtime (`git config lfs.url …`):
+
+- [`validation.yml`](.github/workflows/validation.yml) pulls only each matrix shard's objects from GitHub, sparsely, instead of the whole dataset in every job.
+- [`submission.yml`](.github/workflows/submission.yml) reads from GitHub so fork and branch submissions are validated before their bytes reach Hugging Face.
+- [`huggingface_mirror.yml`](.github/workflows/huggingface_mirror.yml) reads the to-be-mirrored objects from GitHub.
 
 ## Contributing
 
