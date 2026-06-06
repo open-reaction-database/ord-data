@@ -32,7 +32,14 @@ jobs:
       uses: actions/checkout@v4
       with:
         ref: ${{ github.event.pull_request.head.sha }}
-        lfs: true
+        lfs: false
+    # .lfsconfig redirects clone/fetch LFS reads to the Hugging Face mirror;
+    # read from GitHub instead. The reactions badge counts every dataset, and a
+    # PR's bytes are not mirrored to HF until it merges to main.
+    - name: Fetch LFS objects from GitHub
+      run: |
+        git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
+        git lfs pull
     - name: Checkout ord-schema
       uses: actions/checkout@v4
       with:
@@ -96,7 +103,16 @@ jobs:
       uses: actions/checkout@v4
       with:
         ref: ${{ github.event.pull_request.head.sha }}
-        lfs: true
+        lfs: false
+    # .lfsconfig redirects clone/fetch LFS reads to the Hugging Face mirror;
+    # read from GitHub instead. Fork/branch submissions are validated here
+    # before their bytes are mirrored to HF (which only happens on merge to
+    # main). Uploads from the "Update submission" step still use the GitHub
+    # pushurl from .lfsconfig.
+    - name: Fetch LFS objects from GitHub
+      run: |
+        git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
+        git lfs pull
     - name: Add upstream for comparisons to HEAD
       run: |
         cd "${GITHUB_WORKSPACE}"

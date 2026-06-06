@@ -1,4 +1,10 @@
-ord_data-* filter=lfs diff=lfs merge=lfs -text
-*.pb filter=lfs diff=lfs merge=lfs -text
-*.pb.gz filter=lfs diff=lfs merge=lfs -text
-*.parquet filter=lfs diff=lfs merge=lfs -text
+# Published datasets under data/ are stored in Git LFS; clones fetch the objects
+# from the Hugging Face mirror (see .lfsconfig) to conserve GitHub bandwidth.
+#
+# LFS is scoped to data/ on purpose: a new submission staged at the repository
+# root is an ordinary git file with no LFS filter, so it can be pushed from a
+# fork without any LFS configuration. The submission workflow renames it into
+# data/ (process_dataset --update), at which point it becomes an LFS object.
+data/**/*.pb filter=lfs diff=lfs merge=lfs -text
+data/**/*.pb.gz filter=lfs diff=lfs merge=lfs -text
+data/**/*.parquet filter=lfs diff=lfs merge=lfs -text

@@ -69,6 +69,11 @@ jobs:
 
     - run: pip install -r scripts/requirements.txt
 
+    # .lfsconfig points clone/fetch LFS reads at this same HF mirror, but the
+    # objects we are about to upload are not on HF yet — fetch them from GitHub.
+    - name: Point Git LFS reads at GitHub
+      run: git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
+
     - name: Mirror to Hugging Face
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
