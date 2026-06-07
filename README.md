@@ -105,16 +105,34 @@ print(f"We have converted the {input_fname} to JSON format shown as below, \n{rx
 
 ## Git LFS and the Hugging Face mirror
 
-Dataset files under [`data/`](data) are stored with Git LFS. Clone and fork traffic was dominating GitHub's shared LFS bandwidth quota, so the repository is configured to keep that traffic off GitHub while leaving GitHub authoritative for the data:
+Dataset files under [`data/`](data) are stored with Git LFS. Clone and fork
+traffic was dominating GitHub's shared LFS bandwidth quota, so the repository is
+configured to keep that traffic off GitHub while leaving GitHub authoritative
+for the data:
 
-- **Reads come from Hugging Face.** [`.lfsconfig`](.lfsconfig) points `lfs.url` at the [Hugging Face mirror](https://huggingface.co/datasets/open-reaction-database/ord-data), so clones and forks fetch LFS objects from HF's CDN instead of GitHub.
-- **GitHub remains the source of truth.** LFS objects are always written to GitHub (storage there is fine; only download bandwidth was the problem), and the [mirror workflow](.github/workflows/huggingface_mirror.yml) copies them to Hugging Face after every merge to `main`. Hugging Face is purely a read replica — every object is always retrievable from GitHub.
-- **LFS is scoped to `data/`** (see [`.gitattributes`](.gitattributes)). A new dataset staged at the repository root is an ordinary Git file, so submissions can be pushed from a fork with no LFS configuration; the submission workflow turns the file into an LFS object when it moves it into `data/`.
+- **Reads come from Hugging Face.** [`.lfsconfig`](.lfsconfig) points `lfs.url`
+  at the
+  [Hugging Face mirror](https://huggingface.co/datasets/open-reaction-database/ord-data),
+  so clones and forks fetch LFS objects from HF's CDN instead of GitHub.
+- **GitHub remains the source of truth.** LFS objects are always written to
+  GitHub (storage there is fine; only download bandwidth was the problem), and
+  the [mirror workflow](.github/workflows/huggingface_mirror.yml) copies them to
+  Hugging Face after every merge to `main`. Hugging Face is purely a read
+  replica — every object is always retrievable from GitHub.
+- **LFS is scoped to `data/`** (see [`.gitattributes`](.gitattributes)). A new
+  dataset staged at the repository root is an ordinary Git file, so submissions
+  can be pushed from a fork with no LFS configuration; the submission workflow
+  turns the file into an LFS object when it moves it into `data/`.
 
 ### For contributors
 
-- **Submitting a new dataset:** nothing special is required — stage your file at the repository root and open a PR (see [CONTRIBUTING.md](CONTRIBUTING.md) and the [Submission Workflow](https://docs.open-reaction-database.org/en/latest/submissions.html)).
-- **Editing a file that already lives under `data/` from a fork:** that file is an LFS object, so point LFS uploads at your own fork once before pushing (you cannot write to the canonical repository's LFS store):
+- **Submitting a new dataset:** nothing special is required — stage your file at
+  the repository root and open a PR (see [CONTRIBUTING.md](CONTRIBUTING.md) and
+  the
+  [Submission Workflow](https://docs.open-reaction-database.org/en/latest/submissions.html)).
+- **Editing a file that already lives under `data/` from a fork:** that file is
+  an LFS object, so point LFS uploads at your own fork once before pushing (you
+  cannot write to the canonical repository's LFS store):
 
   ```bash
   git config lfs.pushurl https://github.com/<your-username>/ord-data.git/info/lfs
@@ -122,11 +140,17 @@ Dataset files under [`data/`](data) are stored with Git LFS. Clone and fork traf
 
 ### For maintainers (CI)
 
-Freshly pushed objects are not on the Hugging Face mirror until the post-merge mirror job runs, so CI and the mirror override the read endpoint back to GitHub at runtime (`git config lfs.url …`):
+Freshly pushed objects are not on the Hugging Face mirror until the post-merge
+mirror job runs, so CI and the mirror override the read endpoint back to GitHub
+at runtime (`git config lfs.url …`):
 
-- [`validation.yml`](.github/workflows/validation.yml) pulls only each matrix shard's objects from GitHub, sparsely, instead of the whole dataset in every job.
-- [`submission.yml`](.github/workflows/submission.yml) reads from GitHub so fork and branch submissions are validated before their bytes reach Hugging Face.
-- [`huggingface_mirror.yml`](.github/workflows/huggingface_mirror.yml) reads the to-be-mirrored objects from GitHub.
+- [`validation.yml`](.github/workflows/validation.yml) pulls only each matrix
+  shard's objects from GitHub, sparsely, instead of the whole dataset in every
+  job.
+- [`submission.yml`](.github/workflows/submission.yml) reads from GitHub so fork
+  and branch submissions are validated before their bytes reach Hugging Face.
+- [`huggingface_mirror.yml`](.github/workflows/huggingface_mirror.yml) reads the
+  to-be-mirrored objects from GitHub.
 
 ## Contributing
 

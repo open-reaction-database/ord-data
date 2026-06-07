@@ -104,15 +104,6 @@ jobs:
       with:
         ref: ${{ github.event.pull_request.head.sha }}
         lfs: false
-    # .lfsconfig redirects clone/fetch LFS reads to the Hugging Face mirror;
-    # read from GitHub instead. Fork/branch submissions are validated here
-    # before their bytes are mirrored to HF (which only happens on merge to
-    # main). The "Update submission" step's LFS uploads also go to GitHub:
-    # .lfsconfig has no pushurl, so git-lfs falls back to this lfs.url override.
-    - name: Fetch LFS objects from GitHub
-      run: |
-        git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
-        git lfs pull
     - name: Add upstream for comparisons to HEAD
       run: |
         cd "${GITHUB_WORKSPACE}"
@@ -141,6 +132,16 @@ jobs:
         echo "NUM_CHANGED_FILES=${LOCAL_NUM_CHANGED}" >> $GITHUB_ENV
         echo "Found ${LOCAL_NUM_CHANGED} changed dataset files"
         cat changed_data_files.txt
+    # Read LFS from GitHub, not the HF mirror that .lfsconfig points clones at:
+    # submissions are validated before their bytes are mirrored to HF on merge
+    # to main, and the "Update submission" step's uploads reuse this lfs.url
+    # override (.lfsconfig has no pushurl). Skipped when no dataset files
+    # changed, so non-data PRs do not pull the whole repository.
+    - name: Fetch LFS objects from GitHub
+      if: env.NUM_CHANGED_FILES != '0'
+      run: |
+        git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
+        git lfs pull
     - uses: actions/setup-python@v5
       with:
         python-version: '3.11'

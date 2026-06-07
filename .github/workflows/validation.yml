@@ -48,6 +48,11 @@ jobs:
     # just-merged objects are not on HF yet, and pulling only this shard keeps
     # the transfer tiny instead of fetching the whole dataset in every job.
     # The checkout step already configured GitHub credentials for the pull.
+    #
+    # matrix.filter (e.g. data/[0-4][0-4]) is intentionally written to be valid
+    # both as the validate_dataset.py regex below and as an LFS path glob, so it
+    # doubles as the --include pattern here. (The parquet job needs a separate
+    # lfs_include because its filter is a lookahead regex, not a glob.)
     - name: Fetch LFS shard from GitHub
       env:
         FILTER: ${{ matrix.filter }}
