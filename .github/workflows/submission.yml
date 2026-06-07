@@ -24,48 +24,6 @@ env:
   ORD_SCHEMA_TAG: v0.6.3
 
 jobs:
-  count_reactions:
-    if: ${{ ! github.event.pull_request.head.repo.fork }}
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout ord-data
-      uses: actions/checkout@v4
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
-        lfs: false
-    # .lfsconfig redirects clone/fetch LFS reads to the Hugging Face mirror;
-    # read from GitHub instead. The reactions badge counts every dataset, and a
-    # PR's bytes are not mirrored to HF until it merges to main.
-    - name: Fetch LFS objects from GitHub
-      run: |
-        git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
-        git lfs pull
-    - name: Checkout ord-schema
-      uses: actions/checkout@v4
-      with:
-        repository: Open-Reaction-Database/ord-schema
-        ref: ${{ env.ORD_SCHEMA_TAG }}
-        path: ord-schema
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-    - name: Install ord_schema
-      run: |
-        cd "${GITHUB_WORKSPACE}/ord-schema"
-        python -m pip install --upgrade pip
-        python -m pip install wheel
-        python -m pip install .
-    - name: Update reactions badge
-      run: |
-        cd "${GITHUB_WORKSPACE}"
-        python ord-schema/badges/reactions.py --root=data --output=badges/reactions.svg
-        git add badges/reactions.svg
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        # Fail gracefully if there is nothing to commit.
-        git commit -a -m "Update badges" || (( $? == 1 ))
-        git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_HEAD_REF}"
-
   check_file_types:
     runs-on: ubuntu-latest
     steps:

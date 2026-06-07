@@ -1,7 +1,6 @@
 # ord-data
 
 ![](https://github.com/Open-Reaction-Database/ord-data/workflows/Validation/badge.svg)
-![](https://raw.githubusercontent.com/Open-Reaction-Database/ord-data/main/badges/reactions.svg)
 [![DOI](https://zenodo.org/badge/283813042.svg)](https://zenodo.org/badge/latestdoi/283813042)
 
 ## Getting the Data
