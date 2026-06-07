@@ -39,8 +39,6 @@ jobs:
         fetch-depth: 0
         lfs: false
         ref: ${{ github.event.pull_request.head.sha || github.sha }}
-      env:
-        GIT_LFS_SKIP_SMUDGE: 1
 
     - id: range
       env:
