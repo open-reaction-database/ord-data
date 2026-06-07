@@ -107,8 +107,8 @@ jobs:
     # .lfsconfig redirects clone/fetch LFS reads to the Hugging Face mirror;
     # read from GitHub instead. Fork/branch submissions are validated here
     # before their bytes are mirrored to HF (which only happens on merge to
-    # main). Uploads from the "Update submission" step still use the GitHub
-    # pushurl from .lfsconfig.
+    # main). The "Update submission" step's LFS uploads also go to GitHub:
+    # .lfsconfig has no pushurl, so git-lfs falls back to this lfs.url override.
     - name: Fetch LFS objects from GitHub
       run: |
         git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
