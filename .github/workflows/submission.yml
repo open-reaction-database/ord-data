@@ -93,13 +93,22 @@ jobs:
     # Read LFS from GitHub, not the HF mirror that .lfsconfig points clones at:
     # submissions are validated before their bytes are mirrored to HF on merge
     # to main, and the "Update submission" step's uploads reuse this lfs.url
-    # override (.lfsconfig has no pushurl). Skipped when no dataset files
-    # changed, so non-data PRs do not pull the whole repository.
-    - name: Fetch LFS objects from GitHub
+    # override (.lfsconfig has no pushurl). Only the changed datasets are
+    # pulled: process_dataset reads just these inputs, and base revisions of
+    # modified files are smudged on demand through the same lfs.url, so the
+    # rest of the repository is never needed. Skipped entirely when no dataset
+    # files changed.
+    - name: Fetch changed LFS objects from GitHub
       if: env.NUM_CHANGED_FILES != '0'
       run: |
+        cd "${GITHUB_WORKSPACE}"
         git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
-        git lfs pull
+        # changed_data_files.txt holds `git diff --name-status` lines; the last
+        # field is the current path (the new path for renames). Paths without an
+        # LFS object at HEAD (root submissions, deletions) are no-ops here.
+        INCLUDE="$(awk '{print $NF}' changed_data_files.txt | paste -sd, -)"
+        echo "Pulling LFS objects for changed datasets: ${INCLUDE}"
+        git lfs pull --include="${INCLUDE}"
     - uses: actions/setup-python@v5
       with:
         python-version: '3.11'
