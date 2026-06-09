@@ -22,7 +22,18 @@ from pathlib import Path
 from huggingface_hub import CommitOperationAdd, CommitOperationDelete, HfApi
 
 HF_REPO_ID = "open-reaction-database/ord-data"
-DATA_PATHSPEC = "data/**"
+# Files mirrored to the HF dataset. Datasets + dataset-card-relevant docs +
+# .gitattributes (so LFS rules stay in sync). GitHub-side infrastructure
+# (.github/, scripts/, badges/) is intentionally excluded.
+MIRROR_PATHSPECS = (
+    "data/**",
+    ".gitattributes",
+    "README.md",
+    "LICENSE",
+    "CITATION.cff",
+    "CONTRIBUTING.md",
+    "CONTRIBUTORS.md",
+)
 
 
 @dataclass
@@ -62,7 +73,7 @@ def compute_plan(base: str, head: str, repo_root: Path) -> DiffPlan:
     diff = subprocess.run(
         [
             "git", "diff", "--name-status", "--find-renames",
-            "--diff-filter=ACMRD", base, head, "--", DATA_PATHSPEC,
+            "--diff-filter=ACMRD", base, head, "--", *MIRROR_PATHSPECS,
         ],
         cwd=repo_root, check=True, capture_output=True, text=True,
     )

@@ -16,7 +16,16 @@ on:
       - main
   pull_request:
     paths:
+      # Mirrored content (must stay in sync with MIRROR_PATHSPECS in
+      # scripts/upload_to_huggingface.py).
       - 'data/**'
+      - '.gitattributes'
+      - 'README.md'
+      - 'LICENSE'
+      - 'CITATION.cff'
+      - 'CONTRIBUTING.md'
+      - 'CONTRIBUTORS.md'
+      # Mirror tooling.
       - '.github/workflows/huggingface_mirror.yml'
       - 'scripts/upload_to_huggingface.py'
       - 'scripts/requirements.txt'
