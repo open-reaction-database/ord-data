@@ -95,3 +95,15 @@ print(f"We have converted the {input_fname} to JSON format shown as below, \n{rx
 ## Contributing
 
 Please see the [Submission Workflow](https://docs.open-reaction-database.org/en/latest/submissions.html) documentation. Make sure to review the [license](https://github.com/open-reaction-database/ord-data/blob/main/LICENSE) and [terms of use](https://github.com/open-reaction-database/ord-data/blob/main/CONTRIBUTING.md#terms-of-use).
+
+## Maintainer notes
+
+### Skipping the `Update submission` step
+
+The submission workflow's `Update submission` step runs `process_dataset.py
+--update --cleanup` to assign reaction/dataset IDs and timestamps to newly
+submitted files and rewrite them to the canonical on-disk format. For
+maintainer PRs that touch dataset files but should *not* be re-processed
+this way — e.g., format conversions or mass migrations of already-finalized
+data — apply the `skip-update-submission` label to the PR. The validation
+side of the workflow still runs.

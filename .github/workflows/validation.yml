@@ -11,13 +11,21 @@ on:
       # Runs when this file is modified in a PR.
       - '.github/workflows/validation.yml'
 
+# One in-flight matrix per PR (or per push to main). Subsequent events
+# cancel the prior run so we are not paying twice for the LFS-heavy
+# validate_pb / validate_parquet shards.
+concurrency:
+  group: validation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 env:
-  ORD_SCHEMA_TAG: v0.6.1
+  ORD_SCHEMA_TAG: v0.6.3
 
 jobs:
-  validate_database:
+  validate_pb:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         filter: [
           'data/[0-4][0-4]',
@@ -32,16 +40,16 @@ jobs:
         ]
     steps:
     - name: Checkout ord-data
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         lfs: true
     - name: Checkout ord-schema
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         repository: Open-Reaction-Database/ord-schema
         ref: ${{ env.ORD_SCHEMA_TAG }}
         path: ord-schema
-    - uses: actions/setup-python@v4
+    - uses: actions/setup-python@v5
       with:
         python-version: '3.11'
     - name: Install ord_schema
@@ -59,6 +67,46 @@ jobs:
           --input="data/*/*.pb*" \
           --filter="${FILTER}" \
           --n_jobs=4
+
+  validate_parquet:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Un-sharded USPTO grants parquet — single ~1.7M-reaction file.
+          # Saturates the 4-CPU runner via row-group parallelism in
+          # validate_dataset.py.
+          - name: uspto
+            filter: 'ord_dataset-1158e351757f315b93cbcbe7bc55f38e\.parquet$'
+          # Everything else (negative lookahead on the USPTO parquet id).
+          - name: other
+            filter: '^(?!.*ord_dataset-1158e351757f315b93cbcbe7bc55f38e).*\.parquet$'
+    steps:
+    - name: Checkout ord-data
+      uses: actions/checkout@v4
+      with:
+        lfs: true
+    - name: Checkout ord-schema
+      uses: actions/checkout@v4
+      with:
+        repository: Open-Reaction-Database/ord-schema
+        ref: ${{ env.ORD_SCHEMA_TAG }}
+        path: ord-schema
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - name: Install ord_schema
+      run: |
+        cd "${GITHUB_WORKSPACE}/ord-schema"
+        python -m pip install --upgrade pip
+        python -m pip install wheel
+        python -m pip install .
+    - name: Validate parquet datasets
+      env:
+        FILTER: ${{ matrix.filter }}
+      run: |
+        cd "${GITHUB_WORKSPACE}"
         python ./ord-schema/ord_schema/scripts/validate_dataset.py \
           --input="data/*/*.parquet" \
           --filter="${FILTER}" \
