@@ -183,12 +183,12 @@ Python ≥3.11. Because it reads every `.pb.gz` to classify by name, pull the
 inputs first:
 
 ```bash
-uv venv --python 3.11 && source .venv/bin/activate   # or: python -m venv .venv
-pip install "ord-schema==0.6.3"                       # match ORD_SCHEMA_TAG
+uv venv --python 3.11 && source .venv/bin/activate  # or: python -m venv .venv
+pip install "ord-schema==0.6.3"  # match ORD_SCHEMA_TAG
 
-git lfs pull --include="data/**/*.pb.gz"    # the converter reads pb.gz content
-python scripts/convert_to_parquet.py --dry-run    # preview what it will write
-python scripts/convert_to_parquet.py              # write the Parquet siblings
+git lfs pull --include="data/**/*.pb.gz"  # the converter reads pb.gz content
+python scripts/convert_to_parquet.py --dry-run  # preview what it will write
+python scripts/convert_to_parquet.py  # write the Parquet siblings
 ```
 
 Commit the new `.parquet` files (they become LFS objects), push them (see
@@ -207,7 +207,7 @@ auth is the GitHub CLI:
 
 ```bash
 git config lfs.pushurl https://github.com/open-reaction-database/ord-data.git/info/lfs
-gh auth setup-git        # let git use your gh token for github.com over HTTPS
+gh auth setup-git  # let git use your gh token for github.com over HTTPS
 git push -u origin <branch>
 ```
 
