@@ -42,7 +42,23 @@ jobs:
     - name: Checkout ord-data
       uses: actions/checkout@v4
       with:
-        lfs: true
+        lfs: false
+    # .lfsconfig redirects clone/fetch LFS reads to the Hugging Face mirror to
+    # save GitHub bandwidth, but CI reads from GitHub: on a push to main the
+    # just-merged objects are not on HF yet, and pulling only this shard keeps
+    # the transfer tiny instead of fetching the whole dataset in every job.
+    # The checkout step already configured GitHub credentials for the pull.
+    #
+    # matrix.filter (e.g. data/[0-4][0-4]) is intentionally written to be valid
+    # both as the validate_dataset.py regex below and as an LFS path glob, so it
+    # doubles as the --include pattern here. (The parquet job needs a separate
+    # lfs_include because its filter is a lookahead regex, not a glob.)
+    - name: Fetch LFS shard from GitHub
+      env:
+        FILTER: ${{ matrix.filter }}
+      run: |
+        git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
+        git lfs pull --include="${FILTER}/*.pb*"
     - name: Checkout ord-schema
       uses: actions/checkout@v4
       with:
@@ -79,14 +95,31 @@ jobs:
           # validate_dataset.py.
           - name: uspto
             filter: 'ord_dataset-1158e351757f315b93cbcbe7bc55f38e\.parquet$'
+            lfs_include: 'data/*/ord_dataset-1158e351757f315b93cbcbe7bc55f38e.parquet'
+            lfs_exclude: ''
           # Everything else (negative lookahead on the USPTO parquet id).
           - name: other
             filter: '^(?!.*ord_dataset-1158e351757f315b93cbcbe7bc55f38e).*\.parquet$'
+            lfs_include: 'data/*/*.parquet'
+            lfs_exclude: 'data/*/ord_dataset-1158e351757f315b93cbcbe7bc55f38e.parquet'
     steps:
     - name: Checkout ord-data
       uses: actions/checkout@v4
       with:
-        lfs: true
+        lfs: false
+    # See validate_pb: read this shard's LFS objects from GitHub rather than the
+    # Hugging Face mirror that .lfsconfig points clones at.
+    - name: Fetch LFS shard from GitHub
+      env:
+        LFS_INCLUDE: ${{ matrix.lfs_include }}
+        LFS_EXCLUDE: ${{ matrix.lfs_exclude }}
+      run: |
+        git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
+        if [[ -n "${LFS_EXCLUDE}" ]]; then
+          git lfs pull --include="${LFS_INCLUDE}" --exclude="${LFS_EXCLUDE}"
+        else
+          git lfs pull --include="${LFS_INCLUDE}"
+        fi
     - name: Checkout ord-schema
       uses: actions/checkout@v4
       with:
