@@ -1,0 +1,24 @@
+# Git LFS endpoint configuration.
+#
+# Clone/fetch reads are served by the Hugging Face mirror so that public clones
+# and forks do not consume GitHub's LFS bandwidth quota. GitHub remains the
+# source of truth: objects are written to GitHub and mirrored to HF after each
+# merge to main.
+#
+# There is intentionally NO `pushurl` here. A committed HTTPS pushurl breaks
+# pushes from SSH remotes (git-lfs would try HTTPS auth), and a committed SSH
+# pushurl breaks CI (no SSH key). Instead, the actors that push LFS objects set
+# the write endpoint themselves:
+#   * CI and the mirror run `git config lfs.url <github>` (this also points
+#     their reads at GitHub, where freshly pushed objects live before they are
+#     mirrored to HF).
+#   * A contributor editing an existing data/ object from a fork runs
+#     `git config lfs.pushurl https://github.com/<user>/ord-data.git/info/lfs`.
+# New submissions are staged at the repository root (not LFS; see
+# .gitattributes), so the common contribution path needs none of this.
+#
+# locksverify is disabled because the HF mirror does not implement the LFS
+# locking API.
+[lfs]
+	url = https://huggingface.co/datasets/open-reaction-database/ord-data.git/info/lfs
+	locksverify = false

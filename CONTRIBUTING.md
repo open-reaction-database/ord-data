@@ -19,7 +19,22 @@ Great idea! Please [create a feature request](https://github.com/Open-Reaction-D
 Excellent! Please follow the
 [Submission Workflow](https://ord-schema.readthedocs.io/en/latest/submissions.html)
 in the documentation.
-   
+
+**Note on large files (Git LFS):** Published datasets under `data/` are stored
+with [Git LFS](https://git-lfs.com/), and clones fetch the objects from the
+[Hugging Face mirror](https://huggingface.co/datasets/open-reaction-database/ord-data)
+to conserve GitHub bandwidth. A new submission staged at the repository root is
+an ordinary file, so you can push it from a fork with no LFS setup; the
+submission workflow moves it into `data/` for you.
+
+Only if you push changes to a file that already lives under `data/` (i.e. an LFS
+object) do you need to point LFS uploads at your own fork first, since you cannot
+write to the canonical repository's LFS store:
+
+```
+git config lfs.pushurl https://github.com/<your-username>/ord-data.git/info/lfs
+```
+
 ## Terms of Use
 
 By submitting Contributions (as defined below) to this project, you agree that
