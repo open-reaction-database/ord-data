@@ -179,13 +179,29 @@ skips any output that already exists — so it is safe to re-run and writes only
 what is missing.
 
 It needs `ord_schema` at the pinned `ORD_SCHEMA_TAG` (see the workflows) and
-Python ≥3.11. Because it reads every `.pb.gz` to classify by name, pull the
-inputs first:
+Python ≥3.11:
 
 ```bash
 uv venv --python 3.11 && source .venv/bin/activate  # or: python -m venv .venv
 pip install "ord-schema==0.6.3"  # match ORD_SCHEMA_TAG
+```
 
+For the usual case — backfilling a handful of newly-submitted datasets — pass
+their `.pb.gz` paths explicitly. Only those are converted 1:1, so you pull just
+the named objects (a de-shard group member is refused, since it must be merged,
+not converted alone):
+
+```bash
+git lfs pull --include="data/dc/ord_dataset-<id>.pb.gz"  # only what you convert
+python scripts/convert_to_parquet.py --dry-run data/dc/ord_dataset-<id>.pb.gz
+python scripts/convert_to_parquet.py data/dc/ord_dataset-<id>.pb.gz
+```
+
+To (re-)convert the whole corpus instead, run it with no arguments: it globs
+every `data/**/*.pb.gz` and merges the de-shard groups, which means reading
+every input, so pull them all first:
+
+```bash
 git lfs pull --include="data/**/*.pb.gz"  # the converter reads pb.gz content
 python scripts/convert_to_parquet.py --dry-run  # preview what it will write
 python scripts/convert_to_parquet.py  # write the Parquet siblings
