@@ -16,6 +16,12 @@ SHA-256 of the sorted source ids, so re-runs produce the same output filename.
 Outputs are placed at ``data/<2-hex-prefix>/ord_dataset-<id>.parquet`` where
 the prefix matches the (existing or new) dataset_id. Existing outputs are
 skipped, so the script is safe to re-run.
+
+By default the script globs every ``data/**/*.pb.gz`` (so de-shard groups can be
+merged), which requires all inputs to be present. To backfill a few new
+singleton datasets without pulling the whole corpus, pass their pb.gz paths as
+positional arguments: only those are converted (1:1), and any path belonging to
+a de-shard group is refused.
 """
 
 import argparse
@@ -88,16 +94,22 @@ def _load_metadata(path: Path) -> dataset_pb2.Dataset:
     return message_helpers.load_message(str(path), dataset_pb2.Dataset)
 
 
+def _merge_spec_for(meta: dataset_pb2.Dataset) -> "MergeSpec | None":
+    """Return the MergeSpec a dataset belongs to, or None if it is a singleton."""
+    for spec in MERGE_SPECS:
+        if spec.matches(meta):
+            return spec
+    return None
+
+
 def _classify(inputs: list[Path]) -> tuple[dict[str, list[Path]], list[Path]]:
     """Split inputs into (merge groups, singletons) by name."""
     groups: dict[str, list[Path]] = {spec.label: [] for spec in MERGE_SPECS}
     singletons: list[Path] = []
     for path in inputs:
-        meta = _load_metadata(path)
-        for spec in MERGE_SPECS:
-            if spec.matches(meta):
-                groups[spec.label].append(path)
-                break
+        spec = _merge_spec_for(_load_metadata(path))
+        if spec is not None:
+            groups[spec.label].append(path)
         else:
             singletons.append(path)
     return groups, singletons
@@ -146,8 +158,39 @@ def _convert_group(spec: MergeSpec, sources: list[Path], repo_root: Path, dry_ru
     return f"wrote          {out.relative_to(repo_root)}  [{spec.label}, {len(sources)} sources, {total} rxns]"
 
 
+def _convert_explicit(paths: list[Path], repo_root: Path, dry_run: bool) -> None:
+    """Convert specific pb.gz files as singletons, skipping the global glob.
+
+    Each input must be a singleton (its name matches no MERGE_SPEC); a member of
+    a de-shard group is refused, since converting it alone would write a wrong
+    standalone parquet instead of being merged. This lets a backfill pull only
+    the named objects rather than every ``data/**/*.pb.gz``.
+    """
+    for path in paths:
+        if not path.is_file():
+            sys.exit(f"{path}: not a file")
+        spec = _merge_spec_for(_load_metadata(path))
+        if spec is not None:
+            sys.exit(
+                f"{path}: belongs to de-shard group {spec.label!r}; run a full "
+                "conversion (no explicit inputs) so it is merged correctly."
+            )
+        logger.info(_convert_singleton(path, repo_root, dry_run))
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "inputs",
+        nargs="*",
+        type=Path,
+        help=(
+            "Specific .pb.gz files to convert as singletons. When given, only "
+            "these are processed (no global glob, no de-shard merging), so you "
+            "need only pull the named objects. Each must not belong to a "
+            "de-shard group. Default: glob every data/**/*.pb.gz."
+        ),
+    )
     parser.add_argument(
         "--repo-root",
         type=Path,
@@ -162,6 +205,10 @@ def main() -> None:
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO, format="%(message)s")
+
+    if args.inputs:
+        _convert_explicit(args.inputs, args.repo_root, args.dry_run)
+        return
 
     inputs = sorted(args.repo_root.glob(INPUT_GLOB))
     if not inputs:
