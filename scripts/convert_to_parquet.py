@@ -115,8 +115,15 @@ def _classify(inputs: list[Path]) -> tuple[dict[str, list[Path]], list[Path]]:
     return groups, singletons
 
 
-def _convert_singleton(src: Path, repo_root: Path, dry_run: bool) -> str:
-    dataset = message_helpers.load_message(str(src), dataset_pb2.Dataset)
+def _convert_singleton(
+    src: Path,
+    repo_root: Path,
+    dry_run: bool,
+    *,
+    dataset: dataset_pb2.Dataset | None = None,
+) -> str:
+    if dataset is None:
+        dataset = message_helpers.load_message(str(src), dataset_pb2.Dataset)
     if not dataset.dataset_id:
         raise ValueError(f"{src}: missing dataset_id")
     out = _output_path(repo_root, dataset.dataset_id)
@@ -165,17 +172,27 @@ def _convert_explicit(paths: list[Path], repo_root: Path, dry_run: bool) -> None
     a de-shard group is refused, since converting it alone would write a wrong
     standalone parquet instead of being merged. This lets a backfill pull only
     the named objects rather than every ``data/**/*.pb.gz``.
+
+    Validation is a separate first pass so an invalid path aborts the whole
+    batch before any parquet is written (all-or-nothing). Each input is parsed
+    once and the loaded Dataset is reused for conversion.
     """
+    loaded: list[tuple[Path, dataset_pb2.Dataset]] = []
     for path in paths:
         if not path.is_file():
             sys.exit(f"{path}: not a file")
-        spec = _merge_spec_for(_load_metadata(path))
+        dataset = message_helpers.load_message(str(path), dataset_pb2.Dataset)
+        spec = _merge_spec_for(dataset)
         if spec is not None:
             sys.exit(
                 f"{path}: belongs to de-shard group {spec.label!r}; run a full "
                 "conversion (no explicit inputs) so it is merged correctly."
             )
-        logger.info(_convert_singleton(path, repo_root, dry_run))
+        if not dataset.dataset_id:
+            sys.exit(f"{path}: missing dataset_id")
+        loaded.append((path, dataset))
+    for path, dataset in loaded:
+        logger.info(_convert_singleton(path, repo_root, dry_run, dataset=dataset))
 
 
 def main() -> None:
