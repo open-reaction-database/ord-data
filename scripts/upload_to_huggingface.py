@@ -314,7 +314,11 @@ def main() -> None:
         print("Nothing to mirror.")
         return
     if args.dry_run:
-        print("Dry run: not fetching LFS or contacting Hugging Face.")
+        if composed_readme is not None:
+            _, front_matter, _ = composed_readme.split("---\n", 2)
+            print("\nComposed dataset card front matter (license, tags, configs):")
+            print(front_matter.rstrip())
+        print("\nDry run: not fetching LFS or contacting Hugging Face.")
         return
 
     token = os.environ.get("HF_TOKEN")
