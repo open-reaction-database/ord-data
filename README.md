@@ -30,7 +30,7 @@ python scripts/download_from_huggingface.py
 ```
 
 The script mirrors the `data/` directory from the Hugging Face dataset into your
-local checkout. Pass `--allow-pattern 'data/4d/*.pb.gz'` (repeatable) to download
+local checkout. Pass `--allow-pattern 'data/4d/*.parquet'` (repeatable) to download
 only a subset, or `--output-dir <path>` to write somewhere other than the
 repository root. To skip LFS entirely during the clone and fetch the data
 afterward:
@@ -51,18 +51,19 @@ below.
 
 ## Data Manipulation
 
-The `ord-data` repository contains the Open Reaction Database (ORD) in Google's Protobuf binary
-format, which is stored in the [`data`](data) directory. Currently, all the data are stored in e.g.
-*.pb.gz format (compressed Protobuf binary files) for the sake of efficiency. The user can convert
-the data into human readable text format, *.pb.txt.
+The `ord-data` repository contains the Open Reaction Database (ORD) as Parquet files stored in the
+[`data`](data) directory. Each file holds one dataset: the reactions are serialized Protobuf
+messages (one per row) and the dataset name/description/ID travel in the file metadata, so a
+dataset round-trips losslessly through `ord_schema`. The user can convert the data into human
+readable text format, *.pbtxt.
 
 ```python
 # import requirements
-from ord_schema.message_helpers import load_message, write_message
-from ord_schema.proto import dataset_pb2
+from ord_schema import parquet_dataset
+from ord_schema.message_helpers import write_message
 
-# load the binary ord file
-dataset = load_message("input_fname.pb.gz", dataset_pb2.Dataset)
+# load the parquet file as a Dataset proto
+dataset = parquet_dataset.read_dataset("input_fname.parquet")
 # save the ord file as human readable text
 write_message(dataset, "output_fname.pbtxt")
 ```
@@ -73,15 +74,11 @@ We can also convert ORD data into JSON format.
 # import requirements
 import json
 
-from ord_schema.message_helpers import load_message, write_message
-from ord_schema.proto import dataset_pb2
+from ord_schema import parquet_dataset
 from google.protobuf.json_format import MessageToJson
 
-input_fname = "sample_file.pb.gz"
-dataset = load_message(
-    input_fname,
-    dataset_pb2.Dataset,
-)
+input_fname = "sample_file.parquet"
+dataset = parquet_dataset.read_dataset(input_fname)
 
 # take one reaction message from the dataset for example
 rxn = dataset.reactions[0]
@@ -169,26 +166,24 @@ side of the workflow still runs.
 
 ### Converting datasets to Parquet
 
-Datasets are stored as `.pb.gz`; most also have a Parquet sibling. New
-submissions arrive as `.pb.gz` only, so their Parquet versions are backfilled
-with [`scripts/convert_to_parquet.py`](scripts/convert_to_parquet.py). The
-script globs every `data/**/*.pb.gz`, merges the known de-shard groups (the
-`uspto-grants-YYYY_MM` monthly buckets and the `C8SC04228D` shards) into single
-outputs, converts everything else 1:1 (carrying the existing `dataset_id`), and
-skips any output that already exists — so it is safe to re-run and writes only
-what is missing.
+Published datasets are stored as Parquet only. Submissions that arrive as
+`.pb.gz` are converted with
+[`scripts/convert_to_parquet.py`](scripts/convert_to_parquet.py): the script
+globs every `data/**/*.pb.gz`, converts each 1:1 (carrying the existing
+`dataset_id`), and skips any output that already exists — so it is safe to
+re-run and writes only what is missing. After converting, delete the `.pb.gz`
+inputs so only the Parquet versions are committed.
 
 It needs `ord_schema` at the pinned `ORD_SCHEMA_TAG` (see the workflows) and
-Python ≥3.11. Because it reads every `.pb.gz` to classify by name, pull the
-inputs first:
+Python ≥3.11:
 
 ```bash
 uv venv --python 3.11 && source .venv/bin/activate  # or: python -m venv .venv
 pip install "ord-schema==0.6.3"  # match ORD_SCHEMA_TAG
 
-git lfs pull --include="data/**/*.pb.gz"  # the converter reads pb.gz content
 python scripts/convert_to_parquet.py --dry-run  # preview what it will write
-python scripts/convert_to_parquet.py  # write the Parquet siblings
+python scripts/convert_to_parquet.py  # write the Parquet versions
+git rm data/*/*.pb.gz  # keep only the Parquet versions
 ```
 
 Commit the new `.parquet` files (they become LFS objects), push them (see

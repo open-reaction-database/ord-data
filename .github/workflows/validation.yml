@@ -1,4 +1,4 @@
-# Runs process_dataset.py on all files in the database.
+# Runs validate_dataset.py on all datasets in the database.
 
 name: Validation
 
@@ -13,7 +13,7 @@ on:
 
 # One in-flight matrix per PR (or per push to main). Subsequent events
 # cancel the prior run so we are not paying twice for the LFS-heavy
-# validate_pb / validate_parquet shards.
+# validate_parquet shards.
 concurrency:
   group: validation-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -22,68 +22,6 @@ env:
   ORD_SCHEMA_TAG: v0.6.3
 
 jobs:
-  validate_pb:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        filter: [
-          'data/[0-4][0-4]',
-          'data/[0-4][5-9]',
-          'data/[0-4][a-f]',
-          'data/[5-9][0-4]',
-          'data/[5-9][5-9]',
-          'data/[5-9][a-f]',
-          'data/[a-f][0-4]',
-          'data/[a-f][5-9]',
-          'data/[a-f][a-f]',
-        ]
-    steps:
-    - name: Checkout ord-data
-      uses: actions/checkout@v4
-      with:
-        lfs: false
-    # .lfsconfig redirects clone/fetch LFS reads to the Hugging Face mirror to
-    # save GitHub bandwidth, but CI reads from GitHub: on a push to main the
-    # just-merged objects are not on HF yet, and pulling only this shard keeps
-    # the transfer tiny instead of fetching the whole dataset in every job.
-    # The checkout step already configured GitHub credentials for the pull.
-    #
-    # matrix.filter (e.g. data/[0-4][0-4]) is intentionally written to be valid
-    # both as the validate_dataset.py regex below and as an LFS path glob, so it
-    # doubles as the --include pattern here. (The parquet job needs a separate
-    # lfs_include because its filter is a lookahead regex, not a glob.)
-    - name: Fetch LFS shard from GitHub
-      env:
-        FILTER: ${{ matrix.filter }}
-      run: |
-        git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
-        git lfs pull --include="${FILTER}/*.pb*"
-    - name: Checkout ord-schema
-      uses: actions/checkout@v4
-      with:
-        repository: Open-Reaction-Database/ord-schema
-        ref: ${{ env.ORD_SCHEMA_TAG }}
-        path: ord-schema
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-    - name: Install ord_schema
-      run: |
-        cd "${GITHUB_WORKSPACE}/ord-schema"
-        python -m pip install --upgrade pip
-        python -m pip install wheel
-        python -m pip install .
-    - name: Validate datasets
-      env:
-        FILTER: ${{ matrix.filter }}
-      run: |
-        cd "${GITHUB_WORKSPACE}"
-        python ./ord-schema/ord_schema/scripts/validate_dataset.py \
-          --input="data/*/*.pb*" \
-          --filter="${FILTER}" \
-          --n_jobs=4
-
   validate_parquet:
     runs-on: ubuntu-latest
     strategy:
@@ -107,8 +45,11 @@ jobs:
       uses: actions/checkout@v4
       with:
         lfs: false
-    # See validate_pb: read this shard's LFS objects from GitHub rather than the
-    # Hugging Face mirror that .lfsconfig points clones at.
+    # .lfsconfig redirects clone/fetch LFS reads to the Hugging Face mirror to
+    # save GitHub bandwidth, but CI reads from GitHub: on a push to main the
+    # just-merged objects are not on HF yet, and pulling only this shard keeps
+    # the transfer small instead of fetching the whole dataset in every job.
+    # The checkout step already configured GitHub credentials for the pull.
     - name: Fetch LFS shard from GitHub
       env:
         LFS_INCLUDE: ${{ matrix.lfs_include }}

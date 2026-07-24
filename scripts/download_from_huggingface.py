@@ -42,7 +42,7 @@ def main() -> None:
         help=(
             "Glob pattern(s) of files to include (repeatable). "
             f"Default: {DEFAULT_ALLOW_PATTERNS}. "
-            "Example: --allow-pattern 'data/4d/*.pb.gz'"
+            "Example: --allow-pattern 'data/4d/*.parquet'"
         ),
     )
     args = parser.parse_args()
