@@ -106,23 +106,23 @@ def compute_plan(base: str, head: str, repo_root: Path) -> DiffPlan:
 
 
 def write_summary(
-    plan: DiffPlan, composed_readme: str | None, path: Path | None
+    uploads: list[str],
+    deletions: list[str],
+    composed_readme: str | None,
+    path: Path | None,
 ) -> None:
     if path is None:
         return
-    uploads_line = f"- Uploads: **{len(plan.uploads)}**"
-    if composed_readme is not None:
-        uploads_line += " + composed `README.md`"
     lines = [
         f"## Hugging Face mirror plan ({HF_REPO_ID})",
         "",
-        uploads_line,
-        f"- Deletions: **{len(plan.deletions)}**",
+        f"- Uploads: **{len(uploads)}**",
+        f"- Deletions: **{len(deletions)}**",
     ]
-    if plan.uploads:
-        lines += ["", "### Uploads", "", "```", *plan.uploads, "```"]
-    if plan.deletions:
-        lines += ["", "### Deletions", "", "```", *plan.deletions, "```"]
+    if uploads:
+        lines += ["", "### Uploads", "", "```", *uploads, "```"]
+    if deletions:
+        lines += ["", "### Deletions", "", "```", *deletions, "```"]
     if composed_readme is not None:
         # Fence with four backticks so the README's own ``` blocks survive.
         lines += [
@@ -298,15 +298,17 @@ def main() -> None:
     # can change it; recompose the card whenever there is anything to mirror.
     composed_readme = compose_readme(args.repo_root) if has_changes else None
 
-    print(f"Planned uploads ({len(plan.uploads)}):")
-    for p in plan.uploads:
+    uploads = list(plan.uploads)
+    if composed_readme is not None:
+        uploads.append("README.md (composed dataset card)")
+
+    print(f"Planned uploads ({len(uploads)}):")
+    for p in uploads:
         print(f"  + {p}")
     print(f"Planned deletions ({len(plan.deletions)}):")
     for p in plan.deletions:
         print(f"  - {p}")
-    if composed_readme is not None:
-        print("  + README.md (composed dataset card)")
-    write_summary(plan, composed_readme, args.summary_file)
+    write_summary(uploads, plan.deletions, composed_readme, args.summary_file)
 
     if not has_changes:
         print("Nothing to mirror.")
