@@ -1,0 +1,29 @@
+# Run `uv run pre-commit install` once to enable these hooks locally.
+# See https://pre-commit.com.
+repos:
+  # Code in this repository is Apache-2.0 (LICENSE-CODE); the data under data/
+  # is CC-BY-SA-4.0 (LICENSE). This stamps the code license onto source files.
+  - repo: https://github.com/google/addlicense
+    rev: v1.2.0
+    hooks:
+      - id: addlicense
+        args:
+          - -c
+          - Open Reaction Database Project Authors
+          - -l
+          - apache
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.0
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: ty-check
+        name: ty check (scripts, tests)
+        entry: uv run ty check
+        language: system
+        pass_filenames: false

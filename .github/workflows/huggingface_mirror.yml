@@ -1,3 +1,17 @@
+# Copyright 2026 Open Reaction Database Project Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 # Mirrors dataset changes to the Hugging Face dataset
 # open-reaction-database/ord-data.
 #
@@ -28,7 +42,8 @@ on:
       # Mirror tooling.
       - '.github/workflows/huggingface_mirror.yml'
       - 'scripts/upload_to_huggingface.py'
-      - 'scripts/requirements.txt'
+      - 'pyproject.toml'
+      - 'uv.lock'
 
 jobs:
   mirror:
@@ -61,11 +76,13 @@ jobs:
         echo "head=${HEAD}" >> "${GITHUB_OUTPUT}"
         echo "Diff range: ${BASE}..${HEAD}"
 
-    - uses: actions/setup-python@v5
+    - uses: astral-sh/setup-uv@v7
       with:
-        python-version: '3.11'
+        enable-cache: true
 
-    - run: pip install -r scripts/requirements.txt
+    # --no-dev: this job only moves bytes, so it needs huggingface-hub and
+    # pyyaml but not the schema library (and its rdkit/pandas chain).
+    - run: uv sync --no-dev --locked
 
     # .lfsconfig points clone/fetch LFS reads at this same HF mirror, but the
     # objects we are about to upload are not on HF yet — fetch them from GitHub.
@@ -77,7 +94,7 @@ jobs:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
         DRY_RUN_FLAG: ${{ github.event_name == 'pull_request' && '--dry-run' || '' }}
       run: |
-        python scripts/upload_to_huggingface.py \
+        uv run python scripts/upload_to_huggingface.py \
           --base="${{ steps.range.outputs.base }}" \
           --head="${{ steps.range.outputs.head }}" \
           --commit-message="Mirror ${GITHUB_SHA::7} from github.com/${GITHUB_REPOSITORY}" \

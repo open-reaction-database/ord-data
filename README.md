@@ -25,9 +25,12 @@ place.
 ### Option 2: Download only the data (a subset, or without Git history)
 
 ```bash
-pip install -r scripts/requirements.txt
+pip install huggingface_hub
 python scripts/download_from_huggingface.py
 ```
+
+(If you use [uv](https://docs.astral.sh/uv/), `uv run scripts/download_from_huggingface.py`
+installs the dependencies for you.)
 
 The script mirrors the `data/` directory from the Hugging Face dataset into your
 local checkout. Pass `--allow-pattern 'data/4d/*.pb.gz'` (repeatable) to download
@@ -99,7 +102,9 @@ rxn_json = json.loads(
     )
 )
 
-print(f"We have converted the {input_fname} to JSON format shown as below, \n{rxn_json}")
+print(
+    f"We have converted the {input_fname} to JSON format shown as below, \n{rxn_json}"
+)
 ```
 
 ## Git LFS and the Hugging Face mirror
@@ -221,3 +226,26 @@ git -c lfs.pushurl=https://github.com/open-reaction-database/ord-data.git/info/l
 
 Reads stay on the mirror; only your uploads go to GitHub. On merge to `main`,
 `huggingface_mirror.yml` copies the new objects to Hugging Face.
+
+## License
+
+This repository carries two licenses, because it holds two different kinds of
+thing:
+
+| what | license | file |
+| --- | --- | --- |
+| The datasets under `data/` (and the repository metadata describing them) | [CC-BY-SA-4.0](LICENSE) | `LICENSE` |
+| The code under `scripts/`, `tests/`, and `.github/` | [Apache-2.0](LICENSE-CODE) | `LICENSE-CODE` |
+
+The data license is the one that matters if you are using ORD data; it is what
+`CITATION.cff` and the [Hugging Face
+mirror](https://huggingface.co/datasets/open-reaction-database/ord-data) declare,
+and it is unchanged.
+
+The code license is stated separately because Creative Commons licenses are not
+intended for software — [Creative Commons recommends against
+it](https://creativecommons.org/faq/#can-i-apply-a-creative-commons-license-to-software)
+— and because the project's other code repositories, including
+[ord-schema](https://github.com/Open-Reaction-Database/ord-schema), are already
+Apache-2.0. Every source file under `scripts/` and `tests/` carries an Apache
+header.
