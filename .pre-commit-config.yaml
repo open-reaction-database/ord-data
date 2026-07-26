@@ -16,11 +16,16 @@
 # See https://pre-commit.com.
 repos:
   # Code in this repository is Apache-2.0 (LICENSE-CODE); the data under data/
-  # is CC-BY-SA-4.0 (LICENSE). This stamps the code license onto source files.
+  # is CC-BY-SA-4.0 (LICENSE), as are the metadata files that describe it
+  # (README.md, CITATION.cff, CONTRIBUTING.md). Restrict the hook to code so it
+  # cannot stamp the code license onto CC-licensed content: addlicense skips
+  # those files today only because it does not recognize their extensions,
+  # which is not a guarantee worth relying on.
   - repo: https://github.com/google/addlicense
     rev: v1.2.0
     hooks:
       - id: addlicense
+        files: ^(scripts/.*\.py|\.github/.*\.ya?ml|\.pre-commit-config\.yaml)$
         args:
           - -c
           - Open Reaction Database Project Authors
