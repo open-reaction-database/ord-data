@@ -102,8 +102,8 @@ select = [
     "PTH",  # flake8-use-pathlib
     "D",    # pydocstyle (docstrings)
 ]
-# Started empty and grew only from what actually fires; ord-schema's longer list
-# is tuned to code this repository does not have.
+# Only rules that actually fire here are listed; ord-schema's longer list is
+# tuned to code this repository does not have.
 ignore = [
     # COM812 (missing trailing comma) and ISC001 (single-line implicit string
     # concat) conflict with the ruff formatter, which ruff recommends disabling

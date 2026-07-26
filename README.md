@@ -237,14 +237,13 @@ thing:
 | The datasets under `data/` (and the repository metadata describing them) | [CC-BY-SA-4.0](LICENSE) | `LICENSE` |
 | The code under `scripts/` and `.github/` | [Apache-2.0](LICENSE-CODE) | `LICENSE-CODE` |
 
-The data license is the one that matters if you are using ORD data; it is what
-`CITATION.cff` and the [Hugging Face
-mirror](https://huggingface.co/datasets/open-reaction-database/ord-data) declare,
-and it is unchanged.
+If you are using ORD data, CC-BY-SA-4.0 is the license that applies to you; it
+is what `CITATION.cff` and the [Hugging Face
+mirror](https://huggingface.co/datasets/open-reaction-database/ord-data) declare.
 
-The code license is stated separately because Creative Commons licenses are not
+The code carries a separate license because Creative Commons licenses are not
 intended for software — [Creative Commons recommends against
 it](https://creativecommons.org/faq/#can-i-apply-a-creative-commons-license-to-software)
 — and because the project's other code repositories, including
-[ord-schema](https://github.com/Open-Reaction-Database/ord-schema), are already
+[ord-schema](https://github.com/Open-Reaction-Database/ord-schema), are
 Apache-2.0. Every source file under `scripts/` carries an Apache header.
