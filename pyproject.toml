@@ -1,3 +1,17 @@
+# Copyright 2026 Open Reaction Database Project Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 # ord-data is a data repository, not an installable package. This file declares
 # the dependencies of the helper scripts under scripts/ and configures the
 # tooling (pytest, ruff, ty) that runs against them.
@@ -34,10 +48,10 @@ dev = [
 package = false
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
-# scripts/ holds standalone CLIs rather than an installable package, so put it
-# on sys.path instead of importing through a distribution.
-pythonpath = ["scripts"]
+# Tests sit beside the modules they cover (foo.py / foo_test.py), matching
+# ord-schema. scripts/ is not a package, so pytest's prepend import mode puts
+# the directory on sys.path and the bare-name imports resolve.
+testpaths = ["scripts"]
 addopts = "--strict-markers --strict-config"
 
 [tool.ruff]
@@ -112,15 +126,14 @@ ignore = [
 convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
-# scripts/ holds top-level CLI modules, not a package (INP001), and their
-# argparse-driven main() functions need no annotations or module docstrings
-# beyond the ones they already carry.
+# scripts/ holds top-level CLI modules, not a package.
 "scripts/*.py" = ["INP001"]
-# Type annotations add little on test functions; assert is the point of a test.
-"tests/*.py" = ["ANN", "S101", "SLF001", "INP001", "D103"]
+# Type annotations add little on test functions, assert is the point of a test,
+# and reaching into module internals is fine there. Mirrors ord-schema.
+"**/*_test.py" = ["ANN", "S101", "SLF001", "D103"]
 
 [tool.ty.src]
-include = ["scripts", "tests"]
+include = ["scripts"]
 
 [tool.ty.environment]
 # scripts/ is on sys.path at runtime (see tool.pytest.ini_options.pythonpath),
