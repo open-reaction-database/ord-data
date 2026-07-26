@@ -246,4 +246,4 @@ intended for software — [Creative Commons recommends against
 it](https://creativecommons.org/faq/#can-i-apply-a-creative-commons-license-to-software)
 — and because the project's other code repositories, including
 [ord-schema](https://github.com/Open-Reaction-Database/ord-schema), are
-Apache-2.0. Every source file under `scripts/` carries an Apache header.
+Apache-2.0.
