@@ -20,7 +20,7 @@ directory from the Hugging Face dataset at
 https://huggingface.co/datasets/open-reaction-database/ord-data.
 
 Usage:
-    pip install -r scripts/requirements.txt
+    pip install huggingface_hub
     python scripts/download_from_huggingface.py
 
 Optional flags let you restrict the download to a subset of files or
@@ -37,6 +37,7 @@ DEFAULT_ALLOW_PATTERNS = ["data/**"]
 
 
 def main() -> None:
+    """Downloads the data/ tree from the Hugging Face mirror."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--output-dir",

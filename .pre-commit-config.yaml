@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Run `pre-commit install` once to enable these hooks locally.
+# Run `uv run pre-commit install` once to enable these hooks locally.
 # See https://pre-commit.com.
 repos:
   # Code in this repository is Apache-2.0 (LICENSE-CODE); the data under data/
@@ -25,9 +25,24 @@ repos:
     rev: v1.2.0
     hooks:
       - id: addlicense
-        files: ^(scripts/.*\.py|\.github/.*\.ya?ml|\.pre-commit-config\.yaml)$
+        files: ^(scripts/.*\.py|\.github/.*\.ya?ml|\.pre-commit-config\.yaml|pyproject\.toml)$
         args:
           - -c
           - Open Reaction Database Project Authors
           - -l
           - apache
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.0
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: ty-check
+        name: ty check (scripts)
+        entry: uv run ty check
+        language: system
+        pass_filenames: false

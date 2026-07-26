@@ -25,9 +25,12 @@ place.
 ### Option 2: Download only the data (a subset, or without Git history)
 
 ```bash
-pip install -r scripts/requirements.txt
+pip install huggingface_hub
 python scripts/download_from_huggingface.py
 ```
+
+(If you use [uv](https://docs.astral.sh/uv/), `uv run scripts/download_from_huggingface.py`
+installs the dependencies for you.)
 
 The script mirrors the `data/` directory from the Hugging Face dataset into your
 local checkout. Pass `--allow-pattern 'data/4d/*.pb.gz'` (repeatable) to download
@@ -99,7 +102,9 @@ rxn_json = json.loads(
     )
 )
 
-print(f"We have converted the {input_fname} to JSON format shown as below, \n{rxn_json}")
+print(
+    f"We have converted the {input_fname} to JSON format shown as below, \n{rxn_json}"
+)
 ```
 
 ## Git LFS and the Hugging Face mirror
