@@ -230,7 +230,7 @@ Reads stay on the mirror; only your uploads go to GitHub. On merge to `main`,
 ## License
 
 This repository carries two licenses, because it holds two different kinds of
-thing:
+things:
 
 | what | license | file |
 | --- | --- | --- |
