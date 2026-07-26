@@ -221,3 +221,23 @@ git -c lfs.pushurl=https://github.com/open-reaction-database/ord-data.git/info/l
 
 Reads stay on the mirror; only your uploads go to GitHub. On merge to `main`,
 `huggingface_mirror.yml` copies the new objects to Hugging Face.
+
+## License
+
+This repository carries two licenses, because it holds both data and code:
+
+| what | license | file |
+| --- | --- | --- |
+| The datasets under `data/` (and the repository metadata describing them) | [CC-BY-SA-4.0](LICENSE) | `LICENSE` |
+| The code under `scripts/` and `.github/` | [Apache-2.0](LICENSE-CODE) | `LICENSE-CODE` |
+
+If you are using ORD data, CC-BY-SA-4.0 is the license that applies to you; it
+is what `CITATION.cff` and the [Hugging Face
+mirror](https://huggingface.co/datasets/open-reaction-database/ord-data) declare.
+
+The code carries a separate license because Creative Commons licenses are not
+intended for software — [Creative Commons recommends against
+it](https://creativecommons.org/faq/#can-i-apply-a-creative-commons-license-to-software)
+— and because the project's other code repositories, including
+[ord-schema](https://github.com/Open-Reaction-Database/ord-schema), are
+Apache-2.0.
