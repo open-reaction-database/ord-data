@@ -31,11 +31,16 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = [
-    # Scripts that read or write ORD datasets need the schema library; it is a
-    # dev dependency rather than a runtime one so the mirror job, which only
-    # moves bytes, can `uv sync --no-dev` without pulling rdkit/pandas.
+# Scripts that read or write ORD datasets need the schema library. These are a
+# group rather than runtime dependencies so the mirror job, which only moves
+# bytes, can `uv sync --no-dev` without pulling rdkit/pandas.
+pipeline = [
     "ord-schema>=0.8",
+    # process_dataset.py posts submission summaries back to a GitHub issue.
+    "pygithub>=1.51",
+]
+dev = [
+    { include-group = "pipeline" },
     "pre-commit>=4",
     "pytest>=8.0",
     "pytest-xdist>=3.5",
@@ -120,6 +125,21 @@ ignore = [
     "EM101", "EM102",   # don't force a msg= variable before every raise
     "FBT001", "FBT002", # boolean positional args exist in these APIs already
     "C901", "PLR0912", "PLR0913", "PLR0915",  # complexity caps -> churn
+    "G004",             # f-strings in logging calls are fine
+    "PLR2004",          # "magic value" flags ordinary numeric literals
+    "TD003",            # don't force issue links on informal TODOs
+    "FIX002",           # TODO comments are allowed
+    # S101 (assert): `assert x is not None  # Type hint` narrows optional
+    # returns from the CML parser; not a security concern here.
+    "S101",
+    # RUF001 flags intentional non-ASCII in chemistry text, e.g. the "˜"/"×"/"−"
+    # unit-replacement table that normalizes patent prose.
+    "RUF001",
+    # PTH207 (glob.glob -> Path.glob) flags CLIs that glob arbitrary
+    # user-supplied patterns (--input_pattern, possibly absolute or recursive).
+    # Path.glob requires a base dir plus a relative pattern and rejects absolute
+    # patterns, so there is no clean equivalent.
+    "PTH207",
 ]
 
 [tool.ruff.lint.pydocstyle]
@@ -128,9 +148,9 @@ convention = "google"
 [tool.ruff.lint.per-file-ignores]
 # scripts/ holds top-level CLI modules, not a package.
 "scripts/*.py" = ["INP001"]
-# Type annotations add little on test functions, assert is the point of a test,
-# and reaching into module internals is fine there. Mirrors ord-schema.
-"**/*_test.py" = ["ANN", "S101", "SLF001", "D103"]
+# Type annotations and docstrings add little on test functions and fixtures, and
+# reaching into module internals is fine there. Mirrors ord-schema.
+"**/*_test.py" = ["ANN", "SLF001", "D"]
 
 [tool.ty.src]
 include = ["scripts"]

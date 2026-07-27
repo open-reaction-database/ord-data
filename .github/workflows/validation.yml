@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Runs process_dataset.py on all files in the database.
+# Runs ord-schema's validate_dataset.py over every dataset in the repository.
 
 name: Validation
 
