@@ -81,7 +81,9 @@ jobs:
         enable-cache: true
 
     # --no-dev: this job only moves bytes, so it needs huggingface-hub and
-    # pyyaml but not the schema library (and its rdkit/pandas chain).
+    # pyyaml but not the schema library (and its rdkit/pandas chain). The run
+    # step below pairs this with --no-sync, since a bare `uv run` would sync the
+    # default groups and reinstall what --no-dev just left out.
     - run: uv sync --no-dev --locked
 
     # .lfsconfig points clone/fetch LFS reads at this same HF mirror, but the
@@ -94,7 +96,7 @@ jobs:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
         DRY_RUN_FLAG: ${{ github.event_name == 'pull_request' && '--dry-run' || '' }}
       run: |
-        uv run python scripts/upload_to_huggingface.py \
+        uv run --no-sync python scripts/upload_to_huggingface.py \
           --base="${{ steps.range.outputs.base }}" \
           --head="${{ steps.range.outputs.head }}" \
           --commit-message="Mirror ${GITHUB_SHA::7} from github.com/${GITHUB_REPOSITORY}" \
