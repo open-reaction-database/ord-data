@@ -61,13 +61,13 @@ the data into human readable text format, *.pb.txt.
 
 ```python
 # import requirements
-from ord_schema.message_helpers import load_message, write_message
+from ord_schema.message_helpers import load_message, save_message
 from ord_schema.proto import dataset_pb2
 
 # load the binary ord file
 dataset = load_message("input_fname.pb.gz", dataset_pb2.Dataset)
 # save the ord file as human readable text
-write_message(dataset, "output_fname.pbtxt")
+save_message(dataset, "output_fname.pbtxt")
 ```
 
 We can also convert ORD data into JSON format.
@@ -76,7 +76,7 @@ We can also convert ORD data into JSON format.
 # import requirements
 import json
 
-from ord_schema.message_helpers import load_message, write_message
+from ord_schema.message_helpers import load_message
 from ord_schema.proto import dataset_pb2
 from google.protobuf.json_format import MessageToJson
 
