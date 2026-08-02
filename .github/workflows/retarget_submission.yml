@@ -93,8 +93,16 @@ jobs:
         if gh api --method POST "repos/${REPO}/git/refs" \
              -f "ref=refs/heads/${BRANCH}" -f "sha=${SHA}" >/dev/null 2>&1; then
           echo "Created ${BRANCH} at ${SHA}"
+        # A submission closed and reopened after main moved on would otherwise
+        # be compared against a branch cut from an older main. force=false
+        # makes this a fast-forward or nothing, so a branch that already
+        # carries a merged submission is left exactly as it is. Here the ref is
+        # in the URL, where "#" has to be escaped.
+        elif gh api --method PATCH "repos/${REPO}/git/refs/heads/%23${PR_NUMBER}" \
+               -f "sha=${SHA}" -F "force=false" >/dev/null 2>&1; then
+          echo "Fast-forwarded the existing ${BRANCH} to ${SHA}"
         else
-          echo "${BRANCH} already exists; reusing it"
+          echo "Reusing ${BRANCH} unchanged; it carries commits of its own"
         fi
         # Authoritative step: if the branch could not be created above, this
         # fails loudly rather than leaving the submission pointed at main.
