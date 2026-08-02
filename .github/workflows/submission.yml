@@ -171,10 +171,16 @@ jobs:
     # the pull request's working tree as its cwd -- it shells out to git show,
     # git diff, git mv, and git rm against it. The directory is untracked, which
     # neither `git diff` against upstream/main nor `git commit -a` picks up.
+    # By branch rather than by base.sha: that field records the base as it
+    # stood when the pull request was opened or last synchronized, so a
+    # submission branch brought up to date afterwards still reports the old
+    # commit -- which can predate the pipeline entirely and leave nothing here
+    # to install. The branch name resolves to whatever it currently points at,
+    # and it names a branch in this repository, never the fork.
     - name: Check out the pipeline from the base branch
       uses: actions/checkout@v4
       with:
-        ref: ${{ github.event.pull_request.base.sha }}
+        ref: ${{ github.event.pull_request.base.ref }}
         path: pipeline
         lfs: false
       if: env.NUM_CHANGED_FILES != '0'
