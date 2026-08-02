@@ -175,9 +175,11 @@ side of the workflow still runs.
 
 ### Converting datasets to Parquet
 
-Datasets are stored as `.pb.gz`; most also have a Parquet sibling. New
-submissions arrive as `.pb.gz` only, so their Parquet versions are backfilled
-with [`scripts/convert_to_parquet.py`](scripts/convert_to_parquet.py). The
+New submissions are written as Parquet, the standard format. Older datasets are
+stored as `.pb.gz`; most already have a Parquet sibling, and the rest are
+backfilled with [`scripts/convert_to_parquet.py`](scripts/convert_to_parquet.py).
+Editing an existing `.pb.gz` leaves it as `.pb.gz` — converting the corpus is
+this script's job, not a side effect of changing one dataset. The
 script globs every `data/**/*.pb.gz`, merges the known de-shard groups (the
 `uspto-grants-YYYY_MM` monthly buckets and the `C8SC04228D` shards) into single
 outputs, converts everything else 1:1 (carrying the existing `dataset_id`), and

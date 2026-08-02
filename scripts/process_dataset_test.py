@@ -129,10 +129,10 @@ class TestProcessDataset:
             pathlib.Path(dirname)
             / "data"
             / "00"
-            / "ord_dataset-00000000000000000000000000000000.pb.gz"
+            / "ord_dataset-00000000000000000000000000000000.parquet"
         )
         assert expected_output.exists()
-        dataset = message_helpers.load_message(expected_output, dataset_pb2.Dataset)
+        dataset = parquet.load_dataset(expected_output)
         assert len(dataset.reactions) == 1
         assert dataset.reactions[0].reaction_id.startswith("ord-")
 
@@ -399,12 +399,12 @@ class TestSubmissionWorkflow:
         # Check for assignment of dataset and reaction IDs.
         filenames.pop(filenames.index(dataset_filename))
         assert len(filenames) == 1
-        dataset = message_helpers.load_message(filenames[0], dataset_pb2.Dataset)
+        dataset = parquet.load_dataset(filenames[0])
         assert dataset.dataset_id
         assert len(dataset.reactions) == 1
         assert dataset.reactions[0].reaction_id
-        # Check for binary output.
-        assert filenames[0].endswith(".pb.gz")
+        # Submissions are normalized to the canonical on-disk format.
+        assert filenames[0].endswith(".parquet")
 
     @pytest.mark.parametrize("suffix", [".binpb", ".txtpb"])
     def test_add_dataset_with_protobuf_canonical_suffix(self, setup, suffix):
@@ -436,12 +436,12 @@ class TestSubmissionWorkflow:
         assert not this_dataset_filename.exists()
         assert len(filenames) == 2
         filenames.pop(filenames.index(dataset_filename))
-        written = message_helpers.load_message(filenames[0], dataset_pb2.Dataset)
+        written = parquet.load_dataset(filenames[0])
         assert written.dataset_id
         assert len(written.reactions) == 1
         assert written.reactions[0].reaction_id
         # Submissions are normalized to the canonical on-disk format.
-        assert filenames[0].endswith(".pb.gz")
+        assert filenames[0].endswith(".parquet")
 
     def test_add_parquet_dataset_with_cleanup(self, setup):
         # Exercises --cleanup + .parquet input + .parquet output: the
@@ -516,7 +516,7 @@ class TestSubmissionWorkflow:
         filenames.pop(filenames.index(dataset_filename))
         assert len(filenames) == 2
         for filename in filenames:
-            dataset = message_helpers.load_message(filename, dataset_pb2.Dataset)
+            dataset = parquet.load_dataset(filename)
             assert len(dataset.reactions) == 1
         assert not dataset1_filename.exists()
         assert not dataset2_filename.exists()
@@ -549,7 +549,7 @@ class TestSubmissionWorkflow:
         assert not this_dataset_filename.exists()
         filenames.pop(filenames.index(dataset_filename))
         assert len(filenames) == 1
-        dataset = message_helpers.load_message(filenames[0], dataset_pb2.Dataset)
+        dataset = parquet.load_dataset(filenames[0])
         # Check that existing record IDs for added datasets are not overridden.
         assert dataset.reactions[0].reaction_id == reaction_id
         assert len(dataset.reactions[0].provenance.record_modified) == 0
@@ -579,7 +579,12 @@ class TestSubmissionWorkflow:
         assert added == {"test"}
         assert not removed
         assert changed == {"ord-10aed8b5dffe41fab09f5b2cc9c58ad9"}
+        # Editing a dataset already in the repository leaves it in the format it
+        # has: rewriting it as Parquet would rename a published path and delete
+        # the .pb.gz, which is a corpus-wide decision rather than a side effect
+        # of correcting one dataset. New submissions get the standard format.
         assert filenames == [dataset_filename]
+        assert dataset_filename.endswith(".pb.gz")
         # Check for preservation of dataset and record IDs.
         updated_dataset = message_helpers.load_message(
             dataset_filename, dataset_pb2.Dataset

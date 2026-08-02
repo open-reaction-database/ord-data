@@ -25,6 +25,12 @@ With --update, the script also performs database-specific updates (such as addin
 record IDs) and writes each dataset to its canonical path under data/. With --cleanup,
 it records those input to output moves in git's index. Contributors preparing a dataset
 should validate with ord_schema.scripts.validate_dataset instead.
+
+Output is Parquet. Submissions may still arrive in any accepted format -- the
+serialized-proto suffixes are convenient to produce -- but what lands under data/ is
+Parquet, which supports random access by row group and streaming iteration without
+holding a whole dataset in memory. The .pb.gz files already in data/ stay where they
+are; --output_format overrides this for a one-off conversion.
 """
 
 import argparse
@@ -387,10 +393,20 @@ def run(
                 len(changed),
             )
         if args.update and dataset is not None and is_valid:
+            # New submissions land in the standard format; a dataset already in
+            # the repository keeps the one it has. Rewriting an edited .pb.gz as
+            # Parquet would rename a published path and delete the .pb.gz, which
+            # is convert_to_parquet.py's decision to make over the corpus as a
+            # whole, not a side effect of correcting a typo in one dataset.
+            output_format = args.output_format
+            if not file_status.status.startswith("A"):
+                output_format = (
+                    _dataset_suffix(file_status.filename) or args.output_format
+                )
             _run_updates(
                 datasets_checked,
                 root=args.root,
-                output_format=args.output_format,
+                output_format=output_format,
                 write_errors=args.write_errors,
                 cleanup_files=args.cleanup,
             )
@@ -441,7 +457,9 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--root", default="", help="Root of the repository")
     parser.add_argument(
-        "--output_format", default=".pb.gz", help="Dataset output format"
+        "--output_format",
+        default=".parquet",
+        help="Dataset output format (default: .parquet)",
     )
     parser.add_argument(
         "--write_errors",
