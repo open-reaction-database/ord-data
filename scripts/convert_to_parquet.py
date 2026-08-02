@@ -40,7 +40,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 
-from ord_schema import message_helpers, parquet_dataset
+from ord_schema import message_helpers, parquet
 from ord_schema.proto import dataset_pb2
 
 logger = logging.getLogger(__name__)
@@ -130,7 +130,7 @@ def _convert_singleton(src: Path, repo_root: Path, dry_run: bool) -> str:
     if dry_run:
         return f"would write    {rel}  ({len(dataset.reactions)} rxns)"
     out.parent.mkdir(parents=True, exist_ok=True)
-    parquet_dataset.write_dataset(dataset, str(out))
+    parquet.save_dataset(dataset, str(out))
     return f"wrote          {rel}  ({len(dataset.reactions)} rxns)"
 
 
@@ -153,7 +153,7 @@ def _convert_group(
         return f"would merge    {rel}  [{group}]"
     out.parent.mkdir(parents=True, exist_ok=True)
     total = 0
-    with parquet_dataset.DatasetWriter(
+    with parquet.DatasetWriter(
         str(out),
         name=spec.name,
         description=spec.description,

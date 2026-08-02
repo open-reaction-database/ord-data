@@ -61,13 +61,13 @@ the data into human readable text format, *.pb.txt.
 
 ```python
 # import requirements
-from ord_schema.message_helpers import load_message, write_message
+from ord_schema.message_helpers import load_message, save_message
 from ord_schema.proto import dataset_pb2
 
 # load the binary ord file
 dataset = load_message("input_fname.pb.gz", dataset_pb2.Dataset)
 # save the ord file as human readable text
-write_message(dataset, "output_fname.pbtxt")
+save_message(dataset, "output_fname.pbtxt")
 ```
 
 We can also convert ORD data into JSON format.
@@ -76,7 +76,7 @@ We can also convert ORD data into JSON format.
 # import requirements
 import json
 
-from ord_schema.message_helpers import load_message, write_message
+from ord_schema.message_helpers import load_message
 from ord_schema.proto import dataset_pb2
 from google.protobuf.json_format import MessageToJson
 
@@ -164,8 +164,9 @@ Please see the [Submission Workflow](https://docs.open-reaction-database.org/en/
 
 ### Skipping the `Update submission` step
 
-The submission workflow's `Update submission` step runs `process_dataset.py
---update --cleanup` to assign reaction/dataset IDs and timestamps to newly
+The submission workflow's `Update submission` step runs
+[`scripts/process_dataset.py`](scripts/process_dataset.py) `--update --cleanup`
+to assign reaction/dataset IDs and timestamps to newly
 submitted files and rewrite them to the canonical on-disk format. For
 maintainer PRs that touch dataset files but should *not* be re-processed
 this way — e.g., format conversions or mass migrations of already-finalized
@@ -183,17 +184,15 @@ outputs, converts everything else 1:1 (carrying the existing `dataset_id`), and
 skips any output that already exists — so it is safe to re-run and writes only
 what is missing.
 
-It needs `ord_schema` at the pinned `ORD_SCHEMA_TAG` (see the workflows) and
-Python ≥3.11. Because it reads every `.pb.gz` to classify by name, pull the
-inputs first:
+It needs `ord_schema`, which comes from the `pipeline` dependency group. Because
+it reads every `.pb.gz` to classify by name, pull the inputs first:
 
 ```bash
-uv venv --python 3.11 && source .venv/bin/activate  # or: python -m venv .venv
-pip install "ord-schema==0.6.3"  # match ORD_SCHEMA_TAG
+uv sync --only-group pipeline
 
 git lfs pull --include="data/**/*.pb.gz"  # the converter reads pb.gz content
-python scripts/convert_to_parquet.py --dry-run  # preview what it will write
-python scripts/convert_to_parquet.py  # write the Parquet siblings
+uv run --no-sync python scripts/convert_to_parquet.py --dry-run  # preview
+uv run --no-sync python scripts/convert_to_parquet.py  # write the siblings
 ```
 
 Commit the new `.parquet` files (they become LFS objects), push them (see
