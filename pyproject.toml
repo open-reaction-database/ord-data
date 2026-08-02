@@ -127,14 +127,6 @@ ignore = [
     "C901", "PLR0912", "PLR0913", "PLR0915",  # complexity caps -> churn
     "G004",             # f-strings in logging calls are fine
     "PLR2004",          # "magic value" flags ordinary numeric literals
-    "TD003",            # don't force issue links on informal TODOs
-    "FIX002",           # TODO comments are allowed
-    # S101 (assert): `assert x is not None  # Type hint` narrows optional
-    # returns from the CML parser; not a security concern here.
-    "S101",
-    # RUF001 flags intentional non-ASCII in chemistry text, e.g. the "˜"/"×"/"−"
-    # unit-replacement table that normalizes patent prose.
-    "RUF001",
     # PTH207 (glob.glob -> Path.glob) flags CLIs that glob arbitrary
     # user-supplied patterns (--input_pattern, possibly absolute or recursive).
     # Path.glob requires a base dir plus a relative pattern and rejects absolute
@@ -148,9 +140,10 @@ convention = "google"
 [tool.ruff.lint.per-file-ignores]
 # scripts/ holds top-level CLI modules, not a package.
 "scripts/*.py" = ["INP001"]
-# Type annotations and docstrings add little on test functions and fixtures, and
-# reaching into module internals is fine there. Mirrors ord-schema.
-"**/*_test.py" = ["ANN", "SLF001", "D"]
+# Type annotations and docstrings add little on test functions and fixtures,
+# assert is the point of a test, and reaching into module internals is fine
+# there. Mirrors ord-schema.
+"**/*_test.py" = ["ANN", "S101", "SLF001", "D"]
 
 [tool.ty.src]
 include = ["scripts"]
