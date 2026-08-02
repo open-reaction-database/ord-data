@@ -161,12 +161,16 @@ jobs:
         set -euo pipefail
         # Read live rather than from the event payload, and give the retarget a
         # moment to land: both workflows start from the same event, and on a
-        # newly opened pull request this job can reach here first. Failing on
-        # that race would be unrecoverable -- the retarget repoints with
-        # GITHUB_TOKEN, whose events start no workflow run, so nothing would
-        # re-run this check and the red would stand on a required check until
-        # someone pushed again.
-        for attempt in 1 2 3 4 5 6; do
+        # newly opened pull request this job can reach here first.
+        #
+        # This wait is a backstop, not the mechanism. retarget_submission.yml
+        # repoints with an app token, whose `edited` event re-runs this
+        # workflow, so a retarget slower than the wait below is picked up on
+        # that run instead. Only when the app is unconfigured does the repoint
+        # fall back to GITHUB_TOKEN, which triggers nothing, and the wait
+        # becomes the only thing standing between a slow retarget and a red
+        # that no later event would clear.
+        for attempt in 1 2 3 4 5 6 7 8 9 10 11 12; do
           BASE="$(gh api "repos/${REPO}/pulls/${PR_NUMBER}" --jq '.base.ref')"
           [[ "${BASE}" != "main" ]] && break
           echo "Attempt ${attempt}: still targeting main; waiting for the retarget."

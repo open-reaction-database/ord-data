@@ -34,8 +34,10 @@ name: Retarget Submission
 # checks out no code at all, and in particular never checks out the fork's head,
 # so nothing the contributor controls is read or executed here.
 # `edited` fires when a base branch is changed, so a submission pointed back at
-# main by hand is moved again. This cannot recurse: the repoint below is made
-# with GITHUB_TOKEN, and events from that token start no workflow run.
+# main by hand is moved again. The repoint below does re-trigger this workflow
+# when it is made with the app token, which terminates rather than recurses:
+# the second run reads the base, finds it is no longer main, and stops before
+# changing anything.
 on:
   pull_request_target:
     types: [opened, reopened, edited]
@@ -67,9 +69,26 @@ jobs:
     if: github.event.pull_request.head.repo.fork
     runs-on: ubuntu-latest
     steps:
+    # Repointing with GITHUB_TOKEN starts no workflow run, so submission.yml
+    # never re-runs against the new base and its target-branch check has to
+    # guess how long to wait for this workflow. An app installation token is a
+    # different identity: its `edited` event triggers submission.yml normally,
+    # so a retarget that lands late is picked up rather than missed. Falls back
+    # to GITHUB_TOKEN when the app is unconfigured, where that bounded wait is
+    # the backstop.
+    #
+    # Safe to hold here in a way it would not be in process_submission: this
+    # job checks out nothing, so no fork-controlled file is ever read or run.
+    - name: Mint a token whose repoint can re-trigger CI
+      id: repoint_token
+      if: vars.SUBMISSION_APP_ID != ''
+      uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+      with:
+        app-id: ${{ vars.SUBMISSION_APP_ID }}
+        private-key: ${{ secrets.SUBMISSION_APP_PRIVATE_KEY }}
     - name: Retarget a data submission to an ord-owned branch
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ steps.repoint_token.outputs.token || secrets.GITHUB_TOKEN }}
         # Passed through the environment rather than interpolated into the
         # script. The number is an integer from GitHub, but keeping all event
         # data out of the script text is the habit that makes injection
