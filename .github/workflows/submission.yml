@@ -143,6 +143,24 @@ jobs:
         echo "Current branch: $(git rev-parse --abbrev-ref HEAD)"
         git fetch --no-tags --prune --depth=1 upstream \
           +refs/heads/*:refs/remotes/upstream/*
+    # The "Update submission" step below pushes its own commit. When that push
+    # is authenticated with SUBMISSION_TOKEN it re-runs this workflow, which
+    # would otherwise process an already-processed submission. That is harmless
+    # -- update_dataset only assigns IDs that are not already canonical, so the
+    # second pass changes nothing and the commit below finds nothing to commit
+    # -- but it repeats the LFS pull for no reason, so the re-run validates the
+    # result instead of rewriting it.
+    - name: Identify the author of the head commit
+      id: head_commit
+      run: |
+        cd "${GITHUB_WORKSPACE}"
+        AUTHOR="$(git log -1 --format=%ae)"
+        echo "Head commit author: ${AUTHOR}"
+        if [[ "${AUTHOR}" == "github-actions@github.com" ]]; then
+          echo "from_workflow=true" >> "$GITHUB_OUTPUT"
+        else
+          echo "from_workflow=false" >> "$GITHUB_OUTPUT"
+        fi
     - name: Identify changed files
       # NOTE(kearnes): This sets the NUM_CHANGED_FILES variable.
       run: |
@@ -192,10 +210,41 @@ jobs:
         uv run --no-sync python scripts/process_dataset.py \
           --input_file=changed_data_files.txt \
           --base=upstream/main
+      # Also covers the re-run caused by this workflow's own push: the datasets
+      # are already processed, so the useful check on them is validation.
       if: >-
         env.NUM_CHANGED_FILES != '0' &&
-        github.event.pull_request.head.repo.fork
+        (github.event.pull_request.head.repo.fork ||
+         steps.head_commit.outputs.from_workflow == 'true')
+    # A push authenticated with GITHUB_TOKEN starts no workflow run, so the
+    # commit written by "Update submission" arrives with no CI and the pull
+    # request has to be closed and reopened by hand to get any. An app
+    # installation token is a different identity, so its push triggers runs
+    # normally. The app needs Contents: read and write on this repository alone
+    # -- never on a contributor's fork, since the push below goes to the
+    # "#<number>" branch here.
+    #
+    # Deliberately not minted on a fork's run. "Update submission" is gated on
+    # `! ...fork` and so never uses it there, and this job checks out and
+    # executes scripts/process_dataset.py from the pull request's own checkout:
+    # on a fork that file is contributor-controlled. check_file_types already
+    # rejects a fork submission that touches anything but dataset files, but a
+    # writable token simply should not be in the environment on that path.
+    #
+    # Skipped when the app is not configured, leaving PUSH_TOKEN to fall back to
+    # GITHUB_TOKEN so the step behaves exactly as it does today.
+    - name: Mint a token whose push can re-trigger CI
+      id: push_token
+      if: >-
+        vars.SUBMISSION_APP_ID != '' &&
+        ! github.event.pull_request.head.repo.fork
+      uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+      with:
+        app-id: ${{ vars.SUBMISSION_APP_ID }}
+        private-key: ${{ secrets.SUBMISSION_APP_PRIVATE_KEY }}
     - name: Update submission
+      env:
+        PUSH_TOKEN: ${{ steps.push_token.outputs.token || secrets.GITHUB_TOKEN }}
       run: |
         cd "${GITHUB_WORKSPACE}"
         uv run --no-sync python scripts/process_dataset.py \
@@ -209,12 +258,21 @@ jobs:
         git config user.email github-actions@github.com
         # Fail gracefully if there is nothing to commit.
         git commit -a -m "Update submission" || (( $? == 1 ))
-        git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_HEAD_REF}"
+        # actions/checkout leaves its own credential in an http.extraheader,
+        # which would authenticate this push as GITHUB_TOKEN no matter what the
+        # URL says. Clearing it for this one command is what lets PUSH_TOKEN
+        # actually be the pushing identity.
+        git -c "http.https://github.com/.extraheader=" \
+          push "https://x-access-token:${PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+          "HEAD:${GITHUB_HEAD_REF}"
       # Skipped when the PR carries the `skip-update-submission` label, so
       # maintainer PRs that touch dataset files but do not need ID/timestamp
       # assignment (e.g. format conversions) can land without process_dataset
-      # rewriting the inputs.
+      # rewriting the inputs. Also skipped on the re-run triggered by this
+      # step's own push, which would otherwise reprocess a processed
+      # submission; "Validate submission" above covers that run instead.
       if: >-
         env.NUM_CHANGED_FILES != '0' &&
         ! github.event.pull_request.head.repo.fork &&
+        steps.head_commit.outputs.from_workflow != 'true' &&
         ! contains(github.event.pull_request.labels.*.name, 'skip-update-submission')
