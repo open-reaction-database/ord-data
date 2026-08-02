@@ -34,11 +34,16 @@ name: Retarget Submission
 # checks out no code at all, and in particular never checks out the fork's head,
 # so nothing the contributor controls is read or executed here.
 # `edited` fires when a base branch is changed, so a submission pointed back at
-# main by hand is moved again. This cannot recurse: the repoint below is made
-# with GITHUB_TOKEN, and events from that token start no workflow run.
+# main by hand is moved again. The repoint below does re-trigger this workflow
+# when it is made with the app token, which terminates rather than recurses:
+# the second run reads the base, finds it is no longer main, and stops before
+# changing anything.
 on:
   pull_request_target:
-    types: [opened, reopened, edited]
+    # synchronize is here because this job is a required status check: branch
+    # protection looks for its verdict on the head commit, so every new head
+    # needs one, not just the events that can change the base.
+    types: [opened, reopened, edited, synchronize]
 
 permissions:
   contents: write        # create the "#<number>" branch
@@ -57,22 +62,65 @@ env:
 
 jobs:
   retarget:
-    if: >-
-      github.event.pull_request.head.repo.fork &&
-      github.event.pull_request.base.ref == 'main'
+    # Deliberately unconditional, including for pull requests that are not from
+    # forks and those already on a "#<number>" branch. This job is the required
+    # status check for where a submission is targeted, and a skipped job
+    # satisfies branch protection no better than a failing one, so it has to
+    # reach a verdict on every pull request. The cases it does not act on are
+    # decided in the script and reported as successes.
+    #
+    # Being both the thing that fixes the target branch and the thing that
+    # reports on it is the point: they cannot race each other, so a retarget is
+    # never judged before it has happened.
     runs-on: ubuntu-latest
     steps:
+    # Repointing with GITHUB_TOKEN starts no workflow run, so submission.yml
+    # never re-runs against the new base and its target-branch check has to
+    # guess how long to wait for this workflow. An app installation token is a
+    # different identity: its `edited` event triggers submission.yml normally,
+    # so a retarget that lands late is picked up rather than missed. Falls back
+    # to GITHUB_TOKEN when the app is unconfigured, where that bounded wait is
+    # the backstop.
+    #
+    # Safe to hold here in a way it would not be in process_submission: this
+    # job checks out nothing, so no fork-controlled file is ever read or run.
+    - name: Mint a token whose repoint can re-trigger CI
+      id: repoint_token
+      if: vars.SUBMISSION_APP_ID != ''
+      uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+      with:
+        app-id: ${{ vars.SUBMISSION_APP_ID }}
+        private-key: ${{ secrets.SUBMISSION_APP_PRIVATE_KEY }}
     - name: Retarget a data submission to an ord-owned branch
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ steps.repoint_token.outputs.token || secrets.GITHUB_TOKEN }}
         # Passed through the environment rather than interpolated into the
         # script. The number is an integer from GitHub, but keeping all event
         # data out of the script text is the habit that makes injection
         # impossible rather than merely unlikely.
         PR_NUMBER: ${{ github.event.pull_request.number }}
         REPO: ${{ github.repository }}
+        IS_FORK: ${{ github.event.pull_request.head.repo.fork }}
       run: |
         set -euo pipefail
+        # An unset pattern would not abort inside the `if` below -- set -u does
+        # not fire on a condition -- and would instead read as "no dataset
+        # files", quietly leaving a submission on main.
+        : "${DATASET_FILE_PATTERN:?must be set by the workflow env}"
+        # A branch in this repository can be pushed to directly, so the
+        # submission workflow's update step reaches it and no intermediate
+        # branch is needed.
+        if [[ "${IS_FORK}" != "true" ]]; then
+          echo "Not a fork pull request; the target branch is unconstrained."
+          exit 0
+        fi
+        # Read live rather than from the event payload, which on a reopen can
+        # still describe the base as it stood before an earlier retarget.
+        BASE="$(gh api "repos/${REPO}/pulls/${PR_NUMBER}" --jq '.base.ref')"
+        if [[ "${BASE}" != "main" ]]; then
+          echo "Already targeting ${BASE}; nothing to do."
+          exit 0
+        fi
         # Collected before matching rather than piped straight into grep: under
         # pipefail, `gh | grep -q` can report the SIGPIPE from grep's early exit
         # on a match, which would read as "no dataset files".
