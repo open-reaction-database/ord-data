@@ -95,14 +95,28 @@ jobs:
           echo "Created ${BRANCH} at ${SHA}"
         # A submission closed and reopened after main moved on would otherwise
         # be compared against a branch cut from an older main. force=false
-        # makes this a fast-forward or nothing, so a branch that already
-        # carries a merged submission is left exactly as it is. Here the ref is
-        # in the URL, where "#" has to be escaped.
+        # makes this a fast-forward or nothing, so a branch carrying commits of
+        # its own is never rewritten. Here the ref is in the URL, where "#" has
+        # to be escaped.
         elif gh api --method PATCH "repos/${REPO}/git/refs/heads/%23${PR_NUMBER}" \
                -f "sha=${SHA}" -F "force=false" >/dev/null 2>&1; then
           echo "Fast-forwarded the existing ${BRANCH} to ${SHA}"
+        # Reached only when the branch has commits of its own -- an earlier
+        # submission already merged into it -- so no fast-forward is possible.
+        # Merging brings main in without rewriting that history, which keeps
+        # the base from being an old main. 204 (already up to date) counts as
+        # success here just as 201 does.
+        elif gh api --method POST "repos/${REPO}/merges" \
+               -f "base=${BRANCH}" -f "head=main" \
+               -f "commit_message=Merge main into ${BRANCH}" >/dev/null 2>&1; then
+          echo "Merged main into the existing ${BRANCH}"
         else
-          echo "Reusing ${BRANCH} unchanged; it carries commits of its own"
+          # A conflict between main and an already-merged submission. Retarget
+          # anyway: leaving the pull request on main is worse, and the conflict
+          # has to be resolved on the "${BRANCH}" -> main pull request either
+          # way.
+          echo "::warning::Could not bring main into ${BRANCH}; it conflicts" \
+            "and needs resolving before ${BRANCH} can merge to main."
         fi
         # Authoritative step: if the branch could not be created above, this
         # fails loudly rather than leaving the submission pointed at main.
