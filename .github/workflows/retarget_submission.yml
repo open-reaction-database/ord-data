@@ -57,9 +57,14 @@ env:
 
 jobs:
   retarget:
-    if: >-
-      github.event.pull_request.head.repo.fork &&
-      github.event.pull_request.base.ref == 'main'
+    # Runs for every fork pull request, including those already on a
+    # "#<number>" branch, rather than only those still on main. Skipping the
+    # already-correct case leaves nothing at all reporting on the one event
+    # where the target branch is decided: submission.yml's check_target_branch
+    # stands down on opened/reopened so it cannot race this workflow, so if
+    # this job also skipped, a target branch that had gone wrong would be
+    # caught by nothing until the next push.
+    if: github.event.pull_request.head.repo.fork
     runs-on: ubuntu-latest
     steps:
     - name: Retarget a data submission to an ord-owned branch
@@ -73,6 +78,13 @@ jobs:
         REPO: ${{ github.repository }}
       run: |
         set -euo pipefail
+        # Read live rather than from the event payload, which on a reopen can
+        # still describe the base as it stood before an earlier retarget.
+        BASE="$(gh api "repos/${REPO}/pulls/${PR_NUMBER}" --jq '.base.ref')"
+        if [[ "${BASE}" != "main" ]]; then
+          echo "Already targeting ${BASE}; nothing to do."
+          exit 0
+        fi
         # Collected before matching rather than piped straight into grep: under
         # pipefail, `gh | grep -q` can report the SIGPIPE from grep's early exit
         # on a match, which would read as "no dataset files".

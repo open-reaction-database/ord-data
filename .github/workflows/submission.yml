@@ -24,11 +24,17 @@ name: Submission
 on:
   pull_request:
     # Default trigger types plus labeled/unlabeled so adding or removing the
-    # `skip-update-submission` label re-runs the workflow with the new
-    # gating on the "Update submission" step, and edited so that
-    # retarget_submission.yml moving a submission off main re-runs these checks
-    # against the new base. Jobs ignore edits that did not change the base.
-    types: [opened, synchronize, reopened, labeled, unlabeled, edited]
+    # `skip-update-submission` label re-runs the workflow with the new gating
+    # on the "Update submission" step.
+    #
+    # Deliberately not `edited`. process_submission is a required status check,
+    # so every run of this workflow overwrites its verdict: an edit that
+    # retitles a pull request would either skip the job, which satisfies branch
+    # protection no better than a failure, or report a trivial success over a
+    # real one. Not running at all leaves the existing verdict standing, which
+    # is the honest answer for an event that changed no code. Base changes are
+    # retarget_submission.yml's business and it does listen for `edited`.
+    types: [opened, synchronize, reopened, labeled, unlabeled]
 
 # One in-flight run per PR. New events (pushes, label toggles) cancel
 # the prior run so we are not paying twice for things like LFS checkouts.
@@ -39,10 +45,10 @@ concurrency:
 env:
   # Dataset files a submission may contain: protobuf binary (.pb/.binpb) or
   # text (.pbtxt/.txtpb), either optionally gzipped, plus Parquet. The
-  # check_file_types job rejects anything else, check_target_branch decides
-  # whether a fork's pull request is a data submission, and process_submission
-  # selects the files it processes -- all with this pattern, so they must
-  # agree: a suffix accepted by one but not the others either fails a
+  # check_file_types job rejects anything else and process_submission selects
+  # the files it processes -- both with this pattern, and retarget_submission
+  # decides whether a fork's pull request is a data submission with it too, so
+  # they must agree: a suffix accepted by one but not the others either fails a
   # legitimate submission or silently processes nothing.
   #
   # retarget_submission.yml carries the same value and tests.yml fails if the
@@ -53,10 +59,12 @@ env:
 
 jobs:
   check_file_types:
-    # An edit that left the base alone (a retitled pull request, say) changes
-    # nothing these jobs look at. process_submission needs this job, so
-    # skipping here skips the LFS checkout below it too.
-    if: github.event.action != 'edited' || github.event.changes.base
+    # Deliberately unconditional. process_submission needs this job and is a
+    # required status check on main, and a skipped job satisfies branch
+    # protection no better than a failing one -- it reports "skipped" over
+    # whatever passed before, and the pull request can then only merge by
+    # override. Work is avoided further down instead, where it costs nothing
+    # to report.
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -76,52 +84,6 @@ jobs:
           echo "Error: submissions should only contain *.pb, *.binpb, *.pbtxt, or *.txtpb files (optionally gzipped), or *.parquet files" && \
           exit 1 || true
       if: github.event.pull_request.head.repo.fork
-
-  check_target_branch:
-    # A data submission from a fork must not target main: the Update submission
-    # step cannot push processed commits back to a fork, so submissions are
-    # merged into an ord-owned "#<number>" branch first and that branch opens
-    # the pull request against main. retarget_submission.yml does this move
-    # automatically, so failing here means it did not run or could not finish.
-    #
-    # Fork pull requests that change no dataset files are ordinary
-    # contributions -- documentation, workflows, scripts -- and target main
-    # like any other.
-    #
-    # Deliberately not run on opened/reopened, where retarget_submission.yml is
-    # already moving the submission: it repoints with GITHUB_TOKEN, and events
-    # from that token start no workflow run, so a failure recorded here would
-    # never be re-run and would sit red on a pull request that had in fact been
-    # fixed seconds later. Every later event still checks.
-    if: >-
-      github.event.pull_request.head.repo.fork &&
-      github.event.action != 'opened' &&
-      github.event.action != 'reopened' &&
-      (github.event.action != 'edited' || github.event.changes.base)
-    runs-on: ubuntu-latest
-    steps:
-    - name: Check target branch
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PR_NUMBER: ${{ github.event.pull_request.number }}
-        REPO: ${{ github.repository }}
-      run: |
-        set -euo pipefail
-        echo "Target branch: ${GITHUB_BASE_REF}"
-        if [[ "${GITHUB_BASE_REF}" != "main" ]]; then
-          exit 0
-        fi
-        # Collected before matching: under pipefail, `gh | grep -q` can report
-        # the SIGPIPE from grep's early exit on a match.
-        FILES="$(gh api --paginate "repos/${REPO}/pulls/${PR_NUMBER}/files" \
-          --jq '.[].filename')"
-        if printf '%s\n' "${FILES}" | grep -qE "${DATASET_FILE_PATTERN}"; then
-          echo "Error: a data submission from a fork cannot target main; it" \
-            "belongs on a '#${PR_NUMBER}' branch in this repository so the" \
-            "submission workflow can push the processed dataset back to it."
-          exit 1
-        fi
-        echo "No dataset files changed; targeting main is fine."
 
   process_submission:
     # Ordered after check_file_types so a fork submission carrying anything but
