@@ -24,17 +24,20 @@ name: Submission
 on:
   pull_request:
     # Default trigger types plus labeled/unlabeled so adding or removing the
-    # `skip-update-submission` label re-runs the workflow with the new gating
-    # on the "Update submission" step.
+    # `skip-update-submission` label re-runs with the new gating on the "Update
+    # submission" step, and edited because a pull request's author may change
+    # its base: a submission validated on a "#<number>" branch and then pointed
+    # back at main has to be re-judged, or the required check keeps a verdict
+    # that no longer describes where the pull request is going.
     #
-    # Deliberately not `edited`. process_submission is a required status check,
-    # so every run of this workflow overwrites its verdict: an edit that
-    # retitles a pull request would either skip the job, which satisfies branch
-    # protection no better than a failure, or report a trivial success over a
-    # real one. Not running at all leaves the existing verdict standing, which
-    # is the honest answer for an event that changed no code. Base changes are
-    # retarget_submission.yml's business and it does listen for `edited`.
-    types: [opened, synchronize, reopened, labeled, unlabeled]
+    # Every job below runs unconditionally, which is what makes subscribing to
+    # this safe. A job that skips on some events reports "skipped" over a real
+    # verdict, and one that short-circuits to success reports a trivial pass
+    # over a real failure; either would let a required check be cleared by
+    # retitling a pull request. Re-running everything costs an LFS pull on an
+    # edit that changed nothing, which is the price of the verdict always being
+    # earned.
+    types: [opened, synchronize, reopened, labeled, unlabeled, edited]
 
 # One in-flight run per PR. New events (pushes, label toggles) cancel
 # the prior run so we are not paying twice for things like LFS checkouts.
@@ -156,10 +159,19 @@ jobs:
         REPO: ${{ github.repository }}
       run: |
         set -euo pipefail
-        # Live rather than from the event payload: the retarget usually lands
-        # while this job is still checking out, and the payload would still
-        # say main.
-        BASE="$(gh api "repos/${REPO}/pulls/${PR_NUMBER}" --jq '.base.ref')"
+        # Read live rather than from the event payload, and give the retarget a
+        # moment to land: both workflows start from the same event, and on a
+        # newly opened pull request this job can reach here first. Failing on
+        # that race would be unrecoverable -- the retarget repoints with
+        # GITHUB_TOKEN, whose events start no workflow run, so nothing would
+        # re-run this check and the red would stand on a required check until
+        # someone pushed again.
+        for attempt in 1 2 3 4 5 6; do
+          BASE="$(gh api "repos/${REPO}/pulls/${PR_NUMBER}" --jq '.base.ref')"
+          [[ "${BASE}" != "main" ]] && break
+          echo "Attempt ${attempt}: still targeting main; waiting for the retarget."
+          sleep 5
+        done
         echo "Target branch: ${BASE}"
         if [[ "${BASE}" == "main" ]]; then
           echo "Error: a data submission from a fork cannot target main; it" \
