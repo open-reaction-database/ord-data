@@ -27,6 +27,9 @@ on:
       - 'uv.lock'
       - '.python-version'
       - '.github/workflows/tests.yml'
+      # Both carry DATASET_FILE_PATTERN, compared by the step below.
+      - '.github/workflows/submission.yml'
+      - '.github/workflows/retarget_submission.yml'
 
 permissions:
   contents: read
@@ -54,3 +57,18 @@ jobs:
       run: uv run ty check
     - name: pytest
       run: uv run pytest -n auto -ra
+    - name: Dataset file pattern agrees across workflows
+      # submission.yml and retarget_submission.yml must classify dataset files
+      # identically; a suffix accepted by one but not the other either fails a
+      # legitimate submission or silently processes nothing. The value cannot
+      # be shared through a file, because a `pull_request` run checks out the
+      # merge ref and a fork could weaken its copy, so it is declared in both
+      # and compared here.
+      run: |
+        set -euo pipefail
+        DEFINITIONS="$(grep -h '^  DATASET_FILE_PATTERN:' \
+          .github/workflows/submission.yml \
+          .github/workflows/retarget_submission.yml)"
+        echo "${DEFINITIONS}"
+        test "$(printf '%s\n' "${DEFINITIONS}" | wc -l)" -eq 2
+        test "$(printf '%s\n' "${DEFINITIONS}" | sort -u | wc -l)" -eq 1

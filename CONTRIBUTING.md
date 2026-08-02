@@ -20,6 +20,13 @@ Excellent! Please follow the
 [Submission Workflow](https://ord-schema.readthedocs.io/en/latest/submissions.html)
 in the documentation.
 
+**Note on the target branch:** open your pull request against `main`. If it adds
+or changes dataset files, a workflow moves it onto a `#<number>` branch in this
+repository and comments to say so — your diff is unchanged and nothing is
+required from you. That branch exists because the submission workflow pushes the
+processed dataset back (assigning reaction and dataset IDs, moving files into
+`data/`), which GitHub Actions cannot do on a fork.
+
 **Note on large files (Git LFS):** Published datasets under `data/` are stored
 with [Git LFS](https://git-lfs.com/), and clones fetch the objects from the
 [Hugging Face mirror](https://huggingface.co/datasets/open-reaction-database/ord-data)
