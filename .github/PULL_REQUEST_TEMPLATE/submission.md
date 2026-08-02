@@ -1,11 +1,10 @@
----
-name: Submission
-about: Submit data to the Open Reaction Database
-title: ''
-labels: ''
-assignees: ''
+<!--
+Submitting data to the Open Reaction Database. Open your pull request against
+`main`; if it adds or changes dataset files a workflow moves it onto a
+`#<number>` branch and comments to say so, and your diff is unchanged.
 
----
+Delete any section you don't need, including these comments.
+-->
 
 **Describe the submission**
 * High-level description of the data
