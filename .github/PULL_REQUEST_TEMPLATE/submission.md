@@ -1,6 +1,10 @@
 <!--
-Submitting data to the Open Reaction Database. See CONTRIBUTING.md for which
-branch to target and how large files are handled.
+Submitting data to the Open Reaction Database.
+
+Open this pull request against `main`. A submission is merged into a
+`#<number>` branch in this repository before it reaches `main`, and a
+maintainer will point yours there — see the target-branch note in
+CONTRIBUTING.md. Your diff does not change when they do.
 
 Delete any section you don't need, including these comments.
 -->
