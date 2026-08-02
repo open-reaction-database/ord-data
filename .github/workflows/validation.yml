@@ -20,16 +20,35 @@ on:
   push:
     branches:
       - main
+    # Every merge used to re-validate the whole corpus: 2.4 GB of Git LFS
+    # across 603 files, pulled from GitHub rather than the Hugging Face mirror
+    # (see the fetch step for why that has to be GitHub). Most merges here
+    # change workflows or scripts and no data at all, so that bandwidth bought
+    # nothing. Validate on a push only when the data, or the thing that
+    # validates it, actually changed.
+    paths:
+      - 'data/**'
+      - '.github/workflows/validation.yml'
   pull_request:
     paths:
       # Runs when this file is modified in a PR.
       - '.github/workflows/validation.yml'
+  schedule:
+    # The per-merge run was also, incidentally, a standing sweep for bit rot
+    # and for corruption arriving by some path other than a dataset commit.
+    # Narrowing the push trigger would drop that, so it moves here: 07:00 UTC
+    # on Mondays, whole corpus, no merge waiting on it.
+    - cron: '0 7 * * 1'
 
 # One in-flight matrix per PR (or per push to main). Subsequent events
 # cancel the prior run so we are not paying twice for the LFS-heavy
 # validate_pb / validate_parquet shards.
+#
+# Keyed on the event as well as the ref: a scheduled run and a push to main
+# share a ref, so without it a merge would cancel the weekly sweep and that
+# week's corpus check would simply not happen.
 concurrency:
-  group: validation-${{ github.event.pull_request.number || github.ref }}
+  group: validation-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 env:
