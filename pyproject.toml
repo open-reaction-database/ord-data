@@ -140,6 +140,10 @@ convention = "google"
 [tool.ruff.lint.per-file-ignores]
 # scripts/ holds top-level CLI modules, not a package.
 "scripts/*.py" = ["INP001"]
+# Skill helpers are standalone scripts run by hand, not a package either. S310
+# flags urlopen on a URL it cannot prove is http(s): here that is a hardcoded
+# hf.co constant and the Location header of the redirect it returns.
+".claude/skills/**/*.py" = ["INP001", "S310"]
 # Type annotations and docstrings add little on test functions and fixtures,
 # assert is the point of a test, and reaching into module internals is fine
 # there. Mirrors ord-schema.

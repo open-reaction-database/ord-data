@@ -17,23 +17,27 @@ import urllib.request
 
 REF = sys.argv[1] if len(sys.argv) > 1 else "origin/main"
 HF_BATCH = (
-    "https://hf.co/datasets/open-reaction-database/ord-data.git/"
-    "info/lfs/objects/batch"
+    "https://hf.co/datasets/open-reaction-database/ord-data.git/info/lfs/objects/batch"
 )
 CHUNK = 100
 
 
-def lfs_pointers(ref):
+def lfs_pointers(ref: str) -> list[tuple[str, int, str]]:
     """Yield (oid, size, path) for every LFS object referenced at ``ref``."""
     paths = subprocess.run(
         ["git", "lfs", "ls-files", "-n", ref],
-        capture_output=True, text=True, check=True,
+        capture_output=True,
+        text=True,
+        check=True,
     ).stdout.splitlines()
     # Batch-read every pointer blob via `git cat-file --batch`.
     requests = "".join(f"{ref}:{p}\n" for p in paths)
     out = subprocess.run(
         ["git", "cat-file", "--batch"],
-        input=requests, capture_output=True, text=True, check=True,
+        input=requests,
+        capture_output=True,
+        text=True,
+        check=True,
     ).stdout
     i = 0
     results = []
@@ -53,20 +57,23 @@ def lfs_pointers(ref):
     return results
 
 
-def check(objects):
+def check(objects: list[tuple[str, int, str]]) -> list[tuple[str, str]]:
     """Return the list of (oid, path) that HF reports as missing."""
     missing = []
     for start in range(0, len(objects), CHUNK):
         chunk = objects[start : start + CHUNK]
-        payload = json.dumps({
-            "operation": "download",
-            "transfers": ["basic"],
-            "objects": [{"oid": o, "size": s} for o, s, _ in chunk],
-        }).encode()
+        payload = json.dumps(
+            {
+                "operation": "download",
+                "transfers": ["basic"],
+                "objects": [{"oid": o, "size": s} for o, s, _ in chunk],
+            }
+        ).encode()
         url = HF_BATCH
         for _ in range(5):  # follow 307/308 redirects, preserving POST+body
             req = urllib.request.Request(
-                url, data=payload,
+                url,
+                data=payload,
                 headers={
                     "Accept": "application/vnd.git-lfs+json",
                     "Content-Type": "application/vnd.git-lfs+json",
@@ -84,14 +91,17 @@ def check(objects):
         else:
             raise RuntimeError("too many redirects")
         by_oid = {(o, s): p for o, s, p in chunk}
-        for obj in data.get("objects", []):
-            if "error" in obj:
-                missing.append((obj["oid"], by_oid.get((obj["oid"], obj.get("size")), "?")))
+        missing.extend(
+            (obj["oid"], by_oid.get((obj["oid"], obj.get("size")), "?"))
+            for obj in data.get("objects", [])
+            if "error" in obj
+        )
         print(f"  checked {min(start + CHUNK, len(objects))}/{len(objects)}")
     return missing
 
 
-def main():
+def main() -> None:
+    """Reports any LFS object at ``REF`` that the Hugging Face mirror is missing."""
     objects = lfs_pointers(REF)
     print(f"{REF}: {len(objects)} LFS objects")
     if any(not o[0] or not o[1] for o in objects):
