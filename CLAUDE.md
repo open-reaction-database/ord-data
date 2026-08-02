@@ -11,10 +11,12 @@ Python style, etc.).
   `data/<xx>/ord_dataset-<uuid>.{pb.gz,parquet}`, sharded into 256 directories
   by the first two hex chars of the dataset id.
 - Large dataset files are stored with **Git LFS**. The schema library lives in
-  `Open-Reaction-Database/ord-schema`. `validate_dataset.py` still comes from
-  there, pinned by `ORD_SCHEMA_TAG` in `validation.yml`; `process_dataset.py`
-  lives here in `scripts/` and gets its dependencies from the `pipeline`
-  dependency group.
+  `Open-Reaction-Database/ord-schema` and is installed from PyPI by the
+  `pipeline` dependency group, so **`uv.lock` is the only place its version is
+  written down** — `validation.yml` runs `validate_dataset.py` out of the
+  installed wheel (`python -m ord_schema.scripts.validate_dataset`) rather than
+  pinning a tag of its own, so submission-time and merge-time validation cannot
+  disagree. `process_dataset.py` lives here in `scripts/`.
 
 ## Local checks
 
@@ -73,14 +75,17 @@ the whole dataset, so submission CI only needs the **changed** objects.
 
 - **`validation.yml`** — validates every dataset. Triggers on push to `main`
   **only under `data/**`**, on PRs that touch `validation.yml`, and weekly
-  (Mon 07:00 UTC) for the full sweep — a workflow-only merge no longer pulls
+  (Mon 07:00 UTC) for the full sweep, so a workflow-only merge does not pull
   2.4 GB of LFS to validate data nobody changed. 11-shard matrix: 9 `validate_pb` shards by
   `data/<hex><hex>` prefix + 2 `validate_parquet` (uspto / other). Each shard
   sparse-pulls only its objects from GitHub. For pb shards, `matrix.filter`
   doubles as both the `validate_dataset.py` regex and the LFS `--include` glob
   (parquet needs a separate `lfs_include` because its filter is a lookahead
   regex). Uses `concurrency: cancel-in-progress` — pushing again cancels the
-  running matrix.
+  running matrix. Like `submission.yml`, it builds its environment from a
+  repo-owned ref (`pipeline/`, sparse-checked-out to just `.python-version` /
+  `pyproject.toml` / `uv.lock`) because a `pull_request` run checks out the
+  contributor-controlled merge ref.
 - **`submission.yml`** — per-PR. `process_submission` sparse-pulls only the
   changed datasets, gated on `NUM_CHANGED_FILES`. Fork PRs run validate-only;
   non-fork PRs run the `Update submission` step (skippable via the
