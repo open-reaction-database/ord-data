@@ -139,6 +139,35 @@ jobs:
         echo "NUM_CHANGED_FILES=${LOCAL_NUM_CHANGED}" >> $GITHUB_ENV
         echo "Found ${LOCAL_NUM_CHANGED} changed dataset files"
         cat changed_data_files.txt
+    # The required check must not be able to pass while a fork data submission
+    # is still aimed at main. "Update submission" is gated on `! fork`, so such
+    # a pull request would merge with nothing having assigned reaction IDs or
+    # moved files into data/. retarget_submission.yml normally moves it long
+    # before this point; its own failure is not enough on its own, because that
+    # workflow is not a required check and a red run there does not block a
+    # merge. This is the check that does.
+    - name: Confirm a fork submission is not targeting main
+      if: >-
+        env.NUM_CHANGED_FILES != '0' &&
+        github.event.pull_request.head.repo.fork
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PR_NUMBER: ${{ github.event.pull_request.number }}
+        REPO: ${{ github.repository }}
+      run: |
+        set -euo pipefail
+        # Live rather than from the event payload: the retarget usually lands
+        # while this job is still checking out, and the payload would still
+        # say main.
+        BASE="$(gh api "repos/${REPO}/pulls/${PR_NUMBER}" --jq '.base.ref')"
+        echo "Target branch: ${BASE}"
+        if [[ "${BASE}" == "main" ]]; then
+          echo "Error: a data submission from a fork cannot target main; it" \
+            "belongs on a '#${PR_NUMBER}' branch in this repository so the" \
+            "submission workflow can push the processed dataset back to it." \
+            "Check the Retarget Submission run, which should have moved it."
+          exit 1
+        fi
     # Read LFS from GitHub, not the HF mirror that .lfsconfig points clones at:
     # submissions are validated before their bytes are mirrored to HF on merge
     # to main, and the "Update submission" step's uploads reuse this lfs.url
