@@ -1,7 +1,6 @@
 <!--
-Submitting data to the Open Reaction Database. Open your pull request against
-`main`; if it adds or changes dataset files a workflow moves it onto a
-`#<number>` branch and comments to say so, and your diff is unchanged.
+Submitting data to the Open Reaction Database. See CONTRIBUTING.md for which
+branch to target and how large files are handled.
 
 Delete any section you don't need, including these comments.
 -->

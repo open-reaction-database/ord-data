@@ -1,6 +1,7 @@
 <!--
 Submitting a dataset? Use the submission template instead: add
-`?template=submission.md` to the URL of this page.
+`template=submission.md` to this page's URL, after a `&` if it already has a
+`?` (it usually does — `?expand=1`), otherwise after a `?`.
 
 Keep it short: the body should fit on one screen. Reviewers can read the diff, so
 spend the space on why the change is right and how you know it works.
