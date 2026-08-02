@@ -124,9 +124,11 @@ jobs:
         echo "No dataset files changed; targeting main is fine."
 
   process_submission:
-    # This job runs scripts/process_dataset.py from the pull request's own
-    # checkout, so it must not start until check_file_types has confirmed that a
-    # fork's submission contains dataset files and nothing else.
+    # Ordered after check_file_types so a fork submission carrying anything but
+    # dataset files is reported as that, rather than as whatever the pipeline
+    # makes of an unexpected file. The pipeline itself comes from the base
+    # branch (see below), so this ordering is no longer what stands between a
+    # fork and code execution.
     needs: check_file_types
     runs-on: ubuntu-latest
     steps:
@@ -194,20 +196,43 @@ jobs:
         INCLUDE="$(awk '{print $NF}' changed_data_files.txt | paste -sd, -)"
         echo "Pulling LFS objects for changed datasets: ${INCLUDE}"
         git lfs pull --include="${INCLUDE}"
+    # The pipeline runs from the base branch, never from the checkout above.
+    # That checkout is the pull request's own, so on a fork both
+    # process_dataset.py and uv.lock are contributor-controlled: executing the
+    # one or resolving dependencies from the other would run whatever the
+    # submission happened to carry. check_file_types rejects a fork submission
+    # touching anything but dataset files, but that is a policy check standing
+    # in front of code execution rather than a boundary. Datasets still come
+    # from the pull request; only the code that processes them does not.
+    #
+    # Nested inside the workspace because process_dataset.py has to run with
+    # the pull request's working tree as its cwd -- it shells out to git show,
+    # git diff, git mv, and git rm against it. The directory is untracked, which
+    # neither `git diff` against upstream/main nor `git commit -a` picks up.
+    - name: Check out the pipeline from the base branch
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.pull_request.base.sha }}
+        path: pipeline
+        lfs: false
+      if: env.NUM_CHANGED_FILES != '0'
     - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
       with:
         enable-cache: true
       if: env.NUM_CHANGED_FILES != '0'
     # process_dataset.py needs the schema library and pygithub; --only-group
-    # skips the project's own runtime deps and the lint/test toolchain. The
-    # runs below pass --no-sync so they use exactly this environment.
+    # skips the project's own runtime deps and the lint/test toolchain.
     - name: Install dependencies
+      working-directory: pipeline
       run: uv sync --only-group pipeline --locked
       if: env.NUM_CHANGED_FILES != '0'
+    # The interpreter is invoked directly rather than through `uv run`, which
+    # would rediscover the pull request's own pyproject.toml from the working
+    # directory and put the fork back in control of the environment.
     - name: Validate submission
       run: |
         cd "${GITHUB_WORKSPACE}"
-        uv run --no-sync python scripts/process_dataset.py \
+        ./pipeline/.venv/bin/python ./pipeline/scripts/process_dataset.py \
           --input_file=changed_data_files.txt \
           --base=upstream/main
       # Also covers the re-run caused by this workflow's own push: the datasets
@@ -247,7 +272,7 @@ jobs:
         PUSH_TOKEN: ${{ steps.push_token.outputs.token || secrets.GITHUB_TOKEN }}
       run: |
         cd "${GITHUB_WORKSPACE}"
-        uv run --no-sync python scripts/process_dataset.py \
+        ./pipeline/.venv/bin/python ./pipeline/scripts/process_dataset.py \
           --input_file=changed_data_files.txt \
           --update \
           --cleanup \
