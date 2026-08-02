@@ -10,3 +10,32 @@ identifiers:
 url: 'https://open-reaction-database.org'
 repository: 'https://github.com/open-reaction-database/ord-data'
 license: CC-BY-SA-4.0
+preferred-citation:
+  type: article
+  title: The Open Reaction Database
+  authors:
+    - family-names: Kearnes
+      given-names: Steven M.
+    - family-names: Maser
+      given-names: Michael R.
+    - family-names: Wleklinski
+      given-names: Michael
+    - family-names: Kast
+      given-names: Anton
+    - family-names: Doyle
+      given-names: Abigail G.
+    - family-names: Dreher
+      given-names: Spencer D.
+    - family-names: Hawkins
+      given-names: Joel M.
+    - family-names: Jensen
+      given-names: Klavs F.
+    - family-names: Coley
+      given-names: Connor W.
+  journal: Journal of the American Chemical Society
+  year: 2021
+  volume: 143
+  issue: 45
+  start: 18820
+  end: 18826
+  doi: 10.1021/jacs.1c09820

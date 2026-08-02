@@ -1,0 +1,185 @@
+# Copyright 2026 Open Reaction Database Project Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Points fork data submissions at an ord-owned "#<number>" branch.
+#
+# submission.yml's "Update submission" step pushes processed commits (reaction
+# IDs, timestamps, the move into data/) back to the pull request's branch, and
+# GitHub Actions cannot push to a contributor's fork: a `pull_request` run from
+# a fork gets a read-only GITHUB_TOKEN, and even a writable token is scoped to
+# this repository rather than the fork. Submissions are therefore merged into a
+# branch here first, and that branch is what opens the pull request against
+# main. This workflow creates the branch and repoints the submission at it so
+# contributors do not have to know the convention.
+#
+# Fork pull requests that touch no dataset files are ordinary contributions
+# (documentation, workflows, scripts) and keep targeting main.
+
+name: Retarget Submission
+
+# pull_request_target runs in the context of the base repository, which is what
+# makes a writable token available on a pull request from a fork. That token is
+# only ever used for GitHub API calls about the pull request; this workflow
+# checks out no code at all, and in particular never checks out the fork's head,
+# so nothing the contributor controls is read or executed here.
+# `edited` fires when a base branch is changed, so a submission pointed back at
+# main by hand is moved again. The repoint below does re-trigger this workflow
+# when it is made with the app token, which terminates rather than recurses:
+# the second run reads the base, finds it is no longer main, and stops before
+# changing anything.
+on:
+  pull_request_target:
+    # synchronize is here because this job is a required status check: branch
+    # protection looks for its verdict on the head commit, so every new head
+    # needs one, not just the events that can change the base.
+    types: [opened, reopened, edited, synchronize]
+
+permissions:
+  contents: write        # create the "#<number>" branch
+  pull-requests: write   # repoint the pull request and comment on it
+
+concurrency:
+  group: retarget-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+env:
+  # Keep identical to submission.yml; tests.yml fails if the two drift. Defined
+  # in the workflow rather than read from a file because a `pull_request` run
+  # checks out the merge ref: a file would be the fork's copy, and weakening it
+  # to `.*` would defeat check_file_types.
+  DATASET_FILE_PATTERN: '\.(pb|binpb|pbtxt|txtpb)(\.gz)?$|\.parquet$'
+
+jobs:
+  retarget:
+    # Deliberately unconditional, including for pull requests that are not from
+    # forks and those already on a "#<number>" branch. This job is the required
+    # status check for where a submission is targeted, and a skipped job
+    # satisfies branch protection no better than a failing one, so it has to
+    # reach a verdict on every pull request. The cases it does not act on are
+    # decided in the script and reported as successes.
+    #
+    # Being both the thing that fixes the target branch and the thing that
+    # reports on it is the point: they cannot race each other, so a retarget is
+    # never judged before it has happened.
+    runs-on: ubuntu-latest
+    steps:
+    # Repointing with GITHUB_TOKEN starts no workflow run, so submission.yml
+    # never re-runs against the new base and its target-branch check has to
+    # guess how long to wait for this workflow. An app installation token is a
+    # different identity: its `edited` event triggers submission.yml normally,
+    # so a retarget that lands late is picked up rather than missed. Falls back
+    # to GITHUB_TOKEN when the app is unconfigured, where that bounded wait is
+    # the backstop.
+    #
+    # Safe to hold here in a way it would not be in process_submission: this
+    # job checks out nothing, so no fork-controlled file is ever read or run.
+    - name: Mint a token whose repoint can re-trigger CI
+      id: repoint_token
+      if: vars.SUBMISSION_APP_ID != ''
+      uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+      with:
+        app-id: ${{ vars.SUBMISSION_APP_ID }}
+        private-key: ${{ secrets.SUBMISSION_APP_PRIVATE_KEY }}
+    - name: Retarget a data submission to an ord-owned branch
+      env:
+        GH_TOKEN: ${{ steps.repoint_token.outputs.token || secrets.GITHUB_TOKEN }}
+        # Passed through the environment rather than interpolated into the
+        # script. The number is an integer from GitHub, but keeping all event
+        # data out of the script text is the habit that makes injection
+        # impossible rather than merely unlikely.
+        PR_NUMBER: ${{ github.event.pull_request.number }}
+        REPO: ${{ github.repository }}
+        IS_FORK: ${{ github.event.pull_request.head.repo.fork }}
+      run: |
+        set -euo pipefail
+        # An unset pattern would not abort inside the `if` below -- set -u does
+        # not fire on a condition -- and would instead read as "no dataset
+        # files", quietly leaving a submission on main.
+        : "${DATASET_FILE_PATTERN:?must be set by the workflow env}"
+        # A branch in this repository can be pushed to directly, so the
+        # submission workflow's update step reaches it and no intermediate
+        # branch is needed.
+        if [[ "${IS_FORK}" != "true" ]]; then
+          echo "Not a fork pull request; the target branch is unconstrained."
+          exit 0
+        fi
+        # Read live rather than from the event payload, which on a reopen can
+        # still describe the base as it stood before an earlier retarget.
+        BASE="$(gh api "repos/${REPO}/pulls/${PR_NUMBER}" --jq '.base.ref')"
+        if [[ "${BASE}" != "main" ]]; then
+          echo "Already targeting ${BASE}; nothing to do."
+          exit 0
+        fi
+        # Collected before matching rather than piped straight into grep: under
+        # pipefail, `gh | grep -q` can report the SIGPIPE from grep's early exit
+        # on a match, which would read as "no dataset files".
+        FILES="$(gh api --paginate "repos/${REPO}/pulls/${PR_NUMBER}/files" \
+          --jq '.[].filename')"
+        # Filenames come from the pull request and are untrusted, so they are
+        # only ever matched against the pattern -- never evaluated.
+        if ! printf '%s\n' "${FILES}" | grep -qE "${DATASET_FILE_PATTERN}"; then
+          echo "No dataset files changed; leaving this pull request on main."
+          exit 0
+        fi
+        BRANCH="#${PR_NUMBER}"
+        echo "Data submission detected; retargeting onto ${BRANCH}"
+        # Branch from main's current tip so repointing does not change the diff.
+        SHA="$(gh api "repos/${REPO}/git/ref/heads/main" --jq '.object.sha')"
+        # Idempotent: reopening a pull request finds the branch already there.
+        # The ref name goes in the request body, so "#" needs no URL escaping.
+        if gh api --method POST "repos/${REPO}/git/refs" \
+             -f "ref=refs/heads/${BRANCH}" -f "sha=${SHA}" >/dev/null 2>&1; then
+          echo "Created ${BRANCH} at ${SHA}"
+        # A submission closed and reopened after main moved on would otherwise
+        # be compared against a branch cut from an older main. force=false
+        # makes this a fast-forward or nothing, so a branch carrying commits of
+        # its own is never rewritten. Here the ref is in the URL, where "#" has
+        # to be escaped.
+        elif gh api --method PATCH "repos/${REPO}/git/refs/heads/%23${PR_NUMBER}" \
+               -f "sha=${SHA}" -F "force=false" >/dev/null 2>&1; then
+          echo "Fast-forwarded the existing ${BRANCH} to ${SHA}"
+        # Reached only when the branch has commits of its own -- an earlier
+        # submission already merged into it -- so no fast-forward is possible.
+        # Merging brings main in without rewriting that history, which keeps
+        # the base from being an old main. 204 (already up to date) counts as
+        # success here just as 201 does.
+        elif gh api --method POST "repos/${REPO}/merges" \
+               -f "base=${BRANCH}" -f "head=main" \
+               -f "commit_message=Merge main into ${BRANCH}" >/dev/null 2>&1; then
+          echo "Merged main into the existing ${BRANCH}"
+        else
+          # A conflict between main and an already-merged submission. Retarget
+          # anyway: leaving the pull request on main is worse, and the conflict
+          # has to be resolved on the "${BRANCH}" -> main pull request either
+          # way.
+          echo "::warning::Could not bring main into ${BRANCH}; it conflicts" \
+            "and needs resolving before ${BRANCH} can merge to main."
+        fi
+        # Authoritative step: if the branch could not be created above, this
+        # fails loudly rather than leaving the submission pointed at main.
+        gh api --method PATCH "repos/${REPO}/pulls/${PR_NUMBER}" \
+          -f "base=${BRANCH}" >/dev/null
+        gh pr comment "${PR_NUMBER}" --repo "${REPO}" --body-file - <<EOF
+        Thanks for the submission! I have retargeted this pull request onto
+        \`${BRANCH}\`, a branch in this repository, because it adds or changes
+        dataset files.
+
+        Submissions are merged into a branch here first so the submission
+        workflow can push the processed dataset back to it -- assigning reaction
+        and dataset IDs and moving files into \`data/\` -- which GitHub Actions
+        cannot do on a fork. Once this merges, \`${BRANCH}\` opens a second pull
+        request against \`main\`.
+
+        Nothing is required from you, and the diff is unchanged.
+        EOF

@@ -1,4 +1,18 @@
-# Runs process_dataset.py on all files in the database.
+# Copyright 2026 Open Reaction Database Project Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Runs ord-schema's validate_dataset.py over every dataset in the repository.
 
 name: Validation
 
@@ -6,16 +20,35 @@ on:
   push:
     branches:
       - main
+    # Every merge used to re-validate the whole corpus: 2.4 GB of Git LFS
+    # across 603 files, pulled from GitHub rather than the Hugging Face mirror
+    # (see the fetch step for why that has to be GitHub). Most merges here
+    # change workflows or scripts and no data at all, so that bandwidth bought
+    # nothing. Validate on a push only when the data, or the thing that
+    # validates it, actually changed.
+    paths:
+      - 'data/**'
+      - '.github/workflows/validation.yml'
   pull_request:
     paths:
       # Runs when this file is modified in a PR.
       - '.github/workflows/validation.yml'
+  schedule:
+    # The per-merge run was also, incidentally, a standing sweep for bit rot
+    # and for corruption arriving by some path other than a dataset commit.
+    # Narrowing the push trigger would drop that, so it moves here: 07:00 UTC
+    # on Mondays, whole corpus, no merge waiting on it.
+    - cron: '0 7 * * 1'
 
 # One in-flight matrix per PR (or per push to main). Subsequent events
 # cancel the prior run so we are not paying twice for the LFS-heavy
 # validate_pb / validate_parquet shards.
+#
+# Keyed on the event as well as the ref: a scheduled run and a push to main
+# share a ref, so without it a merge would cancel the weekly sweep and that
+# week's corpus check would simply not happen.
 concurrency:
-  group: validation-${{ github.event.pull_request.number || github.ref }}
+  group: validation-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 env:
@@ -40,7 +73,7 @@ jobs:
         ]
     steps:
     - name: Checkout ord-data
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       with:
         lfs: false
     # .lfsconfig redirects clone/fetch LFS reads to the Hugging Face mirror to
@@ -60,12 +93,12 @@ jobs:
         git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
         git lfs pull --include="${FILTER}/*.pb*"
     - name: Checkout ord-schema
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       with:
         repository: Open-Reaction-Database/ord-schema
         ref: ${{ env.ORD_SCHEMA_TAG }}
         path: ord-schema
-    - uses: actions/setup-python@v5
+    - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
       with:
         python-version: '3.11'
     - name: Install ord_schema
@@ -104,7 +137,7 @@ jobs:
             lfs_exclude: 'data/*/ord_dataset-1158e351757f315b93cbcbe7bc55f38e.parquet'
     steps:
     - name: Checkout ord-data
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       with:
         lfs: false
     # See validate_pb: read this shard's LFS objects from GitHub rather than the
@@ -121,12 +154,12 @@ jobs:
           git lfs pull --include="${LFS_INCLUDE}"
         fi
     - name: Checkout ord-schema
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       with:
         repository: Open-Reaction-Database/ord-schema
         ref: ${{ env.ORD_SCHEMA_TAG }}
         path: ord-schema
-    - uses: actions/setup-python@v5
+    - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
       with:
         python-version: '3.11'
     - name: Install ord_schema

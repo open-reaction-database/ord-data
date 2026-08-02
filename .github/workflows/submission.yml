@@ -1,3 +1,17 @@
+# Copyright 2026 Open Reaction Database Project Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 # Runs process_dataset.py on all new and changed files.
 #
 # Submissions from forks only trigger the "validation" step to validate the new
@@ -10,8 +24,18 @@ name: Submission
 on:
   pull_request:
     # Default trigger types plus labeled/unlabeled so adding or removing the
-    # `skip-update-submission` label re-runs the workflow with the new
-    # gating on the "Update submission" step.
+    # `skip-update-submission` label re-runs with the new gating on the "Update
+    # submission" step.
+    #
+    # Not `edited`. Nothing here depends on a pull request's title, body, or
+    # base: where a submission is targeted is retarget_submission.yml's
+    # verdict, on its own required check. Retitling a pull request would only
+    # repeat an LFS pull to reach the same conclusion.
+    #
+    # Every job below runs unconditionally, which is what keeps the required
+    # verdict honest whatever does trigger a run. A job that skips on some
+    # events reports "skipped" over a real verdict, and one that
+    # short-circuits to success reports a trivial pass over a real failure.
     types: [opened, synchronize, reopened, labeled, unlabeled]
 
 # One in-flight run per PR. New events (pushes, label toggles) cancel
@@ -21,13 +45,31 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  ORD_SCHEMA_TAG: v0.6.3
+  # Dataset files a submission may contain: protobuf binary (.pb/.binpb) or
+  # text (.pbtxt/.txtpb), either optionally gzipped, plus Parquet. The
+  # check_file_types job rejects anything else and process_submission selects
+  # the files it processes -- both with this pattern, and retarget_submission
+  # decides whether a fork's pull request is a data submission with it too, so
+  # they must agree: a suffix accepted by one but not the others either fails a
+  # legitimate submission or silently processes nothing.
+  #
+  # retarget_submission.yml carries the same value and tests.yml fails if the
+  # two drift. It cannot be shared through a file because a `pull_request` run
+  # checks out the merge ref, so the file would be the fork's copy and
+  # weakening it to `.*` would defeat check_file_types.
+  DATASET_FILE_PATTERN: '\.(pb|binpb|pbtxt|txtpb)(\.gz)?$|\.parquet$'
 
 jobs:
   check_file_types:
+    # Deliberately unconditional. process_submission needs this job and is a
+    # required status check on main, and a skipped job satisfies branch
+    # protection no better than a failing one -- it reports "skipped" over
+    # whatever passed before, and the pull request can then only merge by
+    # override. Work is avoided further down instead, where it costs nothing
+    # to report.
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
     - name: Add upstream for comparisons to HEAD
       run: |
         cd "${GITHUB_WORKSPACE}"
@@ -40,25 +82,22 @@ jobs:
       run: |
         cd "${GITHUB_WORKSPACE}"
         git diff --name-only upstream/main > changed_files.txt
-        grep -vE '\.(pb(txt)?(.gz)?|parquet)$' changed_files.txt && \
-          echo "Error: submissions should only contain (gzipped) *.pbtxt, *.pb, or *.parquet files" && \
+        grep -vE "${DATASET_FILE_PATTERN}" changed_files.txt && \
+          echo "Error: submissions should only contain *.pb, *.binpb, *.pbtxt, or *.txtpb files (optionally gzipped), or *.parquet files" && \
           exit 1 || true
       if: github.event.pull_request.head.repo.fork
 
-  check_target_branch:
-    if: github.event.pull_request.head.repo.fork
-    runs-on: ubuntu-latest
-    steps:
-    - name: Check target branch
-      run: |
-        echo "Target branch: ${GITHUB_BASE_REF}"
-        test "${GITHUB_BASE_REF}" != "main"
-
   process_submission:
+    # Ordered after check_file_types so a fork submission carrying anything but
+    # dataset files is reported as that, rather than as whatever the pipeline
+    # makes of an unexpected file. The pipeline itself comes from the base
+    # branch (see below), so this ordering is no longer what stands between a
+    # fork and code execution.
+    needs: check_file_types
     runs-on: ubuntu-latest
     steps:
     - name: Checkout ord-data
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       with:
         ref: ${{ github.event.pull_request.head.sha }}
         lfs: false
@@ -70,12 +109,24 @@ jobs:
         echo "Current branch: $(git rev-parse --abbrev-ref HEAD)"
         git fetch --no-tags --prune --depth=1 upstream \
           +refs/heads/*:refs/remotes/upstream/*
-    - name: Checkout ord-schema
-      uses: actions/checkout@v4
-      with:
-        repository: Open-Reaction-Database/ord-schema
-        ref: ${{ env.ORD_SCHEMA_TAG }}
-        path: ord-schema
+    # The "Update submission" step below pushes its own commit. When that push
+    # is authenticated with SUBMISSION_TOKEN it re-runs this workflow, which
+    # would otherwise process an already-processed submission. That is harmless
+    # -- update_dataset only assigns IDs that are not already canonical, so the
+    # second pass changes nothing and the commit below finds nothing to commit
+    # -- but it repeats the LFS pull for no reason, so the re-run validates the
+    # result instead of rewriting it.
+    - name: Identify the author of the head commit
+      id: head_commit
+      run: |
+        cd "${GITHUB_WORKSPACE}"
+        AUTHOR="$(git log -1 --format=%ae)"
+        echo "Head commit author: ${AUTHOR}"
+        if [[ "${AUTHOR}" == "github-actions@github.com" ]]; then
+          echo "from_workflow=true" >> "$GITHUB_OUTPUT"
+        else
+          echo "from_workflow=false" >> "$GITHUB_OUTPUT"
+        fi
     - name: Identify changed files
       # NOTE(kearnes): This sets the NUM_CHANGED_FILES variable.
       run: |
@@ -84,7 +135,7 @@ jobs:
         echo "Found $(wc -l < changed_files.txt | tr -d ' ') changed files"
         cat changed_files.txt
         # Use `|| (( $? == 1 ))` in case no lines match (exit code is nonzero).
-        grep -E "\.(pb(txt)?(.gz)?|parquet)$" changed_files.txt > changed_data_files.txt || (( $? == 1 ))
+        grep -E "${DATASET_FILE_PATTERN}" changed_files.txt > changed_data_files.txt || (( $? == 1 ))
         # Use LOCAL_NUM_CHANGED since ::set-env values are not available immediately.
         LOCAL_NUM_CHANGED="$(wc -l < changed_data_files.txt | tr -d ' ')"
         echo "NUM_CHANGED_FILES=${LOCAL_NUM_CHANGED}" >> $GITHUB_ENV
@@ -109,30 +160,89 @@ jobs:
         INCLUDE="$(awk '{print $NF}' changed_data_files.txt | paste -sd, -)"
         echo "Pulling LFS objects for changed datasets: ${INCLUDE}"
         git lfs pull --include="${INCLUDE}"
-    - uses: actions/setup-python@v5
+    # The pipeline runs from the base branch, never from the checkout above.
+    # That checkout is the pull request's own, so on a fork both
+    # process_dataset.py and uv.lock are contributor-controlled: executing the
+    # one or resolving dependencies from the other would run whatever the
+    # submission happened to carry. check_file_types rejects a fork submission
+    # touching anything but dataset files, but that is a policy check standing
+    # in front of code execution rather than a boundary. Datasets still come
+    # from the pull request; only the code that processes them does not.
+    #
+    # Nested inside the workspace because process_dataset.py has to run with
+    # the pull request's working tree as its cwd -- it shells out to git show,
+    # git diff, git mv, and git rm against it. The directory is untracked, which
+    # neither `git diff` against upstream/main nor `git commit -a` picks up.
+    # By branch rather than by base.sha: that field records the base as it
+    # stood when the pull request was opened or last synchronized, so a
+    # submission branch brought up to date afterwards still reports the old
+    # commit -- which can predate the pipeline entirely and leave nothing here
+    # to install. The branch name resolves to whatever it currently points at,
+    # and it names a branch in this repository, never the fork.
+    - name: Check out the pipeline from the base branch
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       with:
-        python-version: '3.11'
+        ref: ${{ github.event.pull_request.base.ref }}
+        path: pipeline
+        lfs: false
       if: env.NUM_CHANGED_FILES != '0'
-    - name: Install ord_schema
-      run: |
-        cd "${GITHUB_WORKSPACE}/ord-schema"
-        python -m pip install --upgrade pip
-        python -m pip install wheel
-        python -m pip install .
+    - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
+      with:
+        enable-cache: true
       if: env.NUM_CHANGED_FILES != '0'
+    # process_dataset.py needs the schema library and pygithub; --only-group
+    # skips the project's own runtime deps and the lint/test toolchain.
+    - name: Install dependencies
+      working-directory: pipeline
+      run: uv sync --only-group pipeline --locked
+      if: env.NUM_CHANGED_FILES != '0'
+    # The interpreter is invoked directly rather than through `uv run`, which
+    # would rediscover the pull request's own pyproject.toml from the working
+    # directory and put the fork back in control of the environment.
     - name: Validate submission
       run: |
         cd "${GITHUB_WORKSPACE}"
-        python ./ord-schema/ord_schema/scripts/process_dataset.py \
+        ./pipeline/.venv/bin/python ./pipeline/scripts/process_dataset.py \
           --input_file=changed_data_files.txt \
           --base=upstream/main
+      # Also covers the re-run caused by this workflow's own push: the datasets
+      # are already processed, so the useful check on them is validation.
       if: >-
         env.NUM_CHANGED_FILES != '0' &&
-        github.event.pull_request.head.repo.fork
+        (github.event.pull_request.head.repo.fork ||
+         steps.head_commit.outputs.from_workflow == 'true')
+    # A push authenticated with GITHUB_TOKEN starts no workflow run, so the
+    # commit written by "Update submission" arrives with no CI and the pull
+    # request has to be closed and reopened by hand to get any. An app
+    # installation token is a different identity, so its push triggers runs
+    # normally. The app needs Contents: read and write on this repository alone
+    # -- never on a contributor's fork, since the push below goes to the
+    # "#<number>" branch here.
+    #
+    # Deliberately not minted on a fork's run. "Update submission" is gated on
+    # `! ...fork` and so never uses it there, and this job checks out and
+    # executes scripts/process_dataset.py from the pull request's own checkout:
+    # on a fork that file is contributor-controlled. check_file_types already
+    # rejects a fork submission that touches anything but dataset files, but a
+    # writable token simply should not be in the environment on that path.
+    #
+    # Skipped when the app is not configured, leaving PUSH_TOKEN to fall back to
+    # GITHUB_TOKEN so the step behaves exactly as it does today.
+    - name: Mint a token whose push can re-trigger CI
+      id: push_token
+      if: >-
+        vars.SUBMISSION_APP_ID != '' &&
+        ! github.event.pull_request.head.repo.fork
+      uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+      with:
+        app-id: ${{ vars.SUBMISSION_APP_ID }}
+        private-key: ${{ secrets.SUBMISSION_APP_PRIVATE_KEY }}
     - name: Update submission
+      env:
+        PUSH_TOKEN: ${{ steps.push_token.outputs.token || secrets.GITHUB_TOKEN }}
       run: |
         cd "${GITHUB_WORKSPACE}"
-        python ./ord-schema/ord_schema/scripts/process_dataset.py \
+        ./pipeline/.venv/bin/python ./pipeline/scripts/process_dataset.py \
           --input_file=changed_data_files.txt \
           --update \
           --cleanup \
@@ -143,12 +253,21 @@ jobs:
         git config user.email github-actions@github.com
         # Fail gracefully if there is nothing to commit.
         git commit -a -m "Update submission" || (( $? == 1 ))
-        git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_HEAD_REF}"
+        # actions/checkout leaves its own credential in an http.extraheader,
+        # which would authenticate this push as GITHUB_TOKEN no matter what the
+        # URL says. Clearing it for this one command is what lets PUSH_TOKEN
+        # actually be the pushing identity.
+        git -c "http.https://github.com/.extraheader=" \
+          push "https://x-access-token:${PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+          "HEAD:${GITHUB_HEAD_REF}"
       # Skipped when the PR carries the `skip-update-submission` label, so
       # maintainer PRs that touch dataset files but do not need ID/timestamp
       # assignment (e.g. format conversions) can land without process_dataset
-      # rewriting the inputs.
+      # rewriting the inputs. Also skipped on the re-run triggered by this
+      # step's own push, which would otherwise reprocess a processed
+      # submission; "Validate submission" above covers that run instead.
       if: >-
         env.NUM_CHANGED_FILES != '0' &&
         ! github.event.pull_request.head.repo.fork &&
+        steps.head_commit.outputs.from_workflow != 'true' &&
         ! contains(github.event.pull_request.labels.*.name, 'skip-update-submission')
