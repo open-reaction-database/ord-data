@@ -596,6 +596,20 @@ class TestSubmissionWorkflow:
         )
         assert updated_dataset.reactions[1].reaction_id
 
+    def test_modify_dataset_with_explicit_output_format(self, setup):
+        # --output_format is how a deliberate one-off conversion is requested,
+        # so it has to beat the preservation rule above rather than lose to it.
+        test_subdirectory, dataset_filename = setup
+        dataset = message_helpers.load_message(dataset_filename, dataset_pb2.Dataset)
+        dataset.reactions[0].inputs["methylamine"].components[0].amount.moles.value = 2
+        message_helpers.save_message(dataset, dataset_filename)
+        _, _, _, filenames = self._run(
+            test_subdirectory, ["--output_format", ".parquet"]
+        )
+        assert not pathlib.Path(dataset_filename).exists()
+        assert filenames == [dataset_filename.replace(".pb.gz", ".parquet")]
+        assert len(parquet.load_dataset(filenames[0]).reactions) == 1
+
     def test_modify_reaction_id(self, setup):
         test_subdirectory, dataset_filename = setup
         dataset = message_helpers.load_message(dataset_filename, dataset_pb2.Dataset)
