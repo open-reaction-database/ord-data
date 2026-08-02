@@ -92,6 +92,26 @@ class TestProcessDataset:
         with pathlib.Path(error_filename).open() as f:
             assert f.readlines() == expected_output
 
+    def test_every_invalid_input_is_reported(self, setup, tmp_path):
+        # Stopping at the first bad file makes a contributor fix, push, and
+        # wait once per file to discover the rest; ord-data#265 arrived with
+        # two datasets and only the first was ever validated.
+        _, dataset2_filename = setup
+        second_bad = (tmp_path / "dataset3.pbtxt").as_posix()
+        message_helpers.save_message(
+            dataset_pb2.Dataset(
+                name="test3", description="test3", reactions=[reaction_pb2.Reaction()]
+            ),
+            second_bad,
+        )
+        argv = ["--input_pattern", (tmp_path / "*.pb*").as_posix()]
+        with pytest.raises(validations.ValidationError) as excinfo:
+            process_dataset.main(process_dataset.parse_args(argv))
+        message = str(excinfo.value)
+        assert pathlib.Path(dataset2_filename).name in message
+        assert pathlib.Path(second_bad).name in message
+        assert "in 2 of" in message
+
     def test_main_with_updates(self, setup):
         dataset1_filename, _ = setup
         dirname = str(pathlib.Path(dataset1_filename).parent)

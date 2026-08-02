@@ -330,6 +330,10 @@ def run(
         return set(), set(), set()  # Nothing to do.
     # NOTE(kearnes): Process one dataset at a time to avoid OOM errors.
     change_stats = {}
+    # Collected rather than raised on the spot so that a submission of several
+    # files reports every invalid one. Raising at the first would make a
+    # contributor fix, push, and wait once per bad file to discover the rest.
+    validation_errors: list[str] = []
     for file_status in inputs:
         dataset: dataset_pb2.Dataset | parquet.DatasetView | None
         if file_status.status == "D":
@@ -352,17 +356,25 @@ def run(
         datasets_checked: dict[str, dataset_pb2.Dataset | parquet.DatasetView] = (
             {file_status.filename: dataset} if dataset is not None else {}
         )
+        is_valid = True
         if not args.no_validate and dataset is not None:
-            # Note: this does not check if IDs are malformed.
-            validations.validate_datasets(datasets_checked, args.write_errors)
-            # Check reaction sizes.
-            for reaction in dataset.reactions:
-                reaction_size = sys.getsizeof(reaction.SerializeToString()) / 1e6
-                if reaction_size > args.max_size:
-                    raise ValueError(
-                        f"Reaction is larger than --max_size "
-                        f"({reaction_size} vs {args.max_size})"
-                    )
+            try:
+                # Note: this does not check if IDs are malformed.
+                validations.validate_datasets(datasets_checked, args.write_errors)
+            except validations.ValidationError as error:
+                validation_errors.append(f"{file_status.filename}: {error}")
+                is_valid = False
+            else:
+                # Check reaction sizes. Left to raise where it stands: it is a
+                # hard limit rather than a data defect, and one oversized
+                # reaction says nothing useful about the remaining files.
+                for reaction in dataset.reactions:
+                    reaction_size = sys.getsizeof(reaction.SerializeToString()) / 1e6
+                    if reaction_size > args.max_size:
+                        raise ValueError(
+                            f"Reaction is larger than --max_size "
+                            f"({reaction_size} vs {args.max_size})"
+                        )
         if args.base:
             added, removed, changed = get_change_stats(
                 datasets, [file_status], base=args.base
@@ -374,7 +386,7 @@ def run(
                 len(removed),
                 len(changed),
             )
-        if args.update and dataset is not None:
+        if args.update and dataset is not None and is_valid:
             _run_updates(
                 datasets_checked,
                 root=args.root,
@@ -382,6 +394,11 @@ def run(
                 write_errors=args.write_errors,
                 cleanup_files=args.cleanup,
             )
+    if validation_errors:
+        raise validations.ValidationError(
+            f"validation encountered errors in {len(validation_errors)} of "
+            f"{len(inputs)} files:\n" + "\n".join(validation_errors)
+        )
     if change_stats:
         total_added, total_removed, total_changed = set(), set(), set()
         comment = [
