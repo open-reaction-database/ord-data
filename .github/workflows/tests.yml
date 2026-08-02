@@ -39,12 +39,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout ord-data
-      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       # The tests exercise pure functions and build their own fixtures under
       # tmp_path, so no dataset objects are needed.
       with:
         lfs: false
-    - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
+    - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
       with:
         enable-cache: true
     - name: Install dependencies
