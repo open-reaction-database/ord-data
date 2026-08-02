@@ -69,22 +69,33 @@ jobs:
     # to report.
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-    - name: Add upstream for comparisons to HEAD
-      run: |
-        cd "${GITHUB_WORKSPACE}"
-        git remote add upstream \
-          "https://github.com/Open-Reaction-Database/${GITHUB_REPOSITORY##*/}.git"
-        echo "Current branch: $(git rev-parse --abbrev-ref HEAD)"
-        git fetch --no-tags --prune --depth=1 upstream \
-          +refs/heads/*:refs/remotes/upstream/*
+    # The changed files come from the API rather than a diff against
+    # upstream/main. A submission sits on a "#<number>" branch that drifts
+    # behind main as other work merges, and diffing the pull request against
+    # main counts every one of those merges as a file the submission touched:
+    # a contributor is then told their submission contains workflows and
+    # scripts they never saw. The API answers the question actually being
+    # asked -- what does this pull request change -- however stale its base is.
+    #
+    # A merge base would do too, but the shallow fetch this job used to do has
+    # no shared history to compute one from.
     - name: Check changed files (PR from fork)
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PR_NUMBER: ${{ github.event.pull_request.number }}
+        REPO: ${{ github.repository }}
       run: |
-        cd "${GITHUB_WORKSPACE}"
-        git diff --name-only upstream/main > changed_files.txt
-        grep -vE "${DATASET_FILE_PATTERN}" changed_files.txt && \
-          echo "Error: submissions should only contain *.pb, *.binpb, *.pbtxt, or *.txtpb files (optionally gzipped), or *.parquet files" && \
-          exit 1 || true
+        set -euo pipefail
+        : "${DATASET_FILE_PATTERN:?must be set by the workflow env}"
+        gh api --paginate "repos/${REPO}/pulls/${PR_NUMBER}/files" \
+          --jq '.[].filename' > changed_files.txt
+        echo "Files changed by this pull request:"
+        cat changed_files.txt
+        # Filenames are untrusted input and are only ever matched, never run.
+        if grep -vE "${DATASET_FILE_PATTERN}" changed_files.txt; then
+          echo "Error: submissions should only contain *.pb, *.binpb, *.pbtxt, or *.txtpb files (optionally gzipped), or *.parquet files"
+          exit 1
+        fi
       if: github.event.pull_request.head.repo.fork
 
   process_submission:
@@ -129,9 +140,26 @@ jobs:
         fi
     - name: Identify changed files
       # NOTE(kearnes): This sets the NUM_CHANGED_FILES variable.
+      #
+      # From the API for the same reason as check_file_types: a diff against
+      # upstream/main counts everything merged since this pull request's branch
+      # last caught up, so a submission would be "processed" together with
+      # whatever else had landed. process_dataset.py reads git's --name-status
+      # format, so the statuses are mapped back to it here; only A, D, M, and R
+      # are accepted there, and a rename carries its previous path.
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PR_NUMBER: ${{ github.event.pull_request.number }}
+        REPO: ${{ github.repository }}
       run: |
         cd "${GITHUB_WORKSPACE}"
-        git diff --name-status upstream/main > changed_files.txt
+        gh api --paginate "repos/${REPO}/pulls/${PR_NUMBER}/files" --jq '
+          .[] | if .status == "renamed"
+                then "R100\t\(.previous_filename)\t\(.filename)"
+                else (if .status == "added" or .status == "copied" then "A"
+                      elif .status == "removed" then "D"
+                      else "M" end) + "\t" + .filename
+                end' > changed_files.txt
         echo "Found $(wc -l < changed_files.txt | tr -d ' ') changed files"
         cat changed_files.txt
         # Use `|| (( $? == 1 ))` in case no lines match (exit code is nonzero).
@@ -171,8 +199,9 @@ jobs:
     #
     # Nested inside the workspace because process_dataset.py has to run with
     # the pull request's working tree as its cwd -- it shells out to git show,
-    # git diff, git mv, and git rm against it. The directory is untracked, which
-    # neither `git diff` against upstream/main nor `git commit -a` picks up.
+    # git mv, and git rm against it. The directory is untracked, so `git commit
+    # -a` leaves it alone, and the file list comes from the API rather than
+    # from the working tree, so it cannot be mistaken for a submitted file.
     # By branch rather than by base.sha: that field records the base as it
     # stood when the pull request was opened or last synchronized, so a
     # submission branch brought up to date afterwards still reports the old
