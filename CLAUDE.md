@@ -22,7 +22,7 @@ Python style, etc.).
 
 `uv run pytest -n auto` · `uv run ruff check .` · `uv run ty check` ·
 `uv run pre-commit run --all-files`. Python is pinned to 3.11 by
-`.python-version`; `uv sync --locked` honours it.
+`.python-version`; `uv sync --locked` honors it.
 
 ## Git LFS ↔ Hugging Face mirror — read before touching LFS or workflows
 
