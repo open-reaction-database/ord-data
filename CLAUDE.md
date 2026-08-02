@@ -57,8 +57,10 @@ Invariants — easy to break, so check these when editing any workflow or LFS co
    step for fork PRs). Every invalid file is reported, not just the first.
 4. A maintainer merges into the `#<number>` branch; the non-fork run's `Update
    submission` step runs `process_dataset.py --update --cleanup`, which assigns
-   ids and **moves the file into `data/`** (where it becomes an LFS object), then
-   commits and pushes.
+   ids and **moves the file into `data/`** as **Parquet** (where it becomes an
+   LFS object), then commits and pushes. An edit to a dataset already in the
+   repository keeps whatever format it has; only new submissions are written in
+   the standard one.
 5. A maintainer PRs the `#<number>` branch into `main`. On push to `main`,
    `validation.yml` validates and `huggingface_mirror.yml` mirrors the new
    objects to HF.
