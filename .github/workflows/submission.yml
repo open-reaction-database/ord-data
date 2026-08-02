@@ -89,6 +89,18 @@ jobs:
         : "${DATASET_FILE_PATTERN:?must be set by the workflow env}"
         gh api --paginate "repos/${REPO}/pulls/${PR_NUMBER}/files" \
           --jq '.[].filename' > changed_files.txt
+        # The files endpoint stops at 3000 no matter how many pages are asked
+        # for, and says nothing when it does. A truncated list here would mean
+        # files silently skipping the check below, so compare it against the
+        # count the pull request itself reports.
+        EXPECTED="$(gh api "repos/${REPO}/pulls/${PR_NUMBER}" --jq '.changed_files')"
+        ACTUAL="$(wc -l < changed_files.txt | tr -d ' ')"
+        if [[ "${ACTUAL}" -ne "${EXPECTED}" ]]; then
+          echo "Error: listed ${ACTUAL} of ${EXPECTED} changed files. The API"
+          echo "caps this endpoint at 3000, so this submission cannot be"
+          echo "checked in one piece; split it into smaller pull requests."
+          exit 1
+        fi
         echo "Files changed by this pull request:"
         cat changed_files.txt
         # Filenames are untrusted input and are only ever matched, never run.
@@ -160,6 +172,17 @@ jobs:
                       elif .status == "removed" then "D"
                       else "M" end) + "\t" + .filename
                 end' > changed_files.txt
+        # See check_file_types: the endpoint truncates at 3000 files without
+        # saying so, and a short list here would mean datasets silently going
+        # unprocessed rather than merely unchecked.
+        EXPECTED="$(gh api "repos/${REPO}/pulls/${PR_NUMBER}" --jq '.changed_files')"
+        ACTUAL="$(wc -l < changed_files.txt | tr -d ' ')"
+        if [[ "${ACTUAL}" -ne "${EXPECTED}" ]]; then
+          echo "Error: listed ${ACTUAL} of ${EXPECTED} changed files. The API"
+          echo "caps this endpoint at 3000, so this submission cannot be"
+          echo "processed in one piece; split it into smaller pull requests."
+          exit 1
+        fi
         echo "Found $(wc -l < changed_files.txt | tr -d ' ') changed files"
         cat changed_files.txt
         # Use `|| (( $? == 1 ))` in case no lines match (exit code is nonzero).
