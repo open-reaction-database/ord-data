@@ -33,9 +33,12 @@ name: Retarget Submission
 # only ever used for GitHub API calls about the pull request; this workflow
 # checks out no code at all, and in particular never checks out the fork's head,
 # so nothing the contributor controls is read or executed here.
+# `edited` fires when a base branch is changed, so a submission pointed back at
+# main by hand is moved again. This cannot recurse: the repoint below is made
+# with GITHUB_TOKEN, and events from that token start no workflow run.
 on:
   pull_request_target:
-    types: [opened, reopened]
+    types: [opened, reopened, edited]
 
 permissions:
   contents: write        # create the "#<number>" branch

@@ -87,8 +87,16 @@ jobs:
     # Fork pull requests that change no dataset files are ordinary
     # contributions -- documentation, workflows, scripts -- and target main
     # like any other.
+    #
+    # Deliberately not run on opened/reopened, where retarget_submission.yml is
+    # already moving the submission: it repoints with GITHUB_TOKEN, and events
+    # from that token start no workflow run, so a failure recorded here would
+    # never be re-run and would sit red on a pull request that had in fact been
+    # fixed seconds later. Every later event still checks.
     if: >-
       github.event.pull_request.head.repo.fork &&
+      github.event.action != 'opened' &&
+      github.event.action != 'reopened' &&
       (github.event.action != 'edited' || github.event.changes.base)
     runs-on: ubuntu-latest
     steps:
