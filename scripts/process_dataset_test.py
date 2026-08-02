@@ -309,7 +309,15 @@ class TestSubmissionWorkflow:
         """
         # These commands will fail if there are no files to match for a given
         # pattern, so run them separately to make sure we pick up changes.
-        for pattern in ("*.pb*", "data/*/*.pb*", "*.parquet", "data/*/*.parquet"):
+        for pattern in (
+            "*.pb*",
+            "data/*/*.pb*",
+            # .binpb/.txtpb have no ".pb" substring, so *.pb* does not cover them.
+            "*.binpb*",
+            "*.txtpb*",
+            "*.parquet",
+            "data/*/*.parquet",
+        ):
             try:
                 subprocess.run(["git", "add", pattern], check=True)
             except subprocess.CalledProcessError as error:
@@ -376,6 +384,43 @@ class TestSubmissionWorkflow:
         assert len(dataset.reactions) == 1
         assert dataset.reactions[0].reaction_id
         # Check for binary output.
+        assert filenames[0].endswith(".pb.gz")
+
+    @pytest.mark.parametrize("suffix", [".binpb", ".txtpb"])
+    def test_add_dataset_with_protobuf_canonical_suffix(self, setup, suffix):
+        # A submission staged at the repository root using protobuf.dev's
+        # canonical suffixes, as in ord-data#265.
+        test_subdirectory, dataset_filename = setup
+        reaction = reaction_pb2.Reaction()
+        ethylamine = reaction.inputs["ethylamine"]
+        component = ethylamine.components.add()
+        component.identifiers.add(type="SMILES", value="CCN")
+        component.is_limiting = True
+        component.amount.moles.value = 2
+        component.amount.moles.units = reaction_pb2.Moles.MILLIMOLE
+        reaction.outcomes.add().conversion.value = 25
+        reaction.provenance.record_created.time.value = "2020-01-01"
+        reaction.provenance.record_created.person.username = "test"
+        reaction.provenance.record_created.person.email = "test@example.com"
+        reaction.reaction_id = "test"
+        dataset = dataset_pb2.Dataset(
+            name="test", description="test", reactions=[reaction]
+        )
+        this_dataset_filename = pathlib.Path(test_subdirectory) / f"test{suffix}"
+        message_helpers.save_message(dataset, this_dataset_filename)
+        added, removed, changed, filenames = self._run(test_subdirectory)
+        assert added == {"test"}
+        assert not removed
+        assert not changed
+        # The submission is rewritten into data/ and the root input is gone.
+        assert not this_dataset_filename.exists()
+        assert len(filenames) == 2
+        filenames.pop(filenames.index(dataset_filename))
+        written = message_helpers.load_message(filenames[0], dataset_pb2.Dataset)
+        assert written.dataset_id
+        assert len(written.reactions) == 1
+        assert written.reactions[0].reaction_id
+        # Submissions are normalized to the canonical on-disk format.
         assert filenames[0].endswith(".pb.gz")
 
     def test_add_parquet_dataset_with_cleanup(self, setup):
@@ -639,3 +684,73 @@ class TestSubmissionWorkflow:
         assert len(removed) == 1
         assert not changed
         assert len(filenames) == 1
+
+
+class TestDatasetSuffix:
+    @pytest.mark.parametrize(
+        ("filename", "expected"),
+        [
+            ("dataset.pb", ".pb"),
+            ("dataset.binpb", ".binpb"),
+            ("dataset.pbtxt", ".pbtxt"),
+            ("dataset.txtpb", ".txtpb"),
+            ("dataset.parquet", ".parquet"),
+            ("data/4d/ord_dataset-abc.pb.gz", ".pb.gz"),
+            ("dataset.binpb.gz", ".binpb.gz"),
+            ("dataset.txtpb.gz", ".txtpb.gz"),
+            # Dots earlier in the basename are not part of the format suffix.
+            ("Dreher_exp1.revised.binpb", ".binpb"),
+            ("dataset", ""),
+        ],
+    )
+    def test_dataset_suffix(self, filename, expected):
+        assert process_dataset._dataset_suffix(filename) == expected
+
+
+class TestLoadBaseDataset:
+    """Covers the format dispatch used to read a file's base revision out of git.
+
+    Text formats are the reason this matters: parsing a .pbtxt/.txtpb base revision
+    as binary silently fails, so every accepted suffix is round-tripped here.
+    """
+
+    @pytest.mark.parametrize(
+        "suffix",
+        [".pb", ".binpb", ".pbtxt", ".txtpb", ".pb.gz", ".binpb.gz", ".txtpb.gz"],
+    )
+    def test_reads_base_revision(self, tmp_path, monkeypatch, suffix):
+        monkeypatch.chdir(tmp_path)
+        subprocess.run(["git", "init", "-b", "main"], check=True)
+        subprocess.run(
+            ["git", "config", "--local", "user.email", "test@ord-schema"], check=True
+        )
+        subprocess.run(
+            ["git", "config", "--local", "user.name", "Test Runner"], check=True
+        )
+        base = dataset_pb2.Dataset(
+            name="base",
+            description="base",
+            dataset_id="ord_dataset-64b14868c5cd46dd8e75560fd3589a6b",
+        )
+        filename = f"dataset{suffix}"
+        message_helpers.save_message(base, filename)
+        subprocess.run(["git", "add", filename], check=True)
+        subprocess.run(["git", "commit", "-m", "Initial commit"], check=True)
+        # Overwrite the working copy: the committed revision is now the only
+        # place the original name survives, so a wrong parse cannot pass.
+        message_helpers.save_message(dataset_pb2.Dataset(name="modified"), filename)
+        loaded = process_dataset._load_base_dataset(
+            process_dataset.FileStatus(filename, "M", ""), "main"
+        )
+        assert loaded is not None  # Only added ("A") files have no base revision.
+        assert loaded.name == "base"
+        assert loaded.description == "base"
+        assert loaded.dataset_id == base.dataset_id
+
+    def test_added_file_has_no_base_revision(self):
+        assert (
+            process_dataset._load_base_dataset(
+                process_dataset.FileStatus("dataset.binpb", "A", ""), "main"
+            )
+            is None
+        )

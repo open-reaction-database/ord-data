@@ -34,6 +34,15 @@ concurrency:
   group: submission-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
+env:
+  # Dataset files a submission may contain: protobuf binary (.pb/.binpb) or
+  # text (.pbtxt/.txtpb), either optionally gzipped, plus Parquet. The
+  # check_file_types job rejects anything else, and process_submission selects
+  # the files it processes with the same pattern, so they must agree: a
+  # suffix accepted by one but not the other either fails a legitimate
+  # submission or silently processes nothing.
+  DATASET_FILE_PATTERN: '\.(pb|binpb|pbtxt|txtpb)(\.gz)?$|\.parquet$'
+
 jobs:
   check_file_types:
     runs-on: ubuntu-latest
@@ -51,8 +60,8 @@ jobs:
       run: |
         cd "${GITHUB_WORKSPACE}"
         git diff --name-only upstream/main > changed_files.txt
-        grep -vE '\.(pb(txt)?(.gz)?|parquet)$' changed_files.txt && \
-          echo "Error: submissions should only contain (gzipped) *.pbtxt, *.pb, or *.parquet files" && \
+        grep -vE "${DATASET_FILE_PATTERN}" changed_files.txt && \
+          echo "Error: submissions should only contain *.pb, *.binpb, *.pbtxt, or *.txtpb files (optionally gzipped), or *.parquet files" && \
           exit 1 || true
       if: github.event.pull_request.head.repo.fork
 
@@ -93,7 +102,7 @@ jobs:
         echo "Found $(wc -l < changed_files.txt | tr -d ' ') changed files"
         cat changed_files.txt
         # Use `|| (( $? == 1 ))` in case no lines match (exit code is nonzero).
-        grep -E "\.(pb(txt)?(.gz)?|parquet)$" changed_files.txt > changed_data_files.txt || (( $? == 1 ))
+        grep -E "${DATASET_FILE_PATTERN}" changed_files.txt > changed_data_files.txt || (( $? == 1 ))
         # Use LOCAL_NUM_CHANGED since ::set-env values are not available immediately.
         LOCAL_NUM_CHANGED="$(wc -l < changed_data_files.txt | tr -d ' ')"
         echo "NUM_CHANGED_FILES=${LOCAL_NUM_CHANGED}" >> $GITHUB_ENV
