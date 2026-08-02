@@ -20,14 +20,12 @@ Excellent! Please follow the
 [Submission Workflow](https://ord-schema.readthedocs.io/en/latest/submissions.html)
 in the documentation.
 
-**Note on the target branch:** a submission does not go straight to `main`. It
-is merged into a `#<number>` branch in this repository first, named after your
-pull request, and that branch is what opens the pull request against `main`.
-The submission workflow needs somewhere it can push the processed dataset back
-to — assigning reaction and dataset IDs and moving files into `data/` — and
-GitHub Actions cannot push to a fork. Open your pull request against `main` and
-a maintainer will create that branch and point it there; your diff does not
-change when they do.
+**Note on the target branch:** open your pull request against `main`. If it adds
+or changes dataset files, a workflow moves it onto a `#<number>` branch in this
+repository and comments to say so — your diff is unchanged and nothing is
+required from you. That branch exists because the submission workflow pushes the
+processed dataset back (assigning reaction and dataset IDs, moving files into
+`data/`), which GitHub Actions cannot do on a fork.
 
 **Note on large files (Git LFS):** Published datasets under `data/` are stored
 with [Git LFS](https://git-lfs.com/), and clones fetch the objects from the
