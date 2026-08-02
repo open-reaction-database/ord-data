@@ -42,7 +42,8 @@ on:
       # Mirror tooling.
       - '.github/workflows/huggingface_mirror.yml'
       - 'scripts/upload_to_huggingface.py'
-      - 'scripts/requirements.txt'
+      - 'pyproject.toml'
+      - 'uv.lock'
 
 jobs:
   mirror:
@@ -75,11 +76,15 @@ jobs:
         echo "head=${HEAD}" >> "${GITHUB_OUTPUT}"
         echo "Diff range: ${BASE}..${HEAD}"
 
-    - uses: actions/setup-python@v5
+    - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
       with:
-        python-version: '3.11'
+        enable-cache: true
 
-    - run: pip install -r scripts/requirements.txt
+    # --no-dev: this job only moves bytes, so it needs huggingface-hub and
+    # pyyaml but not the schema library (and its rdkit/pandas chain). The run
+    # step below pairs this with --no-sync, since a bare `uv run` would sync the
+    # default groups and reinstall what --no-dev just left out.
+    - run: uv sync --no-dev --locked
 
     # .lfsconfig points clone/fetch LFS reads at this same HF mirror, but the
     # objects we are about to upload are not on HF yet — fetch them from GitHub.
@@ -91,7 +96,7 @@ jobs:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
         DRY_RUN_FLAG: ${{ github.event_name == 'pull_request' && '--dry-run' || '' }}
       run: |
-        python scripts/upload_to_huggingface.py \
+        uv run --no-sync python scripts/upload_to_huggingface.py \
           --base="${{ steps.range.outputs.base }}" \
           --head="${{ steps.range.outputs.head }}" \
           --commit-message="Mirror ${GITHUB_SHA::7} from github.com/${GITHUB_REPOSITORY}" \

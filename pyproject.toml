@@ -1,0 +1,141 @@
+# Copyright 2026 Open Reaction Database Project Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# ord-data is a data repository, not an installable package. This file declares
+# the dependencies of the helper scripts under scripts/ and configures the
+# tooling (pytest, ruff, ty) that runs against them.
+
+[project]
+name = "ord-data"
+version = "0"
+description = "Tooling for the Open Reaction Database data repository"
+# Code in this repository is Apache-2.0. The datasets under data/ are
+# CC-BY-SA-4.0 (see LICENSE); this field describes the code only.
+license = "Apache-2.0"
+license-files = ["LICENSE-CODE"]
+requires-python = ">=3.11"
+dependencies = [
+    "huggingface-hub>=0.24",
+    "pyyaml>=6.0",
+]
+
+[dependency-groups]
+dev = [
+    # Scripts that read or write ORD datasets need the schema library; it is a
+    # dev dependency rather than a runtime one so the mirror job, which only
+    # moves bytes, can `uv sync --no-dev` without pulling rdkit/pandas.
+    "ord-schema>=0.8",
+    "pre-commit>=4",
+    "pytest>=8.0",
+    "pytest-xdist>=3.5",
+    "ruff>=0.15",
+    "ty>=0.0.28",
+]
+
+[tool.uv]
+# Virtual project: there is nothing to build or install from this repository.
+package = false
+
+[tool.pytest.ini_options]
+# Tests sit beside the modules they cover (foo.py / foo_test.py), matching
+# ord-schema. scripts/ is not a package, so pytest's prepend import mode puts
+# the directory on sys.path and the bare-name imports resolve.
+testpaths = ["scripts"]
+addopts = "--strict-markers --strict-config"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+# Ruleset mirrors ord-schema so the two repositories lint to one standard.
+select = [
+    "E",    # pycodestyle errors
+    "F",    # pyflakes
+    "W",    # pycodestyle warnings
+    "I",    # isort (import sorting)
+    "B",    # flake8-bugbear (likely bugs)
+    "UP",   # pyupgrade (modernize syntax)
+    "SIM",  # flake8-simplify
+    "ANN",  # flake8-annotations (argument, return, and Any-return types)
+    "C4",   # flake8-comprehensions
+    "COM",  # flake8-commas
+    "ISC",  # flake8-implicit-str-concat
+    "PT",   # flake8-pytest-style
+    "TC",   # flake8-type-checking
+    "RET",  # flake8-return
+    "ICN",  # flake8-import-conventions
+    "FURB", # refurb
+    "PYI",  # flake8-pyi
+    "PD",   # pandas-vet
+    "NPY",  # numpy-specific
+    "RUF",  # ruff-specific
+    "TRY",  # tryceratops
+    "EM",   # flake8-errmsg
+    "FBT",  # flake8-boolean-trap
+    "G",    # flake8-logging-format
+    "PLC", "PLE", "PLR", "PLW",  # pylint
+    "C90",  # mccabe complexity
+    "PERF", # perflint
+    "N",    # pep8-naming
+    "SLF",  # flake8-self
+    "DTZ",  # flake8-datetimez
+    "BLE",  # flake8-blind-except
+    "A",    # flake8-builtins
+    "INP",  # flake8-no-pep420
+    "T20",  # flake8-print
+    "ERA",  # eradicate (commented-out code)
+    "TD",   # flake8-todos
+    "FIX",  # flake8-fixme
+    "S",    # flake8-bandit
+    "PTH",  # flake8-use-pathlib
+    "D",    # pydocstyle (docstrings)
+]
+# Only rules that actually fire here are listed; ord-schema's longer list is
+# tuned to code this repository does not have.
+ignore = [
+    # COM812 (missing trailing comma) and ISC001 (single-line implicit string
+    # concat) conflict with the ruff formatter, which ruff recommends disabling
+    # when running `ruff format`.
+    "COM812",
+    "ISC001",
+    # These scripts are CLIs: print() is the output mechanism, and they shell
+    # out to git and git-lfs with arguments this repository controls.
+    "T201",
+    "S603",
+    "S607",
+    # --- Adopted from ord-schema so the two repositories agree on style ---
+    "TRY003",           # don't force custom exception classes for messages
+    "EM101", "EM102",   # don't force a msg= variable before every raise
+    "FBT001", "FBT002", # boolean positional args exist in these APIs already
+    "C901", "PLR0912", "PLR0913", "PLR0915",  # complexity caps -> churn
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+# scripts/ holds top-level CLI modules, not a package.
+"scripts/*.py" = ["INP001"]
+# Type annotations add little on test functions, assert is the point of a test,
+# and reaching into module internals is fine there. Mirrors ord-schema.
+"**/*_test.py" = ["ANN", "S101", "SLF001", "D103"]
+
+[tool.ty.src]
+include = ["scripts"]
+
+[tool.ty.environment]
+# scripts/ is on sys.path at runtime (see tool.pytest.ini_options.pythonpath),
+# so tests import its modules by bare name.
+extra-paths = ["scripts"]
