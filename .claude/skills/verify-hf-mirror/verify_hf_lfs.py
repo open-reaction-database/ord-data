@@ -91,10 +91,19 @@ def check(objects: list[tuple[str, int, str]]) -> list[tuple[str, str]]:
         else:
             raise RuntimeError("too many redirects")
         by_oid = {(o, s): p for o, s, p in chunk}
+        returned = {
+            (obj.get("oid"), obj.get("size")) for obj in data.get("objects", [])
+        }
         missing.extend(
             (obj["oid"], by_oid.get((obj["oid"], obj.get("size")), "?"))
             for obj in data.get("objects", [])
             if "error" in obj
+        )
+        # An object the batch response simply left out has not been shown to be
+        # present, and this audit exists to decide whether the mirror can be
+        # trusted for reads. Silence is not evidence, so count it as missing.
+        missing.extend(
+            (oid, path) for oid, size, path in chunk if (oid, size) not in returned
         )
         print(f"  checked {min(start + CHUNK, len(objects))}/{len(objects)}")
     return missing
@@ -104,8 +113,15 @@ def main() -> None:
     """Reports any LFS object at ``REF`` that the Hugging Face mirror is missing."""
     objects = lfs_pointers(REF)
     print(f"{REF}: {len(objects)} LFS objects")
-    if any(not o[0] or not o[1] for o in objects):
-        print("WARNING: some pointers did not parse", file=sys.stderr)
+    # Stop rather than warn: a pointer with no oid or size would be sent to the
+    # batch API as null and come back unanswered, and the run would end up
+    # reporting a complete mirror having never checked that path.
+    unparsed = [o[2] for o in objects if not o[0] or not o[1]]
+    if unparsed:
+        print(f"ERROR: {len(unparsed)} pointers did not parse:", file=sys.stderr)
+        for path in unparsed:
+            print(f"  {path}", file=sys.stderr)
+        sys.exit(2)
     missing = check(objects)
     print()
     if missing:
