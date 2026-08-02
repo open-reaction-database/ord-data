@@ -40,7 +40,10 @@ name: Retarget Submission
 # changing anything.
 on:
   pull_request_target:
-    types: [opened, reopened, edited]
+    # synchronize is here because this job is a required status check: branch
+    # protection looks for its verdict on the head commit, so every new head
+    # needs one, not just the events that can change the base.
+    types: [opened, reopened, edited, synchronize]
 
 permissions:
   contents: write        # create the "#<number>" branch
@@ -59,14 +62,16 @@ env:
 
 jobs:
   retarget:
-    # Runs for every fork pull request, including those already on a
-    # "#<number>" branch, rather than only those still on main. Skipping the
-    # already-correct case leaves nothing at all reporting on the one event
-    # where the target branch is decided: submission.yml's check_target_branch
-    # stands down on opened/reopened so it cannot race this workflow, so if
-    # this job also skipped, a target branch that had gone wrong would be
-    # caught by nothing until the next push.
-    if: github.event.pull_request.head.repo.fork
+    # Deliberately unconditional, including for pull requests that are not from
+    # forks and those already on a "#<number>" branch. This job is the required
+    # status check for where a submission is targeted, and a skipped job
+    # satisfies branch protection no better than a failing one, so it has to
+    # reach a verdict on every pull request. The cases it does not act on are
+    # decided in the script and reported as successes.
+    #
+    # Being both the thing that fixes the target branch and the thing that
+    # reports on it is the point: they cannot race each other, so a retarget is
+    # never judged before it has happened.
     runs-on: ubuntu-latest
     steps:
     # Repointing with GITHUB_TOKEN starts no workflow run, so submission.yml
@@ -95,8 +100,20 @@ jobs:
         # impossible rather than merely unlikely.
         PR_NUMBER: ${{ github.event.pull_request.number }}
         REPO: ${{ github.repository }}
+        IS_FORK: ${{ github.event.pull_request.head.repo.fork }}
       run: |
         set -euo pipefail
+        # An unset pattern would not abort inside the `if` below -- set -u does
+        # not fire on a condition -- and would instead read as "no dataset
+        # files", quietly leaving a submission on main.
+        : "${DATASET_FILE_PATTERN:?must be set by the workflow env}"
+        # A branch in this repository can be pushed to directly, so the
+        # submission workflow's update step reaches it and no intermediate
+        # branch is needed.
+        if [[ "${IS_FORK}" != "true" ]]; then
+          echo "Not a fork pull request; the target branch is unconstrained."
+          exit 0
+        fi
         # Read live rather than from the event payload, which on a reopen can
         # still describe the base as it stood before an earlier retarget.
         BASE="$(gh api "repos/${REPO}/pulls/${PR_NUMBER}" --jq '.base.ref')"

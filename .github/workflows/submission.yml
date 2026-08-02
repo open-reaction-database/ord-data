@@ -25,19 +25,18 @@ on:
   pull_request:
     # Default trigger types plus labeled/unlabeled so adding or removing the
     # `skip-update-submission` label re-runs with the new gating on the "Update
-    # submission" step, and edited because a pull request's author may change
-    # its base: a submission validated on a "#<number>" branch and then pointed
-    # back at main has to be re-judged, or the required check keeps a verdict
-    # that no longer describes where the pull request is going.
+    # submission" step.
     #
-    # Every job below runs unconditionally, which is what makes subscribing to
-    # this safe. A job that skips on some events reports "skipped" over a real
-    # verdict, and one that short-circuits to success reports a trivial pass
-    # over a real failure; either would let a required check be cleared by
-    # retitling a pull request. Re-running everything costs an LFS pull on an
-    # edit that changed nothing, which is the price of the verdict always being
-    # earned.
-    types: [opened, synchronize, reopened, labeled, unlabeled, edited]
+    # Not `edited`. Nothing here depends on a pull request's title, body, or
+    # base: where a submission is targeted is retarget_submission.yml's
+    # verdict, on its own required check. Retitling a pull request would only
+    # repeat an LFS pull to reach the same conclusion.
+    #
+    # Every job below runs unconditionally, which is what keeps the required
+    # verdict honest whatever does trigger a run. A job that skips on some
+    # events reports "skipped" over a real verdict, and one that
+    # short-circuits to success reports a trivial pass over a real failure.
+    types: [opened, synchronize, reopened, labeled, unlabeled]
 
 # One in-flight run per PR. New events (pushes, label toggles) cancel
 # the prior run so we are not paying twice for things like LFS checkouts.
@@ -142,48 +141,6 @@ jobs:
         echo "NUM_CHANGED_FILES=${LOCAL_NUM_CHANGED}" >> $GITHUB_ENV
         echo "Found ${LOCAL_NUM_CHANGED} changed dataset files"
         cat changed_data_files.txt
-    # The required check must not be able to pass while a fork data submission
-    # is still aimed at main. "Update submission" is gated on `! fork`, so such
-    # a pull request would merge with nothing having assigned reaction IDs or
-    # moved files into data/. retarget_submission.yml normally moves it long
-    # before this point; its own failure is not enough on its own, because that
-    # workflow is not a required check and a red run there does not block a
-    # merge. This is the check that does.
-    - name: Confirm a fork submission is not targeting main
-      if: >-
-        env.NUM_CHANGED_FILES != '0' &&
-        github.event.pull_request.head.repo.fork
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PR_NUMBER: ${{ github.event.pull_request.number }}
-        REPO: ${{ github.repository }}
-      run: |
-        set -euo pipefail
-        # Read live rather than from the event payload, and give the retarget a
-        # moment to land: both workflows start from the same event, and on a
-        # newly opened pull request this job can reach here first.
-        #
-        # This wait is a backstop, not the mechanism. retarget_submission.yml
-        # repoints with an app token, whose `edited` event re-runs this
-        # workflow, so a retarget slower than the wait below is picked up on
-        # that run instead. Only when the app is unconfigured does the repoint
-        # fall back to GITHUB_TOKEN, which triggers nothing, and the wait
-        # becomes the only thing standing between a slow retarget and a red
-        # that no later event would clear.
-        for attempt in 1 2 3 4 5 6 7 8 9 10 11 12; do
-          BASE="$(gh api "repos/${REPO}/pulls/${PR_NUMBER}" --jq '.base.ref')"
-          [[ "${BASE}" != "main" ]] && break
-          echo "Attempt ${attempt}: still targeting main; waiting for the retarget."
-          sleep 5
-        done
-        echo "Target branch: ${BASE}"
-        if [[ "${BASE}" == "main" ]]; then
-          echo "Error: a data submission from a fork cannot target main; it" \
-            "belongs on a '#${PR_NUMBER}' branch in this repository so the" \
-            "submission workflow can push the processed dataset back to it." \
-            "Check the Retarget Submission run, which should have moved it."
-          exit 1
-        fi
     # Read LFS from GitHub, not the HF mirror that .lfsconfig points clones at:
     # submissions are validated before their bytes are mirrored to HF on merge
     # to main, and the "Update submission" step's uploads reuse this lfs.url
