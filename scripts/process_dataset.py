@@ -30,7 +30,6 @@ should validate with ord_schema.scripts.validate_dataset instead.
 import argparse
 import dataclasses
 import glob
-import gzip
 import os
 import pathlib
 import subprocess
@@ -140,6 +139,24 @@ def _get_reaction_ids(
     }
 
 
+def _dataset_suffix(filename: str) -> str:
+    """Returns the suffix that determines a dataset file's serialization format.
+
+    Args:
+        filename: Dataset filename, e.g. ``data/4d/ord_dataset-abc.pb.gz``.
+
+    Returns:
+        The format-bearing suffix, keeping a trailing ``.gz``: e.g. ``.pb.gz``,
+        ``.binpb``, or ``.parquet``. Empty if the filename has no suffix.
+    """
+    suffixes = pathlib.Path(filename).suffixes
+    if not suffixes:
+        return ""
+    if suffixes[-1] == ".gz":
+        return "".join(suffixes[-2:])
+    return suffixes[-1]
+
+
 def _load_base_dataset(
     file_status: FileStatus, base: str
 ) -> dataset_pb2.Dataset | parquet.DatasetView | None:
@@ -170,16 +187,20 @@ def _load_base_dataset(
             check=True,
             text=False,
         )
-    if git_args[-1].endswith(".parquet"):
+    suffix = _dataset_suffix(git_args[-1])
+    if suffix == ".parquet":
         with tempfile.NamedTemporaryFile(suffix=".parquet", delete=False) as temp:
             temp.write(serialized.stdout)
             temp_path = temp.name
         return parquet.DatasetView(temp_path)
-    if git_args[-1].endswith(".gz"):
-        value = gzip.decompress(serialized.stdout)
-    else:
-        value = serialized.stdout
-    return dataset_pb2.Dataset.FromString(value)
+    # load_message picks the parser from the suffix, so the temp file has to keep
+    # it: .pb/.binpb parse as binary, .pbtxt/.txtpb as text, and a trailing .gz
+    # decompresses either. This copy is read before the file is closed, so unlike
+    # the Parquet view above it does not need to outlive the block.
+    with tempfile.NamedTemporaryFile(suffix=suffix) as temp:
+        temp.write(serialized.stdout)
+        temp.flush()
+        return message_helpers.load_message(temp.name, dataset_pb2.Dataset)
 
 
 def get_change_stats(
