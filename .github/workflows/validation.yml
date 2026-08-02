@@ -73,7 +73,7 @@ jobs:
         ]
     steps:
     - name: Checkout ord-data
-      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         lfs: false
     # .lfsconfig redirects clone/fetch LFS reads to the Hugging Face mirror to
@@ -93,12 +93,12 @@ jobs:
         git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
         git lfs pull --include="${FILTER}/*.pb*"
     - name: Checkout ord-schema
-      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         repository: Open-Reaction-Database/ord-schema
         ref: ${{ env.ORD_SCHEMA_TAG }}
         path: ord-schema
-    - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+    - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
       with:
         python-version: '3.11'
     - name: Install ord_schema
@@ -137,7 +137,7 @@ jobs:
             lfs_exclude: 'data/*/ord_dataset-1158e351757f315b93cbcbe7bc55f38e.parquet'
     steps:
     - name: Checkout ord-data
-      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         lfs: false
     # See validate_pb: read this shard's LFS objects from GitHub rather than the
@@ -154,12 +154,12 @@ jobs:
           git lfs pull --include="${LFS_INCLUDE}"
         fi
     - name: Checkout ord-schema
-      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         repository: Open-Reaction-Database/ord-schema
         ref: ${{ env.ORD_SCHEMA_TAG }}
         path: ord-schema
-    - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+    - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
       with:
         python-version: '3.11'
     - name: Install ord_schema
