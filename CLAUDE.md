@@ -85,10 +85,14 @@ the whole dataset, so submission CI only needs the **changed** objects.
   checks at submission; the flag is opt-in in `ord_schema` because ids are
   assigned *during* submission, so a draft does not have them yet. Uses
   `concurrency: cancel-in-progress` — pushing again cancels the
-  running matrix. Like `submission.yml`, it builds its environment from a
-  repo-owned ref (`pipeline/`, sparse-checked-out to just `.python-version` /
-  `pyproject.toml` / `uv.lock`) because a `pull_request` run checks out the
-  contributor-controlled merge ref.
+  running matrix. Its environment is a separate sparse checkout (`pipeline/`,
+  just `.python-version` / `pyproject.toml` / `uv.lock`) taken from the **base
+  branch on fork PRs** and from `github.sha` otherwise. Narrower than
+  `submission.yml`'s guard on purpose: pinning it to the base branch on
+  *every* PR meant the workflow file came from the merge ref while its
+  environment came from `main`, so a PR that bumped `uv.lock` **and** changed
+  the validator's command line failed with `unrecognized arguments` and could
+  not test itself.
 - **`submission.yml`** — per-PR. `process_submission` sparse-pulls only the
   changed datasets, gated on `NUM_CHANGED_FILES`. Fork PRs run validate-only;
   non-fork PRs run the `Update submission` step (skippable via the

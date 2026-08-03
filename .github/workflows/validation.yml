@@ -93,14 +93,18 @@ jobs:
       run: |
         git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
         git lfs pull --include="${FILTER}/*.pb*"
-    # A pull_request run checks out the merge ref, so the tree above is
-    # contributor-controlled, uv.lock included. The environment is built from a
-    # ref this repository owns instead: the base branch on a pull request, the
-    # pushed or scheduled ref otherwise.
-    - name: Check out the pipeline from a trusted ref
+    # A fork's pull request must not choose the environment its own data is
+    # validated in, so a fork run builds from the base branch. Every other run
+    # builds from the ref under test -- for a same-repo pull request that is the
+    # merge ref, so a change to uv.lock and a change to how the validator is
+    # invoked can land together and actually be tested. Anyone who can open a
+    # same-repo pull request can already edit this file.
+    - name: Check out the pipeline
       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
-        ref: ${{ github.event.pull_request.base.ref || github.ref }}
+        ref: >-
+          ${{ github.event.pull_request.head.repo.fork
+              && github.event.pull_request.base.ref || github.sha }}
         path: pipeline
         lfs: false
         # Only what `uv sync` reads. Leaving out data/ also keeps a second tree
@@ -166,12 +170,14 @@ jobs:
         else
           git lfs pull --include="${LFS_INCLUDE}"
         fi
-    # See validate_pb: the environment comes from a ref this repository owns,
-    # never the contributor-controlled merge ref.
-    - name: Check out the pipeline from a trusted ref
+    # See validate_pb: forks build from the base branch, everything else from
+    # the ref under test.
+    - name: Check out the pipeline
       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
-        ref: ${{ github.event.pull_request.base.ref || github.ref }}
+        ref: >-
+          ${{ github.event.pull_request.head.repo.fork
+              && github.event.pull_request.base.ref || github.sha }}
         path: pipeline
         lfs: false
         # Only what `uv sync` reads. Leaving out data/ also keeps a second tree
