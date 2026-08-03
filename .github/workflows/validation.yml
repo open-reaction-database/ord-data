@@ -49,8 +49,8 @@ concurrency:
 
 # validate_dataset.py ships inside the ord_schema wheel, so both jobs below run
 # it as a module out of the `pipeline` dependency group. Both pass --validate_ids,
-# matching what process_dataset.py checks when a dataset is submitted, so an id
-# that stopped being well-formed after submission does not go unnoticed. uv.lock is therefore
+# matching what process_dataset.py checks at submission, so an id that stops being
+# well-formed afterwards does not go unnoticed. uv.lock is therefore
 # the only place the schema version is written down, and it is the same
 # resolution the submission pipeline validates against: a dataset is checked
 # against one version of the schema library whether it arrives by submission or
@@ -95,10 +95,10 @@ jobs:
         git lfs pull --include="${FILTER}/*.pb*"
     # A fork's pull request must not choose the environment its own data is
     # validated in, so a fork run builds from the base branch. Every other run
-    # builds from the ref under test -- for a same-repo pull request that is the
-    # merge ref, so a change to uv.lock and a change to how the validator is
-    # invoked can land together and actually be tested. Anyone who can open a
-    # same-repo pull request can already edit this file.
+    # builds from github.sha -- the merge commit on a pull request -- so a
+    # uv.lock bump and a change to how the validator is invoked are tested
+    # together. Anyone who can open a same-repo pull request can already edit
+    # this file.
     - name: Check out the pipeline
       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
@@ -171,7 +171,7 @@ jobs:
           git lfs pull --include="${LFS_INCLUDE}"
         fi
     # See validate_pb: forks build from the base branch, everything else from
-    # the ref under test.
+    # github.sha.
     - name: Check out the pipeline
       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
