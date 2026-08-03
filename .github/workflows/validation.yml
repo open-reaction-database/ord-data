@@ -48,7 +48,9 @@ concurrency:
   cancel-in-progress: true
 
 # validate_dataset.py ships inside the ord_schema wheel, so both jobs below run
-# it as a module out of the `pipeline` dependency group. uv.lock is therefore
+# it as a module out of the `pipeline` dependency group. Both pass --validate_ids,
+# matching what process_dataset.py checks when a dataset is submitted, so an id
+# that stopped being well-formed after submission does not go unnoticed. uv.lock is therefore
 # the only place the schema version is written down, and it is the same
 # resolution the submission pipeline validates against: a dataset is checked
 # against one version of the schema library whether it arrives by submission or
@@ -125,7 +127,8 @@ jobs:
         ./pipeline/.venv/bin/python -m ord_schema.scripts.validate_dataset \
           --input_pattern="data/*/*.pb*" \
           --filter="${FILTER}" \
-          --n_jobs=4
+          --n_jobs=4 \
+          --validate_ids
 
   validate_parquet:
     runs-on: ubuntu-latest
@@ -192,4 +195,5 @@ jobs:
         ./pipeline/.venv/bin/python -m ord_schema.scripts.validate_dataset \
           --input_pattern="data/*/*.parquet" \
           --filter="${FILTER}" \
-          --n_jobs=4
+          --n_jobs=4 \
+          --validate_ids

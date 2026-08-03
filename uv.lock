@@ -651,7 +651,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "ord-schema", specifier = ">=0.8" },
+    { name = "ord-schema", specifier = ">=0.8.2" },
     { name = "pre-commit", specifier = ">=4" },
     { name = "pygithub", specifier = ">=1.51" },
     { name = "pytest", specifier = ">=8.0" },
@@ -660,13 +660,13 @@ dev = [
     { name = "ty", specifier = ">=0.0.65" },
 ]
 pipeline = [
-    { name = "ord-schema", specifier = ">=0.8" },
+    { name = "ord-schema", specifier = ">=0.8.2" },
     { name = "pygithub", specifier = ">=1.51" },
 ]
 
 [[package]]
 name = "ord-schema"
-version = "0.8.0"
+version = "0.8.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "joblib" },
@@ -680,9 +680,9 @@ dependencies = [
     { name = "rdkit" },
     { name = "tqdm" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/17/6f/caa03e4654e9c70dda54fccc9c108e3174e157828118af440612b3f35ca8/ord_schema-0.8.0.tar.gz", hash = "sha256:4b4587004b0b3a4ae8e8065df6525ca2144da84933ca570a6385ebb7ef45314d", size = 194944, upload-time = "2026-07-24T02:37:17.393Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/19/a6/4badad57269902542955a964427160e23af4b79a1dfaf40811f220744204/ord_schema-0.8.2.tar.gz", hash = "sha256:b70f8456acc159609b47e44b485b235a881dcee0b41659802c82034fd6048be3", size = 196701, upload-time = "2026-08-03T00:45:44.365Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/59/ca/54588f592a3d3a438541671f598893e7177690efb7dd22f055e3b68e124f/ord_schema-0.8.0-py3-none-any.whl", hash = "sha256:55c23e464800e5cdd14d637653ba0283a3fa1b72aca3c89494c34864a762c56b", size = 223167, upload-time = "2026-07-24T02:37:15.758Z" },
+    { url = "https://files.pythonhosted.org/packages/de/1a/fd49402fe6a7396ed3395f1366e6df6ab05498151f80ca049de46dc5aab7/ord_schema-0.8.2-py3-none-any.whl", hash = "sha256:784e1e53ccf8e32f2e256551aa7cdedd999eb27e95cf0d7358aede1981de81c2", size = 221810, upload-time = "2026-08-03T00:45:43.027Z" },
 ]
 
 [[package]]

@@ -35,7 +35,7 @@ dependencies = [
 # group rather than runtime dependencies so the mirror job, which only moves
 # bytes, can `uv sync --no-dev` without pulling rdkit/pandas.
 pipeline = [
-    "ord-schema>=0.8",
+    "ord-schema>=0.8.2",
     # process_dataset.py posts submission summaries back to a GitHub issue.
     "pygithub>=1.51",
 ]
