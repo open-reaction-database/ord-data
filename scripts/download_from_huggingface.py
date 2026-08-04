@@ -71,7 +71,19 @@ def main() -> None:
         local_dir=str(args.output_dir),
         allow_patterns=allow_patterns,
     )
-    print(f"Downloaded {HF_REPO_ID}@{args.revision} to {local_dir}")
+    # snapshot_download treats a pattern that matches nothing as a successful
+    # download of no files, which reads as success to anyone whose pattern has
+    # gone stale -- e.g. a *.pb.gz pattern from before the corpus was Parquet.
+    downloaded = sum(1 for path in Path(local_dir).rglob("*") if path.is_file())
+    if not downloaded:
+        raise SystemExit(
+            f"No files on {HF_REPO_ID}@{args.revision} matched {allow_patterns}. "
+            "Published datasets are Parquet: try --allow-pattern 'data/4d/*.parquet'."
+        )
+    print(
+        f"Downloaded {downloaded} files from "
+        f"{HF_REPO_ID}@{args.revision} to {local_dir}"
+    )
 
 
 if __name__ == "__main__":
