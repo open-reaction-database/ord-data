@@ -66,19 +66,25 @@ from ord_schema.datasets import load_dataset
 from ord_schema.message_helpers import save_message
 
 # load the parquet file as a Dataset proto
-dataset = load_dataset("input_fname.parquet")
+# (as_dataset materializes it; the default is a streaming DatasetView)
+dataset = load_dataset("input_fname.parquet", as_dataset=True)
 # save the ord file as human readable text
 save_message(dataset, "output_fname.pbtxt")
 ```
 
-`load_dataset` deserializes every reaction into memory. For the larger datasets —
-notably the USPTO grants file, with 1.7M reactions — read them a piece at a time
-instead with `ord_schema.parquet.DatasetView`, which quacks like a `Dataset` for
-`name`/`description`/`dataset_id` while its `reactions` stream off disk. Each
-`Reaction` carries its own `reaction_id`, so a view is all most readers need; the
-same module's `load_reaction` and `iter_reactions` are there to select by ID or
-to read a single row group, the unit of parallelism for fanning out over a large
-file.
+`load_dataset` returns a `DatasetView` for Parquet, which takes the dataset's
+scalars and row count from the file footer and reads reactions on demand.
+Iteration, `len`, indexing, and slicing over `reactions` behave like a list, so
+code that only reads needs no change — and the USPTO grants file, 1.7M reactions
+in 1.1 GB, opens in milliseconds rather than deserializing up front. Pass
+`as_dataset=True` (above) when you need the protobuf surface: serialization,
+JSON conversion, or mutation. A view you already hold offers the same thing as
+`to_proto()`.
+
+Beyond plain iteration, a view can look a reaction up by ID with `get_reaction`,
+yield IDs alone with `iter_reaction_ids`, and read one row group at a time with
+`iter_reactions(row_group=...)` — row groups being the unit of parallelism for
+fanning out over a large file.
 
 We can also convert ORD data into JSON format.
 
