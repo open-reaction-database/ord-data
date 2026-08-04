@@ -651,7 +651,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "ord-schema", specifier = ">=0.8.2" },
+    { name = "ord-schema", specifier = ">=0.8.3" },
     { name = "pre-commit", specifier = ">=4" },
     { name = "pygithub", specifier = ">=1.51" },
     { name = "pytest", specifier = ">=8.0" },
@@ -660,13 +660,13 @@ dev = [
     { name = "ty", specifier = ">=0.0.65" },
 ]
 pipeline = [
-    { name = "ord-schema", specifier = ">=0.8.2" },
+    { name = "ord-schema", specifier = ">=0.8.3" },
     { name = "pygithub", specifier = ">=1.51" },
 ]
 
 [[package]]
 name = "ord-schema"
-version = "0.8.2"
+version = "0.8.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "joblib" },
@@ -680,9 +680,9 @@ dependencies = [
     { name = "rdkit" },
     { name = "tqdm" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/19/a6/4badad57269902542955a964427160e23af4b79a1dfaf40811f220744204/ord_schema-0.8.2.tar.gz", hash = "sha256:b70f8456acc159609b47e44b485b235a881dcee0b41659802c82034fd6048be3", size = 196701, upload-time = "2026-08-03T00:45:44.365Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/bb/ed/9e27e85b9813303bb66eff8aeb3e278c337b9f776c0aac804e003299c481/ord_schema-0.8.3.tar.gz", hash = "sha256:3c1ce2c9f390b7f5c3c692100b322406858a253d5888e895399edc3b31ee7f41", size = 209931, upload-time = "2026-08-04T04:44:18.678Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/de/1a/fd49402fe6a7396ed3395f1366e6df6ab05498151f80ca049de46dc5aab7/ord_schema-0.8.2-py3-none-any.whl", hash = "sha256:784e1e53ccf8e32f2e256551aa7cdedd999eb27e95cf0d7358aede1981de81c2", size = 221810, upload-time = "2026-08-03T00:45:43.027Z" },
+    { url = "https://files.pythonhosted.org/packages/8a/cc/33eefbca1cd58ec8c42896b8c87e586a58aeb20b58972c4c9416e135ce89/ord_schema-0.8.3-py3-none-any.whl", hash = "sha256:1aaf40d6ce2531f56aca228064e1c26f3ad8d08e5f89731605c8cf1e4bd4867f", size = 232477, upload-time = "2026-08-04T04:44:17.494Z" },
 ]
 
 [[package]]
