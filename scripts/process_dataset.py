@@ -144,7 +144,7 @@ def _get_reaction_ids(
     file so we never decode Reaction blobs just to collect IDs.
     """
     if isinstance(dataset, parquet.DatasetView):
-        return {rid for rid in parquet.iter_reaction_ids(dataset.path) if rid}
+        return {rid for rid in dataset.iter_reaction_ids() if rid}
     return {
         reaction.reaction_id for reaction in dataset.reactions if reaction.reaction_id
     }
