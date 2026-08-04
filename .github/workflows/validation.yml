@@ -1,4 +1,18 @@
-# Runs validate_dataset.py on all datasets in the database.
+# Copyright 2026 Open Reaction Database Project Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Runs ord-schema's validate_dataset.py over every dataset in the repository.
 
 name: Validation
 
@@ -6,21 +20,41 @@ on:
   push:
     branches:
       - main
+    # Validating the whole corpus pulls 1.2 GB of Git LFS across 53 files from
+    # GitHub (see the fetch step for why it has to be GitHub), so a push pays
+    # for it only when the data, or the thing that validates it, changed.
+    paths:
+      - 'data/**'
+      - '.github/workflows/validation.yml'
   pull_request:
     paths:
       # Runs when this file is modified in a PR.
       - '.github/workflows/validation.yml'
+  schedule:
+    # Standing sweep for bit rot, and for corruption arriving by some path
+    # other than a dataset commit: the whole corpus, with no merge waiting on
+    # it.
+    - cron: '0 7 * * 1'
 
 # One in-flight matrix per PR (or per push to main). Subsequent events
 # cancel the prior run so we are not paying twice for the LFS-heavy
 # validate_parquet shards.
+#
+# Keyed on the event as well as the ref: a scheduled run and a push to main
+# share a ref, so without it a merge would cancel the weekly sweep and that
+# week's corpus check would simply not happen.
 concurrency:
-  group: validation-${{ github.event.pull_request.number || github.ref }}
+  group: validation-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
-env:
-  ORD_SCHEMA_TAG: v0.6.3
-
+# validate_dataset.py ships inside the ord_schema wheel, so the job below runs
+# it as a module out of the `pipeline` dependency group. It passes --validate_ids,
+# matching what process_dataset.py checks at submission, so an id that stops being
+# well-formed afterwards does not go unnoticed. uv.lock is therefore
+# the only place the schema version is written down, and it is the same
+# resolution the submission pipeline validates against: a dataset is checked
+# against one version of the schema library whether it arrives by submission or
+# is swept here.
 jobs:
   validate_parquet:
     runs-on: ubuntu-latest
@@ -42,7 +76,7 @@ jobs:
             lfs_exclude: 'data/*/ord_dataset-1158e351757f315b93cbcbe7bc55f38e.parquet'
     steps:
     - name: Checkout ord-data
-      uses: actions/checkout@v4
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         lfs: false
     # .lfsconfig redirects clone/fetch LFS reads to the Hugging Face mirror to
@@ -50,6 +84,10 @@ jobs:
     # just-merged objects are not on HF yet, and pulling only this shard keeps
     # the transfer small instead of fetching the whole dataset in every job.
     # The checkout step already configured GitHub credentials for the pull.
+    #
+    # lfs_include is carried separately from filter because filter is a regex
+    # handed to validate_dataset.py -- the `other` shard's is a negative
+    # lookahead -- and git lfs takes a path glob.
     - name: Fetch LFS shard from GitHub
       env:
         LFS_INCLUDE: ${{ matrix.lfs_include }}
@@ -61,27 +99,43 @@ jobs:
         else
           git lfs pull --include="${LFS_INCLUDE}"
         fi
-    - name: Checkout ord-schema
-      uses: actions/checkout@v4
+    # A fork's pull request must not choose the environment its own data is
+    # validated in, so a fork run builds from the base branch. Every other run
+    # builds from github.sha -- the merge commit on a pull request -- so a
+    # uv.lock bump and a change to how the validator is invoked are tested
+    # together. Anyone who can open a same-repo pull request can already edit
+    # this file.
+    - name: Check out the pipeline
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
-        repository: Open-Reaction-Database/ord-schema
-        ref: ${{ env.ORD_SCHEMA_TAG }}
-        path: ord-schema
-    - uses: actions/setup-python@v5
+        ref: >-
+          ${{ github.event.pull_request.head.repo.fork
+              && github.event.pull_request.base.ref || github.sha }}
+        path: pipeline
+        lfs: false
+        # Only what `uv sync` reads. Leaving out data/ also keeps a second tree
+        # of dataset pointer files from sitting under the workspace.
+        sparse-checkout: |
+          .python-version
+          pyproject.toml
+          uv.lock
+        sparse-checkout-cone-mode: false
+    - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
       with:
-        python-version: '3.11'
+        enable-cache: true
     - name: Install ord_schema
-      run: |
-        cd "${GITHUB_WORKSPACE}/ord-schema"
-        python -m pip install --upgrade pip
-        python -m pip install wheel
-        python -m pip install .
+      working-directory: pipeline
+      run: uv sync --only-group pipeline --locked
+    # The interpreter is invoked directly rather than through `uv run`, which
+    # would rediscover the checked-out tree's own pyproject.toml and hand the
+    # environment back to the pull request.
     - name: Validate parquet datasets
       env:
         FILTER: ${{ matrix.filter }}
       run: |
         cd "${GITHUB_WORKSPACE}"
-        python ./ord-schema/ord_schema/scripts/validate_dataset.py \
-          --input="data/*/*.parquet" \
+        ./pipeline/.venv/bin/python -m ord_schema.scripts.validate_dataset \
+          --input_pattern="data/*/*.parquet" \
           --filter="${FILTER}" \
-          --n_jobs=4
+          --n_jobs=4 \
+          --validate_ids

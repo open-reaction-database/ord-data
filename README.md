@@ -25,9 +25,12 @@ place.
 ### Option 2: Download only the data (a subset, or without Git history)
 
 ```bash
-pip install -r scripts/requirements.txt
+pip install huggingface_hub
 python scripts/download_from_huggingface.py
 ```
+
+(If you use [uv](https://docs.astral.sh/uv/), `uv run scripts/download_from_huggingface.py`
+installs the dependencies for you.)
 
 The script mirrors the `data/` directory from the Hugging Face dataset into your
 local checkout. Pass `--allow-pattern 'data/4d/*.parquet'` (repeatable) to download
@@ -59,14 +62,20 @@ readable text format, *.pbtxt.
 
 ```python
 # import requirements
-from ord_schema import parquet_dataset
-from ord_schema.message_helpers import write_message
+from ord_schema.datasets import load_dataset
+from ord_schema.message_helpers import save_message
 
 # load the parquet file as a Dataset proto
-dataset = parquet_dataset.read_dataset("input_fname.parquet")
+dataset = load_dataset("input_fname.parquet")
 # save the ord file as human readable text
-write_message(dataset, "output_fname.pbtxt")
+save_message(dataset, "output_fname.pbtxt")
 ```
+
+`load_dataset` deserializes every reaction into memory. For the larger datasets —
+notably the USPTO grants file, with 1.7M reactions — read them a piece at a time
+instead with the streaming interfaces in `ord_schema.parquet`:
+`DatasetView` (quacks like a `Dataset`, but its `reactions` stream off disk),
+`iter_reactions`, and `load_reaction`.
 
 We can also convert ORD data into JSON format.
 
@@ -74,18 +83,17 @@ We can also convert ORD data into JSON format.
 # import requirements
 import json
 
-from ord_schema import parquet_dataset
+from ord_schema.parquet import iter_reactions
 from google.protobuf.json_format import MessageToJson
 
 input_fname = "sample_file.parquet"
-dataset = parquet_dataset.read_dataset(input_fname)
 
 # take one reaction message from the dataset for example
-rxn = dataset.reactions[0]
+_, rxn = next(iter_reactions(input_fname))
 rxn_json = json.loads(
     MessageToJson(
         message=rxn,
-        including_default_value_fields=False,
+        always_print_fields_with_no_presence=False,
         preserving_proto_field_name=True,
         indent=2,
         sort_keys=False,
@@ -96,7 +104,9 @@ rxn_json = json.loads(
     )
 )
 
-print(f"We have converted the {input_fname} to JSON format shown as below, \n{rxn_json}")
+print(
+    f"We have converted the {input_fname} to JSON format shown as below, \n{rxn_json}"
+)
 ```
 
 ## Git LFS and the Hugging Face mirror
@@ -156,8 +166,9 @@ Please see the [Submission Workflow](https://docs.open-reaction-database.org/en/
 
 ### Skipping the `Update submission` step
 
-The submission workflow's `Update submission` step runs `process_dataset.py
---update --cleanup` to assign reaction/dataset IDs and timestamps to newly
+The submission workflow's `Update submission` step runs
+[`scripts/process_dataset.py`](scripts/process_dataset.py) `--update --cleanup`
+to assign reaction/dataset IDs and timestamps to newly
 submitted files and rewrite them to the canonical on-disk format. For
 maintainer PRs that touch dataset files but should *not* be re-processed
 this way — e.g., format conversions or mass migrations of already-finalized
@@ -166,23 +177,24 @@ side of the workflow still runs.
 
 ### Converting datasets to Parquet
 
-Published datasets are stored as Parquet only. Submissions that arrive as
-`.pb.gz` are converted with
-[`scripts/convert_to_parquet.py`](scripts/convert_to_parquet.py): the script
-globs every `data/**/*.pb.gz`, converts each 1:1 (carrying the existing
-`dataset_id`), and skips any output that already exists — so it is safe to
-re-run and writes only what is missing. After converting, delete the `.pb.gz`
-inputs so only the Parquet versions are committed.
+Published datasets are stored as Parquet only, and new submissions are written
+that way by `process_dataset.py`, so `data/` holds no `.pb.gz` to convert.
+[`scripts/convert_to_parquet.py`](scripts/convert_to_parquet.py) remains for the
+case where one lands there anyway: it globs every `data/**/*.pb.gz`, converts
+each 1:1 (carrying the existing `dataset_id`), and skips any output that already
+exists — so it is safe to re-run and writes only what is missing. Converting the
+corpus is this script's job, not a side effect of editing one dataset, which is
+why `process_dataset.py` leaves an edited file in whatever format it has.
 
-It needs `ord_schema` at the pinned `ORD_SCHEMA_TAG` (see the workflows) and
-Python ≥3.11:
+It needs `ord_schema`, which comes from the `pipeline` dependency group. Because
+it reads `.pb.gz` content, pull the inputs first:
 
 ```bash
-uv venv --python 3.11 && source .venv/bin/activate  # or: python -m venv .venv
-pip install "ord-schema==0.6.3"  # match ORD_SCHEMA_TAG
+uv sync --only-group pipeline
 
-python scripts/convert_to_parquet.py --dry-run  # preview what it will write
-python scripts/convert_to_parquet.py  # write the Parquet versions
+git lfs pull --include="data/**/*.pb.gz"  # the converter reads pb.gz content
+uv run --no-sync python scripts/convert_to_parquet.py --dry-run  # preview
+uv run --no-sync python scripts/convert_to_parquet.py  # write the Parquet versions
 git rm data/*/*.pb.gz  # keep only the Parquet versions
 ```
 
@@ -216,3 +228,23 @@ git -c lfs.pushurl=https://github.com/open-reaction-database/ord-data.git/info/l
 
 Reads stay on the mirror; only your uploads go to GitHub. On merge to `main`,
 `huggingface_mirror.yml` copies the new objects to Hugging Face.
+
+## License
+
+This repository carries two licenses, because it holds both data and code:
+
+| what | license | file |
+| --- | --- | --- |
+| The datasets under `data/` (and the repository metadata describing them) | [CC-BY-SA-4.0](LICENSE) | `LICENSE` |
+| The code under `scripts/` and `.github/` | [Apache-2.0](LICENSE-CODE) | `LICENSE-CODE` |
+
+If you are using ORD data, CC-BY-SA-4.0 is the license that applies to you; it
+is what `CITATION.cff` and the [Hugging Face
+mirror](https://huggingface.co/datasets/open-reaction-database/ord-data) declare.
+
+The code carries a separate license because Creative Commons licenses are not
+intended for software — [Creative Commons recommends against
+it](https://creativecommons.org/faq/#can-i-apply-a-creative-commons-license-to-software)
+— and because the project's other code repositories, including
+[ord-schema](https://github.com/Open-Reaction-Database/ord-schema), are
+Apache-2.0.
