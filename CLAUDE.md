@@ -81,11 +81,17 @@ the whole dataset, so submission CI only needs the **changed** objects.
   sparse-pulls only its objects from GitHub. For pb shards, `matrix.filter`
   doubles as both the `validate_dataset.py` regex and the LFS `--include` glob
   (parquet needs a separate `lfs_include` because its filter is a lookahead
-  regex). Uses `concurrency: cancel-in-progress` — pushing again cancels the
-  running matrix. Like `submission.yml`, it builds its environment from a
-  repo-owned ref (`pipeline/`, sparse-checked-out to just `.python-version` /
-  `pyproject.toml` / `uv.lock`) because a `pull_request` run checks out the
-  contributor-controlled merge ref.
+  regex). Both jobs pass `--validate_ids`, matching what `process_dataset.py`
+  checks at submission; it is opt-in upstream because ids are assigned *during*
+  submission, so a draft does not have them yet. Uses
+  `concurrency: cancel-in-progress` — pushing again cancels the running matrix.
+  Its environment is a separate sparse checkout (`pipeline/`, just
+  `.python-version` / `pyproject.toml` / `uv.lock`) taken from the **base branch
+  on fork PRs** and from `github.sha` otherwise — deliberately narrower than
+  `submission.yml`'s guard. Pinning it to the base branch on every PR takes the
+  workflow file from the merge ref and its environment from `main`, so a PR that
+  bumps `uv.lock` **and** changes the validator's command line cannot test
+  itself.
 - **`submission.yml`** — per-PR. `process_submission` sparse-pulls only the
   changed datasets, gated on `NUM_CHANGED_FILES`. Fork PRs run validate-only;
   non-fork PRs run the `Update submission` step (skippable via the
