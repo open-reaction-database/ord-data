@@ -304,8 +304,10 @@ def _run_updates(
         # In-memory path: materialize a Parquet input if the requested output
         # format is not Parquet (so we can mutate via update_dataset).
         if isinstance(dataset, parquet.DatasetView):
-            # (materialize the view in place)
-            dataset = parquet.load_dataset(input_filename)  # noqa: PLW2901
+            # to_proto carries the view's own scalars, so an assignment made to the
+            # view survives materialization; re-reading the path would take them
+            # from the footer and drop it.
+            dataset = dataset.to_proto()  # noqa: PLW2901
         updates.update_dataset(dataset)
         validations.validate_datasets(
             {input_filename: dataset}, write_errors, options=options
