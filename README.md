@@ -73,9 +73,12 @@ save_message(dataset, "output_fname.pbtxt")
 
 `load_dataset` deserializes every reaction into memory. For the larger datasets —
 notably the USPTO grants file, with 1.7M reactions — read them a piece at a time
-instead with the streaming interfaces in `ord_schema.parquet`:
-`DatasetView` (quacks like a `Dataset`, but its `reactions` stream off disk),
-`iter_reactions`, and `load_reaction`.
+instead with `ord_schema.parquet.DatasetView`, which quacks like a `Dataset` for
+`name`/`description`/`dataset_id` while its `reactions` stream off disk. Each
+`Reaction` carries its own `reaction_id`, so a view is all most readers need; the
+same module's `load_reaction` and `iter_reactions` are there to select by ID or
+to read a single row group, the unit of parallelism for fanning out over a large
+file.
 
 We can also convert ORD data into JSON format.
 
@@ -83,13 +86,14 @@ We can also convert ORD data into JSON format.
 # import requirements
 import json
 
-from ord_schema.parquet import iter_reactions
+from ord_schema.parquet import DatasetView
 from google.protobuf.json_format import MessageToJson
 
 input_fname = "sample_file.parquet"
+dataset = DatasetView(input_fname)
 
 # take one reaction message from the dataset for example
-_, rxn = next(iter_reactions(input_fname))
+rxn = next(iter(dataset.reactions))
 rxn_json = json.loads(
     MessageToJson(
         message=rxn,
