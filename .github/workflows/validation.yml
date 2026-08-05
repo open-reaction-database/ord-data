@@ -13,6 +13,13 @@
 # limitations under the License.
 
 # Runs ord-schema's validate_dataset.py over every dataset in the repository.
+#
+# Coverage rests on one pattern, data/*/*.parquet, and validate_dataset.py
+# reports success over an empty match set -- so a dataset that pattern does not
+# describe is published unchecked rather than rejected. Both jobs below assert
+# their own reach before a green result means anything: check_layout pins down
+# what may live under data/, and each validate_parquet shard requires a
+# non-empty share of it.
 
 name: Validation
 
@@ -20,9 +27,9 @@ on:
   push:
     branches:
       - main
-    # Validating the whole corpus pulls 2.4 GB of Git LFS across 603 files from
-    # GitHub (see the fetch step for why it has to be GitHub), so a push pays
-    # for it only when the data, or the thing that validates it, changed.
+    # Validating the whole corpus pulls ~1.2 GB of Git LFS from GitHub (see the
+    # fetch step for why it has to be GitHub), so a push pays for it only when
+    # the data, or the thing that validates it, changed.
     paths:
       - 'data/**'
       - '.github/workflows/validation.yml'
@@ -38,7 +45,7 @@ on:
 
 # One in-flight matrix per PR (or per push to main). Subsequent events
 # cancel the prior run so we are not paying twice for the LFS-heavy
-# validate_pb / validate_parquet shards.
+# validate_parquet shards.
 #
 # Keyed on the event as well as the ref: a scheduled run and a push to main
 # share a ref, so without it a merge would cancel the weekly sweep and that
@@ -47,8 +54,8 @@ concurrency:
   group: validation-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
-# validate_dataset.py ships inside the ord_schema wheel, so both jobs below run
-# it as a module out of the `pipeline` dependency group. Both pass --validate_ids,
+# validate_dataset.py ships inside the ord_schema wheel, so validate_parquet
+# runs it as a module out of the `pipeline` dependency group. It passes --validate_ids,
 # matching what process_dataset.py checks at submission, so an id that stops being
 # well-formed afterwards does not go unnoticed. uv.lock is therefore
 # the only place the schema version is written down, and it is the same
@@ -56,22 +63,82 @@ concurrency:
 # against one version of the schema library whether it arrives by submission or
 # is swept here.
 jobs:
-  validate_pb:
+  # Reads the index, not the objects, so it needs no LFS and finishes in
+  # seconds. Runs alongside the shards rather than gating them: a layout the
+  # shards do not cover should be reported together with whatever they did
+  # manage to validate.
+  check_layout:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout ord-data
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        lfs: false
+    # Anything that is not a .parquet exactly one directory below data/ falls
+    # outside the shards' input pattern. .gitattributes tracks .pb/.pb.gz under
+    # data/, process_dataset.py leaves an edited dataset in the format it
+    # already has, and --output_format can write one deliberately, so this is
+    # reachable rather than theoretical.
+    - name: Every dataset is Parquet at data/<xx>/
+      run: |
+        set -euo pipefail
+        if stray="$(git ls-files -- data | grep -Ev '^data/[0-9a-f]{2}/[^/]+\.parquet$')"; then
+          echo "::error::not covered by the data/*/*.parquet validation pattern:"
+          printf '%s\n' "${stray}"
+          exit 1
+        fi
+        echo "data/ holds $(git ls-files -- data | wc -l) Parquet datasets and nothing else"
+    # Each shard proves it has work to do, but on its own that leaves the union
+    # unchecked: one filter could go stale and drop its datasets while the other
+    # still matches plenty, and both shards would stay green. Match every
+    # dataset against every filter here, where the whole matrix is visible.
+    - name: Shard filters cover every dataset exactly once
+      run: |
+        set -euo pipefail
+        python3 - <<'PY'
+        import re
+        import subprocess
+        import sys
+
+        workflow = ".github/workflows/validation.yml"
+        with open(workflow) as handle:
+            filters = re.findall(r"^ +filter: '(.+)'$", handle.read(), re.MULTILINE)
+        if not filters:
+            sys.exit(f"no shard filters found in {workflow}; did the matrix move?")
+        files = subprocess.run(
+            ["git", "ls-files", "--", "data"],
+            capture_output=True, text=True, check=True,
+        ).stdout.split()
+        problems = [
+            f"  {path}: matched by {n} of {len(filters)} shard filters"
+            for path in files
+            if (n := sum(bool(re.search(f, path)) for f in filters)) != 1
+        ]
+        print(f"{len(filters)} shard filters cover {len(files)} datasets exactly once")
+        if problems:
+            sys.exit("shard filters do not partition data/:\n" + "\n".join(problems))
+        PY
+
+  validate_parquet:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        filter: [
-          'data/[0-4][0-4]',
-          'data/[0-4][5-9]',
-          'data/[0-4][a-f]',
-          'data/[5-9][0-4]',
-          'data/[5-9][5-9]',
-          'data/[5-9][a-f]',
-          'data/[a-f][0-4]',
-          'data/[a-f][5-9]',
-          'data/[a-f][a-f]',
-        ]
+        include:
+          # USPTO grants: one ~1.8M-reaction file, ~1 GB, which is most of the
+          # corpus by size and the long pole in wall-clock. It gets its own leg
+          # so the small datasets neither wait on it nor re-fetch it; within this
+          # leg, row-group parallelism in validate_dataset.py saturates the
+          # 4-CPU runner.
+          - name: uspto
+            filter: 'ord_dataset-1158e351757f315b93cbcbe7bc55f38e\.parquet$'
+            lfs_include: 'data/*/ord_dataset-1158e351757f315b93cbcbe7bc55f38e.parquet'
+            lfs_exclude: ''
+          # Everything else (negative lookahead on the USPTO parquet id).
+          - name: other
+            filter: '^(?!.*ord_dataset-1158e351757f315b93cbcbe7bc55f38e).*\.parquet$'
+            lfs_include: 'data/*/*.parquet'
+            lfs_exclude: 'data/*/ord_dataset-1158e351757f315b93cbcbe7bc55f38e.parquet'
     steps:
     - name: Checkout ord-data
       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -79,20 +146,30 @@ jobs:
         lfs: false
     # .lfsconfig redirects clone/fetch LFS reads to the Hugging Face mirror to
     # save GitHub bandwidth, but CI reads from GitHub: on a push to main the
-    # just-merged objects are not on HF yet, and pulling only this shard keeps
-    # the transfer tiny instead of fetching the whole dataset in every job.
+    # just-merged objects are not on HF yet, and each leg pulls only its own
+    # objects rather than the whole corpus.
     # The checkout step already configured GitHub credentials for the pull.
     #
-    # matrix.filter (e.g. data/[0-4][0-4]) is intentionally written to be valid
-    # both as the validate_dataset.py regex below and as an LFS path glob, so it
-    # doubles as the --include pattern here. (The parquet job needs a separate
-    # lfs_include because its filter is a lookahead regex, not a glob.)
+    # lfs_include is carried separately from filter because filter is a regex
+    # handed to validate_dataset.py -- the `other` shard's is a negative
+    # lookahead -- and git lfs takes a path glob. lfs_exclude is what actually
+    # scopes the `other` shard, whose include glob is every parquet file.
+    #
+    # An unset lfs_include would render empty, which git lfs reads as no filter
+    # at all and would quietly pull all 1.2 GB, so require it.
     - name: Fetch LFS shard from GitHub
       env:
-        FILTER: ${{ matrix.filter }}
+        LFS_INCLUDE: ${{ matrix.lfs_include }}
+        LFS_EXCLUDE: ${{ matrix.lfs_exclude }}
       run: |
+        set -euo pipefail
+        : "${LFS_INCLUDE:?matrix entry must set lfs_include}"
         git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
-        git lfs pull --include="${FILTER}/*.pb*"
+        if [[ -n "${LFS_EXCLUDE}" ]]; then
+          git lfs pull --include="${LFS_INCLUDE}" --exclude="${LFS_EXCLUDE}"
+        else
+          git lfs pull --include="${LFS_INCLUDE}"
+        fi
     # A fork's pull request must not choose the environment its own data is
     # validated in, so a fork run builds from the base branch. Every other run
     # builds from github.sha -- the merge commit on a pull request -- so a
@@ -123,81 +200,29 @@ jobs:
     # The interpreter is invoked directly rather than through `uv run`, which
     # would rediscover the checked-out tree's own pyproject.toml and hand the
     # environment back to the pull request.
-    - name: Validate datasets
-      env:
-        FILTER: ${{ matrix.filter }}
-      run: |
-        cd "${GITHUB_WORKSPACE}"
-        ./pipeline/.venv/bin/python -m ord_schema.scripts.validate_dataset \
-          --input_pattern="data/*/*.pb*" \
-          --filter="${FILTER}" \
-          --n_jobs=4 \
-          --validate_ids
-
-  validate_parquet:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          # Un-sharded USPTO grants parquet — single ~1.7M-reaction file.
-          # Saturates the 4-CPU runner via row-group parallelism in
-          # validate_dataset.py.
-          - name: uspto
-            filter: 'ord_dataset-1158e351757f315b93cbcbe7bc55f38e\.parquet$'
-            lfs_include: 'data/*/ord_dataset-1158e351757f315b93cbcbe7bc55f38e.parquet'
-            lfs_exclude: ''
-          # Everything else (negative lookahead on the USPTO parquet id).
-          - name: other
-            filter: '^(?!.*ord_dataset-1158e351757f315b93cbcbe7bc55f38e).*\.parquet$'
-            lfs_include: 'data/*/*.parquet'
-            lfs_exclude: 'data/*/ord_dataset-1158e351757f315b93cbcbe7bc55f38e.parquet'
-    steps:
-    - name: Checkout ord-data
-      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      with:
-        lfs: false
-    # See validate_pb: read this shard's LFS objects from GitHub rather than the
-    # Hugging Face mirror that .lfsconfig points clones at.
-    - name: Fetch LFS shard from GitHub
-      env:
-        LFS_INCLUDE: ${{ matrix.lfs_include }}
-        LFS_EXCLUDE: ${{ matrix.lfs_exclude }}
-      run: |
-        git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
-        if [[ -n "${LFS_EXCLUDE}" ]]; then
-          git lfs pull --include="${LFS_INCLUDE}" --exclude="${LFS_EXCLUDE}"
-        else
-          git lfs pull --include="${LFS_INCLUDE}"
-        fi
-    # See validate_pb: forks build from the base branch, everything else from
-    # github.sha.
-    - name: Check out the pipeline
-      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      with:
-        ref: >-
-          ${{ github.event.pull_request.head.repo.fork
-              && github.event.pull_request.base.ref || github.sha }}
-        path: pipeline
-        lfs: false
-        # Only what `uv sync` reads. Leaving out data/ also keeps a second tree
-        # of dataset pointer files from sitting under the workspace.
-        sparse-checkout: |
-          .python-version
-          pyproject.toml
-          uv.lock
-        sparse-checkout-cone-mode: false
-    - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
-      with:
-        enable-cache: true
-    - name: Install ord_schema
-      working-directory: pipeline
-      run: uv sync --only-group pipeline --locked
     - name: Validate parquet datasets
       env:
         FILTER: ${{ matrix.filter }}
       run: |
+        set -euo pipefail
         cd "${GITHUB_WORKSPACE}"
+        # validate_dataset.py logs "Found 0 datasets" and exits 0, so a filter
+        # that stops selecting anything -- an id edited here but not there, a
+        # typo in the lookahead -- reports a clean sweep over nothing. Count the
+        # shard's share first, through the same glob and regex engine the
+        # validator uses, and treat an empty shard as the breakage it is.
+        ./pipeline/.venv/bin/python <<'PY'
+        import glob
+        import os
+        import re
+        import sys
+
+        pattern = re.compile(os.environ["FILTER"])
+        matched = [f for f in sorted(glob.glob("data/*/*.parquet")) if pattern.search(f)]
+        print(f"shard covers {len(matched)} datasets")
+        if not matched:
+            sys.exit("shard matched no datasets; its filter and the corpus disagree")
+        PY
         ./pipeline/.venv/bin/python -m ord_schema.scripts.validate_dataset \
           --input_pattern="data/*/*.parquet" \
           --filter="${FILTER}" \

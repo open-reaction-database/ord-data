@@ -7,9 +7,13 @@ Python style, etc.).
 
 ## What this repo is
 
-- ORD reaction datasets: one `Dataset` proto per file under
-  `data/<xx>/ord_dataset-<uuid>.{pb.gz,parquet}`, sharded into 256 directories
-  by the first two hex chars of the dataset id.
+- ORD reaction datasets: one dataset per file under
+  `data/<xx>/ord_dataset-<uuid>.parquet`, in a directory named by the first two
+  hex chars of the dataset id (256 possible, 48 populated). The file is Parquet,
+  not a serialized `Dataset` — reactions are one serialized proto per row, and
+  the dataset scalars live in the Parquet footer, so `load_message` will not read
+  it. Parquet is the only stored format; submissions may still arrive as
+  serialized proto and are converted on the way in.
 - Large dataset files are stored with **Git LFS**. The schema library lives in
   `Open-Reaction-Database/ord-schema` and is installed from PyPI by the
   `pipeline` dependency group, so **`uv.lock` is the only place its version is
@@ -76,12 +80,21 @@ the whole dataset, so submission CI only needs the **changed** objects.
 - **`validation.yml`** — validates every dataset. Triggers on push to `main`
   **only under `data/**`**, on PRs that touch `validation.yml`, and weekly
   (Mon 07:00 UTC) for the full sweep, so a workflow-only merge does not pull
-  2.4 GB of LFS to validate data nobody changed. 11-shard matrix: 9 `validate_pb` shards by
-  `data/<hex><hex>` prefix + 2 `validate_parquet` (uspto / other). Each shard
-  sparse-pulls only its objects from GitHub. For pb shards, `matrix.filter`
-  doubles as both the `validate_dataset.py` regex and the LFS `--include` glob
-  (parquet needs a separate `lfs_include` because its filter is a lookahead
-  regex). Both jobs pass `--validate_ids`, matching what `process_dataset.py`
+  ~1.2 GB of LFS to validate data nobody changed. 2-shard `validate_parquet`
+  matrix (uspto / other); each shard sparse-pulls only its objects from GitHub.
+  `matrix.filter` is the `validate_dataset.py` regex and `lfs_include` the LFS
+  glob — carried separately because the `other` filter is a lookahead regex, not
+  a glob — plus `lfs_exclude`, which is what actually scopes the `other` shard,
+  whose include glob is every parquet file. **`validate_dataset.py` exits 0 when
+  its pattern matches nothing**, so coverage is asserted rather than assumed by
+  three guards: `check_layout` fails if anything under `data/` is not a
+  `.parquet` exactly one directory deep, and separately re-reads the `filter:`
+  values out of this workflow to assert they match every dataset **exactly
+  once** (catching a gap or an overlap between shards); each shard then fails if
+  its own filter selects no files (catching a shard that matches nothing while
+  its sibling still matches plenty). Do not remove them — without them a stale
+  id or a stray suffix is published unvalidated behind a green check. The job passes `--validate_ids`,
+  matching what `process_dataset.py`
   checks at submission; it is opt-in upstream because ids are assigned *during*
   submission, so a draft does not have them yet. Uses
   `concurrency: cancel-in-progress` — pushing again cancels the running matrix.

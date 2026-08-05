@@ -30,7 +30,8 @@ target a different local directory.
 import argparse
 from pathlib import Path
 
-from huggingface_hub import snapshot_download
+from huggingface_hub import HfApi, snapshot_download
+from huggingface_hub.utils import filter_repo_objects
 
 HF_REPO_ID = "open-reaction-database/ord-data"
 DEFAULT_ALLOW_PATTERNS = ["data/**"]
@@ -57,12 +58,26 @@ def main() -> None:
         help=(
             "Glob pattern(s) of files to include (repeatable). "
             f"Default: {DEFAULT_ALLOW_PATTERNS}. "
-            "Example: --allow-pattern 'data/4d/*.pb.gz'"
+            "Example: --allow-pattern 'data/4d/*.parquet'"
         ),
     )
     args = parser.parse_args()
 
     allow_patterns = args.allow_pattern or DEFAULT_ALLOW_PATTERNS
+    # snapshot_download treats a pattern that matches nothing as a successful
+    # download of no files, which reads as success to anyone holding a stale
+    # pattern -- a *.pb.gz one, say, now that the corpus is Parquet. Resolve the
+    # match against the repository listing, not the output directory: that
+    # defaults to the repo root, whose files are mostly not from this download.
+    repo_files = HfApi().list_repo_files(
+        HF_REPO_ID, repo_type="dataset", revision=args.revision
+    )
+    matched = list(filter_repo_objects(repo_files, allow_patterns=allow_patterns))
+    if not matched:
+        raise SystemExit(
+            f"No files on {HF_REPO_ID}@{args.revision} matched {allow_patterns}. "
+            "Published datasets are Parquet: try --allow-pattern 'data/4d/*.parquet'."
+        )
     args.output_dir.mkdir(parents=True, exist_ok=True)
     local_dir = snapshot_download(
         repo_id=HF_REPO_ID,
@@ -71,7 +86,10 @@ def main() -> None:
         local_dir=str(args.output_dir),
         allow_patterns=allow_patterns,
     )
-    print(f"Downloaded {HF_REPO_ID}@{args.revision} to {local_dir}")
+    print(
+        f"Downloaded {len(matched)} files from "
+        f"{HF_REPO_ID}@{args.revision} to {local_dir}"
+    )
 
 
 if __name__ == "__main__":
