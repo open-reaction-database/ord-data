@@ -19,10 +19,10 @@ Outputs are placed at ``data/<2-hex-prefix>/ord_dataset-<id>.parquet`` where
 the prefix matches the dataset_id. After converting, delete the ``.pb.gz``
 inputs so only the Parquet versions are committed (see README.md).
 
-Re-running is safe: an output that already holds the same reaction count as its
+Re-running is safe: an output already holding the same reaction count as its
 input is left alone. An output that disagrees, or two inputs claiming one output
-path, is an error rather than a skip -- the documented procedure deletes the
-``.pb.gz`` afterwards, so a wrongly skipped file would lose its only copy.
+path, is an error -- the documented procedure deletes the ``.pb.gz`` afterwards,
+so a wrongly skipped file would lose its only copy.
 """
 
 import argparse
@@ -67,8 +67,7 @@ def _convert(
     """
     dataset = message_helpers.load_message(str(src), dataset_pb2.Dataset)
     # The prefix directory is sliced straight out of the id, so a malformed id
-    # would silently place the file outside data/<xx>/ where validation.yml
-    # looks for it.
+    # places the file outside the data/<xx>/ layout validation.yml checks.
     if not DATASET_ID_PATTERN.fullmatch(dataset.dataset_id):
         raise ValueError(f"malformed dataset_id {dataset.dataset_id!r}")
     out = _output_path(repo_root, dataset.dataset_id)
@@ -113,8 +112,8 @@ def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(message)s")
 
     # Distinguish "aimed at the wrong tree" from "nothing to convert": with the
-    # corpus stored as Parquet only, an empty glob is the expected steady state
-    # and must not look like a failure to whatever runs this.
+    # corpus stored as Parquet only, an empty glob is the steady state and must
+    # not read as a failure.
     if not (args.repo_root / "data").is_dir():
         sys.exit(f"No data/ directory under {args.repo_root}; pass --repo-root.")
     inputs = sorted(args.repo_root.glob(INPUT_GLOB))
@@ -123,8 +122,8 @@ def main() -> None:
         return
     logger.info("Found %d pb.gz inputs", len(inputs))
 
-    # Report every bad input, not just the first, matching how the submission
-    # pipeline treats a batch: one run should surface the whole problem.
+    # Report every bad input, not just the first: one run should surface the
+    # whole problem, as the submission pipeline does for a batch.
     claimed: dict[Path, Path] = {}
     failures: list[str] = []
     for src in inputs:

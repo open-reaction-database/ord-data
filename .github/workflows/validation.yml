@@ -15,10 +15,10 @@
 # Runs ord-schema's validate_dataset.py over every dataset in the repository.
 #
 # Coverage rests on one pattern, data/*/*.parquet, and validate_dataset.py
-# reports success over an empty match set. A dataset the pattern does not
-# describe is therefore published unchecked rather than rejected, so both jobs
-# below assert their own reach before trusting a green result: check_layout
-# fixes what may live under data/, and each validate_parquet shard requires a
+# reports success over an empty match set -- so a dataset that pattern does not
+# describe is published unchecked rather than rejected. Both jobs below assert
+# their own reach before a green result means anything: check_layout pins down
+# what may live under data/, and each validate_parquet shard requires a
 # non-empty share of it.
 
 name: Validation
@@ -27,9 +27,9 @@ on:
   push:
     branches:
       - main
-    # Validating the whole corpus pulls 1.2 GB of Git LFS across 53 files from
-    # GitHub (see the fetch step for why it has to be GitHub), so a push pays
-    # for it only when the data, or the thing that validates it, changed.
+    # Validating the whole corpus pulls ~1.2 GB of Git LFS from GitHub (see the
+    # fetch step for why it has to be GitHub), so a push pays for it only when
+    # the data, or the thing that validates it, changed.
     paths:
       - 'data/**'
       - '.github/workflows/validation.yml'
@@ -54,8 +54,8 @@ concurrency:
   group: validation-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
-# validate_dataset.py ships inside the ord_schema wheel, so the job below runs
-# it as a module out of the `pipeline` dependency group. It passes --validate_ids,
+# validate_dataset.py ships inside the ord_schema wheel, so validate_parquet
+# runs it as a module out of the `pipeline` dependency group. It passes --validate_ids,
 # matching what process_dataset.py checks at submission, so an id that stops being
 # well-formed afterwards does not go unnoticed. uv.lock is therefore
 # the only place the schema version is written down, and it is the same
@@ -75,10 +75,10 @@ jobs:
       with:
         lfs: false
     # Anything that is not a .parquet exactly one directory below data/ falls
-    # outside the shards' input pattern. .gitattributes still tracks .pb/.pb.gz
-    # under data/, process_dataset.py leaves an edited dataset in the format it
-    # already has, and --output_format can write one deliberately, so this is a
-    # reachable state and not a theoretical one.
+    # outside the shards' input pattern. .gitattributes tracks .pb/.pb.gz under
+    # data/, process_dataset.py leaves an edited dataset in the format it
+    # already has, and --output_format can write one deliberately, so this is
+    # reachable rather than theoretical.
     - name: Every dataset is Parquet at data/<xx>/
       run: |
         set -euo pipefail
@@ -125,10 +125,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # USPTO grants: one ~1.8M-reaction file, ~1 GB, which is 89% of the
+          # USPTO grants: one ~1.8M-reaction file, ~1 GB, which is most of the
           # corpus by size and the long pole in wall-clock. It gets its own leg
-          # so the other 52 datasets neither wait on it nor re-fetch it; within
-          # this leg, row-group parallelism in validate_dataset.py saturates the
+          # so the small datasets neither wait on it nor re-fetch it; within this
+          # leg, row-group parallelism in validate_dataset.py saturates the
           # 4-CPU runner.
           - name: uspto
             filter: 'ord_dataset-1158e351757f315b93cbcbe7bc55f38e\.parquet$'

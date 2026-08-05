@@ -65,11 +65,10 @@ def main() -> None:
 
     allow_patterns = args.allow_pattern or DEFAULT_ALLOW_PATTERNS
     # snapshot_download treats a pattern that matches nothing as a successful
-    # download of no files, which reads as success to anyone whose pattern has
-    # gone stale -- e.g. a *.pb.gz pattern from before the corpus was Parquet.
-    # Resolve the match against the repository listing rather than the output
-    # directory, whose contents are mostly not from this download: the default
-    # target is the repo root, already full of files.
+    # download of no files, which reads as success to anyone holding a stale
+    # pattern -- a *.pb.gz one, say, now that the corpus is Parquet. Resolve the
+    # match against the repository listing, not the output directory: that
+    # defaults to the repo root, whose files are mostly not from this download.
     repo_files = HfApi().list_repo_files(
         HF_REPO_ID, repo_type="dataset", revision=args.revision
     )
