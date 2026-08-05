@@ -86,11 +86,14 @@ the whole dataset, so submission CI only needs the **changed** objects.
   glob — carried separately because the `other` filter is a lookahead regex, not
   a glob — plus `lfs_exclude`, which is what actually scopes the `other` shard,
   whose include glob is every parquet file. **`validate_dataset.py` exits 0 when
-  its pattern matches nothing**, so coverage is asserted rather than assumed: the
-  `check_layout` job fails if anything under `data/` is not a `.parquet` exactly
-  one directory deep, and each shard fails if its own filter selects no files.
-  Do not remove either guard — without them a stale id or a stray suffix is
-  published unvalidated behind a green check. The job passes `--validate_ids`,
+  its pattern matches nothing**, so coverage is asserted rather than assumed by
+  three guards: `check_layout` fails if anything under `data/` is not a
+  `.parquet` exactly one directory deep, and separately re-reads the `filter:`
+  values out of this workflow to assert they match every dataset **exactly
+  once** (catching a gap or an overlap between shards); each shard then fails if
+  its own filter selects no files (catching a shard that matches nothing while
+  its sibling still matches plenty). Do not remove them — without them a stale
+  id or a stray suffix is published unvalidated behind a green check. The job passes `--validate_ids`,
   matching what `process_dataset.py`
   checks at submission; it is opt-in upstream because ids are assigned *during*
   submission, so a draft does not have them yet. Uses

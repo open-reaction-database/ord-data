@@ -88,6 +88,36 @@ jobs:
           exit 1
         fi
         echo "data/ holds $(git ls-files -- data | wc -l) Parquet datasets and nothing else"
+    # Each shard proves it has work to do, but on its own that leaves the union
+    # unchecked: one filter could go stale and drop its datasets while the other
+    # still matches plenty, and both shards would stay green. Match every
+    # dataset against every filter here, where the whole matrix is visible.
+    - name: Shard filters cover every dataset exactly once
+      run: |
+        set -euo pipefail
+        python3 - <<'PY'
+        import re
+        import subprocess
+        import sys
+
+        workflow = ".github/workflows/validation.yml"
+        with open(workflow) as handle:
+            filters = re.findall(r"^ +filter: '(.+)'$", handle.read(), re.MULTILINE)
+        if not filters:
+            sys.exit(f"no shard filters found in {workflow}; did the matrix move?")
+        files = subprocess.run(
+            ["git", "ls-files", "--", "data"],
+            capture_output=True, text=True, check=True,
+        ).stdout.split()
+        problems = [
+            f"  {path}: matched by {n} of {len(filters)} shard filters"
+            for path in files
+            if (n := sum(bool(re.search(f, path)) for f in filters)) != 1
+        ]
+        print(f"{len(filters)} shard filters cover {len(files)} datasets exactly once")
+        if problems:
+            sys.exit("shard filters do not partition data/:\n" + "\n".join(problems))
+        PY
 
   validate_parquet:
     runs-on: ubuntu-latest
