@@ -1,0 +1,50 @@
+name: "placeholder dataset"
+description: "This dataset is a placeholder dataset to pre-generate the ORD dataset ID for an upcoming submission which is currently under embargo. Contact ben@bjdeadman.co.uk for further details."
+reactions {
+  inputs {
+    key: "Input 1"
+    value {
+      components {
+        identifiers {
+          type: SMILES
+          details: "benzene"
+          value: "c1ccccc1"
+        }
+        amount {
+          moles {
+            value: 1.0
+            units: MOLE
+          }
+        }
+      }
+    }
+  }
+  outcomes {
+    reaction_time {
+      value: 1.0
+      units: HOUR
+    }
+    products {
+      identifiers {
+        type: SMILES
+        details: "benzene"
+        value: "c1ccccc1"
+      }
+    }
+  }
+  provenance {
+    experimenter {
+    }
+    record_created {
+      time {
+        value: "2026-08-12T12:37:59"
+      }
+      person {
+        username: "google-oauth2|113023560045186912667"
+        name: "Ben Deadman"
+        email: "ben.deadman@gmail.com"
+      }
+    }
+  }
+  reaction_id: "placeholder reaction"
+}
