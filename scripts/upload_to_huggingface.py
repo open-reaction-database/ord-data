@@ -55,6 +55,7 @@ MIRROR_PATHSPECS = (
     "CITATION.cff",
     "CONTRIBUTING.md",
     "CONTRIBUTORS.md",
+    "retired_datasets.csv",
 )
 
 # Dataset-card front matter written only to the Hugging Face mirror.

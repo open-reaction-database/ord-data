@@ -128,6 +128,22 @@ print(
 )
 ```
 
+## Retired dataset IDs
+
+Two datasets are consolidations of shards that were once published separately, and a consolidated
+output carries a new ID derived from the sorted IDs of its sources:
+
+| Dataset | ID | Sources |
+| --- | --- | --- |
+| `uspto-grants` | `ord_dataset-1158e351757f315b93cbcbe7bc55f38e` | 489 monthly `uspto-grants-YYYY_MM` datasets |
+| `Training data from https://doi.org/10.1039/C8SC04228D` | `ord_dataset-e7830cd6b11158b43994ccfb5ee9acb3` | 10 `(N/10)` shards |
+
+[`retired_datasets.csv`](retired_datasets.csv) maps each of the 499 retired IDs to the dataset that
+replaced it. Every other dataset kept its ID.
+
+Per-reaction patent provenance for the USPTO data is on `Reaction.provenance.patent`, so the
+monthly bucket a reaction came from is recoverable from the consolidated dataset.
+
 ## Git LFS and the Hugging Face mirror
 
 Dataset files under [`data/`](data) are stored with Git LFS. Clone and fork
