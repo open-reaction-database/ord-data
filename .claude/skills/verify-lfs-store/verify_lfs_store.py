@@ -7,7 +7,7 @@ mirror that would break a clone resolving its reads there (see ``.lfsconfig``);
 for GitHub it would break the fallback those clones override to.
 
 Usage:
-    python verify_hf_lfs.py [GIT_REF] [--store {github,hf}]
+    python verify_lfs_store.py [GIT_REF] [--store {github,hf}]
 """
 
 import argparse
