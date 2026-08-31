@@ -158,5 +158,7 @@ token scope).
 - The reactions-count badge and its `count_reactions` job were intentionally
   removed (low value, and it added a bot "Update badges" commit to every PR).
   Don't reintroduce.
-- To confirm the HF mirror holds every LFS object before relying on it for
-  reads, use the `verify-lfs-store` skill (`.claude/skills/verify-lfs-store`).
+- To confirm a store holds every LFS object before relying on it for reads, use
+  the `verify-lfs-store` skill (`.claude/skills/verify-lfs-store`). It checks the
+  HF mirror by default and GitHub with `--store github`, which is how a tag whose
+  objects a later commit deleted gets confirmed to still resolve.

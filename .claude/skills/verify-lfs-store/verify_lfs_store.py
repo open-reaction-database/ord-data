@@ -17,12 +17,20 @@ import sys
 import urllib.error
 import urllib.request
 
-BATCH_PATH = "open-reaction-database/ord-data.git/info/lfs/objects/batch"
+# The hf entry is the URL .lfsconfig configures, so the audit exercises the
+# endpoint a redirected clone actually reads from. Both are final URLs; a
+# redirect from either is a change worth failing on rather than following.
 STORES = {
-    "hf": f"https://hf.co/datasets/{BATCH_PATH}",
-    "github": f"https://github.com/{BATCH_PATH}",
+    "hf": (
+        "https://huggingface.co/datasets/open-reaction-database"
+        "/ord-data.git/info/lfs/objects/batch"
+    ),
+    "github": (
+        "https://github.com/open-reaction-database/ord-data.git/info/lfs/objects/batch"
+    ),
 }
 CHUNK = 100
+TIMEOUT = 60
 
 
 def lfs_pointers(ref: str) -> list[tuple[str, int, str]]:
@@ -80,27 +88,28 @@ def check(objects: list[tuple[str, int, str]], endpoint: str) -> list[tuple[str,
                 "objects": [{"oid": o, "size": s} for o, s, _ in chunk],
             }
         ).encode()
-        url = endpoint
-        for _ in range(5):  # follow 307/308 redirects, preserving POST+body
-            req = urllib.request.Request(
-                url,
-                data=payload,
-                headers={
-                    "Accept": "application/vnd.git-lfs+json",
-                    "Content-Type": "application/vnd.git-lfs+json",
-                },
+        req = urllib.request.Request(
+            endpoint,
+            data=payload,
+            headers={
+                "Accept": "application/vnd.git-lfs+json",
+                "Content-Type": "application/vnd.git-lfs+json",
+            },
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
+                data = json.load(resp)
+        except (urllib.error.URLError, TimeoutError) as exc:
+            # A store that refuses the query has not been shown to hold
+            # anything. Exiting 3 keeps that distinct from 1 (objects
+            # missing), so a saved log cannot read as a clean audit.
+            reason = getattr(exc, "code", None) or getattr(exc, "reason", exc)
+            print(
+                f"\nERROR: {endpoint} did not answer ({reason}); "
+                f"{start} of {len(objects)} objects checked.",
+                file=sys.stderr,
             )
-            try:
-                with urllib.request.urlopen(req) as resp:
-                    data = json.load(resp)
-                break
-            except urllib.error.HTTPError as exc:
-                if exc.code in (307, 308) and exc.headers.get("Location"):
-                    url = exc.headers["Location"]
-                    continue
-                raise
-        else:
-            raise RuntimeError("too many redirects")
+            sys.exit(3)
         by_oid = {(o, s): p for o, s, p in chunk}
         returned = {
             (obj.get("oid"), obj.get("size")) for obj in data.get("objects", [])
@@ -122,15 +131,23 @@ def check(objects: list[tuple[str, int, str]], endpoint: str) -> list[tuple[str,
 
 def main() -> None:
     """Reports any LFS object at the requested ref that the chosen store misses."""
-    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser = argparse.ArgumentParser(
+        description=next(iter((__doc__ or "").splitlines()), None)
+    )
     parser.add_argument(
-        "ref", nargs="?", default="origin/main", help="Git ref to check"
+        "ref",
+        nargs="?",
+        default="origin/main",
+        help="Git ref to check (default: %(default)s)",
     )
     parser.add_argument(
         "--store",
         choices=sorted(STORES),
         default="hf",
-        help="LFS store to query; hf is what .lfsconfig points reads at",
+        help=(
+            "LFS store to query; hf is the endpoint .lfsconfig configures "
+            "(default: %(default)s)"
+        ),
     )
     args = parser.parse_args()
     objects = lfs_pointers(args.ref)
@@ -138,7 +155,7 @@ def main() -> None:
     # Stop rather than warn: a pointer with no oid or size would be sent to the
     # batch API as null and come back unanswered, and the run would end up
     # reporting a complete store having never checked that path.
-    unparsed = [o[2] for o in objects if not o[0] or not o[1]]
+    unparsed = [o[2] for o in objects if o[0] is None or o[1] is None]
     if unparsed:
         print(f"ERROR: {len(unparsed)} pointers did not parse:", file=sys.stderr)
         for path in unparsed:
