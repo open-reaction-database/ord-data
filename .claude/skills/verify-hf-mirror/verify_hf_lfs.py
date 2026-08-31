@@ -1,24 +1,27 @@
-"""Check that HF's LFS store serves every object referenced by a git ref.
+"""Check that an LFS store serves every object referenced by a git ref.
 
-Reads Git LFS pointers from a git ref in the local clone, then asks the Hugging
-Face LFS batch API (operation=download) whether each oid/size is present. Objects
-returned with an ``error`` (typically 404) are missing from HF, which would break
-a clone that resolves LFS reads through the mirror (see ``.lfsconfig``).
+Reads Git LFS pointers from a git ref in the local clone, then asks an LFS batch
+API (operation=download) whether each oid/size is present. Objects returned with
+an ``error`` (typically 404) are missing from that store. For the Hugging Face
+mirror that would break a clone resolving its reads there (see ``.lfsconfig``);
+for GitHub it would break the fallback those clones override to.
 
 Usage:
-    python verify_hf_lfs.py [GIT_REF]   # GIT_REF defaults to origin/main
+    python verify_hf_lfs.py [GIT_REF] [--store {github,hf}]
 """
 
+import argparse
 import json
 import subprocess
 import sys
 import urllib.error
 import urllib.request
 
-REF = sys.argv[1] if len(sys.argv) > 1 else "origin/main"
-HF_BATCH = (
-    "https://hf.co/datasets/open-reaction-database/ord-data.git/info/lfs/objects/batch"
-)
+BATCH_PATH = "open-reaction-database/ord-data.git/info/lfs/objects/batch"
+STORES = {
+    "hf": f"https://hf.co/datasets/{BATCH_PATH}",
+    "github": f"https://github.com/{BATCH_PATH}",
+}
 CHUNK = 100
 
 
@@ -57,8 +60,16 @@ def lfs_pointers(ref: str) -> list[tuple[str, int, str]]:
     return results
 
 
-def check(objects: list[tuple[str, int, str]]) -> list[tuple[str, str]]:
-    """Return the list of (oid, path) that HF reports as missing."""
+def check(objects: list[tuple[str, int, str]], endpoint: str) -> list[tuple[str, str]]:
+    """Returns the (oid, path) pairs the store at ``endpoint`` does not serve.
+
+    Args:
+        objects: (oid, size, path) triples to look up.
+        endpoint: LFS batch API URL to query.
+
+    Returns:
+        One (oid, path) pair per object the store reports as missing.
+    """
     missing = []
     for start in range(0, len(objects), CHUNK):
         chunk = objects[start : start + CHUNK]
@@ -69,7 +80,7 @@ def check(objects: list[tuple[str, int, str]]) -> list[tuple[str, str]]:
                 "objects": [{"oid": o, "size": s} for o, s, _ in chunk],
             }
         ).encode()
-        url = HF_BATCH
+        url = endpoint
         for _ in range(5):  # follow 307/308 redirects, preserving POST+body
             req = urllib.request.Request(
                 url,
@@ -100,7 +111,7 @@ def check(objects: list[tuple[str, int, str]]) -> list[tuple[str, str]]:
             if "error" in obj
         )
         # An object the batch response simply left out has not been shown to be
-        # present, and this audit exists to decide whether the mirror can be
+        # present, and this audit exists to decide whether the store can be
         # trusted for reads. Silence is not evidence, so count it as missing.
         missing.extend(
             (oid, path) for oid, size, path in chunk if (oid, size) not in returned
@@ -110,26 +121,37 @@ def check(objects: list[tuple[str, int, str]]) -> list[tuple[str, str]]:
 
 
 def main() -> None:
-    """Reports any LFS object at ``REF`` that the Hugging Face mirror is missing."""
-    objects = lfs_pointers(REF)
-    print(f"{REF}: {len(objects)} LFS objects")
+    """Reports any LFS object at the requested ref that the chosen store misses."""
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument(
+        "ref", nargs="?", default="origin/main", help="Git ref to check"
+    )
+    parser.add_argument(
+        "--store",
+        choices=sorted(STORES),
+        default="hf",
+        help="LFS store to query; hf is what .lfsconfig points reads at",
+    )
+    args = parser.parse_args()
+    objects = lfs_pointers(args.ref)
+    print(f"{args.ref}: {len(objects)} LFS objects")
     # Stop rather than warn: a pointer with no oid or size would be sent to the
     # batch API as null and come back unanswered, and the run would end up
-    # reporting a complete mirror having never checked that path.
+    # reporting a complete store having never checked that path.
     unparsed = [o[2] for o in objects if not o[0] or not o[1]]
     if unparsed:
         print(f"ERROR: {len(unparsed)} pointers did not parse:", file=sys.stderr)
         for path in unparsed:
             print(f"  {path}", file=sys.stderr)
         sys.exit(2)
-    missing = check(objects)
+    missing = check(objects, STORES[args.store])
     print()
     if missing:
-        print(f"MISSING from HF: {len(missing)}")
+        print(f"MISSING from {args.store}: {len(missing)}")
         for oid, path in missing:
             print(f"  {oid[:12]}  {path}")
         sys.exit(1)
-    print(f"All {len(objects)} objects present on HF LFS.")
+    print(f"All {len(objects)} objects present on {args.store} LFS.")
 
 
 if __name__ == "__main__":
