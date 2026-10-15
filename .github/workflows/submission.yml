@@ -133,12 +133,12 @@ jobs:
         git fetch --no-tags --prune --depth=1 upstream \
           +refs/heads/*:refs/remotes/upstream/*
     # The "Update submission" step below pushes its own commit. When that push
-    # is authenticated with SUBMISSION_TOKEN it re-runs this workflow, which
-    # would otherwise process an already-processed submission. That is harmless
-    # -- update_dataset only assigns IDs that are not already canonical, so the
-    # second pass changes nothing and the commit below finds nothing to commit
-    # -- but it repeats the LFS pull for no reason, so the re-run validates the
-    # result instead of rewriting it.
+    # is authenticated with the app token minted below, it re-runs this
+    # workflow, which would otherwise process an already-processed submission.
+    # That is harmless -- update_dataset only assigns IDs that are not already
+    # canonical, so the second pass changes nothing and the commit below finds
+    # nothing to commit -- but it repeats the LFS pull for no reason, so the
+    # re-run validates the result instead of rewriting it.
     - name: Identify the author of the head commit
       id: head_commit
       run: |
@@ -150,6 +150,25 @@ jobs:
         else
           echo "from_workflow=false" >> "$GITHUB_OUTPUT"
         fi
+    # "Validate submission" and "Update submission" below both gate on this
+    # one output, so exactly one of them runs on a pull request that changes a
+    # dataset. A fork, the re-run caused by this workflow's own push, and a pull
+    # request labeled `skip-update-submission` are validated; every other pull
+    # request is updated. The label skips the rewrite, not the check.
+    - name: Choose between validating and updating
+      id: mode
+      env:
+        FORK: ${{ github.event.pull_request.head.repo.fork }}
+        FROM_WORKFLOW: ${{ steps.head_commit.outputs.from_workflow }}
+        SKIP_UPDATE: ${{ contains(github.event.pull_request.labels.*.name, 'skip-update-submission') }}
+      run: |
+        if [[ "${FORK}" == "true" || "${FROM_WORKFLOW}" == "true" || "${SKIP_UPDATE}" == "true" ]]; then
+          UPDATE=false
+        else
+          UPDATE=true
+        fi
+        echo "Fork: ${FORK}; from workflow: ${FROM_WORKFLOW}; skip update: ${SKIP_UPDATE}; update: ${UPDATE}"
+        echo "update=${UPDATE}" >> "$GITHUB_OUTPUT"
     - name: Identify changed files
       # NOTE(kearnes): This sets the NUM_CHANGED_FILES variable.
       #
@@ -189,7 +208,7 @@ jobs:
         grep -E "${DATASET_FILE_PATTERN}" changed_files.txt > changed_data_files.txt || (( $? == 1 ))
         # Use LOCAL_NUM_CHANGED since ::set-env values are not available immediately.
         LOCAL_NUM_CHANGED="$(wc -l < changed_data_files.txt | tr -d ' ')"
-        echo "NUM_CHANGED_FILES=${LOCAL_NUM_CHANGED}" >> $GITHUB_ENV
+        echo "NUM_CHANGED_FILES=${LOCAL_NUM_CHANGED}" >> "$GITHUB_ENV"
         echo "Found ${LOCAL_NUM_CHANGED} changed dataset files"
         cat changed_data_files.txt
     # Read LFS from GitHub, not the HF mirror that .lfsconfig points clones at:
@@ -257,16 +276,9 @@ jobs:
         ./pipeline/.venv/bin/python ./pipeline/scripts/process_dataset.py \
           --input_file=changed_data_files.txt \
           --base=upstream/main
-      # Runs exactly when "Update submission" below does not, so every pull
-      # request that changes a dataset gets one of the two. That means forks;
-      # the re-run caused by this workflow's own push, whose datasets are
-      # already processed; and pull requests labeled `skip-update-submission`,
-      # where the label skips the rewrite but not the check.
       if: >-
         env.NUM_CHANGED_FILES != '0' &&
-        (github.event.pull_request.head.repo.fork ||
-         steps.head_commit.outputs.from_workflow == 'true' ||
-         contains(github.event.pull_request.labels.*.name, 'skip-update-submission'))
+        steps.mode.outputs.update != 'true'
     # A push authenticated with GITHUB_TOKEN starts no workflow run, so the
     # commit written by "Update submission" arrives with no CI and the pull
     # request has to be closed and reopened by hand to get any. An app
@@ -275,20 +287,18 @@ jobs:
     # -- never on a contributor's fork, since the push below goes to the
     # "#<number>" branch here.
     #
-    # Deliberately not minted on a fork's run. "Update submission" is gated on
-    # `! ...fork` and so never uses it there, and this job checks out and
-    # executes scripts/process_dataset.py from the pull request's own checkout:
-    # on a fork that file is contributor-controlled. check_file_types already
-    # rejects a fork submission that touches anything but dataset files, but a
-    # writable token simply should not be in the environment on that path.
+    # Minted only when "Update submission", the one step that uses it, is about
+    # to run, so never on a fork's run: a writable token should not be in the
+    # environment of a run on a contributor's submission.
     #
     # Skipped when the app is not configured, leaving PUSH_TOKEN to fall back to
-    # GITHUB_TOKEN so the step behaves exactly as it does today.
+    # GITHUB_TOKEN: the push still lands, but starts no workflow run.
     - name: Mint a token whose push can re-trigger CI
       id: push_token
       if: >-
         vars.SUBMISSION_APP_ID != '' &&
-        ! github.event.pull_request.head.repo.fork
+        env.NUM_CHANGED_FILES != '0' &&
+        steps.mode.outputs.update == 'true'
       uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
       with:
         app-id: ${{ vars.SUBMISSION_APP_ID }}
@@ -319,12 +329,8 @@ jobs:
       # Skipped when the PR carries the `skip-update-submission` label, so
       # maintainer PRs that touch dataset files but do not need ID/timestamp
       # assignment (e.g. format conversions) can land without process_dataset
-      # rewriting the inputs. Also skipped on the re-run triggered by this
-      # step's own push, which would otherwise reprocess a processed
-      # submission. "Validate submission" above runs in both cases instead:
-      # its condition is the complement of this one.
+      # rewriting the inputs; "Validate submission" checks them instead. The
+      # "Choose between validating and updating" step makes that call.
       if: >-
         env.NUM_CHANGED_FILES != '0' &&
-        ! github.event.pull_request.head.repo.fork &&
-        steps.head_commit.outputs.from_workflow != 'true' &&
-        ! contains(github.event.pull_request.labels.*.name, 'skip-update-submission')
+        steps.mode.outputs.update == 'true'
