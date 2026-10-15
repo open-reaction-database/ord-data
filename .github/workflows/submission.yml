@@ -24,8 +24,8 @@ name: Submission
 on:
   pull_request:
     # Default trigger types plus labeled/unlabeled so adding or removing the
-    # `skip-update-submission` label re-runs with the new gating on the "Update
-    # submission" step.
+    # `skip-update-submission` label re-runs with the new gating on the
+    # "Validate submission" and "Update submission" steps.
     #
     # Not `edited`. Nothing here depends on a pull request's title, body, or
     # base: where a submission is targeted is retarget_submission.yml's
@@ -257,12 +257,16 @@ jobs:
         ./pipeline/.venv/bin/python ./pipeline/scripts/process_dataset.py \
           --input_file=changed_data_files.txt \
           --base=upstream/main
-      # Also covers the re-run caused by this workflow's own push: the datasets
-      # are already processed, so the useful check on them is validation.
+      # Runs exactly when "Update submission" below does not, so every pull
+      # request that changes a dataset gets one of the two. That means forks;
+      # the re-run caused by this workflow's own push, whose datasets are
+      # already processed; and pull requests labeled `skip-update-submission`,
+      # where the label skips the rewrite but not the check.
       if: >-
         env.NUM_CHANGED_FILES != '0' &&
         (github.event.pull_request.head.repo.fork ||
-         steps.head_commit.outputs.from_workflow == 'true')
+         steps.head_commit.outputs.from_workflow == 'true' ||
+         contains(github.event.pull_request.labels.*.name, 'skip-update-submission'))
     # A push authenticated with GITHUB_TOKEN starts no workflow run, so the
     # commit written by "Update submission" arrives with no CI and the pull
     # request has to be closed and reopened by hand to get any. An app
@@ -317,7 +321,8 @@ jobs:
       # assignment (e.g. format conversions) can land without process_dataset
       # rewriting the inputs. Also skipped on the re-run triggered by this
       # step's own push, which would otherwise reprocess a processed
-      # submission; "Validate submission" above covers that run instead.
+      # submission. "Validate submission" above runs in both cases instead:
+      # its condition is the complement of this one.
       if: >-
         env.NUM_CHANGED_FILES != '0' &&
         ! github.event.pull_request.head.repo.fork &&

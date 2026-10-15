@@ -207,12 +207,11 @@ to assign reaction/dataset IDs and timestamps to newly
 submitted files and rewrite them to the canonical on-disk format. For
 maintainer PRs that touch dataset files but should *not* be re-processed
 this way — e.g., format conversions or mass migrations of already-finalized
-data — apply the `skip-update-submission` label to the PR. Note that the
-label leaves such a PR with no dataset validation inside the submission
-workflow: `Validate submission` runs only for fork PRs and for this
-workflow's own re-runs, so on a labeled maintainer PR both steps sit out.
-The corpus sweep in [`validation.yml`](.github/workflows/validation.yml)
-covers the result on merge to `main`.
+data — apply the `skip-update-submission` label to the PR. The label skips
+only the rewrite: `Validate submission` runs in its place, so the changed
+datasets are still validated before merge, and the corpus sweep in
+[`validation.yml`](.github/workflows/validation.yml) covers the result on
+merge to `main`.
 
 ### Converting datasets to Parquet
 
