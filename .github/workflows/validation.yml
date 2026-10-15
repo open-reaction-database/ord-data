@@ -120,14 +120,15 @@ jobs:
         PY
 
   validate_parquet:
+    name: validate_parquet (${{ matrix.name }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         # One leg per quarter of the hex range, keyed on the first character of
         # the data/<xx>/ directory -- the first hex digit of the dataset id.
-        # Ids are random or hash-derived, so each leg gets roughly a quarter of
-        # the corpus and a new dataset lands in a leg without editing this file.
+        # Ids are random or hash-derived, so the corpus spreads across the legs
+        # and a new dataset lands in one without editing this file.
         # The largest dataset is ~100 MB, so no single file sets the pace; within
         # a leg, validate_dataset.py fans out over files and row groups.
         include:

@@ -154,8 +154,8 @@ token scope).
 ## Gotchas
 
 - The USPTO grants are 41 datasets, `uspto-grants-1976` … `uspto-grants-2016`,
-  one per grant year (7–91 MB each). They replaced a single ~1 GB
-  `uspto-grants` file (`ord_dataset-1158…`, now retired). The Hugging Face
+  one per grant year (7–91 MB each); `retired_datasets.csv` maps the retired
+  single-file `uspto-grants` (`ord_dataset-1158…`) to them. The Hugging Face
   `uspto-grants` config lists them via `USPTO_GRANTS_IDS` in
   `scripts/upload_to_huggingface.py`, so a change to the set of years goes there.
 - The reactions-count badge and its `count_reactions` job were intentionally

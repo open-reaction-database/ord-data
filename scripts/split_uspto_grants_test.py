@@ -108,8 +108,9 @@ def _write_source(path: Path, reaction_ids: list[str]) -> parquet.DatasetView:
 
 
 def test_write_years_splits_in_calendar_order(tmp_path: Path) -> None:
-    # Source order mirrors the consolidated file: months in an arbitrary order.
-    view = _write_source(tmp_path / "source.parquet", ["d", "a", "b", "c"])
+    # The source holds February before January, and January's reactions in the
+    # reverse of their monthly order, so source order would give c, b, a.
+    view = _write_source(tmp_path / "source.parquet", ["d", "c", "b", "a"])
     plans = plan_years(
         [
             _source(1977, 1, "d"),
@@ -125,6 +126,22 @@ def test_write_years_splits_in_calendar_order(tmp_path: Path) -> None:
     assert list(first.iter_reaction_ids()) == ["a", "b", "c"]
     assert first.reactions[2].provenance.patent == "USc"
     assert list(parquet.DatasetView(paths[1]).iter_reaction_ids()) == ["d"]
+
+
+def test_write_years_removes_a_file_that_does_not_read_back(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    view = _write_source(tmp_path / "source.parquet", ["a", "b"])
+    write = parquet.DatasetWriter.write
+
+    def drop_b(self: parquet.DatasetWriter, reaction: reaction_pb2.Reaction) -> None:
+        if reaction.reaction_id != "b":
+            write(self, reaction)
+
+    monkeypatch.setattr(parquet.DatasetWriter, "write", drop_b)
+    with pytest.raises(RuntimeError, match=r"does not read back as planned"):
+        write_years(view, plan_years([_source(1976, 1, "a", "b")]), tmp_path)
+    assert not list(tmp_path.glob("data/*/*.parquet"))
 
 
 def test_write_years_rejects_unassigned_reactions(tmp_path: Path) -> None:

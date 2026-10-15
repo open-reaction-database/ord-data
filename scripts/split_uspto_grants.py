@@ -72,7 +72,7 @@ class YearPlan:
 
     @property
     def reaction_ids(self) -> list[str]:
-        """Reaction IDs in output order: months in calendar order, then source order."""
+        """Reaction IDs by month in calendar order, each month in its source order."""
         return [rid for month in self.months for rid in month.reaction_ids]
 
 
@@ -234,7 +234,8 @@ def write_years(
     Raises:
         ValueError: If the plans do not partition the source (see
             ``check_partition``).
-        RuntimeError: If a written file does not read back as planned.
+        RuntimeError: If a written file does not read back as planned. That file
+            is removed; files written before it are kept.
     """
     positions = check_partition(view, plans)
     reactions = view.reactions
@@ -255,7 +256,8 @@ def write_years(
             written.dataset_id != plan.dataset_id
             or list(written.iter_reaction_ids()) != plan.reaction_ids
         ):
-            raise RuntimeError(f"{path} does not read back as planned")
+            path.unlink()
+            raise RuntimeError(f"{path} does not read back as planned; removed it")
         logger.info(f"wrote {path.relative_to(repo_root)}  ({len(written.reactions)})")
         paths.append(path)
     return paths
