@@ -77,10 +77,10 @@ save_message(dataset, "output_fname.pbtxt")
 `datasets.load_dataset` returns a `DatasetView` for Parquet, which takes the
 dataset's scalars and row count from the file footer and reads reactions on
 demand. (Note the name collision: `ord_schema.parquet.load_dataset` always
-materializes, which on the largest file is a silent 1.8M-reaction load rather
+materializes, which on the largest file is a silent 400k-reaction load rather
 than an error.) Iteration, `len`, indexing, and slicing over `reactions` behave
-like a list, so read-only code needs no change — and the USPTO grants file,
-1.8M reactions in 1.1 GB, opens in milliseconds rather than deserializing up
+like a list, so read-only code needs no change — and the largest file, 409k
+reactions in 105 MB, opens in milliseconds rather than deserializing up
 front. Two places the resemblance stops: indexing returns a freshly
 deserialized copy rather than a live sub-message, so mutating it changes
 nothing on disk, and `reactions` never compares equal to a list — compare
@@ -130,19 +130,22 @@ print(
 
 ## Retired dataset IDs
 
-Two datasets are consolidations of shards that were once published separately, and a consolidated
-output carries a new ID derived from the sorted IDs of its sources:
+Some datasets are consolidations of shards that were once published separately, and a
+consolidated output carries a new ID derived from the sorted IDs of its sources:
 
 | Dataset | ID | Sources |
 | --- | --- | --- |
-| `uspto-grants` | `ord_dataset-1158e351757f315b93cbcbe7bc55f38e` | 489 monthly `uspto-grants-YYYY_MM` datasets |
+| `uspto-grants-YYYY` (41 datasets, 1976–2016) | one per year | the monthly `uspto-grants-YYYY_MM` datasets of that year |
 | `Training data from https://doi.org/10.1039/C8SC04228D` | `ord_dataset-e7830cd6b11158b43994ccfb5ee9acb3` | 10 `(N/10)` shards |
 
-[`retired_datasets.csv`](retired_datasets.csv) maps each of the 499 retired IDs to the dataset that
-replaced it. Every other dataset kept its ID.
+The USPTO grants were also published as a single `uspto-grants` dataset
+(`ord_dataset-1158e351757f315b93cbcbe7bc55f38e`), which the yearly datasets replace.
 
-Per-reaction patent provenance for the USPTO data is on `Reaction.provenance.patent`, so the
-monthly bucket a reaction came from is recoverable from the consolidated dataset.
+[`retired_datasets.csv`](retired_datasets.csv) maps each of the 500 retired IDs to the dataset that
+replaced it, with one row per year for `uspto-grants`. Every other dataset kept its ID.
+
+Each yearly USPTO dataset holds its months in calendar order, and per-reaction patent provenance is
+on `Reaction.provenance.patent`.
 
 ## Git LFS and the Hugging Face mirror
 

@@ -80,20 +80,21 @@ the whole dataset, so submission CI only needs the **changed** objects.
 - **`validation.yml`** — validates every dataset. Triggers on push to `main`
   **only under `data/**`**, on PRs that touch `validation.yml`, and weekly
   (Mon 07:00 UTC) for the full sweep, so a workflow-only merge does not pull
-  ~1.2 GB of LFS to validate data nobody changed. 2-shard `validate_parquet`
-  matrix (uspto / other); each shard sparse-pulls only its objects from GitHub.
-  `matrix.filter` is the `validate_dataset.py` regex and `lfs_include` the LFS
-  glob — carried separately because the `other` filter is a lookahead regex, not
-  a glob — plus `lfs_exclude`, which is what actually scopes the `other` shard,
-  whose include glob is every parquet file. **`validate_dataset.py` exits 0 when
-  its pattern matches nothing**, so coverage is asserted rather than assumed by
+  ~1.2 GB of LFS to validate data nobody changed. 4-shard `validate_parquet`
+  matrix keyed on the first hex digit of the `data/<xx>/` directory (`0-3`,
+  `4-7`, `8-b`, `c-f`), so a new dataset needs no matrix edit; each shard
+  sparse-pulls only its objects from GitHub. `matrix.filter` is the
+  `validate_dataset.py` regex and `lfs_include` the equivalent LFS glob, carried
+  separately because one is a regex and the other a glob.
+  **`validate_dataset.py` exits 0 when its pattern matches nothing**, so
+  coverage is asserted rather than assumed by
   three guards: `check_layout` fails if anything under `data/` is not a
   `.parquet` exactly one directory deep, and separately re-reads the `filter:`
   values out of this workflow to assert they match every dataset **exactly
   once** (catching a gap or an overlap between shards); each shard then fails if
   its own filter selects no files (catching a shard that matches nothing while
-  its sibling still matches plenty). Do not remove them — without them a stale
-  id or a stray suffix is published unvalidated behind a green check. The job passes `--validate_ids`,
+  its siblings still match plenty). Do not remove them — without them a stale
+  filter or a stray suffix is published unvalidated behind a green check. The job passes `--validate_ids`,
   matching what `process_dataset.py`
   checks at submission; it is opt-in upstream because ids are assigned *during*
   submission, so a draft does not have them yet. Uses
@@ -155,9 +156,11 @@ token scope).
 
 ## Gotchas
 
-- The USPTO grants parquet (`data/11/ord_dataset-1158…parquet`) is ~1 GB — the
-  long pole in validation, and over GitHub's 100 MB non-LFS limit, so it must
-  stay LFS.
+- The USPTO grants are 41 datasets, `uspto-grants-1976` … `uspto-grants-2016`,
+  one per grant year (7–91 MB each); `retired_datasets.csv` maps the retired
+  single-file `uspto-grants` (`ord_dataset-1158…`) to them. The Hugging Face
+  `uspto-grants` config lists them via `USPTO_GRANTS_IDS` in
+  `scripts/upload_to_huggingface.py`, so a change to the set of years goes there.
 - The reactions-count badge and its `count_reactions` job were intentionally
   removed (low value, and it added a bot "Update badges" commit to every PR).
   Don't reintroduce.
