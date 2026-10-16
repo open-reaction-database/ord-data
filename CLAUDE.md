@@ -107,10 +107,13 @@ the whole dataset, so submission CI only needs the **changed** objects.
   bumps `uv.lock` **and** changes the validator's command line cannot test
   itself.
 - **`submission.yml`** — per-PR. `process_submission` sparse-pulls only the
-  changed datasets, gated on `NUM_CHANGED_FILES`. Fork PRs run validate-only;
-  non-fork PRs run the `Update submission` step (skippable via the
-  `skip-update-submission` label). The pipeline it runs is checked out from the
-  **base branch** into `pipeline/`, never from the PR: on a fork,
+  changed datasets, gated on `NUM_CHANGED_FILES`. Exactly one of `Validate
+  submission` / `Update submission` runs when a dataset changed: both gate on
+  the `mode` step's one output, so give neither a condition of its own.
+  Validate runs on fork PRs, on the re-run from the workflow's own push, and on
+  PRs labeled `skip-update-submission` (the label skips the rewrite, not the
+  check); every other PR runs Update. The pipeline it runs is checked out from
+  the **base branch** into `pipeline/`, never from the PR: on a fork,
   `process_dataset.py` and `uv.lock` are contributor-controlled.
 - **`retarget_submission.yml`** — `pull_request_target`, API-only, checks out
   nothing. Creates the `#<number>` branch, brings it up to date with `main`
