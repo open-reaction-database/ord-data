@@ -64,11 +64,54 @@ CARD_TAGS = ("chemistry", "reactions", "cheminformatics")
 CARD_PRETTY_NAME = "The Open Reaction Database"
 
 # Datasets that get a named config in addition to their `ord_dataset-<id>` one.
-# `uspto-grants` is the full patent extraction; `uspto-mit` is the reaction
-# prediction benchmark (10.1039/C8SC04228D) with real train/validation/test
-# splits. The default config is every dataset except these. Keyed by
-# dataset_id (the parquet filename stem), which is stable across renames.
-USPTO_GRANTS_ID = "ord_dataset-1158e351757f315b93cbcbe7bc55f38e"
+# `uspto-grants` is the full patent extraction, one dataset per grant year;
+# `uspto-mit` is the reaction prediction benchmark (10.1039/C8SC04228D) with
+# real train/validation/test splits. The default config is every dataset except
+# these. Keyed by dataset_id (the parquet filename stem), which is stable across
+# renames.
+USPTO_GRANTS_IDS = {
+    1976: "ord_dataset-ca811a23e9d44f4f0a65d6456701856e",
+    1977: "ord_dataset-a7599c88da61302505d456077341c429",
+    1978: "ord_dataset-916293e0c239ca8463ad7468f8c46236",
+    1979: "ord_dataset-2644e8b8f6987d8aabf57f04dab558dd",
+    1980: "ord_dataset-a708306f1cb43cc6ef1301dfb9018191",
+    1981: "ord_dataset-f2718cd03ad7dd73fef23ea3c79f2c95",
+    1982: "ord_dataset-fd38f429352a645714f44afdbc6807b5",
+    1983: "ord_dataset-19ba360ec1bd15a2f73a937a1d161e4f",
+    1984: "ord_dataset-2ac92882468f4d47ec7ca0eda9b31cd6",
+    1985: "ord_dataset-fb9c9799c8535f36029173e90ba97497",
+    1986: "ord_dataset-0078ecb24abd66512594995d2e098f5e",
+    1987: "ord_dataset-bd77aaca65a9d5ef4cbc3f2808115f28",
+    1988: "ord_dataset-166e12c0a91ded488db9e3129c1ad034",
+    1989: "ord_dataset-f82e41201e406c71af831481565bcfb6",
+    1990: "ord_dataset-7006210ae79ad5ca553ae4f011390193",
+    1991: "ord_dataset-557fc289692260cdbb1f6fd86ff221eb",
+    1992: "ord_dataset-4b5063eddeab92294a10ead7a637f15d",
+    1993: "ord_dataset-e4994f55eb1de3d4e9f35f0c5160f213",
+    1994: "ord_dataset-493459620170b5cfa2f6a0ff4c6f6c3e",
+    1995: "ord_dataset-5c7e67eda2a18cecb036e009e11c60be",
+    1996: "ord_dataset-8709a7a6729268b0ea8055fd8ab6ec2c",
+    1997: "ord_dataset-ed85599810a968b103e70c8b6f0aa3b0",
+    1998: "ord_dataset-5efc247455d702206edf2e3e9a7d611e",
+    1999: "ord_dataset-758207d0e333f96f6342bad3dfddf1e2",
+    2000: "ord_dataset-0fbb04349518b2a00ff291c9ac3263e9",
+    2001: "ord_dataset-bd016cde31e4e78205ecec8170787fd7",
+    2002: "ord_dataset-658fd3543b0e967af40b7dc959a0d07b",
+    2003: "ord_dataset-286194ee34e80404838b65248be49461",
+    2004: "ord_dataset-52eb859eec1d012e947a2cf560024948",
+    2005: "ord_dataset-9477c7f5dc176dcc5657fe7df9476027",
+    2006: "ord_dataset-92c79d38c8cb08545d77306934156875",
+    2007: "ord_dataset-30596ddbc19b4f46fb58751d65eb1982",
+    2008: "ord_dataset-9711b36895ef05e2fb77f0b439c5f985",
+    2009: "ord_dataset-0c0a93e5eb286a8fa697b1fdd8231f85",
+    2010: "ord_dataset-90d3da23f90d8b8e992251ddce471e0a",
+    2011: "ord_dataset-8de1755b921e4726dc5a2851519cf398",
+    2012: "ord_dataset-f89bba9745e12c2116a5b6be9b2873ad",
+    2013: "ord_dataset-d68bd72dc7a8c7c3db14a93e4d8f0d30",
+    2014: "ord_dataset-3d996df040a270112aabe120c3727a51",
+    2015: "ord_dataset-1254900636d6635dfbfb46101295b2e2",
+    2016: "ord_dataset-8739070cee44634940b6d9717333a5bb",
+}
 USPTO_MIT_SPLITS = {
     "train": "ord_dataset-e7830cd6b11158b43994ccfb5ee9acb3",
     "validation": "ord_dataset-5481550056a14935b76e031fb94b88be",
@@ -190,10 +233,10 @@ def _dataset_id(parquet_path: str) -> str:
 def build_configs(repo_root: Path) -> list[dict]:
     """Build the Hugging Face ``configs`` list from the parquet files on disk.
 
-    Emits a ``default`` config over every dataset except the two large USPTO
-    artifacts, named ``uspto-grants`` and ``uspto-mit`` configs, and one
-    ``ord_dataset-<id>`` config per dataset. Only filenames are read, so no LFS
-    objects need to be present.
+    Emits a ``default`` config over every dataset except the large USPTO
+    artifacts, named ``uspto-grants`` (its years in order) and ``uspto-mit``
+    configs, and one ``ord_dataset-<id>`` config per dataset. Only filenames are
+    read, so no LFS objects need to be present.
 
     Args:
         repo_root: Repository root containing the ``data/`` tree.
@@ -205,7 +248,7 @@ def build_configs(repo_root: Path) -> list[dict]:
         p.relative_to(repo_root).as_posix() for p in repo_root.glob("data/*/*.parquet")
     )
     by_id = {_dataset_id(p): p for p in paths}
-    named_ids = {USPTO_GRANTS_ID, *USPTO_MIT_SPLITS.values()}
+    named_ids = {*USPTO_GRANTS_IDS.values(), *USPTO_MIT_SPLITS.values()}
 
     configs: list[dict] = [
         {
@@ -214,9 +257,15 @@ def build_configs(repo_root: Path) -> list[dict]:
             "data_files": [p for p in paths if _dataset_id(p) not in named_ids],
         }
     ]
-    if USPTO_GRANTS_ID in by_id:
+    if set(USPTO_GRANTS_IDS.values()).issubset(by_id):
         configs.append(
-            {"config_name": "uspto-grants", "data_files": [by_id[USPTO_GRANTS_ID]]}
+            {
+                "config_name": "uspto-grants",
+                "data_files": [
+                    by_id[dataset_id]
+                    for _, dataset_id in sorted(USPTO_GRANTS_IDS.items())
+                ],
+            }
         )
     if set(USPTO_MIT_SPLITS.values()).issubset(by_id):
         configs.append(
