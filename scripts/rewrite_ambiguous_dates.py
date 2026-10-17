@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Rewrite slash dates that leave the day and month order open as ISO 8601.
+"""Rewrite slash dates that leave the day and month order open as ISO 8601 dates.
 
 A ``DateTime`` written ``NN/NN/NNNN`` with both leading numbers at most twelve
 names two dates, and which one the depositor meant is a property of the dataset
@@ -21,10 +21,11 @@ holds such values, as settled in the ord-logbook entry "Date and time formats
 across the corpus" (2026-09-03); the three day-first ones are among the six in
 ord-schema's ``artifacts.projection._DAY_FIRST``.
 
-Only those values are rewritten: ``YYYY-MM-DD`` where the source carried no
-time, ``YYYY-MM-DDTHH:MM:SS`` otherwise. A slash date left standing has a
-leading number above twelve, so it reads one way under either order. Each
-reaction with a rewritten value gains one ``record_modified`` event listing them.
+Only those values are rewritten, each as its date alone, ``YYYY-MM-DD``: none
+carries a UTC offset, so a time of day in one would name no particular instant.
+A slash date left standing has a leading number above twelve, so it reads one
+way under either order. Each reaction with a rewritten value gains one
+``record_modified`` event listing them.
 """
 
 import argparse
@@ -74,7 +75,6 @@ SLASH_DATE = re.compile(r"^(\d{1,2})/(\d{1,2})/")
 _SLASH_BYTES = re.compile(rb"(?<!\d)\d{1,2}/\d{1,2}/\d")
 # What follows the day and month in each slash shape the corpus holds.
 _TAILS = ("/%Y, %I:%M:%S %p", "/%Y, %H:%M:%S", "/%Y %H:%M:%S", "/%Y")
-_DATE_ONLY_TAIL = "/%Y"
 
 
 def leading_numbers(value: str) -> tuple[int, int] | None:
@@ -112,30 +112,28 @@ def witnessed_day_first(value: str) -> bool | None:
     return None
 
 
-def to_iso(value: str, *, day_first: bool) -> str:
-    """Return the ISO 8601 form of a slash date read in the given order.
+def to_date(value: str, *, day_first: bool) -> str:
+    """Return the ISO 8601 date of a slash date read in the given order.
 
     Args:
         value: A slash date in one of the shapes ``_TAILS`` covers.
         day_first: Whether the first number is the day.
 
     Returns:
-        ``YYYY-MM-DD`` for a value without a time, else ``YYYY-MM-DDTHH:MM:SS``.
+        ``YYYY-MM-DD``, whether or not the value carried a time.
 
     Raises:
-        ValueError: If no shape matches ``value``.
+        ValueError: If no shape matches ``value``, including one with an offset.
     """
     order = "%d/%m" if day_first else "%m/%d"
     for tail in _TAILS:
         try:
-            # DTZ007: none of these shapes carries an offset, and the ISO form
-            # records the same wall-clock time without inventing one.
+            # DTZ007: none of these shapes carries an offset, and only the date the
+            # wall-clock time falls on is kept.
             parsed = datetime.datetime.strptime(value, order + tail)  # noqa: DTZ007
         except ValueError:
             continue
-        if tail == _DATE_ONLY_TAIL:
-            return parsed.date().isoformat()
-        return parsed.isoformat()
+        return parsed.date().isoformat()
     raise ValueError(f"no slash date shape matches {value!r}")
 
 
@@ -224,7 +222,7 @@ def rewrite_reaction(
     for path, date_time in iter_date_times(reaction):
         if is_ambiguous(date_time.value):
             old = date_time.value
-            date_time.value = to_iso(old, day_first=day_first)
+            date_time.value = to_date(old, day_first=day_first)
             changes.append((path, old, date_time.value))
     return changes
 
