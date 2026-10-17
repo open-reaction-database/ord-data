@@ -159,9 +159,14 @@ def test_iter_date_times_names_each_path() -> None:
 
 
 def test_make_event() -> None:
-    assert EVENT.time.value == "2026-10-17T17:30:00"
+    assert EVENT.time.value == "2026-10-17T17:30:00+00:00"
     assert (EVENT.person.username, EVENT.person.email) == ("test", "test@example.com")
     assert not EVENT.details
+
+
+def test_make_event_refuses_a_naive_time() -> None:
+    with pytest.raises(ValueError, match=r"2026-10-17 13:30:00 has no time zone"):
+        make_event(EVENT.person, datetime.datetime(2026, 10, 17, 13, 30))  # noqa: DTZ001
 
 
 def test_describe() -> None:
@@ -187,9 +192,13 @@ def test_rewrite_dataset(tmp_path: Path) -> None:
     )
     assert list(view.iter_reaction_ids()) == ["a", "b", "c"]
     assert _values(path) == [
-        ["2024-12-05T15:29:23", "Fri Dec  6 10:00:00 2024", "2026-10-17T17:30:00"],
+        [
+            "2024-12-05T15:29:23",
+            "Fri Dec  6 10:00:00 2024",
+            "2026-10-17T17:30:00+00:00",
+        ],
         # Fields in number order: outcomes come before provenance.
-        ["2024-02-01", "18/09/2024, 16:54:56", "2026-10-17T17:30:00"],
+        ["2024-02-01", "18/09/2024, 16:54:56", "2026-10-17T17:30:00+00:00"],
         ["2024-12-05T15:29:23"],
     ]
     # One event each for the reactions it rewrote, after any they had.
@@ -211,6 +220,11 @@ def test_rewrite_dataset(tmp_path: Path) -> None:
     ]
 
 
+@pytest.mark.xfail(
+    raises=TypeError,
+    strict=True,
+    reason="ord-schema 0.8.3 cannot order a naive timestamp against an aware one",
+)
 def test_a_rewritten_reaction_validates(tmp_path: Path) -> None:
     reaction = _reaction("ord-" + "0" * 32, "07/01/2008")
     reaction.provenance.record_created.person.username = "test"

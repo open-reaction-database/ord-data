@@ -244,17 +244,20 @@ def make_event(
     Args:
         person: Who made the change. Validation requires an email, and one of a
             username, a name, or an ORCID.
-        now: When, as an aware datetime. It is written as naive UTC, the form
-            the rewritten values take: validation subtracts a reaction's
-            timestamps from each other, which an offset on one of them breaks.
+        now: When, as an aware datetime. It is written in UTC with its offset,
+            ``YYYY-MM-DDTHH:MM:SS+00:00``, so the zone is in the record.
 
     Returns:
         The event, with no details.
+
+    Raises:
+        ValueError: If ``now`` is naive, since its zone would be a guess.
     """
+    if now.tzinfo is None:
+        raise ValueError(f"{now} has no time zone")
     event = reaction_pb2.RecordEvent()
     event.person.CopyFrom(person)
-    utc = now.astimezone(datetime.UTC).replace(tzinfo=None)
-    event.time.value = utc.isoformat(timespec="seconds")
+    event.time.value = now.astimezone(datetime.UTC).isoformat(timespec="seconds")
     return event
 
 
