@@ -14,20 +14,31 @@
 
 """Tests for the ambiguous slash date rewrite."""
 
+import datetime
 from pathlib import Path
 
 import pytest
-from ord_schema import parquet
+from ord_schema import parquet, validations
 from ord_schema.proto import reaction_pb2
 from rewrite_ambiguous_dates import (
+    DETAILS,
+    describe,
     is_ambiguous,
     iter_date_times,
+    make_event,
     rewrite_dataset,
     to_iso,
     witnessed_day_first,
 )
 
 DATASET_ID = "ord_dataset-00000000000000000000000000000000"
+EVENT = make_event(
+    reaction_pb2.Person(username="test", email="test@example.com"),
+    # 13:30 four hours behind UTC.
+    datetime.datetime(
+        2026, 10, 17, 13, 30, tzinfo=datetime.timezone(datetime.timedelta(hours=-4))
+    ),
+)
 
 
 def _reaction(
@@ -53,9 +64,16 @@ def _write(path: Path, *reactions: reaction_pb2.Reaction) -> Path:
 
 def _values(path: Path) -> list[list[str]]:
     return [
-        [date_time.value for date_time in iter_date_times(reaction)]
+        [date_time.value for _, date_time in iter_date_times(reaction)]
         for reaction in parquet.DatasetView(path).reactions
     ]
+
+
+def _event(*lines: str) -> reaction_pb2.RecordEvent:
+    event = reaction_pb2.RecordEvent()
+    event.CopyFrom(EVENT)
+    event.details = "\n".join([DETAILS, *lines])
+    return event
 
 
 @pytest.mark.parametrize(
@@ -109,10 +127,35 @@ def test_to_iso_rejects_an_unknown_shape() -> None:
         to_iso("07/01/2008 at noon", day_first=False)
 
 
-def test_iter_date_times_reaches_repeated_and_map_fields() -> None:
+def test_iter_date_times_names_each_path() -> None:
     reaction = _reaction("a", "1", "2", "3", calibrated="4")
     reaction.provenance.experiment_start.value = "0"
-    assert sorted(dt.value for dt in iter_date_times(reaction)) == list("01234")
+    # Protobuf iterates these four keys out of sorted order.
+    for key in ("nmr", "lcms", "gc"):
+        reaction.outcomes[0].analyses[key].instrument_last_calibrated.value = key
+    assert [(path, dt.value) for path, dt in iter_date_times(reaction)] == [
+        ('outcomes[0].analyses["gc"].instrument_last_calibrated', "gc"),
+        ('outcomes[0].analyses["hplc"].instrument_last_calibrated', "4"),
+        ('outcomes[0].analyses["lcms"].instrument_last_calibrated', "lcms"),
+        ('outcomes[0].analyses["nmr"].instrument_last_calibrated', "nmr"),
+        ("provenance.experiment_start", "0"),
+        ("provenance.record_created.time", "1"),
+        ("provenance.record_modified[0].time", "2"),
+        ("provenance.record_modified[1].time", "3"),
+    ]
+
+
+def test_make_event() -> None:
+    assert EVENT.time.value == "2026-10-17T17:30:00"
+    assert (EVENT.person.username, EVENT.person.email) == ("test", "test@example.com")
+    assert not EVENT.details
+
+
+def test_describe() -> None:
+    changes = [("a.time", "07/01/2008", "2008-07-01"), ("b[0]", "1/2/3", "x")]
+    assert describe(changes) == (
+        f"{DETAILS}\na.time: 07/01/2008 -> 2008-07-01\nb[0]: 1/2/3 -> x"
+    )
 
 
 def test_rewrite_dataset(tmp_path: Path) -> None:
@@ -122,7 +165,7 @@ def test_rewrite_dataset(tmp_path: Path) -> None:
         _reaction("b", "18/09/2024, 16:54:56", calibrated="01/02/2024"),
         _reaction("c", "2024-12-05T15:29:23"),
     )
-    assert rewrite_dataset(path, day_first={DATASET_ID: True}) == 2
+    assert rewrite_dataset(path, EVENT, day_first={DATASET_ID: True}) == 2
     view = parquet.DatasetView(path)
     assert (view.name, view.description, view.dataset_id) == (
         "test",
@@ -131,17 +174,47 @@ def test_rewrite_dataset(tmp_path: Path) -> None:
     )
     assert list(view.iter_reaction_ids()) == ["a", "b", "c"]
     assert _values(path) == [
-        ["2024-12-05T15:29:23", "Fri Dec  6 10:00:00 2024"],
+        ["2024-12-05T15:29:23", "Fri Dec  6 10:00:00 2024", "2026-10-17T17:30:00"],
         # Fields in number order: outcomes come before provenance.
-        ["2024-02-01", "18/09/2024, 16:54:56"],
+        ["2024-02-01", "18/09/2024, 16:54:56", "2026-10-17T17:30:00"],
         ["2024-12-05T15:29:23"],
     ]
+    # One event each for the reactions it rewrote, after any they had.
+    assert [list(r.provenance.record_modified) for r in view.reactions] == [
+        [
+            reaction_pb2.RecordEvent(time={"value": "Fri Dec  6 10:00:00 2024"}),
+            _event(
+                "provenance.record_created.time: "
+                "05/12/2024, 15:29:23 -> 2024-12-05T15:29:23"
+            ),
+        ],
+        [
+            _event(
+                'outcomes[0].analyses["hplc"].instrument_last_calibrated: '
+                "01/02/2024 -> 2024-02-01"
+            )
+        ],
+        [],
+    ]
+
+
+def test_a_rewritten_reaction_validates(tmp_path: Path) -> None:
+    reaction = _reaction("ord-" + "0" * 32, "07/01/2008")
+    reaction.provenance.record_created.person.username = "test"
+    reaction.provenance.record_created.person.email = "test@example.com"
+    path = _write(tmp_path / "dataset.parquet", reaction)
+    rewrite_dataset(path, EVENT, day_first={DATASET_ID: False})
+    provenance = parquet.DatasetView(path).reactions[0].provenance
+    output = validations.validate_message(provenance, raise_on_error=False)
+    assert output.errors == []
 
 
 def test_rewrite_dataset_dry_run_writes_nothing(tmp_path: Path) -> None:
     path = _write(tmp_path / "dataset.parquet", _reaction("a", "07/01/2008"))
     before = path.read_bytes()
-    assert rewrite_dataset(path, day_first={DATASET_ID: False}, dry_run=True) == 1
+    assert (
+        rewrite_dataset(path, EVENT, day_first={DATASET_ID: False}, dry_run=True) == 1
+    )
     assert path.read_bytes() == before
 
 
@@ -150,14 +223,14 @@ def test_rewrite_dataset_leaves_an_unambiguous_dataset_alone(tmp_path: Path) -> 
         tmp_path / "dataset.parquet", _reaction("a", "10/19/2021, 12:16:25 PM")
     )
     before = path.read_bytes()
-    assert rewrite_dataset(path, day_first={}) == 0
+    assert rewrite_dataset(path, EVENT, day_first={}) == 0
     assert path.read_bytes() == before
 
 
 def test_rewrite_dataset_refuses_an_unsettled_order(tmp_path: Path) -> None:
     path = _write(tmp_path / "dataset.parquet", _reaction("a", "07/01/2008"))
     with pytest.raises(ValueError, match=r"no order is settled for ord_dataset-0+$"):
-        rewrite_dataset(path, day_first={})
+        rewrite_dataset(path, EVENT, day_first={})
 
 
 def test_rewrite_dataset_checks_what_it_wrote(
@@ -176,7 +249,7 @@ def test_rewrite_dataset_checks_what_it_wrote(
 
     monkeypatch.setattr(parquet.DatasetWriter, "write", drop_b)
     with pytest.raises(RuntimeError, match=r"does not read back as planned"):
-        rewrite_dataset(path, day_first={DATASET_ID: False})
+        rewrite_dataset(path, EVENT, day_first={DATASET_ID: False})
 
 
 def test_rewrite_dataset_refuses_an_order_its_values_contradict(
@@ -188,4 +261,4 @@ def test_rewrite_dataset_refuses_an_order_its_values_contradict(
         _reaction("b", "07/13/2008"),
     )
     with pytest.raises(ValueError, match=r"day first, but 1 of its values prove"):
-        rewrite_dataset(path, day_first={DATASET_ID: True})
+        rewrite_dataset(path, EVENT, day_first={DATASET_ID: True})

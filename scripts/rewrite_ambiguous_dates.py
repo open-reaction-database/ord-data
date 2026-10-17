@@ -23,16 +23,17 @@ ord-schema's ``artifacts.projection._DAY_FIRST``.
 
 Only those values are rewritten: ``YYYY-MM-DD`` where the source carried no
 time, ``YYYY-MM-DDTHH:MM:SS`` otherwise. A slash date left standing has a
-leading number above twelve, so it reads one way under either order. No
-``record_modified`` event is appended; the commit records the change.
+leading number above twelve, so it reads one way under either order. Each
+reaction with a rewritten value gains one ``record_modified`` event saying so.
 """
 
 import argparse
 import collections
 import datetime
+import json
 import logging
 import re
-from collections.abc import Iterator, Mapping
+from collections.abc import Iterable, Iterator, Mapping
 from pathlib import Path
 
 import pyarrow.parquet as pq
@@ -60,6 +61,12 @@ DAY_FIRST = {
     "ord_dataset-d26118acda314269becc35db5c22dc59": False,
     "ord_dataset-d92976309c3a48a3a64a4cf5e7048086": False,
 }
+
+# The first line of each event's details; one line per rewritten value follows.
+DETAILS = (
+    "Rewrote ambiguous dates as ISO 8601; see "
+    "https://github.com/open-reaction-database/ord-data/pull/303"
+)
 
 SLASH_DATE = re.compile(r"^(\d{1,2})/(\d{1,2})/")
 # A reaction whose serialized bytes hold no slash date has none to rewrite or to
@@ -133,23 +140,39 @@ def to_iso(value: str, *, day_first: bool) -> str:
 
 
 def iter_date_times(
-    message: message_lib.Message,
-) -> Iterator[reaction_pb2.DateTime]:
-    """Yield every populated DateTime message under ``message``, depth first."""
+    message: message_lib.Message, path: str = ""
+) -> Iterator[tuple[str, reaction_pb2.DateTime]]:
+    """Yield every populated DateTime under ``message`` with its field path.
+
+    A path names fields as the schema does, with ``[i]`` for a position in a
+    repeated field and ``["key"]`` for a map key:
+    ``outcomes[0].analyses["hplc"].instrument_last_calibrated``. Fields come in
+    field number order and map keys in sorted order.
+
+    Args:
+        message: The message to walk.
+        path: The path to ``message`` itself; empty for the root.
+
+    Yields:
+        ``(path, DateTime)`` pairs, depth first.
+    """
     if isinstance(message, reaction_pb2.DateTime):
-        yield message
+        yield path, message
         return
     for field, value in message.ListFields():
         if field.type != FieldDescriptor.TYPE_MESSAGE:
             continue
+        name = f"{path}.{field.name}" if path else field.name
         if field.message_type.GetOptions().map_entry:
-            children = value.values()
+            children = [
+                (f"{name}[{json.dumps(key)}]", value[key]) for key in sorted(value)
+            ]
         elif field.label == FieldDescriptor.LABEL_REPEATED:
-            children = value
+            children = [(f"{name}[{i}]", child) for i, child in enumerate(value)]
         else:
-            children = [value]
-        for child in children:
-            yield from iter_date_times(child)
+            children = [(name, value)]
+        for child_path, child in children:
+            yield from iter_date_times(child, child_path)
 
 
 def _iter_slash_reactions(
@@ -175,7 +198,7 @@ def scan(view: parquet.DatasetView) -> tuple[int, collections.Counter[bool]]:
     ambiguous = 0
     witnesses: collections.Counter[bool] = collections.Counter()
     for reaction in _iter_slash_reactions(view):
-        for date_time in iter_date_times(reaction):
+        for _, date_time in iter_date_times(reaction):
             if is_ambiguous(date_time.value):
                 ambiguous += 1
             witnessed = witnessed_day_first(date_time.value)
@@ -184,7 +207,9 @@ def scan(view: parquet.DatasetView) -> tuple[int, collections.Counter[bool]]:
     return ambiguous, witnesses
 
 
-def rewrite_reaction(reaction: reaction_pb2.Reaction, *, day_first: bool) -> int:
+def rewrite_reaction(
+    reaction: reaction_pb2.Reaction, *, day_first: bool
+) -> list[tuple[str, str, str]]:
     """Rewrite a reaction's ambiguous slash dates in place.
 
     Args:
@@ -192,18 +217,50 @@ def rewrite_reaction(reaction: reaction_pb2.Reaction, *, day_first: bool) -> int
         day_first: Whether its dataset writes the day first.
 
     Returns:
-        The number of values rewritten.
+        ``(path, old value, new value)`` for each value rewritten, in the order
+        ``iter_date_times`` yields them.
     """
-    rewritten = 0
-    for date_time in iter_date_times(reaction):
+    changes = []
+    for path, date_time in iter_date_times(reaction):
         if is_ambiguous(date_time.value):
-            date_time.value = to_iso(date_time.value, day_first=day_first)
-            rewritten += 1
-    return rewritten
+            old = date_time.value
+            date_time.value = to_iso(old, day_first=day_first)
+            changes.append((path, old, date_time.value))
+    return changes
+
+
+def describe(changes: Iterable[tuple[str, str, str]]) -> str:
+    """Return an event's details: ``DETAILS``, then ``path: old -> new`` per line."""
+    return "\n".join(
+        [DETAILS, *(f"{path}: {old} -> {new}" for path, old, new in changes)]
+    )
+
+
+def make_event(
+    person: reaction_pb2.Person, now: datetime.datetime
+) -> reaction_pb2.RecordEvent:
+    """Build the record_modified event a rewritten reaction gains, but its details.
+
+    Args:
+        person: Who made the change. Validation requires an email, and one of a
+            username, a name, or an ORCID.
+        now: When, as an aware datetime. It is written as naive UTC, the form
+            the rewritten values take: validation subtracts a reaction's
+            timestamps from each other, which an offset on one of them breaks.
+
+    Returns:
+        The event, with no details.
+    """
+    event = reaction_pb2.RecordEvent()
+    event.person.CopyFrom(person)
+    utc = now.astimezone(datetime.UTC).replace(tzinfo=None)
+    event.time.value = utc.isoformat(timespec="seconds")
+    return event
 
 
 def rewrite_dataset(
     path: Path,
+    event: reaction_pb2.RecordEvent,
     *,
     day_first: Mapping[str, bool] = DAY_FIRST,
     dry_run: bool = False,
@@ -214,6 +271,8 @@ def rewrite_dataset(
 
     Args:
         path: The Parquet dataset.
+        event: Appended to the ``record_modified`` events of each reaction with
+            a rewritten value, and of no other, with details from ``describe``.
         day_first: The settled order of each dataset that may hold ambiguous
             values.
         dry_run: Check and count without writing.
@@ -255,7 +314,12 @@ def rewrite_dataset(
         dataset_id=view.dataset_id,
     ) as writer:
         for reaction in view.reactions:
-            rewritten += rewrite_reaction(reaction, day_first=order)
+            changes = rewrite_reaction(reaction, day_first=order)
+            if changes:
+                modified = reaction.provenance.record_modified.add()
+                modified.CopyFrom(event)
+                modified.details = describe(changes)
+                rewritten += len(changes)
             writer.write(reaction)
     written = parquet.DatasetView(path)
     if (
@@ -283,14 +347,29 @@ def main() -> None:
         action="store_true",
         help="Check and count the values to rewrite; do not write any files.",
     )
+    parser.add_argument(
+        "--email", required=True, help="Email of the person making the change."
+    )
+    parser.add_argument("--username", default="", help="Their GitHub username.")
+    parser.add_argument("--name", default="", help="Their full name.")
+    parser.add_argument("--organization", default="", help="Their organization.")
     args = parser.parse_args()
+    if not (args.username or args.name):
+        parser.error("validation requires --username or --name")
 
     logging.basicConfig(level=logging.INFO, format="%(message)s")
 
+    person = reaction_pb2.Person(
+        username=args.username,
+        name=args.name,
+        organization=args.organization,
+        email=args.email,
+    )
+    event = make_event(person, datetime.datetime.now(datetime.UTC))
     paths = sorted(args.repo_root.glob("data/*/*.parquet"))
     total = 0
     for path in paths:
-        rewritten = rewrite_dataset(path, dry_run=args.dry_run)
+        rewritten = rewrite_dataset(path, event, dry_run=args.dry_run)
         if rewritten:
             logger.info(f"{path.relative_to(args.repo_root)}  {rewritten}")
             total += rewritten
