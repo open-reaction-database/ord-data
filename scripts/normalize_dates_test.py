@@ -84,6 +84,7 @@ def _write(path: Path, *reactions: reaction_pb2.Reaction) -> Path:
         ("10/19/2021, 12:16:25 PM", False),
         ("2024-13-01", False),
         ("2024-07-06T23:25:41+25:00", False),
+        ("2024-07-06T23:25:41+00:60", False),
         ("", False),
     ],
 )

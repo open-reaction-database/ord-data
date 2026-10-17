@@ -17,8 +17,8 @@
 ord-schema accepts a ``DateTime`` only as a date, ``YYYY-MM-DD``, or a time with
 the offset it was written under, ``YYYY-MM-DDTHH:MM:SS[.ffffff]`` then ``Z`` or
 ``±HH:MM``. A value already in one of those shapes is left as written. Of the
-rest, only the events the submission pipeline stamped have a known zone: it
-writes ``datetime.now(UTC).ctime()``, so those become the same time with
+rest, only the submission pipeline's events have a known zone: their ``ctime``
+stamps come from ``datetime.now(UTC)``, so those become the same time with
 ``+00:00``. Every other value is written as its date alone, the date its
 wall-clock time falls on, since a time with no zone names no particular instant.
 
@@ -57,10 +57,12 @@ DETAILS = (
 PIPELINE_EMAIL = "github-actions@github.com"
 PIPELINE_DETAILS = "Automatic updates from the submission pipeline."
 
-# The shapes ord-schema accepts.
+# The shapes ord-schema's validations accept, copied because ord-data locks a release
+# that predates them. fromisoformat reads an offset of "+00:60" as one hour, so the
+# minutes are bounded here.
 _DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 _TIME = re.compile(
-    r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?(?:Z|[+-]\d{2}:\d{2})"
+    r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?(?:Z|[+-]\d{2}:[0-5]\d)"
 )
 _CTIME = "%a %b %d %H:%M:%S %Y"
 # The zone-less shapes the corpus holds besides slash dates and ctime.
