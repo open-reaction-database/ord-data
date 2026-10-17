@@ -127,6 +127,19 @@ def test_to_iso_rejects_an_unknown_shape() -> None:
         to_iso("07/01/2008 at noon", day_first=False)
 
 
+@pytest.mark.parametrize(
+    "value", ["07/01/2008, 10:00:00 +02:00", "07/01/2008 10:00:00Z"]
+)
+def test_rewrite_dataset_refuses_rather_than_drop_an_offset(
+    tmp_path: Path, value: str
+) -> None:
+    path = _write(tmp_path / "dataset.parquet", _reaction("a", value))
+    before = path.read_bytes()
+    with pytest.raises(ValueError, match=r"no slash date shape matches"):
+        rewrite_dataset(path, EVENT, day_first={DATASET_ID: False})
+    assert path.read_bytes() == before
+
+
 def test_iter_date_times_names_each_path() -> None:
     reaction = _reaction("a", "1", "2", "3", calibrated="4")
     reaction.provenance.experiment_start.value = "0"
