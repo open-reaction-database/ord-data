@@ -143,8 +143,6 @@ def iter_date_times(
         if field.type != FieldDescriptor.TYPE_MESSAGE:
             continue
         if field.message_type.GetOptions().map_entry:
-            if field.message_type.fields_by_name["value"].message_type is None:
-                continue
             children = value.values()
         elif field.label == FieldDescriptor.LABEL_REPEATED:
             children = value

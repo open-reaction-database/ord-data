@@ -160,6 +160,25 @@ def test_rewrite_dataset_refuses_an_unsettled_order(tmp_path: Path) -> None:
         rewrite_dataset(path, day_first={})
 
 
+def test_rewrite_dataset_checks_what_it_wrote(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    path = _write(
+        tmp_path / "dataset.parquet",
+        _reaction("a", "07/01/2008"),
+        _reaction("b", "07/02/2008"),
+    )
+    write = parquet.DatasetWriter.write
+
+    def drop_b(self: parquet.DatasetWriter, reaction: reaction_pb2.Reaction) -> None:
+        if reaction.reaction_id != "b":
+            write(self, reaction)
+
+    monkeypatch.setattr(parquet.DatasetWriter, "write", drop_b)
+    with pytest.raises(RuntimeError, match=r"does not read back as planned"):
+        rewrite_dataset(path, day_first={DATASET_ID: False})
+
+
 def test_rewrite_dataset_refuses_an_order_its_values_contradict(
     tmp_path: Path,
 ) -> None:
