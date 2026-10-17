@@ -17,6 +17,7 @@
 import datetime
 from pathlib import Path
 
+import normalize_dates
 import pytest
 from normalize_dates import (
     DETAILS,
@@ -218,9 +219,11 @@ def test_normalize_dataset_dry_run_writes_nothing(tmp_path: Path) -> None:
 
 def test_normalize_dataset_leaves_a_valid_dataset_alone(tmp_path: Path) -> None:
     path = _write(tmp_path / "dataset.parquet", _reaction("a", "2021-10-19"))
-    before = path.read_bytes()
+    # Rewriting the same content gives the same bytes, so only the file itself shows
+    # whether it was replaced.
+    before = path.stat().st_ino
     assert normalize_dataset(path, EVENT) == (0, 0)
-    assert path.read_bytes() == before
+    assert path.stat().st_ino == before
 
 
 def test_normalize_dataset_refuses_an_unreadable_value(tmp_path: Path) -> None:
@@ -251,4 +254,15 @@ def test_normalize_dataset_checks_what_it_wrote(
 
     monkeypatch.setattr(parquet.DatasetWriter, "write", drop_b)
     with pytest.raises(RuntimeError, match=r"does not read back as planned"):
+        normalize_dataset(path, EVENT)
+
+
+def test_normalize_dataset_checks_every_value_it_wrote(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    path = _write(tmp_path / "dataset.parquet", _reaction("a", "2021-10-19 01:02:03"))
+    monkeypatch.setattr(normalize_dates, "date_of", lambda value: "not a date")
+    with pytest.raises(
+        RuntimeError, match=r"still holds a DateTime ord-schema rejects"
+    ):
         normalize_dataset(path, EVENT)

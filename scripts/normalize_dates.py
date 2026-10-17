@@ -50,7 +50,7 @@ logger = logging.getLogger(__name__)
 # The first line of each event's details; one line per rewritten value follows.
 DETAILS = (
     "Rewrote dates as a date or a UTC time with its offset; see "
-    "https://github.com/open-reaction-database/ord-data/pull/PR_NUMBER"
+    "https://github.com/open-reaction-database/ord-data/pull/303"
 )
 
 # What ord_schema.updates stamps on a reaction it modifies.
