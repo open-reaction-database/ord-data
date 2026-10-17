@@ -227,10 +227,10 @@ def rewrite_reaction(
     return changes
 
 
-def describe(changes: Iterable[tuple[str, str, str]]) -> str:
-    """Return an event's details: ``DETAILS``, then ``path: old -> new`` per line."""
+def describe(changes: Iterable[tuple[str, str, str]], header: str = DETAILS) -> str:
+    """Return an event's details: ``header``, then ``path: old -> new`` per line."""
     return "\n".join(
-        [DETAILS, *(f"{path}: {old} -> {new}" for path, old, new in changes)]
+        [header, *(f"{path}: {old} -> {new}" for path, old, new in changes)]
     )
 
 
