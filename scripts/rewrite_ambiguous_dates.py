@@ -24,7 +24,7 @@ ord-schema's ``artifacts.projection._DAY_FIRST``.
 Only those values are rewritten: ``YYYY-MM-DD`` where the source carried no
 time, ``YYYY-MM-DDTHH:MM:SS`` otherwise. A slash date left standing has a
 leading number above twelve, so it reads one way under either order. Each
-reaction with a rewritten value gains one ``record_modified`` event saying so.
+reaction with a rewritten value gains one ``record_modified`` event listing them.
 """
 
 import argparse
@@ -239,7 +239,7 @@ def describe(changes: Iterable[tuple[str, str, str]]) -> str:
 def make_event(
     person: reaction_pb2.Person, now: datetime.datetime
 ) -> reaction_pb2.RecordEvent:
-    """Build the record_modified event a rewritten reaction gains, but its details.
+    """Build the record_modified event a rewritten reaction gains, without details.
 
     Args:
         person: Who made the change. Validation requires an email, and one of a
