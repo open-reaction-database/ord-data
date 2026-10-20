@@ -12,9 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests for rewriting DateTime values as a date or a time with its offset."""
+"""Tests for rewriting DateTime values in ISO 8601."""
 
 import datetime
+import re
 from pathlib import Path
 
 import normalize_dates
@@ -23,8 +24,8 @@ from normalize_dates import (
     DETAILS,
     PIPELINE_DETAILS,
     PIPELINE_EMAIL,
-    date_of,
     is_valid,
+    iso_form,
     normalize_dataset,
     normalize_reaction,
     pipeline_time,
@@ -78,7 +79,8 @@ def _write(path: Path, *reactions: reaction_pb2.Reaction) -> Path:
         ("2024-07-06T23:25:41Z", True),
         ("2024-07-06T23:25:41+00:00", True),
         ("2024-07-06T23:25:41.780701-05:00", True),
-        ("2024-07-06T23:25:41", False),
+        ("2024-07-06T23:25:41", True),
+        ("2024-07-06T23:25:41.5", True),
         ("2022-12-02 17:42:01.780701", False),
         ("Fri Oct 22 22:19:55 2021", False),
         ("10/19/2021, 12:16:25 PM", False),
@@ -111,30 +113,35 @@ def test_pipeline_time_rejects_another_shape() -> None:
 @pytest.mark.parametrize(
     ("value", "expected"),
     [
-        ("18/09/2024, 16:54:56", "2024-09-18"),
-        ("18/08/2024 02:10:09", "2024-08-18"),
-        ("10/19/2021, 12:16:25 PM", "2021-10-19"),
+        ("18/09/2024, 16:54:56", "2024-09-18T16:54:56"),
+        ("18/08/2024 02:10:09", "2024-08-18T02:10:09"),
+        ("10/19/2021, 12:16:25 PM", "2021-10-19T12:16:25"),
         ("10/19/2021", "2021-10-19"),
-        ("Fri Oct 22 22:19:55 2021", "2021-10-22"),
-        ("Thu Mar  4 23:59:59 2021", "2021-03-04"),
-        ("2022-12-02 17:42:01.780701", "2022-12-02"),
-        ("2022-12-02 19:09:01", "2022-12-02"),
-        ("2025-12-19T10:27:58", "2025-12-19"),
-        ("2025-01-01T00:00:00.5", "2025-01-01"),
+        ("Fri Oct 22 22:19:55 2021", "2021-10-22T22:19:55"),
+        ("Thu Mar  4 23:59:59 2021", "2021-03-04T23:59:59"),
+        # The fraction is kept digit for digit, not reparsed.
+        ("2022-12-02 17:42:01.780701", "2022-12-02T17:42:01.780701"),
+        ("2022-12-02 17:42:01.5", "2022-12-02T17:42:01.5"),
+        ("2022-12-02 19:09:01", "2022-12-02T19:09:01"),
     ],
 )
-def test_date_of(value: str, expected: str) -> None:
-    assert date_of(value) == expected
+def test_iso_form(value: str, expected: str) -> None:
+    assert iso_form(value) == expected
 
 
-def test_date_of_refuses_an_ambiguous_slash_date() -> None:
+def test_iso_form_refuses_an_ambiguous_slash_date() -> None:
     with pytest.raises(ValueError, match=r"'07/01/2008' does not prove its day"):
-        date_of("07/01/2008")
+        iso_form("07/01/2008")
 
 
-def test_date_of_refuses_an_unknown_shape() -> None:
-    with pytest.raises(ValueError, match=r"no known shape matches '22 Oct 2021'"):
-        date_of("22 Oct 2021")
+@pytest.mark.parametrize(
+    "value", ["22 Oct 2021", "2022-12-02  17:42:01", "2022-12-02 7:42"]
+)
+def test_iso_form_refuses_an_unknown_shape(value: str) -> None:
+    with pytest.raises(
+        ValueError, match=re.escape(f"no known shape matches {value!r}")
+    ):
+        iso_form(value)
 
 
 def test_normalize_reaction() -> None:
@@ -150,7 +157,7 @@ def test_normalize_reaction() -> None:
         (
             "provenance.record_created.time",
             "2022-12-02 17:42:01.780701",
-            "2022-12-02",
+            "2022-12-02T17:42:01.780701",
         ),
         (
             "provenance.record_modified[0].time",
@@ -160,7 +167,7 @@ def test_normalize_reaction() -> None:
         (
             "provenance.record_modified[1].time",
             "Fri Oct 22 22:19:55 2021",
-            "2021-10-22",
+            "2021-10-22T22:19:55",
         ),
     ]
     assert reaction.provenance.experiment_start.value == "2021-01-02"
@@ -172,7 +179,7 @@ def test_normalize_reaction() -> None:
 def test_normalize_reaction_needs_both_marks_of_the_pipeline() -> None:
     reaction = _reaction("a", "2021-01-01", ("Fri Oct 22 22:19:55 2021", True))
     reaction.provenance.record_modified[0].details = "Something else."
-    assert normalize_reaction(reaction)[0][2] == "2021-10-22"
+    assert normalize_reaction(reaction)[0][2] == "2021-10-22T22:19:55"
 
 
 def test_normalize_dataset(tmp_path: Path) -> None:
@@ -190,7 +197,7 @@ def test_normalize_dataset(tmp_path: Path) -> None:
     )
     assert list(view.iter_reaction_ids()) == ["a", "b"]
     first, second = view.reactions
-    assert first.provenance.record_created.time.value == "2021-10-19"
+    assert first.provenance.record_created.time.value == "2021-10-19T12:16:25"
     assert [event.time.value for event in first.provenance.record_modified] == [
         "2021-10-22T22:19:55+00:00",
         "2026-10-17T17:30:00+00:00",
@@ -200,7 +207,10 @@ def test_normalize_dataset(tmp_path: Path) -> None:
     assert added.details == "\n".join(
         [
             DETAILS,
-            "provenance.record_created.time: 10/19/2021, 12:16:25 PM -> 2021-10-19",
+            (
+                "provenance.record_created.time: "
+                "10/19/2021, 12:16:25 PM -> 2021-10-19T12:16:25"
+            ),
             (
                 "provenance.record_modified[0].time: "
                 "Fri Oct 22 22:19:55 2021 -> 2021-10-22T22:19:55+00:00"
@@ -262,7 +272,7 @@ def test_normalize_dataset_checks_every_value_it_wrote(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     path = _write(tmp_path / "dataset.parquet", _reaction("a", "2021-10-19 01:02:03"))
-    monkeypatch.setattr(normalize_dates, "date_of", lambda value: "not a date")
+    monkeypatch.setattr(normalize_dates, "iso_form", lambda value: "not a date")
     with pytest.raises(
         RuntimeError, match=r"still holds a DateTime ord-schema rejects"
     ):

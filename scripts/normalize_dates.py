@@ -12,15 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Rewrite every DateTime as a date or a time with its UTC offset.
+"""Rewrite every DateTime in ISO 8601, keeping its time and any known UTC offset.
 
-ord-schema accepts a ``DateTime`` only as a date, ``YYYY-MM-DD``, or a time with
-the offset it was written under, ``YYYY-MM-DDTHH:MM:SS[.ffffff]`` then ``Z`` or
-``±HH:MM``. A value already in one of those shapes is left as written. Of the
-rest, only the submission pipeline's events have a known zone: their ``ctime``
-stamps come from ``datetime.now(UTC)``, so those become the same time with
-``+00:00``. Every other value is written as its date alone, the date its
-wall-clock time falls on, since a time with no zone names no particular instant.
+ord-schema accepts a ``DateTime`` only as a date, ``YYYY-MM-DD``, or a time,
+``YYYY-MM-DDTHH:MM:SS[.ffffff]``, optionally followed by ``Z`` or ``±HH:MM``. A
+value already in one of those shapes is left as written. Of the rest, only the
+submission pipeline's events have a known zone: their ``ctime`` stamps come from
+``datetime.now(UTC)``, so those become the same time with ``+00:00``. Every other
+value keeps its wall-clock time, and its fraction of a second, with no offset,
+since the source recorded none.
 
 Slash dates are read in the order their own numbers prove; run
 ``rewrite_ambiguous_dates.py`` first, since a slash date that proves neither
@@ -41,7 +41,7 @@ from rewrite_ambiguous_dates import (
     is_ambiguous,
     iter_date_times,
     make_event,
-    to_date,
+    to_iso,
     witnessed_day_first,
 )
 
@@ -49,7 +49,7 @@ logger = logging.getLogger(__name__)
 
 # The first line of each event's details; one line per rewritten value follows.
 DETAILS = (
-    "Rewrote dates as a date or a UTC time with its offset; see "
+    "Rewrote dates in ISO 8601; see "
     "https://github.com/open-reaction-database/ord-data/pull/303"
 )
 
@@ -62,16 +62,11 @@ PIPELINE_DETAILS = "Automatic updates from the submission pipeline."
 # minutes are bounded here.
 _DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 _TIME = re.compile(
-    r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?(?:Z|[+-]\d{2}:[0-5]\d)"
+    r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?(?:Z|[+-]\d{2}:[0-5]\d)?"
 )
 _CTIME = "%a %b %d %H:%M:%S %Y"
-# The zone-less shapes the corpus holds besides slash dates and ctime.
-_NAIVE = (
-    "%Y-%m-%d %H:%M:%S.%f",
-    "%Y-%m-%d %H:%M:%S",
-    "%Y-%m-%dT%H:%M:%S.%f",
-    "%Y-%m-%dT%H:%M:%S",
-)
+# ISO 8601 with a space before the time, as str(datetime) writes it.
+_SPACED = re.compile(r"(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?)")
 
 
 def is_valid(value: str) -> bool:
@@ -104,15 +99,16 @@ def pipeline_time(value: str) -> str:
     return parsed.isoformat()
 
 
-def date_of(value: str) -> str:
-    """Return the date a zone-less DateTime value's wall-clock time falls on.
+def iso_form(value: str) -> str:
+    """Return a zone-less DateTime value in ISO 8601, with the same wall-clock time.
 
     Args:
         value: A slash date that proves its own order, a ctime stamp, or an ISO
-            8601 time with no offset, with a space or a ``T`` before the time.
+            8601 time with a space before the time.
 
     Returns:
-        ``YYYY-MM-DD``.
+        ``YYYY-MM-DD`` for a date alone, else ``YYYY-MM-DDTHH:MM:SS`` with any
+        fraction of a second the source wrote, digit for digit.
 
     Raises:
         ValueError: If ``value`` is an ambiguous slash date or in no known shape.
@@ -121,13 +117,14 @@ def date_of(value: str) -> str:
         raise ValueError(f"{value!r} does not prove its day and month order")
     day_first = witnessed_day_first(value)
     if day_first is not None:
-        return to_date(value, day_first=day_first)
-    for shape in (_CTIME, *_NAIVE):
-        try:
-            # DTZ007: the value carries no offset, and only its date is kept.
-            return datetime.datetime.strptime(value, shape).date().isoformat()  # noqa: DTZ007
-        except ValueError:
-            continue
+        return to_iso(value, day_first=day_first)
+    if spaced := _SPACED.fullmatch(value):
+        return f"{spaced[1]}T{spaced[2]}"
+    try:
+        # DTZ007: a ctime stamp carries no offset, and none is added.
+        return datetime.datetime.strptime(value, _CTIME).isoformat()  # noqa: DTZ007
+    except ValueError:
+        pass
     raise ValueError(f"no known shape matches {value!r}")
 
 
@@ -159,7 +156,7 @@ def normalize_reaction(reaction: reaction_pb2.Reaction) -> list[tuple[str, str, 
         old = date_time.value
         if is_valid(old):
             continue
-        new = pipeline_time(old) if path in pipeline else date_of(old)
+        new = pipeline_time(old) if path in pipeline else iso_form(old)
         date_time.value = new
         changes.append((path, old, new))
     return changes

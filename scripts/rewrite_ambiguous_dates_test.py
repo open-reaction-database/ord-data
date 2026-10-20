@@ -27,7 +27,7 @@ from rewrite_ambiguous_dates import (
     iter_date_times,
     make_event,
     rewrite_dataset,
-    to_date,
+    to_iso,
     witnessed_day_first,
 )
 
@@ -109,22 +109,22 @@ def test_witnessed_day_first(value: str, expected: bool | None) -> None:
 @pytest.mark.parametrize(
     ("value", "day_first", "expected"),
     [
-        ("2/4/2021, 11:24:34 AM", False, "2021-02-04"),
-        ("8/9/2023, 10:44:35 PM", False, "2023-08-09"),
-        ("6/2/2021, 8:10:58 AM", False, "2021-06-02"),
-        ("07/06/2024, 23:25:41", False, "2024-07-06"),
-        ("05/12/2024, 15:29:23", True, "2024-12-05"),
-        ("05/08/2021 10:29:17", True, "2021-08-05"),
+        ("2/4/2021, 11:24:34 AM", False, "2021-02-04T11:24:34"),
+        ("8/9/2023, 10:44:35 PM", False, "2023-08-09T22:44:35"),
+        ("6/2/2021, 8:10:58 AM", False, "2021-06-02T08:10:58"),
+        ("07/06/2024, 23:25:41", False, "2024-07-06T23:25:41"),
+        ("05/12/2024, 15:29:23", True, "2024-12-05T15:29:23"),
+        ("05/08/2021 10:29:17", True, "2021-08-05T10:29:17"),
         ("07/01/2008", False, "2008-07-01"),
     ],
 )
-def test_to_date(value: str, day_first: bool, expected: str) -> None:
-    assert to_date(value, day_first=day_first) == expected
+def test_to_iso(value: str, day_first: bool, expected: str) -> None:
+    assert to_iso(value, day_first=day_first) == expected
 
 
-def test_to_date_rejects_an_unknown_shape() -> None:
+def test_to_iso_rejects_an_unknown_shape() -> None:
     with pytest.raises(ValueError, match=r"no slash date shape matches '07/01/2008 "):
-        to_date("07/01/2008 at noon", day_first=False)
+        to_iso("07/01/2008 at noon", day_first=False)
 
 
 @pytest.mark.parametrize(
@@ -192,7 +192,11 @@ def test_rewrite_dataset(tmp_path: Path) -> None:
     )
     assert list(view.iter_reaction_ids()) == ["a", "b", "c"]
     assert _values(path) == [
-        ["2024-12-05", "Fri Dec  6 10:00:00 2024", "2026-10-17T17:30:00+00:00"],
+        [
+            "2024-12-05T15:29:23",
+            "Fri Dec  6 10:00:00 2024",
+            "2026-10-17T17:30:00+00:00",
+        ],
         # Fields in number order: outcomes come before provenance.
         ["2024-02-01", "18/09/2024, 16:54:56", "2026-10-17T17:30:00+00:00"],
         ["2024-12-05T15:29:23"],
@@ -202,7 +206,8 @@ def test_rewrite_dataset(tmp_path: Path) -> None:
         [
             reaction_pb2.RecordEvent(time={"value": "Fri Dec  6 10:00:00 2024"}),
             _event(
-                "provenance.record_created.time: 05/12/2024, 15:29:23 -> 2024-12-05"
+                "provenance.record_created.time: "
+                "05/12/2024, 15:29:23 -> 2024-12-05T15:29:23"
             ),
         ],
         [
