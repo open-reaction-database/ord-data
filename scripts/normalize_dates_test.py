@@ -22,19 +22,19 @@ import normalize_dates
 import pytest
 from normalize_dates import (
     DETAILS,
-    PIPELINE_DETAILS,
-    PIPELINE_EMAIL,
     is_valid,
     iso_form,
     normalize_dataset,
     normalize_reaction,
-    pipeline_time,
 )
 from ord_schema import parquet
 from ord_schema.proto import reaction_pb2
 from rewrite_ambiguous_dates import make_event
 
 DATASET_ID = "ord_dataset-00000000000000000000000000000000"
+# What ord_schema.updates stamps on a reaction it modifies.
+PIPELINE_EMAIL = "github-actions@github.com"
+PIPELINE_DETAILS = "Automatic updates from the submission pipeline."
 EVENT = make_event(
     reaction_pb2.Person(username="test", email="test@example.com"),
     datetime.datetime(2026, 10, 17, 17, 30, tzinfo=datetime.UTC),
@@ -97,22 +97,6 @@ def test_is_valid(value: str, expected: bool) -> None:
 @pytest.mark.parametrize(
     ("value", "expected"),
     [
-        ("Fri Oct 22 22:19:55 2021", "2021-10-22T22:19:55+00:00"),
-        ("Thu Mar  4 01:02:03 2021", "2021-03-04T01:02:03+00:00"),
-    ],
-)
-def test_pipeline_time(value: str, expected: str) -> None:
-    assert pipeline_time(value) == expected
-
-
-def test_pipeline_time_rejects_another_shape() -> None:
-    with pytest.raises(ValueError, match=r"does not match format"):
-        pipeline_time("2021-10-22 22:19:55")
-
-
-@pytest.mark.parametrize(
-    ("value", "expected"),
-    [
         ("18/09/2024, 16:54:56", "2024-09-18T16:54:56"),
         ("18/08/2024 02:10:09", "2024-08-18T02:10:09"),
         ("10/19/2021, 12:16:25 PM", "2021-10-19T12:16:25"),
@@ -162,7 +146,7 @@ def test_normalize_reaction() -> None:
         (
             "provenance.record_modified[0].time",
             "Fri Oct 22 22:19:55 2021",
-            "2021-10-22T22:19:55+00:00",
+            "2021-10-22T22:19:55",
         ),
         (
             "provenance.record_modified[1].time",
@@ -176,9 +160,9 @@ def test_normalize_reaction() -> None:
     )
 
 
-def test_normalize_reaction_needs_both_marks_of_the_pipeline() -> None:
+def test_normalize_reaction_adds_no_offset_to_a_pipeline_stamp() -> None:
+    # The pipeline wrote these from a UTC clock, but the value records no offset.
     reaction = _reaction("a", "2021-01-01", ("Fri Oct 22 22:19:55 2021", True))
-    reaction.provenance.record_modified[0].details = "Something else."
     assert normalize_reaction(reaction)[0][2] == "2021-10-22T22:19:55"
 
 
@@ -199,7 +183,7 @@ def test_normalize_dataset(tmp_path: Path) -> None:
     first, second = view.reactions
     assert first.provenance.record_created.time.value == "2021-10-19T12:16:25"
     assert [event.time.value for event in first.provenance.record_modified] == [
-        "2021-10-22T22:19:55+00:00",
+        "2021-10-22T22:19:55",
         "2026-10-17T17:30:00+00:00",
     ]
     added = first.provenance.record_modified[-1]
@@ -213,7 +197,7 @@ def test_normalize_dataset(tmp_path: Path) -> None:
             ),
             (
                 "provenance.record_modified[0].time: "
-                "Fri Oct 22 22:19:55 2021 -> 2021-10-22T22:19:55+00:00"
+                "Fri Oct 22 22:19:55 2021 -> 2021-10-22T22:19:55"
             ),
         ]
     )

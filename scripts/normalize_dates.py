@@ -12,15 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Rewrite every DateTime in ISO 8601, keeping its time and any known UTC offset.
+"""Rewrite every DateTime in ISO 8601, keeping its time.
 
 ord-schema accepts a ``DateTime`` only as a date, ``YYYY-MM-DD``, or a time,
 ``YYYY-MM-DDTHH:MM:SS[.ffffff]``, optionally followed by ``Z`` or ``±HH:MM``. A
-value already in one of those shapes is left as written. Of the rest, only the
-submission pipeline's events have a known zone: their ``ctime`` stamps come from
-``datetime.now(UTC)``, so those become the same time with ``+00:00``. Every other
-value keeps its wall-clock time, and its fraction of a second, with no offset,
-since the source recorded none.
+value already in one of those shapes is left as written. Every other value keeps
+its wall-clock time and its fraction of a second, and gains no offset its source
+did not record.
 
 Slash dates are read in the order their own numbers prove; run
 ``rewrite_ambiguous_dates.py`` first, since a slash date that proves neither
@@ -53,10 +51,6 @@ DETAILS = (
     "https://github.com/open-reaction-database/ord-data/pull/303"
 )
 
-# What ord_schema.updates stamps on a reaction it modifies.
-PIPELINE_EMAIL = "github-actions@github.com"
-PIPELINE_DETAILS = "Automatic updates from the submission pipeline."
-
 # The shapes ord-schema's validations accept, copied because ord-data locks a release
 # that predates them. fromisoformat reads an offset of "+00:60" as one hour, so the
 # minutes are bounded here.
@@ -81,22 +75,6 @@ def is_valid(value: str) -> bool:
     except ValueError:
         return False
     return False
-
-
-def pipeline_time(value: str) -> str:
-    """Return a pipeline event's ctime stamp as the same UTC time with its offset.
-
-    Args:
-        value: The stamp, as ``datetime.now(UTC).ctime()`` wrote it.
-
-    Returns:
-        ``YYYY-MM-DDTHH:MM:SS+00:00``.
-
-    Raises:
-        ValueError: If ``value`` is not a ctime stamp.
-    """
-    parsed = datetime.datetime.strptime(value, _CTIME).replace(tzinfo=datetime.UTC)
-    return parsed.isoformat()
 
 
 def iso_form(value: str) -> str:
@@ -128,15 +106,6 @@ def iso_form(value: str) -> str:
     raise ValueError(f"no known shape matches {value!r}")
 
 
-def _pipeline_paths(reaction: reaction_pb2.Reaction) -> set[str]:
-    """Return the paths of the times on the pipeline's record_modified events."""
-    return {
-        f"provenance.record_modified[{index}].time"
-        for index, event in enumerate(reaction.provenance.record_modified)
-        if event.person.email == PIPELINE_EMAIL and event.details == PIPELINE_DETAILS
-    }
-
-
 def normalize_reaction(reaction: reaction_pb2.Reaction) -> list[tuple[str, str, str]]:
     """Rewrite a reaction's DateTime values that ord-schema does not accept, in place.
 
@@ -150,13 +119,12 @@ def normalize_reaction(reaction: reaction_pb2.Reaction) -> list[tuple[str, str, 
     Raises:
         ValueError: If a value is in no shape this can read.
     """
-    pipeline = _pipeline_paths(reaction)
     changes = []
     for path, date_time in iter_date_times(reaction):
         old = date_time.value
         if is_valid(old):
             continue
-        new = pipeline_time(old) if path in pipeline else iso_form(old)
+        new = iso_form(old)
         date_time.value = new
         changes.append((path, old, new))
     return changes
