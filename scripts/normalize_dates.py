@@ -52,11 +52,12 @@ DETAILS = (
 )
 
 # The shapes ord-schema's validations accept, copied because ord-data locks a release
-# that predates them. fromisoformat reads an offset of "+00:60" as one hour, so the
-# minutes are bounded here.
+# that predates them. fromisoformat reads an offset of "+00:60" as one hour, and from
+# Python 3.14 a time of "24:00:00" as the next midnight, so both are bounded here.
 _DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 _TIME = re.compile(
-    r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?(?:Z|[+-]\d{2}:[0-5]\d)?"
+    r"\d{4}-\d{2}-\d{2}T(?:[01]\d|2[0-3]):\d{2}:\d{2}(?:\.\d{1,6})?"
+    r"(?:Z|[+-]\d{2}:[0-5]\d)?"
 )
 _CTIME = "%a %b %d %H:%M:%S %Y"
 # ISO 8601 with a space before the time, as str(datetime) writes it.
