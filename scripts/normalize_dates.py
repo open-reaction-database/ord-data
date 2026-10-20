@@ -71,9 +71,12 @@ def is_valid(value: str) -> bool:
             datetime.date.fromisoformat(value)
             return True
         if _TIME.fullmatch(value):
-            datetime.datetime.fromisoformat(value)
+            parsed = datetime.datetime.fromisoformat(value)
+            if parsed.utcoffset() is not None:
+                # ord-schema rejects a time whose UTC instant datetime cannot hold.
+                parsed.astimezone(datetime.UTC)
             return True
-    except ValueError:
+    except (ValueError, OverflowError):
         return False
     return False
 
