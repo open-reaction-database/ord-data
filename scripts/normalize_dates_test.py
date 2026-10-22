@@ -134,6 +134,24 @@ def test_iso_form_refuses_an_unknown_shape(value: str) -> None:
         iso_form(value)
 
 
+@pytest.mark.parametrize(
+    "value",
+    [
+        "2024-02-30 12:00:00",
+        "2023-02-29 12:00:00",
+        "2024-13-01 12:00:00",
+        "2024-07-06 24:00:00",
+        "2024-07-06 23:60:00",
+        "2024-07-06 23:59:60",
+    ],
+)
+def test_iso_form_refuses_an_impossible_spaced_value(value: str) -> None:
+    with pytest.raises(
+        ValueError, match=re.escape(f"{value!r} names no real date or time")
+    ):
+        iso_form(value)
+
+
 def test_normalize_reaction() -> None:
     reaction = _reaction(
         "a",
@@ -237,6 +255,22 @@ def test_normalize_dataset_refuses_an_unreadable_value(tmp_path: Path) -> None:
     with pytest.raises(ValueError, match=r"no known shape matches '22 Oct 2021'"):
         normalize_dataset(path, EVENT)
     assert path.read_bytes() == before
+
+
+def test_normalize_dataset_refuses_an_impossible_value_before_writing(
+    tmp_path: Path,
+) -> None:
+    path = _write(
+        tmp_path / "dataset.parquet",
+        _reaction("a", "2021-10-19 01:02:03"),
+        _reaction("b", "2024-02-30 12:00:00"),
+    )
+    before = (path.stat().st_ino, path.read_bytes())
+    with pytest.raises(
+        ValueError, match=r"'2024-02-30 12:00:00' names no real date or time"
+    ):
+        normalize_dataset(path, EVENT)
+    assert (path.stat().st_ino, path.read_bytes()) == before
 
 
 def test_normalize_dataset_checks_what_it_wrote(

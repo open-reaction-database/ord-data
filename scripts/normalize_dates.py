@@ -93,21 +93,28 @@ def iso_form(value: str) -> str:
         fraction of a second the source wrote, digit for digit.
 
     Raises:
-        ValueError: If ``value`` is an ambiguous slash date or in no known shape.
+        ValueError: If ``value`` is an ambiguous slash date, is in no known shape,
+            or names no real date or time, such as ``2024-02-30 12:00:00``.
     """
     if is_ambiguous(value):
         raise ValueError(f"{value!r} does not prove its day and month order")
     day_first = witnessed_day_first(value)
     if day_first is not None:
-        return to_iso(value, day_first=day_first)
-    if spaced := _SPACED.fullmatch(value):
-        return f"{spaced[1]}T{spaced[2]}"
-    try:
-        # DTZ007: a ctime stamp carries no offset, and none is added.
-        return datetime.datetime.strptime(value, _CTIME).isoformat()  # noqa: DTZ007
-    except ValueError:
-        pass
-    raise ValueError(f"no known shape matches {value!r}")
+        converted = to_iso(value, day_first=day_first)
+    elif spaced := _SPACED.fullmatch(value):
+        converted = f"{spaced[1]}T{spaced[2]}"
+    else:
+        try:
+            # DTZ007: a ctime stamp carries no offset, and none is added.
+            parsed = datetime.datetime.strptime(value, _CTIME)  # noqa: DTZ007
+        except ValueError:
+            raise ValueError(f"no known shape matches {value!r}") from None
+        converted = parsed.isoformat()
+    # A spaced value only swaps its separator, so nothing above reads its fields;
+    # checking every branch here keeps an impossible date from reaching a write.
+    if not is_valid(converted):
+        raise ValueError(f"{value!r} names no real date or time")
+    return converted
 
 
 def normalize_reaction(reaction: reaction_pb2.Reaction) -> list[tuple[str, str, str]]:
