@@ -651,7 +651,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "ord-schema", specifier = ">=0.8.3" },
+    { name = "ord-schema", specifier = ">=0.9.6" },
     { name = "pre-commit", specifier = ">=4" },
     { name = "pygithub", specifier = ">=1.51" },
     { name = "pytest", specifier = ">=8.0" },
@@ -660,7 +660,7 @@ dev = [
     { name = "ty", specifier = ">=0.0.65" },
 ]
 pipeline = [
-    { name = "ord-schema", specifier = ">=0.8.3" },
+    { name = "ord-schema", specifier = ">=0.9.6" },
     { name = "pygithub", specifier = ">=1.51" },
 ]
 
