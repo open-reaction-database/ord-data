@@ -108,8 +108,8 @@ jobs:
           --before="${BEFORE}" \
           --github_output="${GITHUB_OUTPUT}"
 
-  # Reads the index, not the objects, so it needs no LFS and finishes in
-  # seconds. Runs alongside the shards rather than gating them: a layout the
+  # Reads the index, not the objects, so it needs no LFS and is quick.
+  # Runs alongside the shards rather than gating them: a layout the
   # shards do not cover should be reported together with whatever they did
   # manage to validate.
   check_layout:
@@ -178,8 +178,8 @@ jobs:
         # the data/<xx>/ directory -- the first hex digit of the dataset id.
         # Ids are random or hash-derived, so the corpus spreads across the legs
         # and a new dataset lands in one without editing this file.
-        # The largest dataset is ~100 MB, so no single file sets the pace; within
-        # a leg, validate_dataset.py fans out over files and row groups.
+        # No single dataset is large enough to set a leg's pace; within a leg,
+        # validate_dataset.py fans out over files and row groups.
         include:
           - name: '0-3'
             filter: '^data/[0-3][0-9a-f]/[^/]+\.parquet$'
@@ -208,7 +208,7 @@ jobs:
     # handed to validate_dataset.py and git lfs takes a path glob.
     #
     # An unset lfs_include would render empty, which git lfs reads as no filter
-    # at all and would quietly pull all 1.2 GB, so require it.
+    # at all and would quietly pull the whole corpus, so require it.
     - name: Fetch LFS shard from GitHub
       env:
         LFS_INCLUDE: ${{ matrix.lfs_include }}
