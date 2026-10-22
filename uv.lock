@@ -666,7 +666,7 @@ pipeline = [
 
 [[package]]
 name = "ord-schema"
-version = "0.8.3"
+version = "0.9.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "joblib" },
@@ -676,13 +676,12 @@ dependencies = [
     { name = "pandas" },
     { name = "protobuf" },
     { name = "pyarrow" },
-    { name = "python-dateutil" },
     { name = "rdkit" },
     { name = "tqdm" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/bb/ed/9e27e85b9813303bb66eff8aeb3e278c337b9f776c0aac804e003299c481/ord_schema-0.8.3.tar.gz", hash = "sha256:3c1ce2c9f390b7f5c3c692100b322406858a253d5888e895399edc3b31ee7f41", size = 209931, upload-time = "2026-08-04T04:44:18.678Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/46/d0/87afe5a3feb647decca07e4ebb1fb4c2fee0e4636b949bebffc1d36c94ea/ord_schema-0.9.6.tar.gz", hash = "sha256:092ad88bf463c9bed9acb26b05bec75684c0ec740dfd5be925f8bbbcc23568f3", size = 637530, upload-time = "2026-10-22T02:02:07.887Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/8a/cc/33eefbca1cd58ec8c42896b8c87e586a58aeb20b58972c4c9416e135ce89/ord_schema-0.8.3-py3-none-any.whl", hash = "sha256:1aaf40d6ce2531f56aca228064e1c26f3ad8d08e5f89731605c8cf1e4bd4867f", size = 232477, upload-time = "2026-08-04T04:44:17.494Z" },
+    { url = "https://files.pythonhosted.org/packages/3e/4d/9f86429f9067775f4d2351b6e15a3e27df75570dba92bcfb9b2aa7267c01/ord_schema-0.9.6-py3-none-any.whl", hash = "sha256:a86078c0f84774ec7aeeeb098c374ceb6613ae712256d8fb64fd541c4ad439b5", size = 702965, upload-time = "2026-10-22T02:02:05.998Z" },
 ]
 
 [[package]]
