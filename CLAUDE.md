@@ -84,10 +84,12 @@ the whole dataset, so submission CI only needs the **changed** objects.
   the environment, or carrying the **`validate-all`** label (every push while
   it stays on); and `workflow_dispatch`. The environment is `.python-version`
   plus ord-schema and its whole dependency closure in `uv.lock` (rdkit,
-  protobuf, pyarrow, pandas, … all change verdicts), so a lock bump confined
+  protobuf, pyarrow, pandas, … can all change verdicts), so a lock bump confined
   to other packages (pygithub, dev tools) does not qualify, and a fork PR's
   environment never does (it is validated in the base branch's). There is
-  **no weekly sweep**: nothing else makes a verdict go stale. Every PR runs
+  **no weekly sweep**: every pinned input triggers a run when it changes, and
+  `workflow_dispatch` covers the unpinned rest (the Python patch release uv
+  picks for `.python-version`'s `3.11`). Every PR runs
   `check_layout` and `scope`, which read no LFS. A `labeled` event for any
   other label gets a concurrency group of its own so it cannot cancel a real
   run; the label is spelled in both the concurrency key and the script, and a

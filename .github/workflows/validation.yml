@@ -21,9 +21,11 @@
 # what may live under data/, and each validate_parquet shard requires a
 # non-empty share of it.
 #
-# A verdict can change only when the data, this file, or the environment the
-# validator runs in changes, so there is no standing sweep: the scope job runs
-# the shards whenever one of those changes, and on the validate-all label.
+# There is no standing sweep. The scope job runs the shards whenever an input
+# the repository pins changes -- the data, this file, or the environment the
+# validator runs in -- and on the validate-all label. A manual run covers what
+# the repository does not pin, such as the Python patch release that uv picks
+# for .python-version.
 
 name: Validation
 
@@ -43,7 +45,7 @@ on:
   # shards a run is check_layout and scope, which read no LFS.
   pull_request:
     types: [opened, synchronize, reopened, labeled]
-  # Validates main on demand.
+  # Validates the chosen branch, main by default, whatever it changed.
   workflow_dispatch:
 
 # One in-flight matrix per PR (or per push to main). Subsequent events
@@ -74,7 +76,7 @@ concurrency:
 # is validated here.
 jobs:
   # Decides whether validate_parquet runs: see scripts/validation_scope.py for
-  # the rule. The script reads the standard library only, so it runs on the
+  # the rule. The script uses only the standard library, so it runs on the
   # runner's own interpreter with nothing installed.
   scope:
     runs-on: ubuntu-latest

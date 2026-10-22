@@ -234,7 +234,8 @@ The validation environment is the Python in `.python-version` plus ord-schema
 and every package it depends on, as `uv.lock` resolves them. A `uv.lock` change
 confined to other packages does not count, and neither does a fork's: a pull
 request from a fork is validated in its base branch's environment. There is no
-scheduled run, since nothing else changes a verdict.
+scheduled run: a manual run covers what the repository does not pin, such as
+the Python patch release that `uv` picks for `.python-version`.
 
 ### Converting datasets to Parquet
 

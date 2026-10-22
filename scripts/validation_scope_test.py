@@ -20,7 +20,16 @@ import textwrap
 from pathlib import Path
 
 import pytest
-from validation_scope import LABEL, LOCK, WORKFLOW, decide, environment, main
+import yaml
+from validation_scope import (
+    INTERPRETER,
+    LABEL,
+    LOCK,
+    WORKFLOW,
+    decide,
+    environment,
+    main,
+)
 
 REPOSITORY = Path(__file__).resolve().parent.parent
 PYPI = '{ registry = "https://pypi.org/simple" }'
@@ -228,22 +237,52 @@ def test_push_compares_against_before_not_the_parent(base: str) -> None:
     assert decide("push", before=base)
 
 
+def test_push_fetches_before_missing_from_a_shallow_checkout(
+    base: str,
+    tmp_path: Path,
+    tmp_path_factory: pytest.TempPathFactory,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _commit({"data/00/ord_dataset-0.parquet": "edited\n"})
+    _commit({"README.md": "docs\n"})
+    clone = tmp_path_factory.mktemp("clone")
+    _git("clone", "--quiet", "--depth=2", f"file://{tmp_path}", str(clone))
+    monkeypatch.chdir(clone)
+    with pytest.raises(subprocess.CalledProcessError, match=r"non-zero exit status"):
+        _git("cat-file", "-e", f"{base}^{{commit}}")
+    reason = decide("push", before=base)
+    assert reason
+    assert "data/00" in reason
+
+
 def test_push_leaving_the_validator_alone_does_not_validate(base: str) -> None:
     _commit({LOCK: _lock(pygithub="2.6.0")})
     assert decide("push", before=base) is None
 
 
+@pytest.mark.usefixtures("base")
 def test_main_writes_the_step_output(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
+    _commit({LOCK: _lock(ord_schema="0.9.7")})
     output = tmp_path / "output"
     labels = f'[\n  "{LABEL}"\n]'  # toJSON pretty-prints
     for argv, expected in [
-        (["--event=pull_request", "--action=opened", f"--labels={labels}"], "true"),
-        (["--event=pull_request", "--action=labeled", "--added_label=x"], "false"),
+        (["--action=labeled", "--added_label=x"], "false"),
+        (["--action=opened", f"--labels={labels}", "--fork=true"], "true"),
+        (["--action=opened", "--fork=true"], "false"),
+        (["--action=opened", "--fork=false"], "true"),
+        (["--action=opened", "--fork="], "true"),
     ]:
         monkeypatch.setattr(
-            sys, "argv", ["validation_scope.py", *argv, f"--github_output={output}"]
+            sys,
+            "argv",
+            [
+                "validation_scope.py",
+                "--event=pull_request",
+                *argv,
+                f"--github_output={output}",
+            ],
         )
         main()
         assert output.read_text().splitlines()[-1] == f"validate_corpus={expected}"
@@ -252,6 +291,13 @@ def test_main_writes_the_step_output(
 def test_unknown_event_raises() -> None:
     with pytest.raises(ValueError, match=r"no rule for schedule events"):
         decide("schedule")
+
+
+def test_push_paths_cover_what_a_push_watches() -> None:
+    workflow = yaml.safe_load((REPOSITORY / WORKFLOW).read_text())
+    # YAML 1.1 reads the bare key `on` as True.
+    paths = set(workflow[True]["push"]["paths"])
+    assert {"data/**", WORKFLOW, INTERPRETER, LOCK} <= paths
 
 
 def test_concurrency_group_names_the_label() -> None:
