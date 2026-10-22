@@ -12,27 +12,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Runs ord-schema's validate_dataset.py over every dataset in the repository.
+# Runs ord-schema's validate_dataset.py over the repository's datasets: all of
+# them when the validator or its environment changes, otherwise the ones a
+# change adds or modifies. scripts/validation_scope.py holds the rule.
 #
 # Coverage rests on one pattern, data/*/*.parquet, and validate_dataset.py
 # reports success over an empty match set -- so a dataset that pattern does not
 # describe is published unchecked rather than rejected. Two jobs below assert
 # their own reach before a green result means anything: check_layout pins down
-# what may live under data/, and each validate_parquet shard requires a
-# non-empty share of it.
+# what may live under data/, and each validate_parquet leg requires a non-empty
+# share of it whenever it validates the whole corpus.
 #
-# There is no standing sweep. The scope job runs the shards whenever an input
-# the repository pins changes -- the data, this file, or the environment the
-# validator runs in -- and on the validate-all label. A manual run covers what
-# the repository does not pin, such as the Python patch release that uv picks
-# for .python-version.
+# There is no standing sweep: a run follows every change to what the
+# repository pins. A manual run covers what it does not pin, such as the Python
+# patch release that uv picks for .python-version.
 
 name: Validation
 
 on:
-  # Validating the corpus pulls all of it from GitHub LFS (see the fetch step
-  # for why it has to be GitHub), so these triggers only ask; the scope job
-  # decides whether a run pays for it.
+  # What a run validates depends on what changed (see the scope job). These
+  # paths are every input that can change a verdict.
   push:
     branches:
       - main
@@ -41,29 +40,24 @@ on:
       - '.github/workflows/validation.yml'
       - '.python-version'
       - 'uv.lock'
-  # Every pull request, because the label can go on any of them. Without the
-  # shards a run is check_layout and scope, which read no LFS.
   pull_request:
-    types: [opened, synchronize, reopened, labeled]
-  # Validates the chosen branch, main by default, whatever it changed.
+    paths:
+      - 'data/**'
+      - '.github/workflows/validation.yml'
+      - '.python-version'
+      - 'uv.lock'
+      - 'scripts/validation_scope.py'
+  # Validates the chosen branch's whole corpus, main by default.
   workflow_dispatch:
 
 # One in-flight matrix per PR (or per push to main). Subsequent events
 # cancel the prior run so we are not paying twice for the LFS-heavy
-# validate_parquet shards.
+# validate_parquet legs.
 #
 # Keyed on the event as well as the ref: a manual run and a push to main share
 # a ref, so without it a merge would cancel a run someone started by hand.
-#
-# A labeled event for any label but validate-all validates nothing (see
-# scope), so its run takes a group of its own instead of cancelling a run that
-# does. scripts/validation_scope_test.py checks that this names the same label
-# as the script.
 concurrency:
-  group: >-
-    validation-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}${{
-    github.event.action == 'labeled' && github.event.label.name != 'validate-all'
-    && format('-{0}', github.run_id) || '' }}
+  group: validation-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 # validate_dataset.py ships inside the ord_schema wheel, so validate_parquet
@@ -75,13 +69,14 @@ concurrency:
 # against one version of the schema library whether it arrives by submission or
 # is validated here.
 jobs:
-  # Decides whether validate_parquet runs: see scripts/validation_scope.py for
-  # the rule. The script uses only the standard library, so it runs on the
-  # runner's own interpreter with nothing installed.
+  # Decides whether the run validates the whole corpus, the datasets it adds or
+  # modifies, or nothing. The script uses only the standard library, so it runs
+  # on the runner's own interpreter with nothing installed.
   scope:
     runs-on: ubuntu-latest
     outputs:
-      validate_corpus: ${{ steps.decide.outputs.validate_corpus }}
+      mode: ${{ steps.decide.outputs.mode }}
+      datasets: ${{ steps.decide.outputs.datasets }}
     steps:
     - name: Checkout ord-data
       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -90,20 +85,14 @@ jobs:
         # HEAD and its parent. On a pull request HEAD is the merge commit, and
         # its parent the base the pull request is compared against.
         fetch-depth: 2
-    - name: Decide whether to validate the corpus
+    - name: Decide what to validate
       id: decide
       env:
-        ACTION: ${{ github.event.action }}
-        ADDED_LABEL: ${{ github.event.label.name }}
-        LABELS: ${{ toJSON(github.event.pull_request.labels.*.name) }}
         FORK: ${{ github.event.pull_request.head.repo.fork }}
         BEFORE: ${{ github.event.before }}
       run: |
-        python3 scripts/validation_scope.py \
+        python3 scripts/validation_scope.py scope \
           --event="${GITHUB_EVENT_NAME}" \
-          --action="${ACTION}" \
-          --added_label="${ADDED_LABEL}" \
-          --labels="${LABELS}" \
           --fork="${FORK}" \
           --before="${BEFORE}" \
           --github_output="${GITHUB_OUTPUT}"
@@ -166,10 +155,10 @@ jobs:
 
   validate_parquet:
     name: validate_parquet (${{ matrix.name }})
-    # Skips unless scope finds something to validate, so no shard may become a
+    # Skips when scope finds nothing to validate, so no leg may become a
     # required check: a skipped required check blocks a merge.
     needs: scope
-    if: needs.scope.outputs.validate_corpus == 'true'
+    if: needs.scope.outputs.mode != 'none'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -198,25 +187,61 @@ jobs:
       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         lfs: false
-    # .lfsconfig redirects clone/fetch LFS reads to the Hugging Face mirror to
-    # save GitHub bandwidth, but CI reads from GitHub: on a push to main the
-    # just-merged objects are not on HF yet, and each leg pulls only its own
-    # objects rather than the whole corpus.
-    # The checkout step already configured GitHub credentials for the pull.
-    #
-    # lfs_include is carried separately from filter because filter is a regex
-    # handed to validate_dataset.py and git lfs takes a path glob.
-    #
-    # An unset lfs_include would render empty, which git lfs reads as no filter
-    # at all and would quietly pull the whole corpus, so require it.
-    - name: Fetch LFS shard from GitHub
+    # The whole corpus takes the matrix entry as it stands. Changed datasets
+    # narrow it to the ones this leg's filter selects, by exact path, and a leg
+    # whose share is empty skips the rest. lfs_include is carried separately
+    # from filter because filter is a regex handed to validate_dataset.py and
+    # git lfs takes a path glob or a comma-separated list of paths.
+    - name: Choose this leg's datasets
+      id: leg
       env:
+        MODE: ${{ needs.scope.outputs.mode }}
+        DATASETS: ${{ needs.scope.outputs.datasets }}
+        FILTER: ${{ matrix.filter }}
         LFS_INCLUDE: ${{ matrix.lfs_include }}
       run: |
+        python3 scripts/validation_scope.py leg \
+          --mode="${MODE}" \
+          --datasets="${DATASETS}" \
+          --filter="${FILTER}" \
+          --lfs_include="${LFS_INCLUDE}" \
+          --github_output="${GITHUB_OUTPUT}"
+    # The whole corpus comes from the Hugging Face mirror that .lfsconfig names,
+    # which spares GitHub's LFS bandwidth, and GitHub supplies whatever the
+    # mirror lacks: it syncs only after a merge to main, so it may trail the
+    # latest one. Changed datasets come straight from GitHub, since they are
+    # never on the mirror yet. Either way git lfs checks each object against the
+    # SHA-256 in its pointer, so a store cannot serve other bytes than the
+    # commit names. The checkout step already configured GitHub credentials.
+    #
+    # An empty lfs_include would read as no filter at all and quietly pull the
+    # whole corpus, so require it.
+    - name: Fetch LFS objects
+      if: steps.leg.outputs.datasets != '0'
+      env:
+        LFS_INCLUDE: ${{ steps.leg.outputs.lfs_include }}
+        STORE: ${{ steps.leg.outputs.store }}
+      run: |
         set -euo pipefail
-        : "${LFS_INCLUDE:?matrix entry must set lfs_include}"
-        git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
-        git lfs pull --include="${LFS_INCLUDE}"
+        : "${LFS_INCLUDE:?the leg step must set lfs_include}"
+        github="https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
+        case "${STORE}" in
+          github)
+            git config lfs.url "${github}"
+            git lfs pull --include="${LFS_INCLUDE}"
+            ;;
+          huggingface)
+            if ! git lfs pull --include="${LFS_INCLUDE}"; then
+              echo "::notice::The Hugging Face mirror lacks some objects; fetching the rest from GitHub."
+              git config lfs.url "${github}"
+              git lfs pull --include="${LFS_INCLUDE}"
+            fi
+            ;;
+          *)
+            echo "::error::unknown LFS store: ${STORE}"
+            exit 1
+            ;;
+        esac
     # A fork's pull request must not choose the environment its own data is
     # validated in, so a fork run builds from the base branch. Every other run
     # builds from github.sha -- the merge commit on a pull request -- so a
@@ -224,6 +249,7 @@ jobs:
     # together. Anyone who can open a same-repo pull request can already edit
     # this file.
     - name: Check out the pipeline
+      if: steps.leg.outputs.datasets != '0'
       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         ref: >-
@@ -239,17 +265,21 @@ jobs:
           uv.lock
         sparse-checkout-cone-mode: false
     - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+      if: steps.leg.outputs.datasets != '0'
       with:
         enable-cache: true
     - name: Install ord_schema
+      if: steps.leg.outputs.datasets != '0'
       working-directory: pipeline
       run: uv sync --only-group pipeline --locked
     # The interpreter is invoked directly rather than through `uv run`, which
     # would rediscover the checked-out tree's own pyproject.toml and hand the
     # environment back to the pull request.
     - name: Validate parquet datasets
+      if: steps.leg.outputs.datasets != '0'
       env:
-        FILTER: ${{ matrix.filter }}
+        FILTER: ${{ steps.leg.outputs.filter }}
+        EXPECTED: ${{ steps.leg.outputs.datasets }}
       run: |
         set -euo pipefail
         cd "${GITHUB_WORKSPACE}"
@@ -257,7 +287,7 @@ jobs:
         # that stops selecting anything -- a typo in its character class, a
         # layout change under data/ -- reports a clean sweep over nothing. Count
         # the shard's share first, through the same glob and regex engine the
-        # validator uses, and treat an empty shard as the breakage it is.
+        # validator uses, and require exactly the share the leg step chose.
         ./pipeline/.venv/bin/python <<'PY'
         import glob
         import os
@@ -266,9 +296,10 @@ jobs:
 
         pattern = re.compile(os.environ["FILTER"])
         matched = [f for f in sorted(glob.glob("data/*/*.parquet")) if pattern.search(f)]
+        expected = int(os.environ["EXPECTED"])
         print(f"shard covers {len(matched)} datasets")
-        if not matched:
-            sys.exit("shard matched no datasets; its filter and the corpus disagree")
+        if len(matched) != expected:
+            sys.exit(f"shard filter selects {len(matched)} datasets, not {expected}")
         PY
         ./pipeline/.venv/bin/python -m ord_schema.scripts.validate_dataset \
           --input_pattern="data/*/*.parquet" \

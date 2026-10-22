@@ -185,12 +185,14 @@ for the data:
 ### For maintainers (CI)
 
 Freshly pushed objects are not on the Hugging Face mirror until the post-merge
-mirror job runs, so CI and the mirror override the read endpoint back to GitHub
-at runtime (`git config lfs.url …`):
+mirror job runs, so CI and the mirror read them from GitHub, overriding the read
+endpoint at runtime (`git config lfs.url …`):
 
-- [`validation.yml`](.github/workflows/validation.yml) pulls only each matrix
-  shard's objects from GitHub, sparsely, instead of the whole dataset in every
-  job.
+- [`validation.yml`](.github/workflows/validation.yml) pulls the datasets a
+  change adds or modifies from GitHub. A run over the whole corpus reads the
+  Hugging Face mirror first and takes from GitHub only what the mirror lacks;
+  git lfs checks each object against its pointer, so the mirror cannot serve
+  different bytes. Each matrix shard pulls only its own objects.
 - [`submission.yml`](.github/workflows/submission.yml) reads from GitHub so fork
   and branch submissions are validated before their bytes reach Hugging Face.
 - [`huggingface_mirror.yml`](.github/workflows/huggingface_mirror.yml) reads the
@@ -213,22 +215,19 @@ this way — e.g., format conversions or mass migrations of already-finalized
 data — apply the `skip-update-submission` label to the PR. The label skips
 only the rewrite: `Validate submission` runs in its place, so the changed
 datasets are still validated before merge, and
-[`validation.yml`](.github/workflows/validation.yml) validates the whole corpus
-on merge to `main`.
+[`validation.yml`](.github/workflows/validation.yml) validates them as well, on
+the pull request and again on merge to `main`.
 
-### Validating the whole corpus
+### When validation runs
 
-[`validation.yml`](.github/workflows/validation.yml) validates every dataset,
-which pulls the whole corpus from Git LFS, so it does so only when a verdict
-could change:
+[`validation.yml`](.github/workflows/validation.yml) validates what a change
+can affect, on pull requests and on pushes to `main`:
 
-- a push to `main` that changes `data/`, `validation.yml`, or the validation
-  environment;
-- a pull request that changes `validation.yml` or the validation environment;
-- a pull request labeled `validate-all`, on every push while the label stays
-  on — for checking the corpus before merge, such as a migration that rewrites
-  existing datasets;
-- a manual run: `gh workflow run validation.yml`.
+- **the whole corpus** when `validation.yml` or the validation environment
+  changes, or on a manual run (`gh workflow run validation.yml`, optionally with
+  `--ref <branch>`);
+- otherwise **the datasets the change adds or modifies** under `data/`, and
+  nothing when there are none.
 
 The validation environment is the Python in `.python-version` plus ord-schema
 and every package it depends on, as `uv.lock` resolves them. A `uv.lock` change
@@ -264,8 +263,8 @@ git rm data/*/*.pb.gz  # keep only the Parquet versions
 
 Commit the new `.parquet` files (they become LFS objects), push them (see
 [Pushing new LFS objects](#pushing-new-lfs-objects)), and open the PR with the
-`skip-update-submission` label. Validation runs against the full dataset on
-merge to `main`.
+`skip-update-submission` label. `validation.yml` validates the converted
+datasets on the pull request and again on merge to `main`.
 
 ### Pushing new LFS objects
 
