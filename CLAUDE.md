@@ -77,10 +77,22 @@ the whole dataset, so submission CI only needs the **changed** objects.
 
 ## Workflows (`.github/workflows`)
 
-- **`validation.yml`** — validates every dataset. Triggers on push to `main`
-  **only under `data/**`**, on PRs that touch `validation.yml`, and weekly
-  (Mon 07:00 UTC) for the full sweep, so a workflow-only merge does not pull
-  ~1.2 GB of LFS to validate data nobody changed. 4-shard `validate_parquet`
+- **`validation.yml`** — validates every dataset, which pulls ~1.2 GB of LFS,
+  so the `scope` job (`scripts/validation_scope.py`) runs the shards only when
+  a verdict could change: a push to `main` changing `data/**`,
+  `validation.yml`, or the **environment**; a PR changing `validation.yml` or
+  the environment, or carrying the **`validate-all`** label (every push while
+  it stays on); and `workflow_dispatch`. The environment is `.python-version`
+  plus ord-schema and its whole dependency closure in `uv.lock` (rdkit,
+  protobuf, pyarrow, pandas, … all change verdicts), so a lock bump confined
+  to other packages (pygithub, dev tools) does not qualify, and a fork PR's
+  environment never does (it is validated in the base branch's). There is
+  **no weekly sweep**: nothing else makes a verdict go stale. Every PR runs
+  `check_layout` and `scope`, which read no LFS. A `labeled` event for any
+  other label gets a concurrency group of its own so it cannot cancel a real
+  run; the label is spelled in both the concurrency key and the script, and a
+  test fails if they drift. `validate_parquet` can skip, so it must never be a
+  required check. 4-shard `validate_parquet`
   matrix keyed on the first hex digit of the `data/<xx>/` directory (`0-3`,
   `4-7`, `8-b`, `c-f`), so a new dataset needs no matrix edit; each shard
   sparse-pulls only its objects from GitHub. `matrix.filter` is the

@@ -212,9 +212,29 @@ maintainer PRs that touch dataset files but should *not* be re-processed
 this way — e.g., format conversions or mass migrations of already-finalized
 data — apply the `skip-update-submission` label to the PR. The label skips
 only the rewrite: `Validate submission` runs in its place, so the changed
-datasets are still validated before merge, and the corpus sweep in
-[`validation.yml`](.github/workflows/validation.yml) covers the result on
-merge to `main`.
+datasets are still validated before merge, and
+[`validation.yml`](.github/workflows/validation.yml) validates the whole corpus
+on merge to `main`.
+
+### Validating the whole corpus
+
+[`validation.yml`](.github/workflows/validation.yml) validates every dataset,
+which pulls the whole corpus from Git LFS, so it does so only when a verdict
+could change:
+
+- a push to `main` that changes `data/`, `validation.yml`, or the validation
+  environment;
+- a pull request that changes `validation.yml` or the validation environment;
+- a pull request labeled `validate-all`, on every push while the label stays
+  on — for checking the corpus before merge, such as a migration that rewrites
+  existing datasets;
+- a manual run: `gh workflow run validation.yml`.
+
+The validation environment is the Python in `.python-version` plus ord-schema
+and every package it depends on, as `uv.lock` resolves them. A `uv.lock` change
+confined to other packages does not count, and neither does a fork's: a pull
+request from a fork is validated in its base branch's environment. There is no
+scheduled run, since nothing else changes a verdict.
 
 ### Converting datasets to Parquet
 
