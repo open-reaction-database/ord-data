@@ -43,7 +43,7 @@ import pathlib
 import subprocess
 import sys
 import tempfile
-from collections.abc import Iterable, Mapping
+from collections.abc import Iterable, Mapping, Sequence
 
 import github
 from ord_schema import (
@@ -61,6 +61,9 @@ logger = get_logger(__name__)
 
 # Parquet is the standard on-disk format; see the module docstring.
 DEFAULT_OUTPUT_FORMAT = ".parquet"
+
+# The start of every Git LFS pointer file.
+_LFS_POINTER_PREFIX = b"version https://git-lfs.github.com/spec/"
 
 
 @dataclasses.dataclass(eq=True, frozen=True, order=True)
@@ -201,32 +204,55 @@ def _smudge(pointer: bytes, base: str, source: str) -> bytes:
     Raises:
         subprocess.CalledProcessError: If the configured endpoint cannot serve
             the object either.
+        ValueError: If git lfs returns the pointer instead of the object.
     """
     mirror = _mirror_lfs_url(base)
     if mirror is not None:
         try:
-            # (internal git command; -c outranks the lfs.url in .git/config)
-            return subprocess.run(
-                ["git", "-c", f"lfs.url={mirror}", "lfs", "smudge"],
-                input=pointer,
-                capture_output=True,
-                check=True,
-                text=False,
-            ).stdout
-        except subprocess.CalledProcessError:
+            # -c outranks the lfs.url in .git/config. The mirror is public, so a
+            # credential prompt could only stall the run.
+            return _run_smudge(pointer, ["-c", f"lfs.url={mirror}"], prompt=False)
+        except (subprocess.CalledProcessError, ValueError):
             logger.warning(
                 "%s cannot serve %s; reading it from the configured LFS endpoint",
                 mirror,
                 source,
             )
+    return _run_smudge(pointer)
+
+
+def _run_smudge(
+    pointer: bytes, config: Sequence[str] = (), *, prompt: bool = True
+) -> bytes:
+    """Returns the object that ``git lfs smudge`` downloads for ``pointer``.
+
+    Args:
+        pointer: The pointer file's content.
+        config: ``-c`` options for git, ahead of the ``lfs`` subcommand.
+        prompt: Whether git may ask for credentials on the terminal.
+
+    Returns:
+        The object's content.
+
+    Raises:
+        subprocess.CalledProcessError: If git lfs cannot download the object.
+        ValueError: If git lfs passes the pointer through unchanged, which it
+            does with exit status 0 under GIT_LFS_SKIP_SMUDGE or
+            lfs.skipdownloaderrors.
+    """
+    env = None if prompt else {**os.environ, "GIT_TERMINAL_PROMPT": "0"}
     # (internal git command)
-    return subprocess.run(
-        ["git", "lfs", "smudge"],
+    content = subprocess.run(
+        ["git", *config, "lfs", "smudge"],
         input=pointer,
         capture_output=True,
         check=True,
+        env=env,
         text=False,
     ).stdout
+    if content.startswith(_LFS_POINTER_PREFIX):
+        raise ValueError("git lfs returned the pointer instead of its object")
+    return content
 
 
 def _load_base_dataset(
@@ -252,7 +278,7 @@ def _load_base_dataset(
     content = subprocess.run(
         git_args, capture_output=True, check=True, text=False
     ).stdout
-    if content.startswith(b"version"):
+    if content.startswith(_LFS_POINTER_PREFIX):
         content = _smudge(content, base, git_args[-1])
     suffix = _dataset_suffix(git_args[-1])
     if suffix == ".parquet":

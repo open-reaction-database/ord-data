@@ -872,6 +872,13 @@ class TestLoadLfsBaseDataset:
         with pytest.raises(subprocess.CalledProcessError, match="non-zero exit"):
             _load_modified_dataset()
 
+    def test_a_pointer_passed_through_is_not_content(self, store_in, monkeypatch):
+        store_in("mirror", "github")
+        # git lfs then exits 0 with the pointer itself as its output.
+        monkeypatch.setenv("GIT_LFS_SKIP_SMUDGE", "1")
+        with pytest.raises(ValueError, match="returned the pointer instead"):
+            _load_modified_dataset()
+
     def test_mirror_comes_from_the_base_revision(self, store_in, tmp_path):
         store_in("mirror")
         # A submission cannot redirect the read by editing its own .lfsconfig.
