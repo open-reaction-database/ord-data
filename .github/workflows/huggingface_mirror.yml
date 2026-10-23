@@ -91,14 +91,19 @@ jobs:
     - name: Point Git LFS reads at GitHub
       run: git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
 
+    # The range reaches the script through env rather than ${{ }} in the
+    # script, so its values are never parsed as shell. DRY_RUN_FLAG is empty
+    # outside pull requests, and ${VAR:+...} then passes no argument at all.
     - name: Mirror to Hugging Face
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
         DRY_RUN_FLAG: ${{ github.event_name == 'pull_request' && '--dry-run' || '' }}
+        RANGE_BASE: ${{ steps.range.outputs.base }}
+        RANGE_HEAD: ${{ steps.range.outputs.head }}
       run: |
         uv run --no-sync python scripts/upload_to_huggingface.py \
-          --base="${{ steps.range.outputs.base }}" \
-          --head="${{ steps.range.outputs.head }}" \
+          --base="${RANGE_BASE}" \
+          --head="${RANGE_HEAD}" \
           --commit-message="Mirror ${GITHUB_SHA::7} from github.com/${GITHUB_REPOSITORY}" \
           --summary-file="${GITHUB_STEP_SUMMARY}" \
-          ${DRY_RUN_FLAG}
+          ${DRY_RUN_FLAG:+"${DRY_RUN_FLAG}"}
