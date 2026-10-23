@@ -220,11 +220,6 @@ def test_rewrite_dataset(tmp_path: Path) -> None:
     ]
 
 
-@pytest.mark.xfail(
-    raises=TypeError,
-    strict=True,
-    reason="ord-schema 0.8.3 cannot order a naive timestamp against an aware one",
-)
 def test_a_rewritten_reaction_validates(tmp_path: Path) -> None:
     reaction = _reaction("ord-" + "0" * 32, "07/01/2008")
     reaction.provenance.record_created.person.username = "test"
