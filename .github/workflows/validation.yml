@@ -50,14 +50,17 @@ on:
   # Validates the chosen branch's whole corpus, main by default.
   workflow_dispatch:
 
-# One in-flight matrix per PR (or per push to main). Subsequent events
-# cancel the prior run so we are not paying twice for the LFS-heavy
-# validate_parquet legs.
+# One in-flight matrix per PR: a new push cancels the run before it, so we are
+# not paying twice for the LFS-heavy validate_parquet legs. That is safe there
+# because a PR run scopes itself against the base and so covers everything the
+# cancelled run would have. A push to main scopes itself against `before`, only
+# what that push changed, so a cancelled push run would leave its datasets
+# unchecked; each commit gets a group of its own instead.
 #
-# Keyed on the event as well as the ref: a manual run and a push to main share
-# a ref, so without it a merge would cancel a run someone started by hand.
+# Keyed on the event as well: a manual run and a push of the same commit share
+# a sha, so without it the push would cancel a run someone started by hand.
 concurrency:
-  group: validation-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  group: validation-${{ github.event_name }}-${{ github.event.pull_request.number || github.sha }}
   cancel-in-progress: true
 
 # validate_dataset.py ships inside the ord_schema wheel, so validate_parquet

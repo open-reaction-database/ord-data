@@ -393,3 +393,11 @@ def test_main_leg_writes_its_share(
 def test_trigger_paths_cover_what_scope_reads(event: str) -> None:
     paths = set(_workflow()[event]["paths"])
     assert {"data/**", WORKFLOW, INTERPRETER, LOCK} <= paths
+
+
+def test_push_runs_never_cancel_each_other() -> None:
+    # A push run validates only what its own push changed, so a later push
+    # that cancelled it would leave those datasets unchecked.
+    concurrency = yaml.safe_load((REPOSITORY / WORKFLOW).read_text())["concurrency"]
+    assert "github.event.pull_request.number || github.sha" in concurrency["group"]
+    assert "github.ref" not in concurrency["group"]

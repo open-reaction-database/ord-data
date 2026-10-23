@@ -115,7 +115,11 @@ the whole dataset, so submission CI only needs the **changed** objects.
   matching what `process_dataset.py`
   checks at submission; it is opt-in upstream because ids are assigned *during*
   submission, so a draft does not have them yet. Uses
-  `concurrency: cancel-in-progress` — pushing again cancels the running matrix.
+  `concurrency: cancel-in-progress` keyed on the PR number — pushing again
+  cancels the running matrix, which the next run's base-relative scope covers.
+  Pushes to `main` are keyed on `github.sha` instead, so they **never cancel
+  each other**: a push run validates only its own push's datasets, and a
+  cancelled one would leave them unchecked.
   Its environment is a separate sparse checkout (`pipeline/`, just
   `.python-version` / `pyproject.toml` / `uv.lock`) taken from the **base branch
   on fork PRs** and from `github.sha` otherwise — deliberately narrower than
