@@ -42,9 +42,9 @@ Invariants — easy to break, so check these when editing any workflow or LFS co
   `git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"`.
   Freshly pushed objects are not on HF until the post-merge mirror job runs, so
   reading them from HF would race or 404. Already-published objects may come
-  from HF with GitHub as the fallback: `process_dataset.py` reads base
-  revisions that way. git lfs checks each object against its pointer's
-  SHA-256, so HF cannot substitute content.
+  from HF with GitHub as the fallback, and two reads do: `validation.yml`'s
+  whole-corpus run and `process_dataset.py`'s base revisions. git lfs checks
+  each object against its pointer's SHA-256, so HF cannot substitute content.
 - **Never commit an `lfs.pushurl` to `.lfsconfig`.** A fixed HTTPS pushurl breaks
   SSH pushers; a fixed SSH pushurl breaks CI. Writers set their own endpoint (CI
   reuses the `lfs.url` override above; a fork editing an existing `data/` object
@@ -83,13 +83,26 @@ pulls the **changed** objects from GitHub.
 
 ## Workflows (`.github/workflows`)
 
-- **`validation.yml`** — validates every dataset. Triggers on push to `main`
-  **only under `data/**`**, on PRs that touch `validation.yml`, and weekly
-  (Mon 07:00 UTC) for the full sweep, so a workflow-only merge does not pull
-  ~1.2 GB of LFS to validate data nobody changed. 4-shard `validate_parquet`
+- **`validation.yml`** — runs `validate_dataset.py` over what a change can
+  affect, as the `scope` job (`scripts/validation_scope.py`) decides: the
+  **whole corpus** when `validation.yml` or the **environment** changes, or on
+  `workflow_dispatch`; otherwise the datasets a PR or a push to `main`
+  **adds or modifies** under `data/`, and nothing when there are none
+  (`validate_dataset.py` judges each file alone, so scoping loses nothing). The
+  environment is `.python-version` plus ord-schema and its whole dependency
+  closure in `uv.lock` (rdkit, protobuf, pyarrow, pandas, … can all change
+  verdicts), so a lock bump confined to other packages (pygithub, dev tools)
+  does not count, and a fork PR's environment never does (it is validated in
+  the base branch's). Whole-corpus runs read LFS from the HF mirror, falling
+  back to GitHub for what it lacks; changed datasets read from GitHub. There is
+  **no weekly sweep**: every pinned input triggers a run when it changes, and
+  `workflow_dispatch` covers the unpinned rest (the Python patch release uv
+  picks for `.python-version`'s `3.11`). A PR's changed datasets are validated
+  by `submission.yml` as well. `validate_parquet` can skip, so it must never be
+  a required check. 4-shard `validate_parquet`
   matrix keyed on the first hex digit of the `data/<xx>/` directory (`0-3`,
   `4-7`, `8-b`, `c-f`), so a new dataset needs no matrix edit; each shard
-  sparse-pulls only its objects from GitHub. `matrix.filter` is the
+  sparse-pulls only its objects. `matrix.filter` is the
   `validate_dataset.py` regex and `lfs_include` the equivalent LFS glob, carried
   separately because one is a regex and the other a glob.
   **`validate_dataset.py` exits 0 when its pattern matches nothing**, so
@@ -97,14 +110,19 @@ pulls the **changed** objects from GitHub.
   three guards: `check_layout` fails if anything under `data/` is not a
   `.parquet` exactly one directory deep, and separately re-reads the `filter:`
   values out of this workflow to assert they match every dataset **exactly
-  once** (catching a gap or an overlap between shards); each shard then fails if
-  its own filter selects no files (catching a shard that matches nothing while
-  its siblings still match plenty). Do not remove them — without them a stale
+  once** (catching a gap or an overlap between shards); on a whole-corpus run
+  each shard then fails if its own filter selects no files (catching a shard
+  that matches nothing while its siblings still match plenty), and on every run
+  the filter handed to the validator must select exactly the shard's share. Do not remove them — without them a stale
   filter or a stray suffix is published unvalidated behind a green check. The job passes `--validate_ids`,
   matching what `process_dataset.py`
   checks at submission; it is opt-in upstream because ids are assigned *during*
   submission, so a draft does not have them yet. Uses
-  `concurrency: cancel-in-progress` — pushing again cancels the running matrix.
+  `concurrency: cancel-in-progress` keyed on the PR number — pushing again
+  cancels the running matrix, which the next run's base-relative scope covers.
+  Pushes to `main` are keyed on `github.sha` instead, so they **never cancel
+  each other**: a push run validates only its own push's datasets, and a
+  cancelled one would leave them unchecked.
   Its environment is a separate sparse checkout (`pipeline/`, just
   `.python-version` / `pyproject.toml` / `uv.lock`) taken from the **base branch
   on fork PRs** and from `github.sha` otherwise — deliberately narrower than
