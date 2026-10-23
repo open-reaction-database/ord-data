@@ -193,6 +193,10 @@ at runtime (`git config lfs.url …`):
   job.
 - [`submission.yml`](.github/workflows/submission.yml) reads from GitHub so fork
   and branch submissions are validated before their bytes reach Hugging Face.
+  The published versions of datasets a submission modifies are already on the
+  mirror, so it reads those from Hugging Face, falling back to GitHub for any
+  the mirror has yet to sync; git lfs checks each object against its pointer,
+  so the mirror cannot serve different bytes.
 - [`huggingface_mirror.yml`](.github/workflows/huggingface_mirror.yml) reads the
   to-be-mirrored objects from GitHub.
 
