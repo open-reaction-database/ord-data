@@ -13,6 +13,7 @@
 # limitations under the License.
 """Tests for the submission processing script."""
 
+import logging
 import os
 import pathlib
 import shutil
@@ -859,13 +860,32 @@ class TestLoadLfsBaseDataset:
 
         return store_in
 
-    def test_reads_the_mirror_first(self, store_in):
+    def test_reads_the_mirror(self, store_in):
         store_in("mirror")  # The configured endpoint lacks it.
         assert _load_modified_dataset().name == "base"
 
-    def test_falls_back_to_the_configured_endpoint(self, store_in):
-        store_in("github")
+    def test_tries_the_mirror_first_and_stops_there(self, store_in, monkeypatch):
+        store_in("mirror", "github")
+        configs = []
+        run_smudge = process_dataset._run_smudge
+
+        def spy(pointer, config=(), **kwargs):
+            configs.append(list(config))
+            return run_smudge(pointer, config, **kwargs)
+
+        monkeypatch.setattr(process_dataset, "_run_smudge", spy)
         assert _load_modified_dataset().name == "base"
+        assert len(configs) == 1
+        option, value = configs[0]
+        assert option == "-c"
+        assert value.startswith("lfs.url=")
+        assert value.endswith("/mirror.git")
+
+    def test_falls_back_to_the_configured_endpoint(self, store_in, caplog):
+        store_in("github")
+        with caplog.at_level(logging.WARNING):
+            assert _load_modified_dataset().name == "base"
+        assert "cannot serve main:dataset.pb" in caplog.text
 
     def test_raises_when_neither_store_has_it(self, store_in):
         store_in()
