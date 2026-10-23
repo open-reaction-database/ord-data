@@ -215,10 +215,12 @@ jobs:
     # submissions are validated before their bytes are mirrored to HF on merge
     # to main, and the "Update submission" step's uploads reuse this lfs.url
     # override (.lfsconfig has no pushurl). Only the changed datasets are
-    # pulled: process_dataset reads just these inputs, and base revisions of
-    # modified files are smudged on demand through the same lfs.url, so the
-    # rest of the repository is never needed. Skipped entirely when no dataset
-    # files changed.
+    # pulled: process_dataset reads just these inputs, so the rest of the
+    # repository is never needed. Base revisions of modified files are already
+    # published, so process_dataset smudges them on demand from the mirror that
+    # upstream/main's .lfsconfig names, falling back to this lfs.url for any
+    # the mirror has yet to sync. Skipped entirely when no dataset files
+    # changed.
     - name: Fetch changed LFS objects from GitHub
       if: env.NUM_CHANGED_FILES != '0'
       run: |
@@ -306,6 +308,8 @@ jobs:
     - name: Update submission
       env:
         PUSH_TOKEN: ${{ steps.push_token.outputs.token || secrets.GITHUB_TOKEN }}
+        PR_NUMBER: ${{ github.event.number }}
+        COMMENT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         cd "${GITHUB_WORKSPACE}"
         ./pipeline/.venv/bin/python ./pipeline/scripts/process_dataset.py \
@@ -313,8 +317,8 @@ jobs:
           --update \
           --cleanup \
           --base=upstream/main \
-          --issue=${{ github.event.number }} \
-          --token=${{ secrets.GITHUB_TOKEN }}
+          --issue="${PR_NUMBER}" \
+          --token="${COMMENT_TOKEN}"
         git config user.name github-actions
         git config user.email github-actions@github.com
         # Fail gracefully if there is nothing to commit.

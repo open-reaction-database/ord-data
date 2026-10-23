@@ -41,10 +41,10 @@ Invariants — easy to break, so check these when editing any workflow or LFS co
   `git lfs pull` of anything a PR or the latest merge added, set
   `git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"`.
   Freshly pushed objects are not on HF until the post-merge mirror job runs, so
-  reading them from HF would race or 404. The one HF read in CI is
-  `validation.yml`'s whole-corpus run, which falls back to GitHub for anything
-  HF lacks; git lfs checks each object against its pointer's SHA-256, so HF
-  cannot substitute content.
+  reading them from HF would race or 404. Already-published objects may come
+  from HF with GitHub as the fallback, and two reads do: `validation.yml`'s
+  whole-corpus run and `process_dataset.py`'s base revisions. git lfs checks
+  each object against its pointer's SHA-256, so HF cannot substitute content.
 - **Never commit an `lfs.pushurl` to `.lfsconfig`.** A fixed HTTPS pushurl breaks
   SSH pushers; a fixed SSH pushurl breaks CI. Writers set their own endpoint (CI
   reuses the `lfs.url` override above; a fork editing an existing `data/` object
@@ -75,8 +75,11 @@ Invariants — easy to break, so check these when editing any workflow or LFS co
    objects to HF.
 
 `process_dataset.py` reads only the files in `changed_data_files.txt`; base
-revisions of modified files are smudged on demand via `lfs.url`. It never scans
-the whole dataset, so submission CI only needs the **changed** objects.
+revisions of modified files are smudged on demand from the HF mirror that
+`upstream/main`'s `.lfsconfig` names (read with `git config --blob`, so a PR
+cannot redirect it), falling back to the configured `lfs.url` for objects the
+mirror has yet to sync. It never scans the whole dataset, so submission CI only
+pulls the **changed** objects from GitHub.
 
 ## Workflows (`.github/workflows`)
 
