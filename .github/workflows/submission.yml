@@ -306,6 +306,8 @@ jobs:
     - name: Update submission
       env:
         PUSH_TOKEN: ${{ steps.push_token.outputs.token || secrets.GITHUB_TOKEN }}
+        PR_NUMBER: ${{ github.event.number }}
+        COMMENT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         cd "${GITHUB_WORKSPACE}"
         ./pipeline/.venv/bin/python ./pipeline/scripts/process_dataset.py \
@@ -313,8 +315,8 @@ jobs:
           --update \
           --cleanup \
           --base=upstream/main \
-          --issue=${{ github.event.number }} \
-          --token=${{ secrets.GITHUB_TOKEN }}
+          --issue="${PR_NUMBER}" \
+          --token="${COMMENT_TOKEN}"
         git config user.name github-actions
         git config user.email github-actions@github.com
         # Fail gracefully if there is nothing to commit.
