@@ -32,7 +32,7 @@ import logging
 import re
 from pathlib import Path
 
-from ord_schema import parquet
+from ord_schema import parquet, validations
 from ord_schema.proto import reaction_pb2
 from rewrite_ambiguous_dates import (
     describe,
@@ -51,14 +51,6 @@ DETAILS = (
     "https://github.com/open-reaction-database/ord-data/pull/303"
 )
 
-# The shapes ord-schema's validations accept, copied because ord-data locks a release
-# that predates them. fromisoformat reads an offset of "+00:60" as one hour, and from
-# Python 3.14 a time of "24:00:00" as the next midnight, so both are bounded here.
-_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
-_TIME = re.compile(
-    r"\d{4}-\d{2}-\d{2}T(?:[01]\d|2[0-3]):\d{2}:\d{2}(?:\.\d{1,6})?"
-    r"(?:Z|[+-]\d{2}:[0-5]\d)?"
-)
 _CTIME = "%a %b %d %H:%M:%S %Y"
 # ISO 8601 with a space before the time, as str(datetime) writes it.
 _SPACED = re.compile(r"(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?)")
@@ -66,19 +58,7 @@ _SPACED = re.compile(r"(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?)")
 
 def is_valid(value: str) -> bool:
     """Return whether ord-schema accepts a DateTime value as written."""
-    try:
-        if _DATE.fullmatch(value):
-            datetime.date.fromisoformat(value)
-            return True
-        if _TIME.fullmatch(value):
-            parsed = datetime.datetime.fromisoformat(value)
-            if parsed.utcoffset() is not None:
-                # ord-schema rejects a time whose UTC instant datetime cannot hold.
-                parsed.astimezone(datetime.UTC)
-            return True
-    except (ValueError, OverflowError):
-        return False
-    return False
+    return validations.parse_date_time(value) is not None
 
 
 def iso_form(value: str) -> str:
