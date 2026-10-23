@@ -214,8 +214,9 @@ jobs:
     # mirror lacks: it syncs only after a merge to main, so it may trail the
     # latest one. Changed datasets come straight from GitHub, since they are
     # never on the mirror yet. Either way git lfs checks each object against the
-    # SHA-256 in its pointer, so a store cannot serve other bytes than the
-    # commit names. The checkout step already configured GitHub credentials.
+    # SHA-256 in its pointer, so neither store can serve bytes other than the
+    # ones the commit names. The checkout step already configured GitHub
+    # credentials.
     #
     # An empty lfs_include would read as no filter at all and quietly pull the
     # whole corpus, so require it.

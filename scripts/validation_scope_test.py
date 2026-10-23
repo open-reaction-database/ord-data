@@ -324,6 +324,15 @@ def test_leg_of_changed_datasets_may_be_empty() -> None:
     assert share.lfs_include == ""
 
 
+@pytest.mark.parametrize("name", ["x[1]", "x*", "x?", "a,b", "x\\y"])
+def test_leg_of_changed_datasets_refuses_paths_git_lfs_reads_as_patterns(
+    name: str,
+) -> None:
+    path = f"data/0a/{name}.parquet"
+    with pytest.raises(ValueError, match=r"cannot pull by exact path"):
+        leg(Mode.CHANGED, [path], LEG_FILTER, LEG_GLOB, CORPUS)
+
+
 def test_leg_of_nothing_raises() -> None:
     with pytest.raises(ValueError, match=r"a none run has no legs"):
         leg(Mode.NONE, [], LEG_FILTER, LEG_GLOB, CORPUS)

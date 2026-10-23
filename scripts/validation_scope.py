@@ -51,6 +51,8 @@ WORKFLOW = ".github/workflows/validation.yml"
 INTERPRETER = ".python-version"
 LOCK = "uv.lock"
 VALIDATOR = "ord-schema"
+# Characters git lfs gives meaning in an --include list.
+_LFS_PATTERN_CHARACTERS = re.compile(r"[*?\[\],\\]")
 
 
 class Mode(enum.StrEnum):
@@ -208,8 +210,9 @@ def leg(
         selects, by exact path, read from GitHub; possibly none.
 
     Raises:
-        ValueError: If ``mode`` is ``Mode.NONE``, or if the leg's filter selects
-            nothing from the whole corpus.
+        ValueError: If ``mode`` is ``Mode.NONE``, if the leg's filter selects
+            nothing from the whole corpus, or if a changed dataset's path cannot
+            be handed to git lfs as itself.
     """
     pattern = re.compile(leg_filter)
     if mode == Mode.ALL:
@@ -221,6 +224,10 @@ def leg(
         return Leg(lfs_include, leg_filter, Store.HUGGINGFACE, count)
     if mode == Mode.CHANGED:
         share = [path for path in datasets if pattern.search(path)]
+        # git lfs splits --include on commas and reads each entry as a pattern,
+        # so such a path would not select its own object.
+        if unsafe := [path for path in share if _LFS_PATTERN_CHARACTERS.search(path)]:
+            raise ValueError(f"cannot pull by exact path: {', '.join(unsafe)}")
         exact = "|".join(re.escape(path) for path in share)
         return Leg(",".join(share), f"^(?:{exact})$", Store.GITHUB, len(share))
     raise ValueError(f"a {mode} run has no legs")
