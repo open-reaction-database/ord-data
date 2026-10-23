@@ -15,6 +15,7 @@
 
 import os
 import pathlib
+import shutil
 import subprocess
 
 import process_dataset
@@ -793,3 +794,95 @@ class TestLoadBaseDataset:
             )
             is None
         )
+
+
+def _load_modified_dataset():
+    return process_dataset._load_base_dataset(
+        process_dataset.FileStatus("dataset.pb", "M", ""), "main"
+    )
+
+
+@pytest.mark.skipif(shutil.which("git-lfs") is None, reason="needs git-lfs")
+class TestLoadLfsBaseDataset:
+    """Covers where an LFS-tracked base revision is read from.
+
+    Two local file:// stores stand in for the Hugging Face mirror, which the
+    committed .lfsconfig names, and GitHub, which CI configures as lfs.url.
+    """
+
+    @pytest.fixture
+    def store_in(self, tmp_path, monkeypatch):
+        """Commits an LFS-tracked base dataset; the returned callable stores it."""
+        stores = {name: tmp_path / f"{name}.git" for name in ("mirror", "github")}
+        for store in stores.values():
+            subprocess.run(["git", "init", "--quiet", "--bare", store], check=True)
+        work = tmp_path / "work"
+        work.mkdir()
+        monkeypatch.chdir(work)
+
+        def git(*args):
+            subprocess.run(["git", *args], check=True, capture_output=True)
+
+        git("init", "--quiet", "-b", "main")
+        git("config", "--local", "user.email", "test@ord-schema")
+        git("config", "--local", "user.name", "Test Runner")
+        git("config", "--local", "commit.gpgsign", "false")
+        # The LFS filter without `git lfs install`, which would also write hooks.
+        git("config", "--local", "filter.lfs.clean", "git-lfs clean -- %f")
+        git("config", "--local", "filter.lfs.smudge", "git-lfs smudge -- %f")
+        git("config", "--local", "filter.lfs.process", "git-lfs filter-process")
+        git("config", "--local", "filter.lfs.required", "true")
+        # git lfs's file:// transfer adapter needs a file:// remote to start,
+        # whatever lfs.url names.
+        git("remote", "add", "origin", stores["github"].as_uri())
+        git("config", "--local", "lfs.url", stores["github"].as_uri())
+        pathlib.Path(".gitattributes").write_text(
+            "*.pb filter=lfs diff=lfs merge=lfs -text\n"
+        )
+        pathlib.Path(".lfsconfig").write_text(
+            f"[lfs]\n\turl = {stores['mirror'].as_uri()}\n"
+        )
+        message_helpers.save_message(dataset_pb2.Dataset(name="base"), "dataset.pb")
+        git("add", ".gitattributes", ".lfsconfig", "dataset.pb")
+        git("commit", "--quiet", "-m", "base")
+        message_helpers.save_message(dataset_pb2.Dataset(name="modified"), "dataset.pb")
+        objects = pathlib.Path(".git/lfs/objects")
+        (local,) = [path for path in objects.rglob("*") if path.is_file()]
+
+        def store_in(*names):
+            for name in names:
+                target = stores[name] / "lfs" / "objects" / local.relative_to(objects)
+                target.parent.mkdir(parents=True)
+                shutil.copy(local, target)
+            # From here on only the stores hold the object.
+            shutil.rmtree(objects)
+
+        return store_in
+
+    def test_reads_the_mirror_first(self, store_in):
+        store_in("mirror")  # The configured endpoint lacks it.
+        assert _load_modified_dataset().name == "base"
+
+    def test_falls_back_to_the_configured_endpoint(self, store_in):
+        store_in("github")
+        assert _load_modified_dataset().name == "base"
+
+    def test_raises_when_neither_store_has_it(self, store_in):
+        store_in()
+        with pytest.raises(subprocess.CalledProcessError, match="non-zero exit"):
+            _load_modified_dataset()
+
+    def test_mirror_comes_from_the_base_revision(self, store_in, tmp_path):
+        store_in("mirror")
+        # A submission cannot redirect the read by editing its own .lfsconfig.
+        pathlib.Path(".lfsconfig").write_text(
+            f"[lfs]\n\turl = {(tmp_path / 'elsewhere.git').as_uri()}\n"
+        )
+        assert _load_modified_dataset().name == "base"
+
+    def test_no_mirror_without_an_lfsconfig(self, store_in):
+        store_in("github")
+        subprocess.run(["git", "rm", "--quiet", ".lfsconfig"], check=True)
+        subprocess.run(["git", "commit", "--quiet", "-m", "no mirror"], check=True)
+        assert process_dataset._mirror_lfs_url("main") is None
+        assert _load_modified_dataset().name == "base"

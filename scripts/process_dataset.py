@@ -168,6 +168,67 @@ def _dataset_suffix(filename: str) -> str:
     return suffixes[-1]
 
 
+def _mirror_lfs_url(base: str) -> str | None:
+    """Returns the LFS endpoint that ``base``'s .lfsconfig names, if it names one."""
+    # (internal git command; --blob reads the committed file, not the working tree)
+    result = subprocess.run(
+        ["git", "config", "--blob", f"{base}:.lfsconfig", "--get", "lfs.url"],
+        capture_output=True,
+        check=False,
+        text=True,
+    )
+    return result.stdout.strip() or None
+
+
+def _smudge(pointer: bytes, base: str, source: str) -> bytes:
+    """Returns the content that a Git LFS pointer from ``base`` names.
+
+    ``base`` is published, so its objects are normally on the Hugging Face mirror
+    that its .lfsconfig names, which serves them without spending GitHub's LFS
+    bandwidth. The mirror syncs after each merge to main and can trail the latest
+    one, so an object it cannot serve comes from the endpoint git is configured
+    with instead (GitHub, in CI). git lfs checks each object against the SHA-256
+    in its pointer, so neither endpoint can substitute other content.
+
+    Args:
+        pointer: The pointer file's content.
+        base: The revision the pointer was read from.
+        source: Where the pointer came from, as ``revision:path``, for logging.
+
+    Returns:
+        The object's content.
+
+    Raises:
+        subprocess.CalledProcessError: If the configured endpoint cannot serve
+            the object either.
+    """
+    mirror = _mirror_lfs_url(base)
+    if mirror is not None:
+        try:
+            # (internal git command; -c outranks the lfs.url in .git/config)
+            return subprocess.run(
+                ["git", "-c", f"lfs.url={mirror}", "lfs", "smudge"],
+                input=pointer,
+                capture_output=True,
+                check=True,
+                text=False,
+            ).stdout
+        except subprocess.CalledProcessError:
+            logger.warning(
+                "%s cannot serve %s; reading it from the configured LFS endpoint",
+                mirror,
+                source,
+            )
+    # (internal git command)
+    return subprocess.run(
+        ["git", "lfs", "smudge"],
+        input=pointer,
+        capture_output=True,
+        check=True,
+        text=False,
+    ).stdout
+
+
 def _load_base_dataset(
     file_status: FileStatus, base: str
 ) -> dataset_pb2.Dataset | parquet.DatasetView | None:
@@ -188,20 +249,15 @@ def _load_base_dataset(
         git_args.append(f"{base}:{file_status.filename}")
     logger.info("Running command: %s", " ".join(git_args))
     # (internal git command)
-    serialized = subprocess.run(git_args, capture_output=True, check=True, text=False)
-    if serialized.stdout.startswith(b"version"):
-        # Convert Git LFS pointers to real data.
-        serialized = subprocess.run(
-            ["git", "lfs", "smudge"],
-            input=serialized.stdout,
-            capture_output=True,
-            check=True,
-            text=False,
-        )
+    content = subprocess.run(
+        git_args, capture_output=True, check=True, text=False
+    ).stdout
+    if content.startswith(b"version"):
+        content = _smudge(content, base, git_args[-1])
     suffix = _dataset_suffix(git_args[-1])
     if suffix == ".parquet":
         with tempfile.NamedTemporaryFile(suffix=".parquet", delete=False) as temp:
-            temp.write(serialized.stdout)
+            temp.write(content)
             temp_path = temp.name
         return parquet.DatasetView(temp_path)
     # load_message picks the parser from the suffix, so the temp file has to keep
@@ -209,7 +265,7 @@ def _load_base_dataset(
     # decompresses either. This copy is read before the file is closed, so unlike
     # the Parquet view above it does not need to outlive the block.
     with tempfile.NamedTemporaryFile(suffix=suffix) as temp:
-        temp.write(serialized.stdout)
+        temp.write(content)
         temp.flush()
         return message_helpers.load_message(temp.name, dataset_pb2.Dataset)
 
