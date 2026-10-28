@@ -43,7 +43,7 @@ import pathlib
 import subprocess
 import sys
 import tempfile
-from collections.abc import Iterable, Mapping
+from collections.abc import Iterable, Mapping, Sequence
 
 import github
 from ord_schema import (
@@ -61,6 +61,9 @@ logger = get_logger(__name__)
 
 # Parquet is the standard on-disk format; see the module docstring.
 DEFAULT_OUTPUT_FORMAT = ".parquet"
+
+# The start of every Git LFS pointer file.
+_LFS_POINTER_PREFIX = b"version https://git-lfs.github.com/spec/"
 
 
 @dataclasses.dataclass(eq=True, frozen=True, order=True)
@@ -168,6 +171,90 @@ def _dataset_suffix(filename: str) -> str:
     return suffixes[-1]
 
 
+def _mirror_lfs_url(base: str) -> str | None:
+    """Returns the LFS endpoint that ``base``'s .lfsconfig names, if it names one."""
+    # (internal git command; --blob reads the committed file, not the working tree)
+    result = subprocess.run(
+        ["git", "config", "--blob", f"{base}:.lfsconfig", "--get", "lfs.url"],
+        capture_output=True,
+        check=False,
+        text=True,
+    )
+    return result.stdout.strip() or None
+
+
+def _smudge(pointer: bytes, base: str, source: str) -> bytes:
+    """Returns the content that a Git LFS pointer from ``base`` names.
+
+    ``base`` is published, so its objects are normally on the Hugging Face mirror
+    that its .lfsconfig names, which serves them without spending GitHub's LFS
+    bandwidth. The mirror syncs after each merge to main and can trail the latest
+    one, so an object it cannot serve comes from the endpoint git is configured
+    with instead (GitHub, in CI). git lfs checks each object against the SHA-256
+    in its pointer, so neither endpoint can substitute other content.
+
+    Args:
+        pointer: The pointer file's content.
+        base: The revision the pointer was read from.
+        source: Where the pointer came from, as ``revision:path``, for logging.
+
+    Returns:
+        The object's content.
+
+    Raises:
+        subprocess.CalledProcessError: If the configured endpoint cannot serve
+            the object either.
+        ValueError: If git lfs returns the pointer instead of the object.
+    """
+    mirror = _mirror_lfs_url(base)
+    if mirror is not None:
+        try:
+            # -c outranks the lfs.url in .git/config. The mirror is public, so a
+            # credential prompt could only stall the run.
+            return _run_smudge(pointer, ["-c", f"lfs.url={mirror}"], prompt=False)
+        except (subprocess.CalledProcessError, ValueError):
+            logger.warning(
+                "%s cannot serve %s; reading it from the configured LFS endpoint",
+                mirror,
+                source,
+            )
+    return _run_smudge(pointer)
+
+
+def _run_smudge(
+    pointer: bytes, config: Sequence[str] = (), *, prompt: bool = True
+) -> bytes:
+    """Returns the object that ``git lfs smudge`` downloads for ``pointer``.
+
+    Args:
+        pointer: The pointer file's content.
+        config: ``-c`` options for git, ahead of the ``lfs`` subcommand.
+        prompt: Whether git may ask for credentials on the terminal.
+
+    Returns:
+        The object's content.
+
+    Raises:
+        subprocess.CalledProcessError: If git lfs cannot download the object.
+        ValueError: If git lfs passes the pointer through unchanged, which it
+            does with exit status 0 under GIT_LFS_SKIP_SMUDGE or
+            lfs.skipdownloaderrors.
+    """
+    env = None if prompt else {**os.environ, "GIT_TERMINAL_PROMPT": "0"}
+    # (internal git command)
+    content = subprocess.run(
+        ["git", *config, "lfs", "smudge"],
+        input=pointer,
+        capture_output=True,
+        check=True,
+        env=env,
+        text=False,
+    ).stdout
+    if content.startswith(_LFS_POINTER_PREFIX):
+        raise ValueError("git lfs returned the pointer instead of its object")
+    return content
+
+
 def _load_base_dataset(
     file_status: FileStatus, base: str
 ) -> dataset_pb2.Dataset | parquet.DatasetView | None:
@@ -188,20 +275,15 @@ def _load_base_dataset(
         git_args.append(f"{base}:{file_status.filename}")
     logger.info("Running command: %s", " ".join(git_args))
     # (internal git command)
-    serialized = subprocess.run(git_args, capture_output=True, check=True, text=False)
-    if serialized.stdout.startswith(b"version"):
-        # Convert Git LFS pointers to real data.
-        serialized = subprocess.run(
-            ["git", "lfs", "smudge"],
-            input=serialized.stdout,
-            capture_output=True,
-            check=True,
-            text=False,
-        )
+    content = subprocess.run(
+        git_args, capture_output=True, check=True, text=False
+    ).stdout
+    if content.startswith(_LFS_POINTER_PREFIX):
+        content = _smudge(content, base, git_args[-1])
     suffix = _dataset_suffix(git_args[-1])
     if suffix == ".parquet":
         with tempfile.NamedTemporaryFile(suffix=".parquet", delete=False) as temp:
-            temp.write(serialized.stdout)
+            temp.write(content)
             temp_path = temp.name
         return parquet.DatasetView(temp_path)
     # load_message picks the parser from the suffix, so the temp file has to keep
@@ -209,7 +291,7 @@ def _load_base_dataset(
     # decompresses either. This copy is read before the file is closed, so unlike
     # the Parquet view above it does not need to outlive the block.
     with tempfile.NamedTemporaryFile(suffix=suffix) as temp:
-        temp.write(serialized.stdout)
+        temp.write(content)
         temp.flush()
         return message_helpers.load_message(temp.name, dataset_pb2.Dataset)
 
