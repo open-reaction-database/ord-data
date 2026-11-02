@@ -30,7 +30,7 @@ one way under either order. Each reaction with a rewritten value gains one
 
 import argparse
 import collections
-import datetime
+import datetime as dt
 import json
 import logging
 import re
@@ -131,7 +131,7 @@ def to_iso(value: str, *, day_first: bool) -> str:
         try:
             # DTZ007: none of these shapes carries an offset, and the ISO form
             # records the same wall-clock time without inventing one.
-            parsed = datetime.datetime.strptime(value, order + tail)  # noqa: DTZ007
+            parsed = dt.datetime.strptime(value, order + tail)  # noqa: DTZ007
         except ValueError:
             continue
         if tail == _DATE_ONLY_TAIL:
@@ -238,7 +238,7 @@ def describe(changes: Iterable[tuple[str, str, str]], header: str = DETAILS) -> 
 
 
 def make_event(
-    person: reaction_pb2.Person, now: datetime.datetime
+    person: reaction_pb2.Person, now: dt.datetime
 ) -> reaction_pb2.RecordEvent:
     """Build the record_modified event a rewritten reaction gains, without details.
 
@@ -258,7 +258,7 @@ def make_event(
         raise ValueError(f"{now} has no time zone")
     event = reaction_pb2.RecordEvent()
     event.person.CopyFrom(person)
-    event.time.value = now.astimezone(datetime.UTC).isoformat(timespec="seconds")
+    event.time.value = now.astimezone(dt.UTC).isoformat(timespec="seconds")
     return event
 
 
@@ -369,7 +369,7 @@ def main() -> None:
         organization=args.organization,
         email=args.email,
     )
-    event = make_event(person, datetime.datetime.now(datetime.UTC))
+    event = make_event(person, dt.datetime.now(dt.UTC))
     paths = sorted(args.repo_root.glob("data/*/*.parquet"))
     total = 0
     for path in paths:
