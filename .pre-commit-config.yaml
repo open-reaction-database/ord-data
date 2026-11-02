@@ -32,15 +32,21 @@ repos:
           - -l
           - apache
 
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.17.3
-    hooks:
-      - id: ruff-check
-        args: [--fix]
-      - id: ruff-format
-
+  # Run from the locked environment, so uv.lock sets the versions, as it does in CI.
   - repo: local
     hooks:
+      - id: ruff-check
+        name: ruff check
+        entry: uv run ruff check --force-exclude --fix
+        language: system
+        types_or: [python, pyi, jupyter]
+        require_serial: true
+      - id: ruff-format
+        name: ruff format
+        entry: uv run ruff format --force-exclude
+        language: system
+        types_or: [python, pyi, jupyter, markdown]
+        require_serial: true
       - id: ty-check
         name: ty check (scripts)
         entry: uv run ty check
