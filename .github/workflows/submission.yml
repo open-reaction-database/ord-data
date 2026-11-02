@@ -259,7 +259,7 @@ jobs:
         path: pipeline
         lfs: false
       if: env.NUM_CHANGED_FILES != '0'
-    - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+    - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
       with:
         enable-cache: true
       if: env.NUM_CHANGED_FILES != '0'
@@ -301,7 +301,7 @@ jobs:
         vars.SUBMISSION_APP_ID != '' &&
         env.NUM_CHANGED_FILES != '0' &&
         steps.mode.outputs.update == 'true'
-      uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+      uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
       with:
         app-id: ${{ vars.SUBMISSION_APP_ID }}
         private-key: ${{ secrets.SUBMISSION_APP_PRIVATE_KEY }}
