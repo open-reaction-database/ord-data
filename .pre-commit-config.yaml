@@ -32,8 +32,7 @@ repos:
           - -l
           - apache
 
-  # These run from the locked environment, so uv.lock is the only place the tool
-  # versions are written and the hooks lint with the versions CI uses.
+  # Run from the locked environment, so uv.lock sets the versions, as it does in CI.
   - repo: local
     hooks:
       - id: ruff-check
@@ -46,7 +45,7 @@ repos:
         name: ruff format
         entry: uv run ruff format --force-exclude
         language: system
-        types_or: [python, pyi, jupyter]
+        types_or: [python, pyi, jupyter, markdown]
         require_serial: true
       - id: ty-check
         name: ty check (scripts)
