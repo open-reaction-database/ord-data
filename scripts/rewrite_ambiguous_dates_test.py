@@ -14,7 +14,7 @@
 
 """Tests for the ambiguous slash date rewrite."""
 
-import datetime
+import datetime as dt
 from pathlib import Path
 
 import pytest
@@ -35,9 +35,7 @@ DATASET_ID = "ord_dataset-00000000000000000000000000000000"
 EVENT = make_event(
     reaction_pb2.Person(username="test", email="test@example.com"),
     # 13:30 four hours behind UTC.
-    datetime.datetime(
-        2026, 10, 17, 13, 30, tzinfo=datetime.timezone(datetime.timedelta(hours=-4))
-    ),
+    dt.datetime(2026, 10, 17, 13, 30, tzinfo=dt.timezone(dt.timedelta(hours=-4))),
 )
 
 
@@ -146,7 +144,7 @@ def test_iter_date_times_names_each_path() -> None:
     # Protobuf iterates these four keys out of sorted order.
     for key in ("nmr", "lcms", "gc"):
         reaction.outcomes[0].analyses[key].instrument_last_calibrated.value = key
-    assert [(path, dt.value) for path, dt in iter_date_times(reaction)] == [
+    assert [(path, date.value) for path, date in iter_date_times(reaction)] == [
         ('outcomes[0].analyses["gc"].instrument_last_calibrated', "gc"),
         ('outcomes[0].analyses["hplc"].instrument_last_calibrated', "4"),
         ('outcomes[0].analyses["lcms"].instrument_last_calibrated', "lcms"),
@@ -166,7 +164,7 @@ def test_make_event() -> None:
 
 def test_make_event_refuses_a_naive_time() -> None:
     with pytest.raises(ValueError, match=r"2026-10-17 13:30:00 has no time zone"):
-        make_event(EVENT.person, datetime.datetime(2026, 10, 17, 13, 30))  # noqa: DTZ001
+        make_event(EVENT.person, dt.datetime(2026, 10, 17, 13, 30))  # noqa: DTZ001
 
 
 def test_describe() -> None:
