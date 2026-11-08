@@ -27,7 +27,7 @@ order is refused here. Each reaction with a rewritten value gains one
 """
 
 import argparse
-import datetime
+import datetime as dt
 import logging
 import re
 from pathlib import Path
@@ -86,7 +86,7 @@ def iso_form(value: str) -> str:
     else:
         try:
             # DTZ007: a ctime stamp carries no offset, and none is added.
-            parsed = datetime.datetime.strptime(value, _CTIME)  # noqa: DTZ007
+            parsed = dt.datetime.strptime(value, _CTIME)  # noqa: DTZ007
         except ValueError:
             raise ValueError(f"no known shape matches {value!r}") from None
         converted = parsed.isoformat()
@@ -177,7 +177,7 @@ def normalize_dataset(
     ) or list(written.iter_reaction_ids()) != reaction_ids:
         raise RuntimeError(f"{path} does not read back as planned")
     for reaction in written.reactions:
-        if any(not is_valid(dt.value) for _, dt in iter_date_times(reaction)):
+        if any(not is_valid(date.value) for _, date in iter_date_times(reaction)):
             raise RuntimeError(f"{path} still holds a DateTime ord-schema rejects")
     return reactions, values
 
@@ -214,7 +214,7 @@ def main() -> None:
         organization=args.organization,
         email=args.email,
     )
-    event = make_event(person, datetime.datetime.now(datetime.UTC))
+    event = make_event(person, dt.datetime.now(dt.UTC))
     paths = sorted(args.repo_root.glob("data/*/*.parquet"))
     total_reactions = total_values = 0
     for path in paths:

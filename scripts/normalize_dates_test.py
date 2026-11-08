@@ -14,7 +14,7 @@
 
 """Tests for rewriting DateTime values in ISO 8601."""
 
-import datetime
+import datetime as dt
 import re
 from pathlib import Path
 
@@ -37,7 +37,7 @@ PIPELINE_EMAIL = "github-actions@github.com"
 PIPELINE_DETAILS = "Automatic updates from the submission pipeline."
 EVENT = make_event(
     reaction_pb2.Person(username="test", email="test@example.com"),
-    datetime.datetime(2026, 10, 17, 17, 30, tzinfo=datetime.UTC),
+    dt.datetime(2026, 10, 17, 17, 30, tzinfo=dt.UTC),
 )
 
 
