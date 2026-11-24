@@ -49,7 +49,7 @@ jobs:
   mirror:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         fetch-depth: 0
         lfs: false
@@ -76,7 +76,7 @@ jobs:
         echo "head=${HEAD}" >> "${GITHUB_OUTPUT}"
         echo "Diff range: ${BASE}..${HEAD}"
 
-    - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
+    - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
       with:
         enable-cache: true
 
@@ -91,14 +91,19 @@ jobs:
     - name: Point Git LFS reads at GitHub
       run: git config lfs.url "https://github.com/${GITHUB_REPOSITORY}.git/info/lfs"
 
+    # Expression values reach the script through env, so the shell never parses
+    # them as code. DRY_RUN_FLAG is empty outside pull requests, where
+    # ${DRY_RUN_FLAG:+...} expands to no argument at all.
     - name: Mirror to Hugging Face
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
         DRY_RUN_FLAG: ${{ github.event_name == 'pull_request' && '--dry-run' || '' }}
+        RANGE_BASE: ${{ steps.range.outputs.base }}
+        RANGE_HEAD: ${{ steps.range.outputs.head }}
       run: |
         uv run --no-sync python scripts/upload_to_huggingface.py \
-          --base="${{ steps.range.outputs.base }}" \
-          --head="${{ steps.range.outputs.head }}" \
+          --base="${RANGE_BASE}" \
+          --head="${RANGE_HEAD}" \
           --commit-message="Mirror ${GITHUB_SHA::7} from github.com/${GITHUB_REPOSITORY}" \
           --summary-file="${GITHUB_STEP_SUMMARY}" \
-          ${DRY_RUN_FLAG}
+          ${DRY_RUN_FLAG:+"${DRY_RUN_FLAG}"}

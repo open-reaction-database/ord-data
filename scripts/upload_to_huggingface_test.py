@@ -14,15 +14,18 @@
 
 """Tests for the Hugging Face mirror script."""
 
+import csv
 from pathlib import Path
 
 import pytest
 from upload_to_huggingface import (
-    USPTO_GRANTS_ID,
+    USPTO_GRANTS_IDS,
     USPTO_MIT_SPLITS,
     build_configs,
     parse_name_status,
 )
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 def test_parse_name_status_added_and_modified_become_uploads() -> None:
@@ -74,8 +77,7 @@ def _touch_dataset(repo_root: Path, dataset_id: str) -> str:
 
 def test_build_configs_default_excludes_named_datasets(tmp_path: Path) -> None:
     plain = _touch_dataset(tmp_path, "ord_dataset-00005539a1e04c809a9a78647bea649c")
-    _touch_dataset(tmp_path, USPTO_GRANTS_ID)
-    for dataset_id in USPTO_MIT_SPLITS.values():
+    for dataset_id in [*USPTO_GRANTS_IDS.values(), *USPTO_MIT_SPLITS.values()]:
         _touch_dataset(tmp_path, dataset_id)
 
     configs = build_configs(tmp_path)
@@ -87,7 +89,10 @@ def test_build_configs_default_excludes_named_datasets(tmp_path: Path) -> None:
 
 
 def test_build_configs_emits_named_uspto_configs(tmp_path: Path) -> None:
-    grants = _touch_dataset(tmp_path, USPTO_GRANTS_ID)
+    grants = {
+        year: _touch_dataset(tmp_path, dataset_id)
+        for year, dataset_id in USPTO_GRANTS_IDS.items()
+    }
     mit = {
         split: _touch_dataset(tmp_path, dataset_id)
         for split, dataset_id in USPTO_MIT_SPLITS.items()
@@ -95,7 +100,10 @@ def test_build_configs_emits_named_uspto_configs(tmp_path: Path) -> None:
 
     by_name = {config["config_name"]: config for config in build_configs(tmp_path)}
 
-    assert by_name["uspto-grants"]["data_files"] == [grants]
+    # Year order, not the path order the default config uses.
+    assert by_name["uspto-grants"]["data_files"] == [
+        grants[year] for year in sorted(grants)
+    ]
     assert by_name["uspto-mit"]["data_files"] == [
         {"split": split, "path": mit[split]} for split in USPTO_MIT_SPLITS
     ]
@@ -104,14 +112,29 @@ def test_build_configs_emits_named_uspto_configs(tmp_path: Path) -> None:
 def test_build_configs_omits_named_configs_when_datasets_absent(
     tmp_path: Path,
 ) -> None:
-    """Partial coverage must not emit a config referencing a missing split."""
+    """Partial coverage must not emit a config referencing a missing file."""
     _touch_dataset(tmp_path, "ord_dataset-00005539a1e04c809a9a78647bea649c")
+    _touch_dataset(tmp_path, USPTO_GRANTS_IDS[1976])
     _touch_dataset(tmp_path, USPTO_MIT_SPLITS["train"])
 
     names = {config["config_name"] for config in build_configs(tmp_path)}
 
     assert "uspto-grants" not in names
     assert "uspto-mit" not in names
+
+
+def test_uspto_grants_ids_match_retired_datasets() -> None:
+    """The config's years are the datasets that replaced uspto-grants."""
+    with (REPO_ROOT / "retired_datasets.csv").open(newline="") as handle:
+        replacements = {
+            row["replacement_name"]: row["replacement_dataset_id"]
+            for row in csv.DictReader(handle)
+            if row["retired_name"] == "uspto-grants"
+        }
+    assert replacements == {
+        f"uspto-grants-{year}": dataset_id
+        for year, dataset_id in USPTO_GRANTS_IDS.items()
+    }
 
 
 def test_build_configs_emits_one_config_per_dataset(tmp_path: Path) -> None:

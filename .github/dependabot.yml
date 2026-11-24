@@ -30,8 +30,6 @@ updates:
       actions:
         patterns:
           - "*"
-    commit-message:
-      prefix: "Bump"
 
   # Covers pyproject.toml and uv.lock together, so a bump cannot land in one
   # without the other and leave `uv sync --locked` failing in CI.
@@ -43,5 +41,3 @@ updates:
       python:
         patterns:
           - "*"
-    commit-message:
-      prefix: "Bump"

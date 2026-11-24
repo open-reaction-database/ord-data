@@ -33,7 +33,7 @@ python scripts/download_from_huggingface.py
 installs the dependencies for you.)
 
 The script mirrors the `data/` directory from the Hugging Face dataset into your
-local checkout. Pass `--allow-pattern 'data/4d/*.pb.gz'` (repeatable) to download
+local checkout. Pass `--allow-pattern 'data/4d/*.parquet'` (repeatable) to download
 only a subset, or `--output-dir <path>` to write somewhere other than the
 repository root. To skip LFS entirely during the clone and fetch the data
 afterward:
@@ -54,21 +54,46 @@ below.
 
 ## Data Manipulation
 
-The `ord-data` repository contains the Open Reaction Database (ORD) in Google's Protobuf binary
-format, which is stored in the [`data`](data) directory. Currently, all the data are stored in e.g.
-*.pb.gz format (compressed Protobuf binary files) for the sake of efficiency. The user can convert
-the data into human readable text format, *.pb.txt.
+The `ord-data` repository contains the Open Reaction Database (ORD) as Parquet files stored in the
+[`data`](data) directory. Each file holds one dataset: the reactions are serialized Protobuf
+messages (one per row) and the dataset name/description/ID travel in the file metadata, so those
+scalars and every reaction survive a round trip through `ord_schema`. (`Dataset.reaction_ids`,
+which names reactions stored outside the dataset, is not persisted — the `reaction_id` column is
+the source of truth — and a dataset with no reactions cannot be written at all.) The user can
+convert the data into human readable text format, *.pbtxt.
 
 ```python
 # import requirements
-from ord_schema.message_helpers import load_message, save_message
-from ord_schema.proto import dataset_pb2
+from ord_schema.datasets import load_dataset
+from ord_schema.message_helpers import save_message
 
-# load the binary ord file
-dataset = load_message("input_fname.pb.gz", dataset_pb2.Dataset)
+# load the parquet file as a Dataset proto
+# (as_dataset materializes it; the default is a streaming DatasetView)
+dataset = load_dataset("input_fname.parquet", as_dataset=True)
 # save the ord file as human readable text
 save_message(dataset, "output_fname.pbtxt")
 ```
+
+`datasets.load_dataset` returns a `DatasetView` for Parquet, which takes the
+dataset's scalars and row count from the file footer and reads reactions on
+demand. (Note the name collision: `ord_schema.parquet.load_dataset` always
+materializes, which on the largest file is a silent 400k-reaction load rather
+than an error.) Iteration, `len`, indexing, and slicing over `reactions` behave
+like a list, so read-only code needs no change — and the largest file, 409k
+reactions in 105 MB, opens in milliseconds rather than deserializing up
+front. Two places the resemblance stops: indexing returns a freshly
+deserialized copy rather than a live sub-message, so mutating it changes
+nothing on disk, and `reactions` never compares equal to a list — compare
+against `list(view.reactions)`. Pass `as_dataset=True` (above) when you need the
+protobuf surface: serializing or mutating the dataset as a whole. If you already
+hold a view, `to_proto()` does the same thing.
+
+Beyond plain iteration, a view can look a reaction up by ID with `get_reaction`,
+yield IDs alone with `iter_reaction_ids`, and read one row group at a time with
+`iter_reactions(row_group=...)`, which yields `(reaction_id, Reaction)` pairs
+rather than bare reactions. Row groups are the unit of parallelism for fanning
+out over a large file; `view.num_row_groups` gives the upper bound, and an index
+outside it raises `IndexError`.
 
 We can also convert ORD data into JSON format.
 
@@ -76,22 +101,18 @@ We can also convert ORD data into JSON format.
 # import requirements
 import json
 
-from ord_schema.message_helpers import load_message
-from ord_schema.proto import dataset_pb2
+from ord_schema.datasets import load_dataset
 from google.protobuf.json_format import MessageToJson
 
-input_fname = "sample_file.pb.gz"
-dataset = load_message(
-    input_fname,
-    dataset_pb2.Dataset,
-)
+input_fname = "sample_file.parquet"
+dataset = load_dataset(input_fname)
 
 # take one reaction message from the dataset for example
 rxn = dataset.reactions[0]
 rxn_json = json.loads(
     MessageToJson(
         message=rxn,
-        including_default_value_fields=False,
+        always_print_fields_with_no_presence=False,
         preserving_proto_field_name=True,
         indent=2,
         sort_keys=False,
@@ -106,6 +127,25 @@ print(
     f"We have converted the {input_fname} to JSON format shown as below, \n{rxn_json}"
 )
 ```
+
+## Retired dataset IDs
+
+Some datasets are consolidations of shards that were once published separately, and a
+consolidated output carries a new ID derived from the sorted IDs of its sources:
+
+| Dataset | ID | Sources |
+| --- | --- | --- |
+| `uspto-grants-YYYY` (41 datasets, 1976–2016) | one per year | the monthly `uspto-grants-YYYY_MM` datasets of that year |
+| `Training data from https://doi.org/10.1039/C8SC04228D` | `ord_dataset-e7830cd6b11158b43994ccfb5ee9acb3` | 10 `(N/10)` shards |
+
+The USPTO grants were also published as a single `uspto-grants` dataset
+(`ord_dataset-1158e351757f315b93cbcbe7bc55f38e`), which the yearly datasets replace.
+
+[`retired_datasets.csv`](retired_datasets.csv) maps each of the 500 retired IDs to the dataset that
+replaced it, with one row per year for `uspto-grants`. Every other dataset kept its ID.
+
+Each yearly USPTO dataset holds its months in calendar order, and per-reaction patent provenance is
+on `Reaction.provenance.patent`.
 
 ## Git LFS and the Hugging Face mirror
 
@@ -145,14 +185,20 @@ for the data:
 ### For maintainers (CI)
 
 Freshly pushed objects are not on the Hugging Face mirror until the post-merge
-mirror job runs, so CI and the mirror override the read endpoint back to GitHub
-at runtime (`git config lfs.url …`):
+mirror job runs, so CI and the mirror read them from GitHub, overriding the read
+endpoint at runtime (`git config lfs.url …`):
 
-- [`validation.yml`](.github/workflows/validation.yml) pulls only each matrix
-  shard's objects from GitHub, sparsely, instead of the whole dataset in every
-  job.
+- [`validation.yml`](.github/workflows/validation.yml) pulls the datasets a
+  change adds or modifies from GitHub. A run over the whole corpus reads the
+  Hugging Face mirror first and takes from GitHub only what the mirror lacks;
+  git lfs checks each object against its pointer, so the mirror cannot serve
+  different bytes. Each matrix shard pulls only its own objects.
 - [`submission.yml`](.github/workflows/submission.yml) reads from GitHub so fork
   and branch submissions are validated before their bytes reach Hugging Face.
+  The published versions of datasets a submission modifies are already on the
+  mirror, so it reads those from Hugging Face, falling back to GitHub for any
+  the mirror has yet to sync; git lfs checks each object against its pointer,
+  so the mirror cannot serve different bytes.
 - [`huggingface_mirror.yml`](.github/workflows/huggingface_mirror.yml) reads the
   to-be-mirrored objects from GitHub.
 
@@ -170,35 +216,59 @@ to assign reaction/dataset IDs and timestamps to newly
 submitted files and rewrite them to the canonical on-disk format. For
 maintainer PRs that touch dataset files but should *not* be re-processed
 this way — e.g., format conversions or mass migrations of already-finalized
-data — apply the `skip-update-submission` label to the PR. The validation
-side of the workflow still runs.
+data — apply the `skip-update-submission` label to the PR. The label skips
+only the rewrite: `Validate submission` runs in its place, so the changed
+datasets are still validated before merge, and
+[`validation.yml`](.github/workflows/validation.yml) validates them as well, on
+the pull request and again on merge to `main`.
+
+### When validation runs
+
+[`validation.yml`](.github/workflows/validation.yml) validates what a change
+can affect, on pull requests and on pushes to `main`:
+
+- **the whole corpus** when `validation.yml` or the validation environment
+  changes, or on a manual run (`gh workflow run validation.yml`, optionally with
+  `--ref <branch>`);
+- otherwise **the datasets the change adds or modifies** under `data/`, and
+  nothing when there are none.
+
+The validation environment is the Python in `.python-version` plus ord-schema
+and every package it depends on, as `uv.lock` resolves them. A `uv.lock` change
+confined to other packages does not count, and neither does a fork's: a pull
+request from a fork is validated in its base branch's environment. There is no
+scheduled run: a manual run covers what the repository does not pin, such as
+the Python patch release that `uv` picks for `.python-version`.
 
 ### Converting datasets to Parquet
 
-Datasets are stored as `.pb.gz`; most also have a Parquet sibling. New
-submissions arrive as `.pb.gz` only, so their Parquet versions are backfilled
-with [`scripts/convert_to_parquet.py`](scripts/convert_to_parquet.py). The
-script globs every `data/**/*.pb.gz`, merges the known de-shard groups (the
-`uspto-grants-YYYY_MM` monthly buckets and the `C8SC04228D` shards) into single
-outputs, converts everything else 1:1 (carrying the existing `dataset_id`), and
-skips any output that already exists — so it is safe to re-run and writes only
-what is missing.
+Published datasets are stored as Parquet only, and new submissions are written
+that way by `process_dataset.py`, so `data/` holds no `.pb.gz` to convert.
+[`scripts/convert_to_parquet.py`](scripts/convert_to_parquet.py) handles the
+case where one lands there anyway: it globs `data/*/ord_dataset-*.pb.gz`,
+converts each 1:1 (carrying the existing `dataset_id`), and refuses to overwrite
+an existing output whose reaction count disagrees with its input. Converting the
+corpus is this script's job, not a side effect of editing one dataset, which is
+why `process_dataset.py` leaves an edited file in whatever format it has.
 
 It needs `ord_schema`, which comes from the `pipeline` dependency group. Because
-it reads every `.pb.gz` to classify by name, pull the inputs first:
+it reads `.pb.gz` content, pull the inputs first. With `data/` Parquet-only the
+converter has nothing to do and says so — these steps are worth running only
+once a `.pb.gz` has actually appeared:
 
 ```bash
 uv sync --only-group pipeline
 
-git lfs pull --include="data/**/*.pb.gz"  # the converter reads pb.gz content
+git lfs pull --include="data/*/ord_dataset-*.pb.gz"
 uv run --no-sync python scripts/convert_to_parquet.py --dry-run  # preview
-uv run --no-sync python scripts/convert_to_parquet.py  # write the siblings
+uv run --no-sync python scripts/convert_to_parquet.py
+git rm data/*/*.pb.gz  # keep only the Parquet versions
 ```
 
 Commit the new `.parquet` files (they become LFS objects), push them (see
 [Pushing new LFS objects](#pushing-new-lfs-objects)), and open the PR with the
-`skip-update-submission` label. Validation runs against the full dataset on
-merge to `main`.
+`skip-update-submission` label. `validation.yml` validates the converted
+datasets on the pull request and again on merge to `main`.
 
 ### Pushing new LFS objects
 

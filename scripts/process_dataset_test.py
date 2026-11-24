@@ -13,8 +13,10 @@
 # limitations under the License.
 """Tests for the submission processing script."""
 
+import logging
 import os
 import pathlib
+import shutil
 import subprocess
 
 import process_dataset
@@ -129,10 +131,10 @@ class TestProcessDataset:
             pathlib.Path(dirname)
             / "data"
             / "00"
-            / "ord_dataset-00000000000000000000000000000000.pb.gz"
+            / "ord_dataset-00000000000000000000000000000000.parquet"
         )
         assert expected_output.exists()
-        dataset = message_helpers.load_message(expected_output, dataset_pb2.Dataset)
+        dataset = parquet.load_dataset(expected_output)
         assert len(dataset.reactions) == 1
         assert dataset.reactions[0].reaction_id.startswith("ord-")
 
@@ -399,12 +401,12 @@ class TestSubmissionWorkflow:
         # Check for assignment of dataset and reaction IDs.
         filenames.pop(filenames.index(dataset_filename))
         assert len(filenames) == 1
-        dataset = message_helpers.load_message(filenames[0], dataset_pb2.Dataset)
+        dataset = parquet.load_dataset(filenames[0])
         assert dataset.dataset_id
         assert len(dataset.reactions) == 1
         assert dataset.reactions[0].reaction_id
-        # Check for binary output.
-        assert filenames[0].endswith(".pb.gz")
+        # Submissions are normalized to the canonical on-disk format.
+        assert filenames[0].endswith(".parquet")
 
     @pytest.mark.parametrize("suffix", [".binpb", ".txtpb"])
     def test_add_dataset_with_protobuf_canonical_suffix(self, setup, suffix):
@@ -436,12 +438,12 @@ class TestSubmissionWorkflow:
         assert not this_dataset_filename.exists()
         assert len(filenames) == 2
         filenames.pop(filenames.index(dataset_filename))
-        written = message_helpers.load_message(filenames[0], dataset_pb2.Dataset)
+        written = parquet.load_dataset(filenames[0])
         assert written.dataset_id
         assert len(written.reactions) == 1
         assert written.reactions[0].reaction_id
         # Submissions are normalized to the canonical on-disk format.
-        assert filenames[0].endswith(".pb.gz")
+        assert filenames[0].endswith(".parquet")
 
     def test_add_parquet_dataset_with_cleanup(self, setup):
         # Exercises --cleanup + .parquet input + .parquet output: the
@@ -516,7 +518,7 @@ class TestSubmissionWorkflow:
         filenames.pop(filenames.index(dataset_filename))
         assert len(filenames) == 2
         for filename in filenames:
-            dataset = message_helpers.load_message(filename, dataset_pb2.Dataset)
+            dataset = parquet.load_dataset(filename)
             assert len(dataset.reactions) == 1
         assert not dataset1_filename.exists()
         assert not dataset2_filename.exists()
@@ -549,7 +551,7 @@ class TestSubmissionWorkflow:
         assert not this_dataset_filename.exists()
         filenames.pop(filenames.index(dataset_filename))
         assert len(filenames) == 1
-        dataset = message_helpers.load_message(filenames[0], dataset_pb2.Dataset)
+        dataset = parquet.load_dataset(filenames[0])
         # Check that existing record IDs for added datasets are not overridden.
         assert dataset.reactions[0].reaction_id == reaction_id
         assert len(dataset.reactions[0].provenance.record_modified) == 0
@@ -579,7 +581,12 @@ class TestSubmissionWorkflow:
         assert added == {"test"}
         assert not removed
         assert changed == {"ord-10aed8b5dffe41fab09f5b2cc9c58ad9"}
+        # Editing a dataset already in the repository leaves it in the format it
+        # has: rewriting it as Parquet would rename a published path and delete
+        # the .pb.gz, which is a corpus-wide decision rather than a side effect
+        # of correcting one dataset. New submissions get the standard format.
         assert filenames == [dataset_filename]
+        assert dataset_filename.endswith(".pb.gz")
         # Check for preservation of dataset and record IDs.
         updated_dataset = message_helpers.load_message(
             dataset_filename, dataset_pb2.Dataset
@@ -590,6 +597,20 @@ class TestSubmissionWorkflow:
             dataset.reactions[0].reaction_id == updated_dataset.reactions[0].reaction_id
         )
         assert updated_dataset.reactions[1].reaction_id
+
+    def test_modify_dataset_with_explicit_output_format(self, setup):
+        # --output_format is how a deliberate one-off conversion is requested,
+        # so it has to beat the preservation rule above rather than lose to it.
+        test_subdirectory, dataset_filename = setup
+        dataset = message_helpers.load_message(dataset_filename, dataset_pb2.Dataset)
+        dataset.reactions[0].inputs["methylamine"].components[0].amount.moles.value = 2
+        message_helpers.save_message(dataset, dataset_filename)
+        _, _, _, filenames = self._run(
+            test_subdirectory, ["--output_format", ".parquet"]
+        )
+        assert not pathlib.Path(dataset_filename).exists()
+        assert filenames == [dataset_filename.replace(".pb.gz", ".parquet")]
+        assert len(parquet.load_dataset(filenames[0]).reactions) == 1
 
     def test_modify_reaction_id(self, setup):
         test_subdirectory, dataset_filename = setup
@@ -774,3 +795,121 @@ class TestLoadBaseDataset:
             )
             is None
         )
+
+
+def _load_modified_dataset():
+    return process_dataset._load_base_dataset(
+        process_dataset.FileStatus("dataset.pb", "M", ""), "main"
+    )
+
+
+@pytest.mark.skipif(shutil.which("git-lfs") is None, reason="needs git-lfs")
+class TestLoadLfsBaseDataset:
+    """Covers where an LFS-tracked base revision is read from.
+
+    Two local file:// stores stand in for the Hugging Face mirror, which the
+    committed .lfsconfig names, and GitHub, which CI configures as lfs.url.
+    """
+
+    @pytest.fixture
+    def store_in(self, tmp_path, monkeypatch):
+        """Commits an LFS-tracked base dataset; the returned callable stores it."""
+        stores = {name: tmp_path / f"{name}.git" for name in ("mirror", "github")}
+        for store in stores.values():
+            subprocess.run(["git", "init", "--quiet", "--bare", store], check=True)
+        work = tmp_path / "work"
+        work.mkdir()
+        monkeypatch.chdir(work)
+
+        def git(*args):
+            subprocess.run(["git", *args], check=True, capture_output=True)
+
+        git("init", "--quiet", "-b", "main")
+        git("config", "--local", "user.email", "test@ord-schema")
+        git("config", "--local", "user.name", "Test Runner")
+        git("config", "--local", "commit.gpgsign", "false")
+        # The LFS filter without `git lfs install`, which would also write hooks.
+        git("config", "--local", "filter.lfs.clean", "git-lfs clean -- %f")
+        git("config", "--local", "filter.lfs.smudge", "git-lfs smudge -- %f")
+        git("config", "--local", "filter.lfs.process", "git-lfs filter-process")
+        git("config", "--local", "filter.lfs.required", "true")
+        # git lfs's file:// transfer adapter needs a file:// remote to start,
+        # whatever lfs.url names.
+        git("remote", "add", "origin", stores["github"].as_uri())
+        git("config", "--local", "lfs.url", stores["github"].as_uri())
+        pathlib.Path(".gitattributes").write_text(
+            "*.pb filter=lfs diff=lfs merge=lfs -text\n"
+        )
+        pathlib.Path(".lfsconfig").write_text(
+            f"[lfs]\n\turl = {stores['mirror'].as_uri()}\n"
+        )
+        message_helpers.save_message(dataset_pb2.Dataset(name="base"), "dataset.pb")
+        git("add", ".gitattributes", ".lfsconfig", "dataset.pb")
+        git("commit", "--quiet", "-m", "base")
+        message_helpers.save_message(dataset_pb2.Dataset(name="modified"), "dataset.pb")
+        objects = pathlib.Path(".git/lfs/objects")
+        (local,) = [path for path in objects.rglob("*") if path.is_file()]
+
+        def store_in(*names):
+            for name in names:
+                target = stores[name] / "lfs" / "objects" / local.relative_to(objects)
+                target.parent.mkdir(parents=True)
+                shutil.copy(local, target)
+            # From here on only the stores hold the object.
+            shutil.rmtree(objects)
+
+        return store_in
+
+    def test_reads_the_mirror(self, store_in):
+        store_in("mirror")  # The configured endpoint lacks it.
+        assert _load_modified_dataset().name == "base"
+
+    def test_tries_the_mirror_first_and_stops_there(self, store_in, monkeypatch):
+        store_in("mirror", "github")
+        configs = []
+        run_smudge = process_dataset._run_smudge
+
+        def spy(pointer, config=(), **kwargs):
+            configs.append(list(config))
+            return run_smudge(pointer, config, **kwargs)
+
+        monkeypatch.setattr(process_dataset, "_run_smudge", spy)
+        assert _load_modified_dataset().name == "base"
+        assert len(configs) == 1
+        option, value = configs[0]
+        assert option == "-c"
+        assert value.startswith("lfs.url=")
+        assert value.endswith("/mirror.git")
+
+    def test_falls_back_to_the_configured_endpoint(self, store_in, caplog):
+        store_in("github")
+        with caplog.at_level(logging.WARNING):
+            assert _load_modified_dataset().name == "base"
+        assert "cannot serve main:dataset.pb" in caplog.text
+
+    def test_raises_when_neither_store_has_it(self, store_in):
+        store_in()
+        with pytest.raises(subprocess.CalledProcessError, match="non-zero exit"):
+            _load_modified_dataset()
+
+    def test_a_pointer_passed_through_is_not_content(self, store_in, monkeypatch):
+        store_in("mirror", "github")
+        # git lfs then exits 0 with the pointer itself as its output.
+        monkeypatch.setenv("GIT_LFS_SKIP_SMUDGE", "1")
+        with pytest.raises(ValueError, match="returned the pointer instead"):
+            _load_modified_dataset()
+
+    def test_mirror_comes_from_the_base_revision(self, store_in, tmp_path):
+        store_in("mirror")
+        # A submission cannot redirect the read by editing its own .lfsconfig.
+        pathlib.Path(".lfsconfig").write_text(
+            f"[lfs]\n\turl = {(tmp_path / 'elsewhere.git').as_uri()}\n"
+        )
+        assert _load_modified_dataset().name == "base"
+
+    def test_no_mirror_without_an_lfsconfig(self, store_in):
+        store_in("github")
+        subprocess.run(["git", "rm", "--quiet", ".lfsconfig"], check=True)
+        subprocess.run(["git", "commit", "--quiet", "-m", "no mirror"], check=True)
+        assert process_dataset._mirror_lfs_url("main") is None
+        assert _load_modified_dataset().name == "base"
